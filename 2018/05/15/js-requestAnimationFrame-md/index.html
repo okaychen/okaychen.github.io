@@ -1,0 +1,409 @@
+<!DOCTYPE>
+<html>
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes" /> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+ 
+
+  
+
+  <title>
+    
+    requestAnimationFrame优化web动画 |
+    
+    浅笔墨画❀琐碎小记
+  </title>
+
+
+  
+  <link rel="icon" href="/images/favicon.png">
+  
+  
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+        daovoice('init', {
+            app_id: "862b4fbb"
+          });
+        daovoice('update');
+    </script>
+  
+
+  <link rel="stylesheet" href="/nayo.min.css">
+</head>
+
+<body>
+  <a href="https://www.github.com/okaychen" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+    </svg>
+  </a>
+  <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  
+  <header class="header">
+	
+  <nav class="header-nav">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/favicon.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/" title="home">
+              <i class="iconfont icon-home">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives" title="archives">
+              <i class="iconfont icon-archives">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags" title="tags">
+              <i class="iconfont icon-tags">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-eye" href="/lab" title="eye">
+              <i class="iconfont icon-eye">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about" title="about">
+              <i class="iconfont icon-about">  
+            </i></a>
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search" title="search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+
+
+  <div class="container">
+    
+    <section class="main">
+      
+
+        <article class="post">
+  
+	<div class="post-header">
+
+	<p class="post-title">	
+		requestAnimationFrame优化web动画
+	</p>
+			
+
+	<div class="meta-info">	
+		<span>
+			May 15, 2018
+		</span>
+		<span class="post-count"><i class="iconfont icon-posts"></i>字数统计1k字</span>
+		<span class="post-count" style="margin-top: 10px;"><i class="iconfont icon-eye"></i> 阅读时长预计4分钟</span>
+	</div>
+
+</div> 
+	 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<h2 id="requestAnimationFrame-是什么"><a href="#requestAnimationFrame-是什么" class="headerlink" title="requestAnimationFrame 是什么?"></a>requestAnimationFrame 是什么?</h2><p>在浏览器动画程序中，我们一般会使用定时器来循环每隔多少毫秒来移动物体一次，来使它产生动画的效果。requestAnimationFrame()函数是针对动画效果的 API，告诉浏览器您希望执行动画并请求浏览器在下一次重绘之前调用指定的函数来更新动画，可以把它用在 DOM 上的风格变化或 canvas 动画或 WebGL 中。</p>
+<a id="more"></a>
+<h2 id="requestAnimationFrame-相比定时器有哪些优势"><a href="#requestAnimationFrame-相比定时器有哪些优势" class="headerlink" title="requestAnimationFrame 相比定时器有哪些优势?"></a>requestAnimationFrame 相比定时器有哪些优势?</h2><p>那么问题就来了：CSS3 动画那么强，定时器同样可以完成一般的动画，我们为什么还需要 requestAnimationFrame()呢？</p>
+<p>首先对于主流的 CSS3 动画来说，虽然一些主流浏览器都对它有比较好的支持，但是 ie8 以下（）是不支持的是其一，其二 CSS3 动画的运动轨迹比较少，有不小的局限性。</p>
+<p>这时候我们会考虑到 JS，定时器使我们经常用到的方法，但是用定时器制作动画会发生【跳帧】问题，试想一下拥堵的高速公路上，最多每 16.7s 通过一辆车，结果突然插入一批 setinterval 的军车，强行要在 10s 通过。显然，这是超负荷的，想要顺利通过，只能让第三辆车军车直接消失。然而这是不现实的，于是就会堵车！</p>
+<p>同样的，显示器 16.7ms<code>刷新间隔之前发生了其他的绘制的请求</code>（setTimeout），导致所有的第三帧丢失，继而导致动画断续显示，这就是过渡绘制带来的问题。这也是为何 setTimeout 的定时器值推荐最小使用<code>16.7ms</code>原因<code>（16.7 = 1000 / 60，即每秒60帧）</code></p>
+<p>requestAnimationFrame 则会跟着浏览器的绘制走，如果浏览器设备的绘制间隔是 16.7ms，它就会 16.7ms 绘制；如果是 10ms，则会按 10ms 来绘制。这样就不会存在过度绘制的问题，动画不会掉帧。</p>
+<h2 id="requestAnimationFrame-用法"><a href="#requestAnimationFrame-用法" class="headerlink" title="requestAnimationFrame 用法"></a>requestAnimationFrame 用法</h2><p>虽然说 CSS3 动画既方便又高效，但是对于 PC 端 IE8，9 之流，想要兼容某些动画效果，比如淡入淡出，该如何实现？一般情况下，IE10+我们使用 CSS3 实现，对于 IE9-之流，我们使用 setTimeout 实现。两套完全不同的 style.改下动画时间还要修改两处。requestAnimationFrame 跟 setTimeout 非常类似，都是单回调，用法也类似。</p>
+<p>我们一般使用下面的兼容写法：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.requestAnimFrame = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="built_in">window</span>.requestAnimationFrame ||</span><br><span class="line">    <span class="built_in">window</span>.webkitRequestAnimationFrame ||</span><br><span class="line">    <span class="built_in">window</span>.mozRequestAnimationFrame ||</span><br><span class="line">    <span class="built_in">window</span>.oRequestAnimationFrame ||</span><br><span class="line">    <span class="built_in">window</span>.msRequestAnimationFrame ||</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params"><span class="regexp">/* function */</span> callback, <span class="regexp">/* DOMElement */</span> element</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">window</span>.setTimeout(callback, <span class="number">1000</span> / <span class="number">60</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  );</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">animloop</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  requestAnimFrame(animloop);</span><br><span class="line">  render();</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h2 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h2><p><img src="http://www.chenqaq.com/assets/images/CheckRequestAnimationFrame.jpg" alt="requestAnimationFrame兼容性"></p>
+<p>主流浏览器都实现了 requestAnimationFrame 的支持，即使是 IE9-之流，通过一些优雅降级的方案，也可以做到不出错。</p>
+<p>比如，Opera 浏览器的技术师 Erik Möller <a href="https://blogs.opera.com/news/" target="_blank" rel="noopener">把这个函数进行的封装</a>，使得它更好的兼容各种浏览器。<br>在 Erik Möller 标准函数的基础上加了兼容各种浏览器引擎的前缀。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> lastTime = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> vendors = [<span class="string">'webkit'</span>,<span class="string">'moz'</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> x=<span class="number">0</span>;x&lt;vendors.length &amp;&amp; !<span class="built_in">window</span>.requestAnimationFrame; ++x)&#123;</span><br><span class="line">        <span class="built_in">window</span>.requestAnimationFrame = <span class="built_in">window</span>[vendors[x] + <span class="string">'RequestAnimationFrame'</span>];</span><br><span class="line">        <span class="built_in">window</span>.cancelAnimationFrame  = <span class="built_in">window</span>[vendors[x] + <span class="string">'CancleAniamtionFrame'</span>] ||</span><br><span class="line">                                       <span class="built_in">window</span>[vendors[x] + <span class="string">'CancleRequestAnimationFrame'</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(!<span class="built_in">window</span>.requestAnimationFrame)&#123;</span><br><span class="line">        <span class="built_in">window</span>.requestAnimationFrame = <span class="function"><span class="keyword">function</span>(<span class="params">callback,element</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">var</span> currTime = <span class="keyword">new</span>.Date().getTime();</span><br><span class="line">            <span class="keyword">var</span> timeToCall = <span class="built_in">Math</span>.max(<span class="number">0</span>,<span class="number">16.7</span> - (currTime - lastTime));</span><br><span class="line">            <span class="keyword">var</span> id = <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                callback(currTime + timeToCall);</span><br><span class="line">            &#125;,timeToCall);</span><br><span class="line">            lastTime = currTime + timeToCall;</span><br><span class="line">            <span class="keyword">return</span> id;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(!<span class="built_in">window</span>.cancelAnimationFrame)&#123;</span><br><span class="line">        <span class="built_in">window</span>.cancelAnimationFrame = <span class="function"><span class="keyword">function</span>(<span class="params">id</span>)</span>&#123;</span><br><span class="line">            clearTimeout(id);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><p>在使用 canvas 绘画时这个函数更加合适，能得到更好的效果。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.reqestAnimFrame = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">window</span>.requestAnimationFrame ||</span><br><span class="line">    <span class="built_in">window</span>.webkitRequestAnimationFrame ||</span><br><span class="line">    <span class="built_in">window</span>.mozRequestAnimationFrame ||</span><br><span class="line">    <span class="built_in">window</span>.oRequestAnimationFrame ||</span><br><span class="line">    <span class="built_in">window</span>.msRequestAnimationFrame ||</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">callback, element</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">window</span>.setTimeout(callback, <span class="number">1000</span> / <span class="number">60</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> canvas, context, toggle;</span><br><span class="line"></span><br><span class="line">init();</span><br><span class="line">animate();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  canvas = <span class="built_in">document</span>.createElement(<span class="string">"canvas"</span>);</span><br><span class="line">  canvas.height = <span class="number">512</span>;</span><br><span class="line">  canvas.width = <span class="number">512</span>;</span><br><span class="line"></span><br><span class="line">  context = cavnas.getContext(<span class="string">"2d"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(canvas);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animate</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  reqestAnimFrame(animate);</span><br><span class="line">  draw();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime() * <span class="number">0.002</span>;</span><br><span class="line">  <span class="keyword">var</span> x = <span class="built_in">Math</span>.sin(time) * <span class="number">192</span> + <span class="number">256</span>;</span><br><span class="line">  <span class="keyword">var</span> y = <span class="built_in">Math</span>.cos(time * <span class="number">0.9</span>) * <span class="number">192</span> + <span class="number">256</span>;</span><br><span class="line">  toggle = !toggle;</span><br><span class="line"></span><br><span class="line">  context.fillStyle = toggle ? <span class="string">"rgb(200,100,20)"</span> : <span class="string">"rgb(20,20,100)"</span>;</span><br><span class="line">  context.beginPath();</span><br><span class="line">  context.arc(x, y, <span class="number">5</span>, <span class="number">0</span>, <span class="built_in">Math</span>.PI * <span class="number">2</span>, <span class="literal">true</span>);</span><br><span class="line">  context.closePath();</span><br><span class="line">  context.fill();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2>  	
+				
+			
+			<div id="MySignature" style="display: block;"><div id="Copyright">
+				<p class="com">
+				您的关注和支持是我写作的最大动力~ <br>
+				出处：<a href="http://www.chenqaq.com/" target="_blank">http://www.chenqaq.com</a><br>
+				github：<a target="_blank" href="https://github.com/okaychen">https://github.com/okaychen</a>
+				<br>
+				Web技术更新很快，本站很多文章都具有时效性，我会及时更新原文，持续和大家分享，除去特殊注明外，均为作者原创，采用更开放的「署名 4.0 国际（CC BY 4.0）」创作共享协议。欢迎大家转载，转载时请保留文章最后的出处，如若标注「原创」请先与本人取得联系
+				</p>
+				
+				</div></div>
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+  <div class="post-footer-other">
+      <span class="post-footer-item">
+        
+
+
+
+
+<span class="donate-btn">
+	<span class="iconfont icon-donate"></span>
+</span>
+
+
+<div id="donate-box" class="sildeUpMin">
+
+	<span class="donate-cancel iconfont icon-cancel"></span>
+
+	<div class="donate-img-box">
+		<img id="donate-qr-wechat" class="noLazyLoad donate-img" src="/" alt="No Donate Image!">	
+		<img id="donate-qr-alipay" class="noLazyLoad donate-img" src="/" alt="No Donate Image!">	
+	</div>
+
+	<span class="donate-word">世界美好 你也是</span>
+
+	<div class="donate-list">
+		<span class="iconfont icon-donate-wechat"></span>
+		<span class="iconfont icon-donate-alipay"></span>
+	</div>
+
+</div>
+
+ 
+      </span>           
+      <span class="post-footer-item">
+        
+	
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+	
+	<span class="share-btn">
+	<span class="iconfont icon-share"></span>
+	</span>
+
+
+	<div class="-mob-share sildeUpMin">
+		<div class="-mob-inner">
+		   			             
+            <a class="iconfont icon-share-qq -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-weixin -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-weibo -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-douban -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-facebook -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-twitter -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-google -mob-share-link"></a>		
+     	   
+		</div>
+	</div>	
+
+      </span>           
+  </div>  
+
+  <div class="post-footer-meta">
+        
+          <i class="iconfont icon-category"></i>       
+          <a class="category-link" href="/categories/JavaScript/">JavaScript</a> 	
+      
+        	
+
+        
+          <i class="iconfont icon-tag"></i>     
+            <a class="tag-link" href="/tags/JS/">JS</a> <a class="tag-link" href="/tags/web动画/">web动画</a>    
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  
+    <div class="post-footer-link">
+      <a href="/2018/10/05/linux-ssh-addToGithub-md/" id="post-nav-newer" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">newer</strong>
+           
+          <a class="post-nav-title" href="/2018/10/05/linux-ssh-addToGithub-md/">
+          linux下误将ssh密钥写入/root</a>
+      </a>
+    </div>
+  
+  
+    <div class="post-footer-link">
+      <a href="/2018/04/09/life-aboutIT/" id="post-nav-older" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">older</strong>
+        
+          <a class="post-nav-title" href="/2018/04/09/life-aboutIT/">
+          碎言心语-短笔记</a>
+      </a>
+    </div>
+  
+</nav>
+ 
+	
+	
+</article>
+
+      </section>
+  </div>
+
+  <a id="backTop">
+    <span>
+      <i class="iconfont icon-backtotop"></i>
+    </span>
+  </a>
+
+
+  
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+   <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon" src="/images/favicon.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首頁
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">歸檔
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">標籤
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/lab">Menu.eye
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">關於
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>
+  
+
+
+
+
+  
+
+
+<footer id="footer">
+
+
+	<div class="footer-copyright">
+		<div>
+			<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+			<script>
+				var now = new Date();
+
+				function createtime() {
+					var grt = new Date("12/05/2017 00:00:00"); //此处修改你的建站时间或者网站上线时间 
+					now.setTime(now.getTime() + 250);
+					days = (now - grt) / 1000 / 60 / 60 / 24;
+					dnum = Math.floor(days);
+					hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+					hnum = Math.floor(hours);
+					if (String(hnum).length == 1) {
+						hnum = "0" + hnum;
+					}
+					minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+					mnum = Math.floor(minutes);
+					if (String(mnum).length == 1) {
+						mnum = "0" + mnum;
+					}
+					seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+					snum = Math.round(seconds);
+					if (String(snum).length == 1) {
+						snum = "0" + snum;
+					}
+					document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+					document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+				}
+				setInterval("createtime()", 250);
+			</script>
+		</div>
+
+		<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+		&copy;
+		
+		2017-
+		
+		2019
+
+		<a href="https://github.com/okaychen" target="_blank">
+			okaychen
+		</a>
+
+	</div>
+
+</footer>
+
+
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  <script type="text/javascript" src="/clicklove.js"></script>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script src="/nayo.bundle.js"></script>
+</body>
+
+</html>

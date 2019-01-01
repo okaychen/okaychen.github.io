@@ -1,0 +1,451 @@
+<!DOCTYPE>
+<html>
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes" /> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+ 
+
+  
+
+  <title>
+    
+    过渡与动画 - 缓动效果之弹跳动画&amp;弹性过渡 |
+    
+    浅笔墨画❀琐碎小记
+  </title>
+
+
+  
+  <link rel="icon" href="/images/favicon.png">
+  
+  
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+        daovoice('init', {
+            app_id: "862b4fbb"
+          });
+        daovoice('update');
+    </script>
+  
+
+  <link rel="stylesheet" href="/nayo.min.css">
+</head>
+
+<body>
+  <a href="https://www.github.com/okaychen" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+    </svg>
+  </a>
+  <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  
+  <header class="header">
+	
+  <nav class="header-nav">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/favicon.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/" title="home">
+              <i class="iconfont icon-home">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives" title="archives">
+              <i class="iconfont icon-archives">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags" title="tags">
+              <i class="iconfont icon-tags">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-eye" href="/lab" title="eye">
+              <i class="iconfont icon-eye">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about" title="about">
+              <i class="iconfont icon-about">  
+            </i></a>
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search" title="search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+
+
+  <div class="container">
+    
+    <section class="main">
+      
+
+        <article class="post">
+  
+	<div class="post-header">
+
+	<p class="post-title">	
+		过渡与动画 - 缓动效果之弹跳动画&amp;弹性过渡
+	</p>
+			
+
+	<div class="meta-info">	
+		<span>
+			Dec 10, 2017
+		</span>
+		<span class="post-count"><i class="iconfont icon-posts"></i>字数统计2.3k字</span>
+		<span class="post-count" style="margin-top: 10px;"><i class="iconfont icon-eye"></i> 阅读时长预计9分钟</span>
+	</div>
+
+</div> 
+	 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<h1 id="难题"><a href="#难题" class="headerlink" title="难题"></a>难题</h1><p>给过渡和动画加上缓动效果是一种常见的手法（比如具有回弹效果的过渡过程）是一种流行的表现手法，可以让界面显得更加生动和真实：在现实世界中，物体A点到B点往往也是不完全匀速的</p>
+<p>以纯技术的角度来看，回弹效果是指当一个过渡达到最终值时，往回到一点，然后再次回到最终值，如此往复一次或者多次，并逐渐收敛，最终稳定在最终值。有相当的多JavaScript类库可以创建动画，且内置回弹效果等其他缓动效果。但是眼下，我们其实已经不需要借助脚本来实现过渡和动画了。不过，在CSS中实现回弹效果的最佳方式是什么呢？<br><a id="more"></a><br><img src="http://www.chenqaq.com/assets/images/easingP.png" alt="弹跳效果"></p>
+<h1 id="弹跳动画"><a href="#弹跳动画" class="headerlink" title="弹跳动画"></a>弹跳动画</h1><p>我们的第一感觉可能就是使用css动画，并且设置如下关键帧：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">@<span class="keyword">keyframes</span> bounce&#123;</span><br><span class="line">    60%,80%,<span class="selector-tag">to</span>&#123;<span class="attribute">transform</span>:<span class="built_in">translateY</span>(350px);&#125;</span><br><span class="line">    70%&#123;<span class="attribute">transform</span>:<span class="built_in">translateY</span>(250px);&#125;</span><br><span class="line">    90%&#123;<span class="attribute">transform</span>:<span class="built_in">translateY</span>(300px);&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>相信我们都做过这样的事，但是我们跑一遍这个动画，会发现它显示的及其不真实，主要原因在于，每当这个小球方向改变时，她得移动过程都是持续加速的，这看起来很不自然。<code>原因其实就是因为它的调速函数在关键帧的衔接都是一样的</code></p>
+<p>所有的过渡和动画之间都是跟一条曲线有关的，<code>这条曲线指定了动画过程在整段时间中是如何推进的</code>。</p>
+<p>如果不指定调速函数，就是得到一个默认值。但是这个<code>默认值</code>并不是我们想象中的匀速效果，而是：</p>
+<p><img src="http://www.chenqaq.com/assets/images/easing2.png" alt="默认值"></p>
+<p>注意，当时间进行到一半时，这个过渡已经推进到80%.</p>
+<p>说到<code>调速函数</code>,我们很自然联系到了css内置的缓动曲线和贝塞尔曲线。</p>
+<p>不论是在<code>animation/transition</code>简写属性中，还是在<code>animation-timing-function/transition-timing-function</code>展开属性中，你都可以把这个默认的调速函数显示指定<code>ease</code>关键字。除了ease外，还有四种内置的缓动曲线，你可以借助他们来改变动画的推进方式</p>
+<p><img src="http://www.chenqaq.com/assets/images/easing-easeOut.png" alt="ease-out"><br><img src="http://www.chenqaq.com/assets/images/easing-easeIn.png" alt="ease-in"></p>
+<p><img src="/images/placeholder.png" alt="ease-in-out" data-src="http://www.chenqaq.com/assets/images/easing-easeInOut.png" class="lazyload"><br><img src="/images/placeholder.png" alt="linear" data-src="http://www.chenqaq.com/assets/images/easing3.png" class="lazyload"></p>
+<p>从上面四个图中，我们很直观的看出，<code>ease-out</code>是<code>ease-in</code>的反向版本。而这一对组合正是实现回弹效果所需要的：<code>每当小球的运动方向相反时，我们希望调速函数也是相反的</code>。我们希望小球下落是加速的<code>(ease-out)</code>,而弹起向上是减速的<code>(ease-in)</code>:</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">@<span class="keyword">keyframes</span> bounce&#123;</span><br><span class="line">    60%,80%,<span class="selector-tag">to</span>&#123;</span><br><span class="line">        <span class="attribute">transform</span>:<span class="built_in">translateY</span>(400px);</span><br><span class="line">        <span class="attribute">animation-timing-function</span>:ease-out;</span><br><span class="line">    &#125;</span><br><span class="line">    70%&#123;<span class="attribute">transform</span>:<span class="built_in">translateY</span>(300px);&#125;</span><br><span class="line">    90%&#123;<span class="attribute">transform</span>:<span class="built_in">translateY</span>(360px);&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.ball</span>&#123;</span><br><span class="line">    <span class="attribute">animation</span>:bounce <span class="number">3s</span> ease-in;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>虽然我们改动不大，但是已经发现回弹效果变得真实起来。不过显然这<code>五种内置的缓动曲线</code>是不够用的，假如我们这个回弹效果是用来模拟自由落体的，那么我们需要一个<code>更高的加速度</code>和ease的反向版本，又如何得到呢？</p>
+<p>其实所有的这五种曲线都是通过<code>(三次)贝塞尔曲线</code>来指定的，而CSS的调速函数都是<code>只有一个片段的贝塞尔曲线</code>，每个函数也只有两个控制锚点，CSS就提供了一个<code>cubic-bezier()</code>函数，允许我们指定自定义调速函数。他接受四个参数，分别是两个控制锚点的坐标值，<br><code>cubic-bezier(x1,y1,x2,y2)</code>，曲线的两个端点固定在(0,0)和(1,1)之间，前者是整个过渡的起点(时间进度0%，动画进度0%)而后者是整个过渡的终点(时间进度100%，动画进度100%)。</p>
+<p>举例来说，<code>ease</code>等同于<code>cubic-bezier(.25,.1,.25,1)</code>,因此它的反向版本就是<code>cubic-bezier(.1,.25,1,.25)</code></p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">@<span class="keyword">keyframes</span> bounce&#123;</span><br><span class="line">    60%,80%,<span class="selector-tag">to</span>&#123;</span><br><span class="line">        <span class="attribute">transform</span>:<span class="built_in">translateY</span>(400px);</span><br><span class="line">        <span class="attribute">animation-timing-function</span>:ease;</span><br><span class="line">    &#125;</span><br><span class="line">    70%&#123;</span><br><span class="line">        <span class="attribute">transform</span>:<span class="built_in">translateY</span>(300PX);</span><br><span class="line">    &#125;</span><br><span class="line">    90%&#123;</span><br><span class="line">        <span class="attribute">transform</span>:<span class="built_in">translateY</span>(160px);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.ball</span>&#123;</span><br><span class="line">    <span class="attribute">animation</span>:bounce <span class="number">3s</span> <span class="built_in">cubic-bezier</span>(.1,.25,1,.25);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<iframe height="265" scrolling="no" title="css-animation-easing" src="//codepen.io/okaychen/embed/xPveBP/?height=265&theme-id=dark&default-tab=css,result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;margin-top:20px">See the Pen <a href="https://codepen.io/okaychen/pen/xPveBP/" target="_blank" rel="noopener">css-animation-easing</a> by okaychen (<a href="https://codepen.io/okaychen" target="_blank" rel="noopener">@okaychen</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.<br></iframe>
+
+<p>我们可以借助<a href="http://cubic-bezier.com" target="_blank" rel="noopener">cubic-bezier.com</a>的图形化工具，进行反复尝试和优化，从而进一步改写这个回弹动画.</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>经过以上这些知识的学习储备和练习，相信我们已经可以做出很棒的弹跳动画了.<br>我们在文章开始放了一个小球弹跳的gif图效果，那么就让我们真真正正的动手来写一下吧！</p>
+<p></p><p data-height="265" data-theme-id="dark" data-slug-hash="POMgrv" data-default-tab="css,result" data-user="okaychen" data-embed-version="2" data-pen-title="css-animation-easing-practice" class="codepen">See the Pen <a href="https://codepen.io/okaychen/pen/POMgrv/" target="_blank" rel="noopener">css-animation-easing-practice</a> by okaychen (<a href="https://codepen.io/okaychen" target="_blank" rel="noopener">@okaychen</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+
+<h1 id="弹性过渡"><a href="#弹性过渡" class="headerlink" title="弹性过渡"></a>弹性过渡</h1><p>假设我们有一个文本输入框，每当它被聚焦时，都需要展示一个提示框<br>我们有如下结构：<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">    Your username:<span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"username"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"callout"</span>&gt;</span>Only letters,numbers,usrescore(_) and hyphens (-) allowed!<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>每当用户聚焦这个文本输入框时，都会有一个半秒钟的过渡，可能我们会完成这样的代码<br><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:not(</span><span class="selector-pseudo">:focus)</span> + <span class="selector-class">.callout</span>&#123;</span><br><span class="line">    <span class="attribute">transform</span>:<span class="built_in">scale</span>(0);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.callout</span>&#123;</span><br><span class="line">    <span class="attribute">transition</span>:.<span class="number">5s</span> transform;</span><br><span class="line">    <span class="attribute">transition-origin</span>:<span class="number">1.4em</span> -.<span class="number">4em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个过渡没有任何问题，但是我们希望它在结尾时能在夸张一点话，显得更加自然生动，我们可能会把这个过渡改为一个动画，然后用上面提到的缓动曲线<br><figure class="highlight css"><table><tr><td class="code"><pre><span class="line">@<span class="keyword">keyframes</span> elastic-grow&#123;</span><br><span class="line">    <span class="selector-tag">from</span>&#123;<span class="attribute">transform</span>:<span class="built_in">scale</span>(0);&#125;</span><br><span class="line">    70% &#123;</span><br><span class="line">        <span class="attribute">transform</span>:<span class="built_in">scale</span>(1.1);</span><br><span class="line">        <span class="attribute">animation-timing-function</span>:<span class="built_in">cubic-bezier</span>(.1,.25,1,.25);   <span class="comment">/*反向的ease*/</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:not(</span><span class="selector-pseudo">:focus)</span> + <span class="selector-class">.callout</span>&#123; <span class="attribute">transform</span>:<span class="built_in">scale</span>(0); &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:focus</span> + <span class="selector-class">.callout</span>&#123; <span class="attribute">animation</span>:elastic-grow .<span class="number">5s</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.callout</span>&#123; <span class="attribute">transform-origin</span>:<span class="number">1.4em</span> -.<span class="number">4em</span>; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>添加了这个动画之后，确实发挥了作用。不过这里我们其实只是需要一个过渡而已，而我们本质上却使用了一个动画，显得有些大材小用，有一种杀鸡用牛刀的感觉，我们如何只用过渡完成这个效果呢？</p>
+<p>这里我们就用到了上面说起的调速函数<code>cubic-bezier()</code>，在这个例子中，我们希望调速函数先到达110%的程度(相当于<code>scale(1.1)</code>)，然后在过渡回100%，我们把控制锚点向上移，</p>
+<p><img src="/images/placeholder.png" alt="cubic-bezier(.25,.1,.3,1.5)" data-src="http://www.chenqaq.com/assets/images/Tankease.png" class="lazyload"></p>
+<p>这个自定义调速函数在垂直坐标上已经超出0~1的区间，最终又回到1，在70%的时间点到达了110%的变形程度的高峰，然后继续用剩下30%的时间回到它的最终值</p>
+<p>整个过渡的推进，非常接近前面的动画方案，但他仅需要一行代码就可以实现整个效果<br><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:not(</span><span class="selector-pseudo">:focus)</span> + <span class="selector-class">.callout</span>&#123; <span class="attribute">transform</span>:<span class="built_in">scale</span>(0) &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.callout</span>&#123;</span><br><span class="line">    <span class="attribute">transform-origin</span>:<span class="number">1.4em</span> -.<span class="number">4em</span>;</span><br><span class="line">    <span class="attribute">transition</span>:.<span class="number">5s</span> <span class="built_in">cubic-bezier</span>(.25,.1,.3,1.5);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/placeholder.png" alt="cubic-bezier(.25,.1,.3,1.5)" data-src="http://www.chenqaq.com/assets/images/Tankbug.png" class="lazyload"></p>
+<p>but,wait…当提示框收缩时，左下角出现的是什么？其实，当我们把焦点从输入框切出去的时候，所触发的过渡会以<code>scale(1)</code>作为起始值，并以<code>scale(0)</code>作为最终值，这个过渡仍然会在350ms后到达110%的变形程度。只不过在这里，110%的变形程度的解析结果并不是<code>scale(1.1)</code>,而是scale<code>(-0.1)</code></p>
+<p>我们可以定义关闭状态的css规则(假如我们指定普通的ease调速函数)把当前的调速函数覆盖掉<br><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:not(</span><span class="selector-pseudo">:focus)</span> + <span class="selector-class">.callout</span>&#123;</span><br><span class="line">    <span class="attribute">transform</span>:<span class="built_in">scale</span>(0);</span><br><span class="line">    <span class="attribute">transition-timing-function</span>:ease;   <span class="comment">/*覆盖cubic-bezier*/</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.callout</span>&#123;</span><br><span class="line">    <span class="attribute">transform-origin</span>:<span class="number">1.4em</span> -.<span class="number">4em</span>;</span><br><span class="line">    <span class="attribute">transition</span>:.<span class="number">5s</span> <span class="built_in">cubic-bezier</span>(.25,.1,.3,1.5);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>再试一试，发现已经关闭提示框已经恢复到我们设置<code>cubic-bezier()</code>之前的样子了，</p>
+<p>但是其实我们仔细观察发现另一个问题：<code>提示框的关闭动作明显要迟钝一些。</code>我们细细想来发现，在提示框展开过程中，当时间为50%(250ms)时，它就已经到达100%的尺寸效果了。但是在收缩过程中，从0%~100%的变化会花费我们为过渡所指定的素有时间(500ms),因此感觉会慢上一般</p>
+<p>然后我们会想到同时覆盖过渡的持续时间：可以用<code>transition-duration</code>这一属性，也可以用<code>transition</code>这个简写属性来覆盖所有值，如果选择后者的话就不需要指定ease了，因为他本来就是<code>transition</code>的初始值:</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:not(</span><span class="selector-pseudo">:focus)</span> + <span class="selector-class">.callout</span>&#123;</span><br><span class="line">    <span class="attribute">transform</span>:<span class="built_in">scale</span>(0);</span><br><span class="line">    <span class="attribute">transition</span>:.<span class="number">25s</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.callout</span>&#123;</span><br><span class="line">    <span class="attribute">transform-origin</span>:<span class="number">1.4em</span> -.<span class="number">4em</span>;</span><br><span class="line">    <span class="attribute">transition</span>:.<span class="number">5s</span> <span class="built_in">cubic-bezier</span>(.25,.1,.3,1.5);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<iframe height="265" scrolling="no" title="css-animation-task" src="//codepen.io/okaychen/embed/VywaXV/?height=265&theme-id=dark&default-tab=css,result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;margin-top:20px">See the Pen <a href="https://codepen.io/okaychen/pen/VywaXV/" target="_blank" rel="noopener">css-animation-task</a> by okaychen (<a href="https://codepen.io/okaychen" target="_blank" rel="noopener">@okaychen</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.<br></iframe>
+
+<h2 id="最后-1"><a href="#最后-1" class="headerlink" title="最后"></a>最后</h2><p>虽然弹性过渡在很多过渡中都可以收到不错的效果，但是某些时候<code>他产生的效果可能相当糟糕</code>。典型的<code>反面案例</code>出现在对<code>颜色属性</code>的弹性过渡中。尽管颜色发生弹性过渡可能非常有趣，但这种效果在UI场景中通常是不合适的.</p>
+<p>为了避免不小心对颜色设置了弹性过渡，可以尝试把<code>过渡的作用范围限制在某几种特定的属性上</code>，transition不指定时，<code>transition-property</code>就会得到它的初始值：<code>all</code>，这意味着只要是过渡的属性都会参与过渡。我们可以在<code>transition</code>中设置<code>transform</code></p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:not(</span><span class="selector-pseudo">:focus)</span>&#123;</span><br><span class="line">    <span class="attribute">transform</span>:<span class="built_in">scale</span>(0);</span><br><span class="line">    <span class="attribute">transition</span>:.<span class="number">25s</span> transform;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.callout</span>&#123;</span><br><span class="line">    <span class="attribute">transition-origin</span>:<span class="number">1.4em</span> -.<span class="number">4em</span>;</span><br><span class="line">    <span class="attribute">transform</span>:.<span class="number">5s</span> <span class="built_in">cubic-bezier</span>(.25,.1,.3,1.5) transform;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参考资料</p>
+<ul>
+<li><p><a href="https://book.douban.com/subject/26295140/" target="_blank" rel="noopener">《CSS Secrets 》</a></p>
+</li>
+<li><p><a href="http://easings.net/zh-cn" target="_blank" rel="noopener">http://w3.org/TR/css-animations</a></p>
+</li>
+<li><p><a href="http://easings.net/zh-cn" target="_blank" rel="noopener">http://cubic-bezier.com</a></p>
+</li>
+<li><p><a href="http://easings.net/zh-cn" target="_blank" rel="noopener">understand css cubic-bezier</a></p>
+</li>
+</ul>
+  	
+				
+			
+			<div id="MySignature" style="display: block;"><div id="Copyright">
+				<p class="com">
+				您的关注和支持是我写作的最大动力~ <br>
+				出处：<a href="http://www.chenqaq.com/" target="_blank">http://www.chenqaq.com</a><br>
+				github：<a target="_blank" href="https://github.com/okaychen">https://github.com/okaychen</a>
+				<br>
+				Web技术更新很快，本站很多文章都具有时效性，我会及时更新原文，持续和大家分享，除去特殊注明外，均为作者原创，采用更开放的「署名 4.0 国际（CC BY 4.0）」创作共享协议。欢迎大家转载，转载时请保留文章最后的出处，如若标注「原创」请先与本人取得联系
+				</p>
+				
+				</div></div>
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+  <div class="post-footer-other">
+      <span class="post-footer-item">
+        
+
+
+
+
+<span class="donate-btn">
+	<span class="iconfont icon-donate"></span>
+</span>
+
+
+<div id="donate-box" class="sildeUpMin">
+
+	<span class="donate-cancel iconfont icon-cancel"></span>
+
+	<div class="donate-img-box">
+		<img id="donate-qr-wechat" class="noLazyLoad donate-img lazyload" src="/images/placeholder.png" alt="No Donate Image!" data-src="/">	
+		<img id="donate-qr-alipay" class="noLazyLoad donate-img lazyload" src="/images/placeholder.png" alt="No Donate Image!" data-src="/">	
+	</div>
+
+	<span class="donate-word">世界美好 你也是</span>
+
+	<div class="donate-list">
+		<span class="iconfont icon-donate-wechat"></span>
+		<span class="iconfont icon-donate-alipay"></span>
+	</div>
+
+</div>
+
+ 
+      </span>           
+      <span class="post-footer-item">
+        
+	
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+	
+	<span class="share-btn">
+	<span class="iconfont icon-share"></span>
+	</span>
+
+
+	<div class="-mob-share sildeUpMin">
+		<div class="-mob-inner">
+		   			             
+            <a class="iconfont icon-share-qq -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-weixin -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-weibo -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-douban -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-facebook -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-twitter -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-google -mob-share-link"></a>		
+     	   
+		</div>
+	</div>	
+
+      </span>           
+  </div>  
+
+  <div class="post-footer-meta">
+        
+          <i class="iconfont icon-category"></i>       
+          <a class="category-link" href="/categories/HTML-CSS/">HTML/CSS</a> 	
+      
+        	
+
+        
+          <i class="iconfont icon-tag"></i>     
+            <a class="tag-link" href="/tags/CSS/">CSS</a> <a class="tag-link" href="/tags/animation/">animation</a>    
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  
+    <div class="post-footer-link">
+      <a href="/2017/12/13/css-animation-frameBYframe/" id="post-nav-newer" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">newer</strong>
+           
+          <a class="post-nav-title" href="/2017/12/13/css-animation-frameBYframe/">
+          过渡与动画 - steps调速函数&amp;CSS值与单位之ch</a>
+      </a>
+    </div>
+  
+  
+    <div class="post-footer-link">
+      <a href="/2017/12/09/css-box-model/" id="post-nav-older" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">older</strong>
+        
+          <a class="post-nav-title" href="/2017/12/09/css-box-model/">
+          css标准盒模型、怪异模式&amp;&amp;box-sizing属性</a>
+      </a>
+    </div>
+  
+</nav>
+ 
+	
+	
+</article>
+
+      </section>
+  </div>
+
+  <a id="backTop">
+    <span>
+      <i class="iconfont icon-backtotop"></i>
+    </span>
+  </a>
+
+
+  
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+   <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon lazyload" src="/images/placeholder.png" data-src="/images/favicon.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首頁
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">歸檔
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">標籤
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/lab">Menu.eye
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">關於
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>
+  
+
+
+
+
+  
+
+
+<footer id="footer">
+
+
+	<div class="footer-copyright">
+		<div>
+			<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+			<script>
+				var now = new Date();
+
+				function createtime() {
+					var grt = new Date("12/05/2017 00:00:00"); //此处修改你的建站时间或者网站上线时间 
+					now.setTime(now.getTime() + 250);
+					days = (now - grt) / 1000 / 60 / 60 / 24;
+					dnum = Math.floor(days);
+					hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+					hnum = Math.floor(hours);
+					if (String(hnum).length == 1) {
+						hnum = "0" + hnum;
+					}
+					minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+					mnum = Math.floor(minutes);
+					if (String(mnum).length == 1) {
+						mnum = "0" + mnum;
+					}
+					seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+					snum = Math.round(seconds);
+					if (String(snum).length == 1) {
+						snum = "0" + snum;
+					}
+					document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+					document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+				}
+				setInterval("createtime()", 250);
+			</script>
+		</div>
+
+		<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+		&copy;
+		
+		2017-
+		
+		2019
+
+		<a href="https://github.com/okaychen" target="_blank">
+			okaychen
+		</a>
+
+	</div>
+
+</footer>
+
+
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  <script type="text/javascript" src="/clicklove.js"></script>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script src="/nayo.bundle.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE>
+<html>
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes" /> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+ 
+
+  
+
+  <title>
+    
+    使用Async和enterproxy控制并发数量 |
+    
+    浅笔墨画❀琐碎小记
+  </title>
+
+
+  
+  <link rel="icon" href="/images/favicon.png">
+  
+  
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+        daovoice('init', {
+            app_id: "862b4fbb"
+          });
+        daovoice('update');
+    </script>
+  
+
+  <link rel="stylesheet" href="/nayo.min.css">
+</head>
+
+<body>
+  <a href="https://www.github.com/okaychen" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+    </svg>
+  </a>
+  <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  
+  <header class="header">
+	
+  <nav class="header-nav">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/favicon.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/" title="home">
+              <i class="iconfont icon-home">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives" title="archives">
+              <i class="iconfont icon-archives">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags" title="tags">
+              <i class="iconfont icon-tags">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-eye" href="/lab" title="eye">
+              <i class="iconfont icon-eye">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about" title="about">
+              <i class="iconfont icon-about">  
+            </i></a>
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search" title="search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+
+
+  <div class="container">
+    
+    <section class="main">
+      
+
+        <article class="post">
+  
+	<div class="post-header">
+
+	<p class="post-title">	
+		使用async和enterproxy控制并发数量
+	</p>
+			
+
+	<div class="meta-info">	
+		<span>
+			Dec 31, 2017
+		</span>
+		<span class="post-count"><i class="iconfont icon-posts"></i>字数统计1.8k字</span>
+		<span class="post-count" style="margin-top: 10px;"><i class="iconfont icon-eye"></i> 阅读时长预计7分钟</span>
+	</div>
+
+</div> 
+	 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<h1 id="聊聊并发与并行"><a href="#聊聊并发与并行" class="headerlink" title="聊聊并发与并行"></a>聊聊并发与并行</h1><p>并发我们经常提及之，不管是web server，app并发无处不在，操作系统中，指一个时间段中几个程序处于已经启动运行到完毕之间，且这几个程序都是在同一处理机上运行，并且任一个时间点只有一个程序在处理机上运行。很多网站都有并发连接数量的限制，所以当请求发送太快的时候会导致返回值为空或报错。更有甚者，有些网站可能因为你发出的并发连接数量过多而当你是在恶意请求，封掉你的ip。<br><a id="more"></a><br>相对于并发，并行可能陌生了不少，并行指一组程序按独立异步的速度执行，不等于时间上的重叠（同一个时刻发生），通过增加cpu核心来实现多个程序(任务)的同时进行。没错，并行做到了多任务的同时进行</p>
+<h1 id="使用enterproxy控制并发数量"><a href="#使用enterproxy控制并发数量" class="headerlink" title="使用enterproxy控制并发数量"></a>使用enterproxy控制并发数量</h1><p>enterproxy是朴灵大大为主要贡献的工具，带来一种事件式编程的思维变化，利用事件机制解耦复杂业务逻辑，解决了回调函数耦合性的诟病，将串行等待变成并行等待，提升多异步协作场景下的执行效率</p>
+<p>我们如何使用enterproxy控制并发数量？通常如果我们不使用enterproxy和自制的计数器，我们如果抓取三个源：</p>
+<p>这种深层嵌套，串行的方式<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">    <span class="keyword">var</span> render = <span class="function"><span class="keyword">function</span> (<span class="params">template, data</span>) </span>&#123;</span><br><span class="line">    _.template(template, data);</span><br><span class="line">    &#125;;</span><br><span class="line">$.get(<span class="string">"template"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">template</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// something</span></span><br><span class="line">  $.get(<span class="string">"data"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// something</span></span><br><span class="line">    $.get(<span class="string">"l10n"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">l10n</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// something</span></span><br><span class="line">      render(template, data, l10n);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>除去这种过去深层嵌套的方法，我们常规的写法的自己维护一个计数器<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> result  = &#123;&#125;;</span><br><span class="line">    </span><br><span class="line">    $.get(<span class="string">'template'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        result.data1 = data;</span><br><span class="line">        count++;</span><br><span class="line">        handle();</span><br><span class="line">    &#125;)</span><br><span class="line">    $.get(<span class="string">'data'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        result.data2 = data;</span><br><span class="line">        count++;</span><br><span class="line">        handle();</span><br><span class="line">    &#125;)</span><br><span class="line">    $.get(<span class="string">'l10n'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        result.data3 = data;</span><br><span class="line">        count++;</span><br><span class="line">        handle();</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">handle</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(count === <span class="number">3</span>)&#123;</span><br><span class="line">            <span class="keyword">var</span> html = fuck(result.data1,result.data2,result.data3);</span><br><span class="line">            render(html);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
+<p>在这里，enterproxy就可以起到这个计数器的作用，它帮你管理这些异步操作是否完成，完成之后，他会自动调用你提供的处理函数，并将抓取到数据当做参数传递过来<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> ep = <span class="keyword">new</span> enterproxy();</span><br><span class="line">ep.all(<span class="string">'data_event1'</span>,<span class="string">'data_event2'</span>,<span class="string">'data_event3'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data1,data2,data3</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> html = fuck(data1,data2,data3);</span><br><span class="line">    render(html);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$.get(<span class="string">'http:example1'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    ep.emit(<span class="string">'data_event1'</span>,data);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$.get(<span class="string">'http:example2'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    ep.emit(<span class="string">'data_event2'</span>,data);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$.get(<span class="string">'http:example3'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    ep.emit(<span class="string">'data_event3'</span>,data);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>enterproxy还提供了其他不少场景所需的API，可以自行学习下这个API <a href="https://github.com/JacksonTian/eventproxy" target="_blank" rel="noopener">enterproxy</a></p>
+<h1 id="使用async控制并发数量"><a href="#使用async控制并发数量" class="headerlink" title="使用async控制并发数量"></a>使用async控制并发数量</h1><p>假如我们有40个请求需要发出，很多网站可能会因为你发出的并发连接数太多而当你是在恶意请求，把你的IP封掉。<br>所以我们总是需要控制并发数量，然后慢慢抓取完这40个链接。</p>
+<p>使用async中mapLimit控制一次性并发数量为5，一次性只抓取5个链接。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span>.mapLimit(arr, <span class="number">5</span>, <span class="function"><span class="keyword">function</span> (<span class="params">url, callback</span>) </span>&#123;</span><br><span class="line">     <span class="comment">// something</span></span><br><span class="line">   &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">error, result</span>) </span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"result: "</span>)</span><br><span class="line">     <span class="built_in">console</span>.log(result);</span><br><span class="line">   &#125;)</span><br></pre></td></tr></table></figure>
+<p>我们首先应该知道什么是<code>并发</code>，为什么需要限制并发数量，都有哪些处理方案。然后就可以去文档具体看一下API如何使用。<a href="https://caolan.github.io/async/" target="_blank" rel="noopener">async文档</a>可以很好的学习这些语法。</p>
+<p>模拟一组数据，这里返回的数据是假的，返回的延时是随机的。<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> concurreyCount = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> fetchUrl = <span class="function"><span class="keyword">function</span>(<span class="params">url,callback</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// delay 的值在 2000 以内，是个随机的整数 模拟延时</span></span><br><span class="line">    <span class="keyword">var</span> delay =  <span class="built_in">parseInt</span>((<span class="built_in">Math</span>.random()* <span class="number">10000000</span>) % <span class="number">2000</span>,<span class="number">10</span>);</span><br><span class="line">    concurreyCount++;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'现在并发数是 '</span> , concurreyCount , <span class="string">' 正在抓取的是'</span> , url , <span class="string">' 耗时'</span> + delay + <span class="string">'毫秒'</span>);</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        concurreyCount--;</span><br><span class="line">        callback(<span class="literal">null</span>,url + <span class="string">' html content'</span>);</span><br><span class="line">    &#125;,delay);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> urls = [];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;<span class="number">30</span>;i++)&#123;</span><br><span class="line">    urls.push(<span class="string">'http://datasource_'</span> + i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后我们使用<code>async.mapLimit</code>来并发抓取，并获取结果。<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span>.mapLimit(urls,<span class="number">5</span>,<span class="function"><span class="keyword">function</span>(<span class="params">url,callback</span>)</span>&#123;</span><br><span class="line">    fetchUrl(url,callbcak);</span><br><span class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">err,result</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'result: '</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>模拟摘自<a href="https://github.com/alsotang/node-lessons/tree/master/lesson5" target="_blank" rel="noopener">alsotang</a></p>
+<p>运行输出后得到以下结果</p>
+<p><img src="http://www.chenqaq.com/assets/images/concurrency1.png" alt=""></p>
+<p>我们发现，并发数从1开始增长，但是增长到5时，就不在增加。然有任务时就继续抓取，并发连接数量始终控制在5个。</p>
+<h1 id="完成node简易爬虫系统"><a href="#完成node简易爬虫系统" class="headerlink" title="完成node简易爬虫系统"></a>完成node简易爬虫系统</h1><p>因为alsotang前辈的<a href="https://github.com/alsotang/node-lessons" target="_blank" rel="noopener">《node包教不包会》</a>教程例子中使用的eventproxy控制的并发数量，我们就来完成一个使用async控制并发数量的node简易爬虫。</p>
+<p>爬取的目标就是<a href="http://www.chenqaq.com" target="_blank" rel="noopener">本站首页</a>（手动护脸）</p>
+<p>第一步，首先我们需要用到以下的模块：</p>
+<ul>
+<li>url ： 用于url解析，这里用到<code>url.resolve()</code>生成一个合法的域名</li>
+<li>async ： 一个实用的模块，提供了强大的功能和异步JavaScript工作</li>
+<li>cheerio ： 为服务器特别定制的，快速，灵活，实施的jQuery核心实现</li>
+<li>superagent ： nodejs里一个非常方便的客户端请求代理模块<!--  -->
+通过<code>npm</code>安装依赖模块</li>
+</ul>
+<p><img src="http://www.chenqaq.com/assets/images/concurrency2.png" alt=""></p>
+<p>第二步，通过require引入依赖模块，确定爬取对象URL：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="built_in">require</span>(<span class="string">"url"</span>);</span><br><span class="line"><span class="keyword">var</span> <span class="keyword">async</span> = <span class="built_in">require</span>(<span class="string">"async"</span>);</span><br><span class="line"><span class="keyword">var</span> cheerio = <span class="built_in">require</span>(<span class="string">"cheerio"</span>);</span><br><span class="line"><span class="keyword">var</span> superagent = <span class="built_in">require</span>(<span class="string">"superagent"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> baseUrl = <span class="string">'http://www.chenqaq.com'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>第三步：使用superagent请求目标URL，并使用cheerio处理baseUrl得到目标内容url，并保存在数组arr中<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">superagent.get(baseUrl)</span><br><span class="line">  .end(<span class="function"><span class="keyword">function</span> (<span class="params">err, res</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">console</span>.error(err);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> arr = [];</span><br><span class="line">    <span class="keyword">var</span> $ = cheerio.load(res.text);</span><br><span class="line">    <span class="comment">// 下面和jQuery操作是一样一样的..</span></span><br><span class="line">    $(<span class="string">".post-list .post-title-link"</span>).each(<span class="function"><span class="keyword">function</span> (<span class="params">idx, element</span>) </span>&#123;</span><br><span class="line">      $element = $(element);</span><br><span class="line">      <span class="keyword">var</span> _url = url.resolve(baseUrl, $element.attr(<span class="string">"href"</span>));</span><br><span class="line">      arr.push(_url);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 验证得到的所有文章链接集合</span></span><br><span class="line">    output(arr);</span><br><span class="line">    <span class="comment">// 第四步：接下来遍历arr，解析每一个页面需要的信息</span></span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>我们需要一个函数验证抓取的url对象，很简单我们只需要一个函数遍历arr并打印出来就可以：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">output</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第四步：我们需要遍历得到的URL对象，解析每一个页面需要的信息。</p>
+<p>这里就需要用到<code>async</code>控制并发数量，如果你上一步获取了一个庞大的arr数组，有多个url需要请求，如果同时发出多个请求，一些网站就可能会把你的行为当做恶意请求而封掉你的ip</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span>.mapLimit(arr,<span class="number">3</span>,<span class="function"><span class="keyword">function</span>(<span class="params">url,callback</span>)</span>&#123;</span><br><span class="line">    superagent.get(url)</span><br><span class="line">        .end(<span class="function"><span class="keyword">function</span>(<span class="params">err,mes</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(err)&#123;</span><br><span class="line">                <span class="built_in">console</span>.error(err);</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'message info '</span> + <span class="built_in">JSON</span>.stringify(mes));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'「fetch」'</span> + url + <span class="string">' successful！'</span>);</span><br><span class="line">            <span class="keyword">var</span> $ = cheerio.load(mes.text);</span><br><span class="line">            <span class="keyword">var</span> jsonData = &#123;</span><br><span class="line">                title:$(<span class="string">'.post-card-title'</span>).text().trim(),</span><br><span class="line">                href: url,</span><br><span class="line">            &#125;;</span><br><span class="line">            callback(<span class="literal">null</span>,jsonData);</span><br><span class="line">        &#125;,<span class="function"><span class="keyword">function</span>(<span class="params">error,results</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'results '</span>);</span><br><span class="line">            <span class="built_in">console</span>.log(results);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<p>得到上一步保存url地址的数组arr，限制最大并发数量为3，然后用一个回调函数处理 「该回调函数比较特殊，在iteratee方法中一定要调用该回调函数，有三种方式」</p>
+<ul>
+<li><code>callback(null)</code> 调用成功</li>
+<li><code>callback(null，data)</code> 调用成功，并且返回数据data追加到results</li>
+<li><code>callback(data)</code> 调用失败，不会再继续循环，直接到最后的callback</li>
+</ul>
+<p>好了，到这里我们的node简易的小爬虫就完成了，来看看效果吧</p>
+<p><img src="http://www.chenqaq.com/assets/images/concurrency3.png" alt=""></p>
+<p>嗨呀，首页数据好少，但是成功了呢。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://github.com/alsotang/node-lessons" target="_blank" rel="noopener">Node.js 包教不包会 - alsotang</a></p>
+<p><a href="https://github.com/JacksonTian/eventproxy" target="_blank" rel="noopener">enterproxy</a></p>
+<p><a href="https://github.com/caolan/async" target="_blank" rel="noopener">async</a></p>
+<p><a href="https://caolan.github.io/async" target="_blank" rel="noopener">async Documentation</a></p>
+  	
+				
+			
+			<div id="MySignature" style="display: block;"><div id="Copyright">
+				<p class="com">
+				您的关注和支持是我写作的最大动力~ <br>
+				出处：<a href="http://www.chenqaq.com/" target="_blank">http://www.chenqaq.com</a><br>
+				github：<a target="_blank" href="https://github.com/okaychen">https://github.com/okaychen</a>
+				<br>
+				Web技术更新很快，本站很多文章都具有时效性，我会及时更新原文，持续和大家分享，除去特殊注明外，均为作者原创，采用更开放的「署名 4.0 国际（CC BY 4.0）」创作共享协议。欢迎大家转载，转载时请保留文章最后的出处，如若标注「原创」请先与本人取得联系
+				</p>
+				
+				</div></div>
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+  <div class="post-footer-other">
+      <span class="post-footer-item">
+        
+
+
+
+
+<span class="donate-btn">
+	<span class="iconfont icon-donate"></span>
+</span>
+
+
+<div id="donate-box" class="sildeUpMin">
+
+	<span class="donate-cancel iconfont icon-cancel"></span>
+
+	<div class="donate-img-box">
+		<img id="donate-qr-wechat" class="noLazyLoad donate-img" src="/" alt="No Donate Image!">	
+		<img id="donate-qr-alipay" class="noLazyLoad donate-img lazyload" src="/images/placeholder.png" alt="No Donate Image!" data-src="/">	
+	</div>
+
+	<span class="donate-word">世界美好 你也是</span>
+
+	<div class="donate-list">
+		<span class="iconfont icon-donate-wechat"></span>
+		<span class="iconfont icon-donate-alipay"></span>
+	</div>
+
+</div>
+
+ 
+      </span>           
+      <span class="post-footer-item">
+        
+	
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+	
+	<span class="share-btn">
+	<span class="iconfont icon-share"></span>
+	</span>
+
+
+	<div class="-mob-share sildeUpMin">
+		<div class="-mob-inner">
+		   			             
+            <a class="iconfont icon-share-qq -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-weixin -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-weibo -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-douban -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-facebook -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-twitter -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-google -mob-share-link"></a>		
+     	   
+		</div>
+	</div>	
+
+      </span>           
+  </div>  
+
+  <div class="post-footer-meta">
+        
+          <i class="iconfont icon-category"></i>       
+          <a class="category-link" href="/categories/Node/">Node</a> 	
+      
+        	
+
+        
+          <i class="iconfont icon-tag"></i>     
+            <a class="tag-link" href="/tags/node/">node</a> <a class="tag-link" href="/tags/并发，并行/">并发，并行</a>    
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  
+    <div class="post-footer-link">
+      <a href="/2018/01/10/life-aboutSchool-finalExam/" id="post-nav-newer" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">newer</strong>
+           
+          <a class="post-nav-title" href="/2018/01/10/life-aboutSchool-finalExam/">
+          学校寒冬的清晨和深夜</a>
+      </a>
+    </div>
+  
+  
+    <div class="post-footer-link">
+      <a href="/2017/12/29/dependencies-devDependencies/" id="post-nav-older" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">older</strong>
+        
+          <a class="post-nav-title" href="/2017/12/29/dependencies-devDependencies/">
+          dependencies和devDependencies的正确使用姿势</a>
+      </a>
+    </div>
+  
+</nav>
+ 
+	
+	
+</article>
+
+      </section>
+  </div>
+
+  <a id="backTop">
+    <span>
+      <i class="iconfont icon-backtotop"></i>
+    </span>
+  </a>
+
+
+  
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+   <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon lazyload" src="/images/placeholder.png" data-src="/images/favicon.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首頁
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">歸檔
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">標籤
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/lab">Menu.eye
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">關於
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>
+  
+
+
+
+
+  
+
+
+<footer id="footer">
+
+
+	<div class="footer-copyright">
+		<div>
+			<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+			<script>
+				var now = new Date();
+
+				function createtime() {
+					var grt = new Date("12/05/2017 00:00:00"); //此处修改你的建站时间或者网站上线时间 
+					now.setTime(now.getTime() + 250);
+					days = (now - grt) / 1000 / 60 / 60 / 24;
+					dnum = Math.floor(days);
+					hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+					hnum = Math.floor(hours);
+					if (String(hnum).length == 1) {
+						hnum = "0" + hnum;
+					}
+					minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+					mnum = Math.floor(minutes);
+					if (String(mnum).length == 1) {
+						mnum = "0" + mnum;
+					}
+					seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+					snum = Math.round(seconds);
+					if (String(snum).length == 1) {
+						snum = "0" + snum;
+					}
+					document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+					document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+				}
+				setInterval("createtime()", 250);
+			</script>
+		</div>
+
+		<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+		&copy;
+		
+		2017-
+		
+		2019
+
+		<a href="https://github.com/okaychen" target="_blank">
+			okaychen
+		</a>
+
+	</div>
+
+</footer>
+
+
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  <script type="text/javascript" src="/clicklove.js"></script>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script src="/nayo.bundle.js"></script>
+</body>
+
+</html>

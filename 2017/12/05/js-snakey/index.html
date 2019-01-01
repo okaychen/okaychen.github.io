@@ -1,0 +1,430 @@
+<!DOCTYPE>
+<html>
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes" /> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+ 
+
+  
+
+  <title>
+    
+    手起刀落-一起写经典的贪吃蛇游戏 |
+    
+    浅笔墨画❀琐碎小记
+  </title>
+
+
+  
+  <link rel="icon" href="/images/favicon.png">
+  
+  
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+        daovoice('init', {
+            app_id: "862b4fbb"
+          });
+        daovoice('update');
+    </script>
+  
+
+  <link rel="stylesheet" href="/nayo.min.css">
+</head>
+
+<body>
+  <a href="https://www.github.com/okaychen" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+    </svg>
+  </a>
+  <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  
+  <header class="header">
+	
+  <nav class="header-nav">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/favicon.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/" title="home">
+              <i class="iconfont icon-home">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives" title="archives">
+              <i class="iconfont icon-archives">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags" title="tags">
+              <i class="iconfont icon-tags">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-eye" href="/lab" title="eye">
+              <i class="iconfont icon-eye">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about" title="about">
+              <i class="iconfont icon-about">  
+            </i></a>
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search" title="search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+
+
+  <div class="container">
+    
+    <section class="main">
+      
+
+        <article class="post">
+  
+	<div class="post-header">
+
+	<p class="post-title">	
+		手起刀落-一起写经典的贪吃蛇游戏
+	</p>
+			
+
+	<div class="meta-info">	
+		<span>
+			Dec 05, 2017
+		</span>
+		<span class="post-count"><i class="iconfont icon-posts"></i>字数统计1.2k字</span>
+		<span class="post-count" style="margin-top: 10px;"><i class="iconfont icon-eye"></i> 阅读时长预计5分钟</span>
+	</div>
+
+</div> 
+	 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<h1 id="回味"><a href="#回味" class="headerlink" title="回味"></a>回味</h1><p>小时候玩的经典贪吃蛇游戏我们印象仍然深刻，谋划了几天，小时候喜欢玩的游戏，长大了终于有能力把他做出来(从来都没有通关过，不知道自己写的程序，是不是能通关了…)，好了，闲话不多谈，先来看一下效果吧！！</p>
+<p><img src="http://www.chenqaq.com/assets/images/4tjOY7QXHK.gif" alt="效果图"></p>
+<p>功能和小时候玩的贪吃蛇一样，</p>
+<blockquote>
+<p>   1.选择速度 ：<br>       slow<br>       normal<br>       fast</p>
+</blockquote>
+<blockquote>
+<p>   2.选择是否有墙作为障碍物：<br>       on<br>       off</p>
+</blockquote>
+<p>看完效果就先附上地址喽：<a href="https://github.com/okaychen/practice" target="_blank" rel="noopener">大山深处修炼的小龙虾</a>，欢迎fork.<br><a id="more"></a></p>
+<h1 id="结构分解"><a href="#结构分解" class="headerlink" title="结构分解"></a>结构分解</h1><p>如果构建一个简单的经典贪吃蛇游戏呢？我们根据面板可以分解出如下结构：</p>
+<p><img src="http://www.chenqaq.com/assets/images/snake1.png" alt="面板结构分解"></p>
+<p>因为其他面板比较简单，我们重点来看一下游戏面板</p>
+<h2 id="游戏面板"><a href="#游戏面板" class="headerlink" title="游戏面板"></a>游戏面板</h2><p>游戏面板是核心，在游戏面板中，我们来分解一下游戏面板我们需要的因素：</p>
+<p><img src="http://www.chenqaq.com/assets/images/snake2.png" alt=""></p>
+<h3 id="场景、snake、食物"><a href="#场景、snake、食物" class="headerlink" title="场景、snake、食物"></a>场景、snake、食物</h3><p>首先我们需要一个游戏场景、snake、食物这些基础设施<br>   这里使用canvas作为我们的整个游戏的场景：<br><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">&lt;canvas <span class="attribute">class</span>=<span class="string">"wrap"</span> <span class="attribute">id</span>=<span class="string">"snake"</span> <span class="attribute">width</span>=<span class="string">"400"</span> <span class="attribute">height</span>=<span class="string">"400"</span> <span class="attribute">tabindex</span>=<span class="string">"1"</span>&gt;&lt;/canvas&gt;</span><br></pre></td></tr></table></figure></p>
+<p>需要一只snake,后面初始化他的位置<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> activeDot = <span class="function"><span class="keyword">function</span> (<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">    ctx.fillStyle = <span class="string">"#eee"</span>;</span><br><span class="line">    ctx.fillRect(x * <span class="number">10</span>, y * <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>需要食物作为对象(关于食物我们需要定义一些规则，如食物的产生)<br><figure class="highlight dts"><table><tr><td class="code"><pre><span class="line">var food = &#123;</span><br><span class="line"><span class="symbol">    x:</span> <span class="number">0</span>,</span><br><span class="line"><span class="symbol">    y:</span> <span class="number">0</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><p>规则是游戏的核心</p>
+<p>关于游戏的规则</p>
+<p>snake的方向控制：(使用键盘的上下左右键控制蛇的方向)<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// changer dir</span></span><br><span class="line">   <span class="keyword">var</span> changeDir = <span class="function"><span class="keyword">function</span> (<span class="params">key</span>) </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (key == <span class="number">38</span> &amp;&amp; snake_dir != <span class="number">2</span>) &#123;</span><br><span class="line">           snake_next_dir = <span class="number">0</span>;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="keyword">if</span> (key == <span class="number">39</span> &amp;&amp; snake_dir != <span class="number">3</span>) &#123;</span><br><span class="line">               snake_next_dir = <span class="number">1</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="keyword">if</span> (key == <span class="number">40</span> &amp;&amp; snake_dir != <span class="number">0</span>) &#123;</span><br><span class="line">                   snake_next_dir = <span class="number">2</span>;</span><br><span class="line">               &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                   <span class="keyword">if</span> (key == <span class="number">37</span> &amp;&amp; snake_dir != <span class="number">1</span>) &#123;</span><br><span class="line">                       snake_next_dir = <span class="number">3</span>;</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>关于食物，如果食物被吃掉，我们就需要产生新的食物<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// add food</span></span><br><span class="line">  <span class="keyword">var</span> addFood = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      food.x = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * ((canvas.width / <span class="number">10</span>) - <span class="number">1</span>));</span><br><span class="line">      food.y = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * ((canvas.height / <span class="number">10</span>) - <span class="number">1</span>));</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; snake.length; i++) &#123;</span><br><span class="line">          <span class="comment">// 如果食物被吃就增加食物</span></span><br><span class="line">          <span class="keyword">if</span> (checkBlock(food.x, food.y, snake[i].x, snake[i].y)) &#123;</span><br><span class="line">              addFood();</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> checkBlock = <span class="function"><span class="keyword">function</span> (<span class="params">x, y, _x, _y</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> (x == _x &amp;&amp; y == _y) ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>接下来是核心的函数，根据选择的速度和是否有墙体作为障碍物的设置，让蛇运动起来，并且实现</p>
+<blockquote>
+<p>  1、根据选择slow、norma、fast决定蛇运动速度速度;</p>
+</blockquote>
+<blockquote>
+<p>  2、如果蛇碰到自己==自杀，游戏结束</p>
+</blockquote>
+<blockquote>
+<p>  3、有墙模式碰到墙体，游戏结束</p>
+</blockquote>
+<blockquote>
+<p>   4、无墙模式蛇穿过墙体，从另一侧出现</p>
+</blockquote>
+<blockquote>
+<p>   5、使蛇碰到食物就加入自身身体的一部分，执行增加食物函数</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> mainLoop = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">       <span class="keyword">var</span> _x = snake[<span class="number">0</span>].x;</span><br><span class="line">       <span class="keyword">var</span> _y = snake[<span class="number">0</span>].y;</span><br><span class="line">       snake_dir = snake_next_dir;</span><br><span class="line">       <span class="comment">//  0 — up  1 — right   2 — down  3 — left</span></span><br><span class="line">       <span class="keyword">switch</span> (snake_dir) &#123;</span><br><span class="line">           <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">               _y--;</span><br><span class="line">               <span class="keyword">break</span>;</span><br><span class="line">           <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">               _x++;</span><br><span class="line">               <span class="keyword">break</span>;</span><br><span class="line">           <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">               _y++;</span><br><span class="line">               <span class="keyword">break</span>;</span><br><span class="line">           <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">               _x--;</span><br><span class="line">               <span class="keyword">break</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       snake.pop();</span><br><span class="line">       snake.unshift(&#123;</span><br><span class="line">           x: _x,</span><br><span class="line">           y: _y</span><br><span class="line">       &#125;)</span><br><span class="line"></span><br><span class="line">       <span class="comment">// --wall</span></span><br><span class="line">       <span class="keyword">if</span> (wall == <span class="number">1</span>) &#123;</span><br><span class="line">           <span class="keyword">if</span> (snake[<span class="number">0</span>].x &lt; <span class="number">0</span> || snake[<span class="number">0</span>].x == canvas.width / <span class="number">10</span> || snake[<span class="number">0</span>].y &lt; <span class="number">0</span> || snake[<span class="number">0</span>].y == canvas.height / <span class="number">10</span>) &#123;</span><br><span class="line">               showScreen(<span class="number">3</span>);</span><br><span class="line">               <span class="keyword">return</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="comment">//  off 无墙</span></span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, x = snake.length; i &lt; x; i++) &#123;</span><br><span class="line">               <span class="keyword">if</span> (snake[i].x &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                   snake[i].x = snake[i].x + (canvas.width / <span class="number">10</span>);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (snake[i].x == canvas.width / <span class="number">10</span>) &#123;</span><br><span class="line">                   snake[i].x = snake[i].x - (canvas.width / <span class="number">10</span>);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (snake[i].y &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                   snake[i].y = snake[i].y + (canvas.height / <span class="number">10</span>);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (snake[i].y == canvas.height / <span class="number">10</span>) &#123;</span><br><span class="line">                   snake[i].y = snake[i].y - (canvas.height / <span class="number">10</span>);</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="comment">//  Autophagy death</span></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; snake.length; i++) &#123;</span><br><span class="line">           <span class="keyword">if</span> (snake[<span class="number">0</span>].x == snake[i].x &amp;&amp; snake[<span class="number">0</span>].y == snake[i].y) &#123;</span><br><span class="line">               showScreen(<span class="number">3</span>);</span><br><span class="line">               <span class="keyword">return</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="comment">// Eat food</span></span><br><span class="line">       <span class="keyword">if</span> (checkBlock(snake[<span class="number">0</span>].x, snake[<span class="number">0</span>].y, food.x, food.y)) &#123;</span><br><span class="line">           snake[snake.length] = &#123;</span><br><span class="line">               x: snake[<span class="number">0</span>].x,</span><br><span class="line">               y: snake[<span class="number">0</span>].y</span><br><span class="line">           &#125;;</span><br><span class="line">           score += <span class="number">1</span>;</span><br><span class="line">           altScore(score);</span><br><span class="line">           addFood();</span><br><span class="line">           activeDot(food.x, food.y);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="comment">// --------------------</span></span><br><span class="line"></span><br><span class="line">       ctx.beginPath();</span><br><span class="line">       ctx.fillStyle = <span class="string">"#111"</span>;</span><br><span class="line">       ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height);</span><br><span class="line"></span><br><span class="line">       <span class="comment">// --------------------</span></span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; snake.length; i++) &#123;</span><br><span class="line">           activeDot(snake[i].x, snake[i].y);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="comment">// --------------------</span></span><br><span class="line"></span><br><span class="line">       activeDot(food.x, food.y);</span><br><span class="line"></span><br><span class="line">       setTimeout(mainLoop, snake_speed);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>ok以上展示出一些核心部分，构建出一个舞台中一只小蛇的故事.</p>
+<video controls src="http://gslb.miaopai.com/stream/9Sve8-3osRBmmpEvONt~uKP-WbvOSRLH.mp4?ssig=3a4333a30009844032269e50b9be79b7&time_stamp=1512196508068&cookie_id=&vend=1&os=3&partner=1&platform=2&cookie_id=&refer=miaopai&scid=9Sve8-3osRBmmpEvONt%7EuKP-WbvOSRLH" loop="false" width="100%" height="420">embed: cat.mov</video>
+
+
+<p>小时候爸妈手机里有一款小游戏叫贪吃蛇。就是一条小蛇，不停地在屏幕上游走，吃各个方向出现的食物，越吃越长。只要蛇头碰到屏幕四周，或者碰到自己的身子，小蛇就立即毙命。方寸的舞台间，亦有无限精彩；</p>
+<p>PS:到现在也没有通关过..现在不知道能不能通关了…</p>
+<p>最后在附上次源码，欢迎fork交流：<a href="https://github.com/okaychen/practice" target="_blank" rel="noopener">https://github.com/okaychen/practice</a>…<br>因为自己测试用的服务器被占用，目前只有做的效果图供大家参考喽.</p>
+  	
+				
+			
+			<div id="MySignature" style="display: block;"><div id="Copyright">
+				<p class="com">
+				您的关注和支持是我写作的最大动力~ <br>
+				出处：<a href="http://www.chenqaq.com/" target="_blank">http://www.chenqaq.com</a><br>
+				github：<a target="_blank" href="https://github.com/okaychen">https://github.com/okaychen</a>
+				<br>
+				Web技术更新很快，本站很多文章都具有时效性，我会及时更新原文，持续和大家分享，除去特殊注明外，均为作者原创，采用更开放的「署名 4.0 国际（CC BY 4.0）」创作共享协议。欢迎大家转载，转载时请保留文章最后的出处，如若标注「原创」请先与本人取得联系
+				</p>
+				
+				</div></div>
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+  <div class="post-footer-other">
+      <span class="post-footer-item">
+        
+
+
+
+
+<span class="donate-btn">
+	<span class="iconfont icon-donate"></span>
+</span>
+
+
+<div id="donate-box" class="sildeUpMin">
+
+	<span class="donate-cancel iconfont icon-cancel"></span>
+
+	<div class="donate-img-box">
+		<img id="donate-qr-wechat" class="noLazyLoad donate-img" src="/" alt="No Donate Image!">	
+		<img id="donate-qr-alipay" class="noLazyLoad donate-img lazyload" src="/images/placeholder.png" alt="No Donate Image!" data-src="/">	
+	</div>
+
+	<span class="donate-word">世界美好 你也是</span>
+
+	<div class="donate-list">
+		<span class="iconfont icon-donate-wechat"></span>
+		<span class="iconfont icon-donate-alipay"></span>
+	</div>
+
+</div>
+
+ 
+      </span>           
+      <span class="post-footer-item">
+        
+	
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+	
+	<span class="share-btn">
+	<span class="iconfont icon-share"></span>
+	</span>
+
+
+	<div class="-mob-share sildeUpMin">
+		<div class="-mob-inner">
+		   			             
+            <a class="iconfont icon-share-qq -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-weixin -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-weibo -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-douban -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-facebook -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-twitter -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-google -mob-share-link"></a>		
+     	   
+		</div>
+	</div>	
+
+      </span>           
+  </div>  
+
+  <div class="post-footer-meta">
+        
+          <i class="iconfont icon-category"></i>       
+          <a class="category-link" href="/categories/JavaScript/">JavaScript</a> 	
+      
+        	
+
+        
+          <i class="iconfont icon-tag"></i>     
+            <a class="tag-link" href="/tags/Canvas/">Canvas</a> <a class="tag-link" href="/tags/JS/">JS</a> <a class="tag-link" href="/tags/小游戏/">小游戏</a>    
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  
+    <div class="post-footer-link">
+      <a href="/2017/12/06/js-setTimeout/" id="post-nav-newer" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">newer</strong>
+           
+          <a class="post-nav-title" href="/2017/12/06/js-setTimeout/">
+          同步、异步、回调执行顺序经典闭包setTimeout分析</a>
+      </a>
+    </div>
+  
+  
+</nav>
+ 
+	
+	
+</article>
+
+      </section>
+  </div>
+
+  <a id="backTop">
+    <span>
+      <i class="iconfont icon-backtotop"></i>
+    </span>
+  </a>
+
+
+  
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+   <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon lazyload" src="/images/placeholder.png" data-src="/images/favicon.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首頁
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">歸檔
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">標籤
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/lab">Menu.eye
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">關於
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>
+  
+
+
+
+
+  
+
+
+<footer id="footer">
+
+
+	<div class="footer-copyright">
+		<div>
+			<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+			<script>
+				var now = new Date();
+
+				function createtime() {
+					var grt = new Date("12/05/2017 00:00:00"); //此处修改你的建站时间或者网站上线时间 
+					now.setTime(now.getTime() + 250);
+					days = (now - grt) / 1000 / 60 / 60 / 24;
+					dnum = Math.floor(days);
+					hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+					hnum = Math.floor(hours);
+					if (String(hnum).length == 1) {
+						hnum = "0" + hnum;
+					}
+					minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+					mnum = Math.floor(minutes);
+					if (String(mnum).length == 1) {
+						mnum = "0" + mnum;
+					}
+					seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+					snum = Math.round(seconds);
+					if (String(snum).length == 1) {
+						snum = "0" + snum;
+					}
+					document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+					document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+				}
+				setInterval("createtime()", 250);
+			</script>
+		</div>
+
+		<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+		&copy;
+		
+		2017-
+		
+		2019
+
+		<a href="https://github.com/okaychen" target="_blank">
+			okaychen
+		</a>
+
+	</div>
+
+</footer>
+
+
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  <script type="text/javascript" src="/clicklove.js"></script>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script src="/nayo.bundle.js"></script>
+</body>
+
+</html>

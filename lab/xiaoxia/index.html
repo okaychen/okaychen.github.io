@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>谢谢你，原谅我的小孩子气</title>
+
+	<style type="text/css">
+		@font-face {
+			font-family: digit;
+			src: url('digital-7_mono.ttf') format("truetype");
+		}
+	</style>
+
+	<link href="css/default.css" type="text/css" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/garden.js"></script>
+	<script type="text/javascript" src="js/functions.js"></script>
+
+</head>
+
+<body>
+
+	<div id="mainDiv">
+		<div id="content">
+			<div id="code">
+				<span class="comments">/**</span><br />
+				<span class="space" /><span class="comments">*2018—12-01,</span><br />
+				<span class="space" /><span class="comments">*2019-01-01.</span><br />
+				<span class="space" /><span class="comments">*/</span><br />
+				Boy name = <span class="keyword">大笨蛋</span> <br />
+				Girl name = <span class="keyword">小虾</span> <br />
+				<span class="comments">// Fall in love river. </span><br />
+				小虾，看到你难过我下午这心里真的很难受，都是我不好<br />
+				<span class="comments">// They love each other.</span><br />
+				我不能把回忆当成任务去完成（但是我真的从来没这样想过，都是这情侣空间惹的祸..都是我的错），我把我觉得我们应该一起留的回忆强加给你，是我的孩子气<br />
+				<span class="comments">// AS time goes on.</span><br />
+				我们应该用彼此的优点感染对方，你说的对，爱情应该一起加油共同进步；但是都怪我，黏着你妨碍你做喜欢的事，让你觉得我整天闲来无事，唔唔唔，我已经做了快三年前端了，对喜欢的事业我也是努力的，对外也是很成熟稳重的，但是无奈面对你却跟小孩子一样。都是我不好，旁人眼中高冷，但却是小虾的大笨蛋小孩子。
+				<br />
+				<span class="comments">// At the same time.</span><br />
+				谢谢你今天你让我意识到我的错误，我是个大笨蛋，以为爱情需要足够贴心粘着爱人，陪在她身边时刻保护她，因为我害怕你难过的时候我不在你身边，但是你让我认识到我是错的，爱情需要给彼此空间<br />
+
+				<span class="placeholder" /><span class="comments">对不起，都是我的错；也谢谢你，教会我很多</span><br />
+				<span class="placeholder" /><span class="comments">对不起，小虾，是我不好。</span><br />
+				<span class="placeholder" /><span class="comments"></span>2019年我们一起加油一起努力，一起优秀。</span><br />
+				<br>
+				<br>
+				I want to say:<br />
+				小虾，我会和你一直好好的<br />
+			</div>
+			<div id="loveHeart">
+				<canvas id="garden"></canvas>
+				<div id="words">
+					<div id="messages">
+						小虾，从我遇见你那一刻，它就注定不会停滞
+						<div id="elapseClock"></div>
+					</div>
+					<div id="loveu">
+						会和你一直好好的<br />
+						<div class="signature">- 龙</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var offsetX = $("#loveHeart").width() / 2;
+		var offsetY = $("#loveHeart").height() / 2 - 55;
+		var together = new Date();
+		together.setFullYear(2018, 10, 29);
+		together.setHours(23);
+		together.setMinutes(0);
+		together.setSeconds(0);
+		together.setMilliseconds(0);
+
+		if (!document.createElement('canvas').getContext) {
+			var msg = document.createElement("div");
+			msg.id = "errorMsg";
+			msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+";
+			document.body.appendChild(msg);
+			$("#code").css("display", "none")
+			$("#copyright").css("position", "absolute");
+			$("#copyright").css("bottom", "10px");
+			document.execCommand("stop");
+		} else {
+			setTimeout(function () {
+				startHeartAnimation();
+			}, 5000);
+
+			timeElapse(together);
+			setInterval(function () {
+				timeElapse(together);
+			}, 500);
+
+			adjustCodePosition();
+			$("#code").typewriter();
+		}
+	</script>
+	<div style="text-align:center;clear:both"></div>
+</body>
+
+</html>

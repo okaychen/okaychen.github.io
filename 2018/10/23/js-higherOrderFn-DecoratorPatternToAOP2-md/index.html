@@ -1,0 +1,408 @@
+<!DOCTYPE>
+<html>
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes" /> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+ 
+
+  
+
+  <title>
+    
+    用AOP装饰函数-实践篇 |
+    
+    浅笔墨画❀琐碎小记
+  </title>
+
+
+  
+  <link rel="icon" href="/images/favicon.png">
+  
+  
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+        daovoice('init', {
+            app_id: "862b4fbb"
+          });
+        daovoice('update');
+    </script>
+  
+
+  <link rel="stylesheet" href="/nayo.min.css">
+</head>
+
+<body>
+  <a href="https://www.github.com/okaychen" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+    </svg>
+  </a>
+  <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  
+  <header class="header">
+	
+  <nav class="header-nav">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/favicon.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/" title="home">
+              <i class="iconfont icon-home">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives" title="archives">
+              <i class="iconfont icon-archives">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags" title="tags">
+              <i class="iconfont icon-tags">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-eye" href="/lab" title="eye">
+              <i class="iconfont icon-eye">  
+            </i></a>
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about" title="about">
+              <i class="iconfont icon-about">  
+            </i></a>
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search" title="search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+
+
+  <div class="container">
+    
+    <section class="main">
+      
+
+        <article class="post">
+  
+	<div class="post-header">
+
+	<p class="post-title">	
+		用AOP装饰函数-实践篇
+	</p>
+			
+
+	<div class="meta-info">	
+		<span>
+			Oct 23, 2018
+		</span>
+		<span class="post-count"><i class="iconfont icon-posts"></i>字数统计2.1k字</span>
+		<span class="post-count" style="margin-top: 10px;"><i class="iconfont icon-eye"></i> 阅读时长预计8分钟</span>
+	</div>
+
+</div> 
+	 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<h1 id="后续：纸上得来终觉浅"><a href="#后续：纸上得来终觉浅" class="headerlink" title="后续：纸上得来终觉浅"></a>后续：纸上得来终觉浅</h1><p>老大见小T终于摸清了用AOP装饰函数的一些套路，很是欣慰，决定用实际情景让他试一试，老大拿出了一个最常见的AOP的经典应用之一—数据统计上报的情景，分离业务代码和数据统计上报的代码，在实际开发中项目结尾阶段难免要加上很多统计数据的代码，这个过程可能被迫改动早已封装好的函数.<br><a id="more"></a><br>1.老大给小T设定了一个情景如下：页面中有一个登录的button，点击这个button会弹出登录的浮层，与此同时需要进行数据上报来统计有多少用户点击了这个登录的button(这个任务可能是在项目结尾阶段进行的)，让小T发现问题并进行改写：<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"login"</span> <span class="attr">id</span>=<span class="string">"login"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> login = <span class="built_in">document</span>.getElementById(<span class="string">'login'</span>);</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">const</span> textlogin = login.tagName;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> x = <span class="number">0</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> showLogin = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'打开登录浮层'</span>);</span></span><br><span class="line"><span class="undefined">            log(textlogin);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> log = <span class="function"><span class="keyword">function</span> (<span class="params">tag</span>) </span>&#123;</span></span><br><span class="line"><span class="undefined">            x = x + 1;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'上报标签为：'</span> + tag +<span class="string">','</span>+ <span class="string">'上报次数为：'</span> + x);</span></span><br><span class="line"><span class="actionscript">            <span class="comment">// 这里我简单的用login按钮单击的次数来模拟，上报过程略</span></span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">        login.onclick = showLogin;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>小T发现在showLogin函数里既要弹层又要上报点击次数，两个层面的功能，却被耦合在一个函数中，决定用昨天刚写好的AOP试一试:<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"login"</span> <span class="attr">id</span>=<span class="string">"login"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="built_in">Function</span>.prototype.after = <span class="function"><span class="keyword">function</span>(<span class="params">afterfn</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> _self = <span class="keyword">this</span>;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">let</span> ret = _self.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>);</span></span><br><span class="line"><span class="javascript">                afterfn.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>);</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">return</span> ret;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> login = <span class="built_in">document</span>.getElementById(<span class="string">'login'</span>);</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">const</span> textlogin = login.tagName;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> x = <span class="number">0</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> showLogin = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'打开登录浮层'</span>);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> log = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="undefined">            x = x+1;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'上报标签为：'</span> + tag +<span class="string">','</span>+ <span class="string">'上报次数为：'</span> + x);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="actionscript">        showLogin = showLogin.after(log); <span class="comment">// 打开登录浮层后上报数据</span></span></span><br><span class="line"><span class="undefined">        login.onclick = showLogin;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>小T欣喜若狂，这样两个不同层面功能的函数就可以单独维护，不存在耦合问题，决定把自己的成果给老大展示一番，老大看了微微一笑点了点头，觉得小T的进步着实很快，决定让他尝试一下用AOP动态改变函数的参数。</p>
+<p>2.现有一个用于发起ajax请求的函数，这个函数负责项目中所有ajax的异步请求，这个ajax函数一直运转良好，跟CGI合作也很愉快，直到一次遭受了CSRF攻击，解决CSRF攻击最简单的方法就是在HTTP请求中加一个token参数，我们虽然可以选择直接多加一个token参数在ajax函数中。但是整个函数会变得十分僵硬，虽然对于现在的项目没有问题，但是将来把这个函数移植到其他项目，或者一个开源库中供他人使用，token参数都将是多余的。<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//向后台 cgi 发起一个请求来获取用户信息,传递给 cgi 的参数是baseParam和&#123; name:'sven' &#125;</span></span><br><span class="line"><span class="keyword">let</span> baseParam = &#123;</span><br><span class="line">    modname: modname,</span><br><span class="line">    orgcode: localorgcode,</span><br><span class="line">    cmduuid: cmduuid</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> ajax = <span class="function"><span class="keyword">function</span>(<span class="params">type,url,data</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(dir);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        $.ajax(&#123;</span><br><span class="line">            type:type,</span><br><span class="line">            url:url,</span><br><span class="line">            data:<span class="built_in">JSON</span>.stringify(<span class="built_in">Object</span>.assign(&#123;&#125;, baseParam, data)),</span><br><span class="line">            success:<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">                <span class="comment">// 简单假设不做处理</span></span><br><span class="line">                resolve(data);</span><br><span class="line">            &#125;,</span><br><span class="line">            error:<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">                reject(data);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">ajax(<span class="string">'get'</span>,<span class="string">'http:// xxx.com/userinfo'</span>,&#123;<span class="attr">name</span>:<span class="string">'sven'</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//用于生成token的函数</span></span><br><span class="line"><span class="keyword">let</span> getToken = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Token'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//僵硬的在ajax函数中添加</span></span><br><span class="line"><span class="keyword">var</span> ajax = <span class="function"><span class="keyword">function</span>(<span class="params">type,url,data</span>)</span>&#123;</span><br><span class="line">    data = data || &#123;&#125;;</span><br><span class="line">    data.token = getToken();</span><br><span class="line">    <span class="comment">// 发送ajax请求略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>小T看到这里，觉得老大讲的确实有道理，僵硬的在ajax函数中增加传递参数也是正确的，但是复用性不大，无论是换一个项目还是在开源库中供别人使用，这个token都可能会是多余的，小T决定在不修改ajax原函数的情况下用AOP试一下改变函数的参数：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.before = <span class="function"><span class="keyword">function</span>(<span class="params">beforefn</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> _self = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        beforefn.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>);</span><br><span class="line">        <span class="keyword">return</span> _self.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> getToken = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Token'</span>;</span><br><span class="line">&#125;</span><br><span class="line">ajax = ajax.before(<span class="function"><span class="keyword">function</span>(<span class="params">type,url,data</span>)</span>&#123;</span><br><span class="line">    data.Token = getToken();</span><br><span class="line">&#125;)</span><br><span class="line">ajax( <span class="string">'get'</span>, <span class="string">'http:// xxx.com/userinfo'</span>, &#123; <span class="attr">name</span>:<span class="string">'sven'</span> &#125; );</span><br></pre></td></tr></table></figure></p>
+<p>小T打印出来向后台cgi传递的参数，发现多了token参数<code>{name: &quot;sven&quot;, Token: &quot;Token&quot;}</code>，小T发现用AOP的方式给ajax函数动态装饰上Token参数，保证了ajax是一个纯净的函数，提高ajax函数的复用性。<br>最后老大决定拿出来杀手锏，插件式的表单验证，想试一下小T是不是能融会贯通:</p>
+<p>3.在web项目中，可能存在非常多的表单，如登录，注册，修改用户信息。在表单数据提交给后台之前，常常需要做一些校验，比如登录时需要验证用户名和密码是否为空，这样形如一个formSubmit函数就既要承担提交ajax请求，还要验证用户输入的合法性。这样一来就会造成代码的臃肿，职责混乱，二来谈不上复用性。<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        用户名：<span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"username"</span> <span class="attr">type</span>=<span class="string">"text"</span>&gt;</span></span><br><span class="line">        密码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"password"</span> <span class="attr">type</span>=<span class="string">"password"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"submitBtn"</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> username = <span class="built_in">document</span>.getElementById( <span class="string">'username'</span> ),</span></span><br><span class="line"><span class="javascript">            password = <span class="built_in">document</span>.getElementById( <span class="string">'password'</span> ),</span></span><br><span class="line"><span class="javascript">            submitBtn = <span class="built_in">document</span>.getElementById( <span class="string">'submitBtn'</span> );</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">            <span class="keyword">const</span> formSubmit = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">if</span>(username.value == <span class="string">''</span>)&#123;</span></span><br><span class="line"><span class="actionscript">                    retrun alert(<span class="string">'用户名不能为空'</span>);</span></span><br><span class="line"><span class="undefined">                &#125;</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">if</span>(password.value == <span class="string">''</span>)&#123;</span></span><br><span class="line"><span class="actionscript">                    <span class="keyword">return</span> alert(<span class="string">'密码不能为空'</span>);</span></span><br><span class="line"><span class="undefined">                &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">                <span class="keyword">let</span> param = &#123;</span></span><br><span class="line"><span class="undefined">                    username = username.value,</span></span><br><span class="line"><span class="undefined">                    password = password.value</span></span><br><span class="line"><span class="undefined">                &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">                ajax(<span class="string">'http://xxx.com/login'</span>,param); <span class="comment">//ajax实现略</span></span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">            submitBtn.onclick = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="undefined">                formSubmit();</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>小T看到这，决定先把校验的逻辑放到validata函数中：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> validata = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(username.value == <span class="string">''</span>)&#123;</span><br><span class="line">        retrun alert(<span class="string">'用户名不能为空'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(password.value == <span class="string">''</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> alert(<span class="string">'密码不能为空'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> formSubmit = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>( validata() === <span class="literal">false</span> )&#123; <span class="comment">//校验未通过</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> param = &#123;</span><br><span class="line">        username = username.value,</span><br><span class="line">        password = password.value</span><br><span class="line">    &#125;</span><br><span class="line">   ajax(<span class="string">'http://xxx.com/login'</span>,param); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">submitBtn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    formSubmit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在代码有了一些改进，小T已经把校验的逻辑放到了validata函数中，但是formSubmit函数内部还要计算validata函数的返回值，因为返回值的表明了是否通过校验。接下来小T想通过AOP来优化这段代码，使validata函数和formSubmit函数完全分离开来，这里小T发现些不一样的地方，因为要先校验，如果校验不通过不能执行后面的ajax代码，小T决定对上面学习的AOP进行改写：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.before = <span class="function"><span class="keyword">function</span>(<span class="params">beforefn</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> _self = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(beforefn.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>) == <span class="literal">false</span>)&#123;</span><br><span class="line">            <span class="comment">// beforefn返回false，直接return，不在执行后面的原函数</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> _self.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> validata = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ( username.value === <span class="string">''</span> )&#123;</span><br><span class="line">        alert ( <span class="string">'用户名不能为空'</span> );</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( password.value === <span class="string">''</span> )&#123;</span><br><span class="line">        alert ( <span class="string">'密码不能为空'</span> );</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> formSubmit = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> param = &#123;</span><br><span class="line">    username: username.value,</span><br><span class="line">    password: password.value</span><br><span class="line">    &#125;</span><br><span class="line">    ajax( <span class="string">'http:// xxx.com/login'</span>, param );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">formSubmit = formSubmit.before( validata );</span><br><span class="line"></span><br><span class="line">submitBtn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    formSubmit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>到这里，校验输入和提交表单的代码就完全分离开来，它们不在存在耦合关系，如同把校验规则动态接在formSubmit函数之前，validata成了一个即插即用的函数，它甚至可以写成配置文件的形式，非常有利于分开维护这两个函数。</p>
+<p>但是慢慢的小T也发现了用AOP装饰函数的一些缺点：因为函数通过Function.prototype.before和Function.prototype.after被装饰之后，返回的实际是一个新的函数，如果在原函数上保存了一些属性，那么这些属性会丢失：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func.a = <span class="string">'a'</span>;</span><br><span class="line"></span><br><span class="line">func = func.after(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="number">2</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">alert(func.a); <span class="comment">//输出undefined</span></span><br></pre></td></tr></table></figure></p>
+<p>除此之外，用AOP装饰方式也叠加了函数的作用域，如果装饰的链条过长，性能上也会受到一定的影响。</p>
+<h1 id="金风玉露一相逢"><a href="#金风玉露一相逢" class="headerlink" title="金风玉露一相逢"></a>金风玉露一相逢</h1><p>小T终于完成了用AOP装饰函数的学习旅程，短短三天，小T与AOP从素未谋面到彼此熟悉，最后相熟相知，小T终于可以用AOP融会贯通的处理日常一些分离代码功能提高代码复用性的任务。渐渐的小T也了解到了用AOP装饰函数方式的缺点，更加游刃有余的结合实际开发进行运用</p>
+<p><strong>人物与故事纯属虚构</strong></p>
+<h2 id="特别鸣谢"><a href="#特别鸣谢" class="headerlink" title="特别鸣谢"></a>特别鸣谢</h2><p>《JavaScript设计模式与开发实践》 -  AlloyTeam曾探</p>
+  	
+				
+			
+			<div id="MySignature" style="display: block;"><div id="Copyright">
+				<p class="com">
+				您的关注和支持是我写作的最大动力~ <br>
+				出处：<a href="http://www.chenqaq.com/" target="_blank">http://www.chenqaq.com</a><br>
+				github：<a target="_blank" href="https://github.com/okaychen">https://github.com/okaychen</a>
+				<br>
+				Web技术更新很快，本站很多文章都具有时效性，我会及时更新原文，持续和大家分享，除去特殊注明外，均为作者原创，采用更开放的「署名 4.0 国际（CC BY 4.0）」创作共享协议。欢迎大家转载，转载时请保留文章最后的出处，如若标注「原创」请先与本人取得联系
+				</p>
+				
+				</div></div>
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+  <div class="post-footer-other">
+      <span class="post-footer-item">
+        
+
+
+
+
+<span class="donate-btn">
+	<span class="iconfont icon-donate"></span>
+</span>
+
+
+<div id="donate-box" class="sildeUpMin">
+
+	<span class="donate-cancel iconfont icon-cancel"></span>
+
+	<div class="donate-img-box">
+		<img id="donate-qr-wechat" class="noLazyLoad donate-img" src="/" alt="No Donate Image!">	
+		<img id="donate-qr-alipay" class="noLazyLoad donate-img" src="/" alt="No Donate Image!">	
+	</div>
+
+	<span class="donate-word">世界美好 你也是</span>
+
+	<div class="donate-list">
+		<span class="iconfont icon-donate-wechat"></span>
+		<span class="iconfont icon-donate-alipay"></span>
+	</div>
+
+</div>
+
+ 
+      </span>           
+      <span class="post-footer-item">
+        
+	
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+	
+	<span class="share-btn">
+	<span class="iconfont icon-share"></span>
+	</span>
+
+
+	<div class="-mob-share sildeUpMin">
+		<div class="-mob-inner">
+		   			             
+            <a class="iconfont icon-share-qq -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-weixin -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-weibo -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-douban -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-facebook -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-twitter -mob-share-link"></a>		
+     	   			             
+            <a class="iconfont icon-share-google -mob-share-link"></a>		
+     	   
+		</div>
+	</div>	
+
+      </span>           
+  </div>  
+
+  <div class="post-footer-meta">
+        
+          <i class="iconfont icon-category"></i>       
+          <a class="category-link" href="/categories/JavaScript/">JavaScript</a> <a class="category-link" href="/categories/JavaScript/设计模式/">设计模式</a> 	
+      
+        	
+
+        
+          <i class="iconfont icon-tag"></i>     
+            <a class="tag-link" href="/tags/AOP/">AOP</a> <a class="tag-link" href="/tags/JS/">JS</a> <a class="tag-link" href="/tags/装饰者模式/">装饰者模式</a>    
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  
+    <div class="post-footer-link">
+      <a href="/2018/11/06/life-aboutLife20181106/" id="post-nav-newer" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">newer</strong>
+           
+          <a class="post-nav-title" href="/2018/11/06/life-aboutLife20181106/">
+          清风扶桑，沉醉不得归途</a>
+      </a>
+    </div>
+  
+  
+    <div class="post-footer-link">
+      <a href="/2018/10/18/js-higherOrderFn-DecoratorPatternToAOP1/" id="post-nav-older" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">older</strong>
+        
+          <a class="post-nav-title" href="/2018/10/18/js-higherOrderFn-DecoratorPatternToAOP1/">
+          用AOP装饰函数-摸索篇</a>
+      </a>
+    </div>
+  
+</nav>
+ 
+	
+	
+</article>
+
+      </section>
+  </div>
+
+  <a id="backTop">
+    <span>
+      <i class="iconfont icon-backtotop"></i>
+    </span>
+  </a>
+
+
+  
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+   <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon" src="/images/favicon.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首頁
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">歸檔
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">標籤
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/lab">Menu.eye
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">關於
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>
+  
+
+
+
+
+  
+
+
+<footer id="footer">
+
+
+	<div class="footer-copyright">
+		<div>
+			<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+			<script>
+				var now = new Date();
+
+				function createtime() {
+					var grt = new Date("12/05/2017 00:00:00"); //此处修改你的建站时间或者网站上线时间 
+					now.setTime(now.getTime() + 250);
+					days = (now - grt) / 1000 / 60 / 60 / 24;
+					dnum = Math.floor(days);
+					hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+					hnum = Math.floor(hours);
+					if (String(hnum).length == 1) {
+						hnum = "0" + hnum;
+					}
+					minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+					mnum = Math.floor(minutes);
+					if (String(mnum).length == 1) {
+						mnum = "0" + mnum;
+					}
+					seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+					snum = Math.round(seconds);
+					if (String(snum).length == 1) {
+						snum = "0" + snum;
+					}
+					document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+					document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+				}
+				setInterval("createtime()", 250);
+			</script>
+		</div>
+
+		<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+		&copy;
+		
+		2017-
+		
+		2019
+
+		<a href="https://github.com/okaychen" target="_blank">
+			okaychen
+		</a>
+
+	</div>
+
+</footer>
+
+
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  <script type="text/javascript" src="/clicklove.js"></script>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script src="/nayo.bundle.js"></script>
+</body>
+
+</html>
