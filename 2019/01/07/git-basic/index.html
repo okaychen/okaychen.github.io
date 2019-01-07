@@ -120,7 +120,7 @@
 		<span>
 			Jan 07, 2019
 		</span>
-		<span class="post-count"><i class="iconfont icon-posts"></i>字数统计706字</span>
+		<span class="post-count"><i class="iconfont icon-posts"></i>字数统计792字</span>
 		<span class="post-count" style="margin-top: 10px;"><i class="iconfont icon-eye"></i> 阅读时长预计2分钟</span>
 	</div>
 
@@ -139,7 +139,8 @@
 <li>缺点是图形化客户端封装不完全，有些复杂的概念还是需要git命令；正常的软件开发流程下，相比图形化客户端，使用命令行至少可以提高15%的效率。</li>
 </ul>
 <p><a href="https://git-scm.com/" target="_blank" rel="noopener">点击打开git官网</a></p>
-<p>点download for windows<br><img src="http://www.chenqaq.com/assets/photos/gitGUI01.png" alt="download for"></p>
+<p>点download for windows</p>
+<p><img src="http://www.chenqaq.com/assets/photos/gitGUI01.png" alt="download for"></p>
 <p>然后左侧｀GUI Clients｀,右侧可以根据系统版本选择不同的git图形化客户端，windows或者mac下建议用老师说的｀GitHub Desktop｀,</p>
 <p><img src="http://www.chenqaq.com/assets/photos/gitGUI02.png" alt="GUI client"></p>
 <p><code>GitHub Desktop</code>操作简单，一目了然，下载之后，关联好自己的账号，大概用10-30分钟就可以正常使用了。没有linux版本的<code>github Desktop</code>，我就不在试啦，有问题的话可以多问下百度，或者私聊我。</p>
@@ -150,8 +151,13 @@
 <p>情况二：已经根据情况一的情况创建过了（或者其他办法），仓库存在了文件</p>
 <video src="https://www.chenqaq.com/assets/videos/git.mp4" controls allowfullscreen="true" loop="true" autoplay="autoplay" muted width="100%" min-height="100%">embed: xss–chrome_test</video>
 
-<p><code>git clone</code>:从远端拉取一个项目，克隆到本地<br><code>git pull</code>: 拉取修改的文件（要注意每次修改前先pull到本地）<br><code>git add .</code>:将本地全部修改添加到暂存区（关于暂存区想要了解可以百度一下）<br><code>git commit -m &quot;something changes&quot;</code>:将本地修改批量添加到分支，（-m “xxx”，给本地提交添加说明注释）<br><code>git push</code>:将当前master分支全部推送到远端</p>
-<p>push之后刷新客户端页面，就可以看到本次修改变化，github码云是一样的</p>
+<p><code>git clone</code>:从远程仓库拉取一个项目，克隆到本地</p>
+<p>克隆到本地之后一次正常的流程：</p>
+<p><code>git pull</code>: 拉取项目变化（注意每次要修改本地文件前先从远程仓库pull一下，更新本地文件之后修改）</p>
+<p><code>git add .</code>:将本地全部修改添加到暂存区（关于暂存区想要了解可以百度一下）</p>
+<p><code>git commit -m &quot;something changes&quot;</code>:将本地修改批量添加到分支，（-m “xxx”，给本地提交添加说明注释）</p>
+<p><code>git push</code>:将当前master分支全部推送到远程</p>
+<p>push之后刷新客户端页面，就可以看到本次修改变化，github码云是一样的。<br>更多命令可以看新建的github的(studynotes)[<a href="https://github.com/okaychen/studynotes/blob/master/git/git-command-lookup.md]仓库，或者可以通过网上学习git分布式版本控制更多更深入的内容。" target="_blank" rel="noopener">https://github.com/okaychen/studynotes/blob/master/git/git-command-lookup.md]仓库，或者可以通过网上学习git分布式版本控制更多更深入的内容。</a></p>
   	
 				
 			
