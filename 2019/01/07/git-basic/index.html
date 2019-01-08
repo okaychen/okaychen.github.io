@@ -147,7 +147,7 @@
 <p><code>GitHub Desktop</code>操作简单，一目了然，下载之后，关联好自己的账号，大概用10-30分钟就可以正常使用了。没有linux版本的<code>github Desktop</code>，我就不在试啦，有问题的话可以多问下百度，或者私聊我。</p>
 <h1 id="方案二：Git命令行"><a href="#方案二：Git命令行" class="headerlink" title="方案二：Git命令行"></a>方案二：Git命令行</h1><p>对于使用git命令行入手也非常容易，在官网，下载对应版本的git，一般是 <code>windows x64</code></p>
 <p><img src="http://www.chenqaq.com/assets/photos/gitGUI03.png" alt="windows x64"></p>
-<p>需要注意的是首次使用git需要命令行进行配置，在下面会演示一下<br><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">"My Name"</span></span><br><span class="line">git config --global user.email myEmail@example.com</span><br></pre></td></tr></table></figure></p>
+<p>需要注意的是首次使用git需要命令行进行配置，在下面会演示一下<br><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">"My Name"</span></span><br><span class="line">git config --global user.email <span class="string">"myEmail@example.com"</span></span><br></pre></td></tr></table></figure></p>
 <p>情况一：初次无文件未初始化的，仅对于课程设计需要，最简单的办法建议先起一个文件名建一个空file，浅蓝色部分下面<code>creating a new file</code><br><img src="http://www.chenqaq.com/assets/photos/gitGUI04.png" alt="无文件"></p>
 <p>情况二：已经根据情况一的情况创建过了（或者其他办法），仓库存在了文件</p>
 <video src="https://www.chenqaq.com/assets/videos/git.mp4" controls allowfullscreen="true" loop="true" autoplay="autoplay" muted width="100%" min-height="100%">embed: xss–chrome_test</video>
@@ -156,7 +156,7 @@
 <p>克隆到本地之后一次正常的流程：</p>
 <p><code>git pull</code>: 拉取项目变化（注意每次要修改本地文件前先从远程仓库pull一下，更新本地文件之后修改）</p>
 <p><code>git add .</code>:将本地全部修改添加到暂存区（关于暂存区想要了解可以百度一下）</p>
-<p><code>git commit -m &quot;something changes&quot;</code>:将本地修改批量添加到分支，（-m “xxx”，给本地提交添加说明注释）</p>
+<p><code>git commit -m &quot;something changes&quot;</code>:将本地修改批量添加到分支，（-m “xxx”，给本次提交添加说明注释）</p>
 <p><code>git push</code>:将当前master分支全部推送到远程</p>
 <p>push之后刷新客户端页面，就可以看到本次修改变化，github码云是一样的。<br>更多命令可以看新建的github的<a href="https://github.com/okaychen/studynotes/blob/master/git/git-command-lookup.md" target="_blank" rel="noopener">studynotes</a>仓库，或者可以通过网上学习git分布式版本控制更多更深入的内容。</p>
   	
@@ -289,7 +289,7 @@
   
     <div class="search-container sildeUpMin">
         <div class="search-header">
-            <input type="text" placeholder="Typing Something here." id="search-input" class="search-input">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
             <span class="search-cancel">
                 <i class="iconfont icon-cancel">
             </i></span>
@@ -306,19 +306,19 @@
          
             
 
-            <a class="mobile-menu-link" href="/">Home
+            <a class="mobile-menu-link" href="/">首页
             </a>
             
          
             
 
-            <a class="mobile-menu-link" href="/archives">Archives
+            <a class="mobile-menu-link" href="/archives">归档
             </a>
             
          
             
 
-            <a class="mobile-menu-link" href="/tags">Tags
+            <a class="mobile-menu-link" href="/tags">标签
             </a>
             
          
@@ -330,13 +330,13 @@
          
             
 
-            <a class="mobile-menu-link" href="/about">About
+            <a class="mobile-menu-link" href="/about">关于
             </a>
             
          
                           
 
-            <a class="mobile-menu-link mobile-menu-search" href="#">Search </a>                 
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
             
          
       
