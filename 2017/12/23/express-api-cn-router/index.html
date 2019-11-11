@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Express4.x API (四)：Router (译) - 浅墨</title>
+<base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<link rel="canonical" href="//litten.me/2017/12/23/express-api-cn-router/">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+<meta name="description" content="Express4.x API 译文 系列文章 Express4.x API (一)：application (译) – 完成 Express4.x API (二)：request (译) – 完成 Express4.x API (三)：Response (译) – 完成 Express4.x API (四)：router (译) – 完成">
+<meta name="keywords" content="node,express">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Express4.x API (四)：Router (译)">
+<meta property="og:url" content="&#x2F;&#x2F;litten.me&#x2F;2017&#x2F;12&#x2F;23&#x2F;express-api-cn-router&#x2F;index.html">
+<meta property="og:site_name" content="浅墨">
+<meta property="og:description" content="Express4.x API 译文 系列文章 Express4.x API (一)：application (译) – 完成 Express4.x API (二)：request (译) – 完成 Express4.x API (三)：Response (译) – 完成 Express4.x API (四)：router (译) – 完成">
+<meta property="og:locale" content="Chinese">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.gravatar.com&#x2F;avatar&#x2F;d41d8cd98f00b204e9800998ecf8427e?s=160">
+<meta property="og:updated_time" content="2018-09-21T10:30:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;www.gravatar.com&#x2F;avatar&#x2F;d41d8cd98f00b204e9800998ecf8427e?s=160">
+
+<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"okaychen","description":"Awesome guy.","image":"https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=160"},"url":"//litten.me","image":"https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=160","description":"双子男，自高中毕业后接触前端开发，热衷于编程技术，向往敏捷开发，喜欢读书写点\"花花草草\"，目前大二，主修专业信息管理与信息系统","author":{"@type":"Person","name":"okaychen","description":"Awesome guy.","image":"https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=160"},"inLanguage":{"@type":"Language","alternateName":"en"}},{"@context":"http://schema.org","@type":"Article","articleSection":"Node","url":"//litten.me/2017/12/23/express-api-cn-router/","headline":"Express4.x API (四)：Router (译)","image":"https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=160","datePublished":"2017-12-23T04:17:42.000Z","dateModified":"2018-09-21T10:30:56.000Z","keywords":"node,express","description":"Express4.x API 译文 系列文章\nExpress4.x API (一)：application (译) – 完成\nExpress4.x API (二)：request (译) – 完成\nExpress4.x API (三)：Response (译) – 完成\nExpress4.x API (四)：router (译) – 完成","publisher":{"@type":"Organization","name":"浅墨","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=160"}},"author":{"@type":"Person","name":"okaychen","description":"Awesome guy.","image":"https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=160"},"inLanguage":{"@type":"Language","alternateName":"en"},"mainEntityOfPage":{"@type":"WebPage","@id":"//litten.me/2017/12/23/express-api-cn-router/"}}]</script>
+
+
+<link href="//fonts.googleapis.com/css?family=Baloo+Bhaijaan|Inconsolata|Josefin+Sans|Montserrat" rel="stylesheet">
+<link href="/styles.6d727dade1159bc77736.css" rel="stylesheet">
+<link rel="stylesheet" href="/theme.bbdb3df4aa33cae0ed68.css">
+<script src="/config.e550295de442edab6dba.js"></script>
+
+</head>
+<body lang="en">
+<is-a></is-a>
+<script src="/runtime.ee6f73bc31187f12810a.js"></script>
+<script src="/polyfills.14df1390f4da8e838f05.js"></script>
+<script src="/main.0c926d87f8cb6ab96db0.js"></script>
+</body>
+</html>
