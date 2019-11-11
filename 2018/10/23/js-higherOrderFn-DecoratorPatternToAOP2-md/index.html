@@ -6,7 +6,7 @@
 <base href="/">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 <link rel="canonical" href="//litten.me/2018/10/23/js-higherOrderFn-DecoratorPatternToAOP2-md/">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/x-icon" href="http://www.chenqaq.com/assets/icon/favicon.ico">
 
 <meta name="description" content="后续：纸上得来终觉浅老大见小T终于摸清了用AOP装饰函数的一些套路，很是欣慰，决定用实际情景让他试一试，老大拿出了一个最常见的AOP的经典应用之一—数据统计上报的情景，分离业务代码和数据统计上报的代码，在实际开发中项目结尾阶段难免要加上很多统计数据的代码，这个过程可能被迫改动早已封装好的函数.">
 <meta name="keywords" content="JS,装饰者模式,AOP">
@@ -16,18 +16,18 @@
 <meta property="og:site_name" content="浅墨">
 <meta property="og:description" content="后续：纸上得来终觉浅老大见小T终于摸清了用AOP装饰函数的一些套路，很是欣慰，决定用实际情景让他试一试，老大拿出了一个最常见的AOP的经典应用之一—数据统计上报的情景，分离业务代码和数据统计上报的代码，在实际开发中项目结尾阶段难免要加上很多统计数据的代码，这个过程可能被迫改动早已封装好的函数.">
 <meta property="og:locale" content="Chinese">
-<meta property="og:image" content="https:&#x2F;&#x2F;www.gravatar.com&#x2F;avatar&#x2F;d41d8cd98f00b204e9800998ecf8427e?s=160">
+<meta property="og:image" content="http:&#x2F;&#x2F;www.chenqaq.com&#x2F;assets&#x2F;icon&#x2F;header.jpg">
 <meta property="og:updated_time" content="2018-11-19T04:00:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;www.gravatar.com&#x2F;avatar&#x2F;d41d8cd98f00b204e9800998ecf8427e?s=160">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;www.chenqaq.com&#x2F;assets&#x2F;icon&#x2F;header.jpg">
 
-<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"okaychen","description":"Awesome guy.","image":"https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=160"},"url":"//litten.me","image":"https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=160","description":"双子男，自高中毕业后接触前端开发，热衷于编程技术，向往敏捷开发，喜欢读书写点\"花花草草\"，目前大二，主修专业信息管理与信息系统","author":{"@type":"Person","name":"okaychen","description":"Awesome guy.","image":"https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=160"},"inLanguage":{"@type":"Language","alternateName":"en"}},{"@context":"http://schema.org","@type":"Article","articleSection":"JavaScript","url":"//litten.me/2018/10/23/js-higherOrderFn-DecoratorPatternToAOP2-md/","headline":"用AOP装饰函数-实践篇","image":"https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=160","datePublished":"2018-10-23T08:16:47.000Z","dateModified":"2018-11-19T04:00:51.000Z","keywords":"JS,装饰者模式,AOP","description":"后续：纸上得来终觉浅老大见小T终于摸清了用AOP装饰函数的一些套路，很是欣慰，决定用实际情景让他试一试，老大拿出了一个最常见的AOP的经典应用之一—数据统计上报的情景，分离业务代码和数据统计上报的代码，在实际开发中项目结尾阶段难免要加上很多统计数据的代码，这个过程可能被迫改动早已封装好的函数.","publisher":{"@type":"Organization","name":"浅墨","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=160"}},"author":{"@type":"Person","name":"okaychen","description":"Awesome guy.","image":"https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=160"},"inLanguage":{"@type":"Language","alternateName":"en"},"mainEntityOfPage":{"@type":"WebPage","@id":"//litten.me/2018/10/23/js-higherOrderFn-DecoratorPatternToAOP2-md/"}}]</script>
+<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"url":"//litten.me","image":"http://www.chenqaq.com/assets/icon/header.jpg","description":"双子男，自高中毕业后接触前端开发，热衷于编程技术，向往敏捷开发，喜欢读书写点\"花花草草\"，目前大二，主修专业信息管理与信息系统","author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"}},{"@context":"http://schema.org","@type":"Article","articleSection":"JavaScript","url":"//litten.me/2018/10/23/js-higherOrderFn-DecoratorPatternToAOP2-md/","headline":"用AOP装饰函数-实践篇","image":"http://www.chenqaq.com/assets/icon/header.jpg","datePublished":"2018-10-23T08:16:47.000Z","dateModified":"2018-11-19T04:00:51.000Z","keywords":"JS,装饰者模式,AOP","description":"后续：纸上得来终觉浅老大见小T终于摸清了用AOP装饰函数的一些套路，很是欣慰，决定用实际情景让他试一试，老大拿出了一个最常见的AOP的经典应用之一—数据统计上报的情景，分离业务代码和数据统计上报的代码，在实际开发中项目结尾阶段难免要加上很多统计数据的代码，这个过程可能被迫改动早已封装好的函数.","publisher":{"@type":"Organization","name":"浅墨","logo":{"@type":"ImageObject","url":"http://www.chenqaq.com/assets/icon/header.jpg"}},"author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"},"mainEntityOfPage":{"@type":"WebPage","@id":"//litten.me/2018/10/23/js-higherOrderFn-DecoratorPatternToAOP2-md/"}}]</script>
 
 
 <link href="//fonts.googleapis.com/css?family=Baloo+Bhaijaan|Inconsolata|Josefin+Sans|Montserrat" rel="stylesheet">
 <link href="/styles.6d727dade1159bc77736.css" rel="stylesheet">
-<link rel="stylesheet" href="/theme.bbdb3df4aa33cae0ed68.css">
-<script src="/config.e550295de442edab6dba.js"></script>
+<link rel="stylesheet" href="/theme.f40d4ebe54f15a776aba.css">
+<script src="/config.52f3d9875f41f9699c55.js"></script>
 
 </head>
 <body lang="en">

@@ -6,7 +6,7 @@
 <base href="/">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 <link rel="canonical" href="//litten.me/2018/10/09/xss-attack-defense-md/">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/x-icon" href="http://www.chenqaq.com/assets/icon/favicon.ico">
 
 <meta name="description" content="前言近来反反复复读了一些xss和csrf攻防的一些文章，大体上读完了《XSS跨站脚本剖析与防御》这本书，之前浅浮的以为xss仅仅需要对用户输入内容进行过滤，然而现在重新审视xss的攻击技巧着实令人眼花缭乱。 那到底什么是xss跨站脚本呢？它会造成什么危害？为何它如此流行？它的攻击方式有哪些？作为web开发人员我们应该做的有哪些？ 带着这几个问题，反复测试总结了这篇文章，一方面方便自己以后学习回顾，">
 <meta name="keywords" content="web安全,xss">
@@ -16,18 +16,18 @@
 <meta property="og:site_name" content="浅墨">
 <meta property="og:description" content="前言近来反反复复读了一些xss和csrf攻防的一些文章，大体上读完了《XSS跨站脚本剖析与防御》这本书，之前浅浮的以为xss仅仅需要对用户输入内容进行过滤，然而现在重新审视xss的攻击技巧着实令人眼花缭乱。 那到底什么是xss跨站脚本呢？它会造成什么危害？为何它如此流行？它的攻击方式有哪些？作为web开发人员我们应该做的有哪些？ 带着这几个问题，反复测试总结了这篇文章，一方面方便自己以后学习回顾，">
 <meta property="og:locale" content="Chinese">
-<meta property="og:image" content="https:&#x2F;&#x2F;www.gravatar.com&#x2F;avatar&#x2F;d41d8cd98f00b204e9800998ecf8427e?s=160">
+<meta property="og:image" content="http:&#x2F;&#x2F;www.chenqaq.com&#x2F;assets&#x2F;icon&#x2F;header.jpg">
 <meta property="og:updated_time" content="2018-10-18T02:56:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;www.gravatar.com&#x2F;avatar&#x2F;d41d8cd98f00b204e9800998ecf8427e?s=160">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;www.chenqaq.com&#x2F;assets&#x2F;icon&#x2F;header.jpg">
 
-<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"okaychen","description":"Awesome guy.","image":"https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=160"},"url":"//litten.me","image":"https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=160","description":"双子男，自高中毕业后接触前端开发，热衷于编程技术，向往敏捷开发，喜欢读书写点\"花花草草\"，目前大二，主修专业信息管理与信息系统","author":{"@type":"Person","name":"okaychen","description":"Awesome guy.","image":"https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=160"},"inLanguage":{"@type":"Language","alternateName":"en"}},{"@context":"http://schema.org","@type":"Article","articleSection":"xss","url":"//litten.me/2018/10/09/xss-attack-defense-md/","headline":"web安全-浅谈xss攻防（一）","image":"https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=160","datePublished":"2018-10-09T05:59:50.000Z","dateModified":"2018-10-18T02:56:04.000Z","keywords":"web安全,xss","description":"前言近来反反复复读了一些xss和csrf攻防的一些文章，大体上读完了《XSS跨站脚本剖析与防御》这本书，之前浅浮的以为xss仅仅需要对用户输入内容进行过滤，然而现在重新审视xss的攻击技巧着实令人眼花缭乱。\n那到底什么是xss跨站脚本呢？它会造成什么危害？为何它如此流行？它的攻击方式有哪些？作为web开发人员我们应该做的有哪些？\n带着这几个问题，反复测试总结了这篇文章，一方面方便自己以后学习回顾，另一方面希望可以帮助到一些想对xss攻防有些了解的人，我相信这篇文章能够帮你理解上面几个问题。想要深入学习，建议还是去学习《xss跨站脚本剖析与防御》，这本书是邱永华先生所著，阿里首席安全研究员吴翰清作的序，细细读来定能有所收获；","publisher":{"@type":"Organization","name":"浅墨","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=160"}},"author":{"@type":"Person","name":"okaychen","description":"Awesome guy.","image":"https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=160"},"inLanguage":{"@type":"Language","alternateName":"en"},"mainEntityOfPage":{"@type":"WebPage","@id":"//litten.me/2018/10/09/xss-attack-defense-md/"}}]</script>
+<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"url":"//litten.me","image":"http://www.chenqaq.com/assets/icon/header.jpg","description":"双子男，自高中毕业后接触前端开发，热衷于编程技术，向往敏捷开发，喜欢读书写点\"花花草草\"，目前大二，主修专业信息管理与信息系统","author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"}},{"@context":"http://schema.org","@type":"Article","articleSection":"xss","url":"//litten.me/2018/10/09/xss-attack-defense-md/","headline":"web安全-浅谈xss攻防（一）","image":"http://www.chenqaq.com/assets/icon/header.jpg","datePublished":"2018-10-09T05:59:50.000Z","dateModified":"2018-10-18T02:56:04.000Z","keywords":"web安全,xss","description":"前言近来反反复复读了一些xss和csrf攻防的一些文章，大体上读完了《XSS跨站脚本剖析与防御》这本书，之前浅浮的以为xss仅仅需要对用户输入内容进行过滤，然而现在重新审视xss的攻击技巧着实令人眼花缭乱。\n那到底什么是xss跨站脚本呢？它会造成什么危害？为何它如此流行？它的攻击方式有哪些？作为web开发人员我们应该做的有哪些？\n带着这几个问题，反复测试总结了这篇文章，一方面方便自己以后学习回顾，另一方面希望可以帮助到一些想对xss攻防有些了解的人，我相信这篇文章能够帮你理解上面几个问题。想要深入学习，建议还是去学习《xss跨站脚本剖析与防御》，这本书是邱永华先生所著，阿里首席安全研究员吴翰清作的序，细细读来定能有所收获；","publisher":{"@type":"Organization","name":"浅墨","logo":{"@type":"ImageObject","url":"http://www.chenqaq.com/assets/icon/header.jpg"}},"author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"},"mainEntityOfPage":{"@type":"WebPage","@id":"//litten.me/2018/10/09/xss-attack-defense-md/"}}]</script>
 
 
 <link href="//fonts.googleapis.com/css?family=Baloo+Bhaijaan|Inconsolata|Josefin+Sans|Montserrat" rel="stylesheet">
 <link href="/styles.6d727dade1159bc77736.css" rel="stylesheet">
-<link rel="stylesheet" href="/theme.bbdb3df4aa33cae0ed68.css">
-<script src="/config.e550295de442edab6dba.js"></script>
+<link rel="stylesheet" href="/theme.f40d4ebe54f15a776aba.css">
+<script src="/config.52f3d9875f41f9699c55.js"></script>
 
 </head>
 <body lang="en">
