@@ -9,26 +9,26 @@
 <link rel="canonical" href="//litten.me/2019/11/05/node-cheerio-reptile-md/">
 <link rel="icon" type="image/x-icon" href="http://www.chenqaq.com/assets/icon/favicon.png">
 
-<meta name="description" content="先简单做了一个小demo，可以设定贴吧名和特定页码爬取，源码：https:&#x2F;&#x2F;github.com&#x2F;okaychen&#x2F;NetworkMonitoring主要用的依赖：cheerio，superagent，koa">
+<meta name="description" content="先简单做了一个小demo，可以设定贴吧名和特定页码爬取，源码：node-repitle主要用的依赖：cheerio，superagent，koa">
 <meta name="keywords" content="node,koa,爬虫">
 <meta property="og:type" content="website">
 <meta property="og:title" content="node爬虫实践">
 <meta property="og:url" content="&#x2F;&#x2F;litten.me&#x2F;2019&#x2F;11&#x2F;05&#x2F;node-cheerio-reptile-md&#x2F;index.html">
 <meta property="og:site_name" content="浅墨">
-<meta property="og:description" content="先简单做了一个小demo，可以设定贴吧名和特定页码爬取，源码：https:&#x2F;&#x2F;github.com&#x2F;okaychen&#x2F;NetworkMonitoring主要用的依赖：cheerio，superagent，koa">
+<meta property="og:description" content="先简单做了一个小demo，可以设定贴吧名和特定页码爬取，源码：node-repitle主要用的依赖：cheerio，superagent，koa">
 <meta property="og:locale" content="Chinese">
 <meta property="og:image" content="http:&#x2F;&#x2F;www.chenqaq.com&#x2F;assets&#x2F;icon&#x2F;header.jpg">
-<meta property="og:updated_time" content="2019-11-11T14:09:51.844Z">
+<meta property="og:updated_time" content="2019-11-12T01:49:20.490Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;www.chenqaq.com&#x2F;assets&#x2F;icon&#x2F;header.jpg">
 
-<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"url":"//litten.me","image":"http://www.chenqaq.com/assets/icon/header.jpg","description":"双子男，自高中毕业后接触前端开发，热衷于编程技术，向往敏捷开发，喜欢读书写点\"花花草草\"，目前大二，主修专业信息管理与信息系统","author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"}},{"@context":"http://schema.org","@type":"Article","articleSection":"Node","url":"//litten.me/2019/11/05/node-cheerio-reptile-md/","headline":"node爬虫实践","image":"http://www.chenqaq.com/assets/icon/header.jpg","datePublished":"2019-11-05T13:22:34.000Z","dateModified":"2019-11-11T14:09:51.844Z","keywords":"node,koa,爬虫","description":"先简单做了一个小demo，可以设定贴吧名和特定页码爬取，源码：https://github.com/okaychen/NetworkMonitoring主要用的依赖：cheerio，superagent，koa\n","publisher":{"@type":"Organization","name":"浅墨","logo":{"@type":"ImageObject","url":"http://www.chenqaq.com/assets/icon/header.jpg"}},"author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"},"mainEntityOfPage":{"@type":"WebPage","@id":"//litten.me/2019/11/05/node-cheerio-reptile-md/"}}]</script>
+<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"url":"//litten.me","image":"http://www.chenqaq.com/assets/icon/header.jpg","description":"双子男，自高中毕业后接触前端开发，热衷于编程技术，向往敏捷开发，喜欢读书写点\"花花草草\"，目前大二，主修专业信息管理与信息系统","author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"}},{"@context":"http://schema.org","@type":"Article","articleSection":"Node","url":"//litten.me/2019/11/05/node-cheerio-reptile-md/","headline":"node爬虫实践","image":"http://www.chenqaq.com/assets/icon/header.jpg","datePublished":"2019-11-05T13:22:34.000Z","dateModified":"2019-11-12T01:49:20.490Z","keywords":"node,koa,爬虫","description":"先简单做了一个小demo，可以设定贴吧名和特定页码爬取，源码：node-repitle主要用的依赖：cheerio，superagent，koa\n","publisher":{"@type":"Organization","name":"浅墨","logo":{"@type":"ImageObject","url":"http://www.chenqaq.com/assets/icon/header.jpg"}},"author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"},"mainEntityOfPage":{"@type":"WebPage","@id":"//litten.me/2019/11/05/node-cheerio-reptile-md/"}}]</script>
 
 
 <link href="//fonts.googleapis.com/css?family=Baloo+Bhaijaan|Inconsolata|Josefin+Sans|Montserrat" rel="stylesheet">
 <link href="/styles.6d727dade1159bc77736.css" rel="stylesheet">
 <link rel="stylesheet" href="/theme.f40d4ebe54f15a776aba.css">
-<script src="/config.eb6b8e35a395a7e7d8a1.js"></script>
+<script src="/config.1814857dadcec7fbd23d.js"></script>
 
 </head>
 <body lang="en">

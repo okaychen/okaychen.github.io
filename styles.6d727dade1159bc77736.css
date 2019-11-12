@@ -1070,7 +1070,7 @@ input::-webkit-input-placeholder {
 
 .ci {
     width: 4rem;
-    height: 4rem;
+    height: 7rem;
     cursor: pointer
 }
 
@@ -1156,7 +1156,7 @@ input::-webkit-input-placeholder {
 }
 
 .cp span:nth-child(3n) {
-    bottom: 0;
+    bottom: 40px;
     left: 0
 }
 
