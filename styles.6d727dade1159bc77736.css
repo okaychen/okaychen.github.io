@@ -2093,7 +2093,7 @@ input::-webkit-input-placeholder {
     position: relative;
     display: inline-block;
     padding: 0 2rem;
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     line-height: 3.8;
     border-color: inherit
 }
