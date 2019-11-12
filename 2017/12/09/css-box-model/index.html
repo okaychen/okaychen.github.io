@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>css标准盒模型、怪异模式&&box-sizing属性 - 浅墨</title>
+<title>css标准盒模型、怪异模式 - 浅墨</title>
 <base href="/">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 <link rel="canonical" href="//litten.me/2017/12/09/css-box-model/">
@@ -11,23 +11,23 @@
 <meta name="description" content="盒模型DTD规范盒模型分为：标准w3c盒模型、IE盒模型、以及css中的伸缩盒模型 当我们使用编辑器创建一个html页面时，我们一定会发现最顶上的DOCTYPE标签">
 <meta name="keywords" content="CSS,layout">
 <meta property="og:type" content="website">
-<meta property="og:title" content="css标准盒模型、怪异模式&amp;&amp;box-sizing属性">
+<meta property="og:title" content="css标准盒模型、怪异模式">
 <meta property="og:url" content="&#x2F;&#x2F;litten.me&#x2F;2017&#x2F;12&#x2F;09&#x2F;css-box-model&#x2F;index.html">
 <meta property="og:site_name" content="浅墨">
 <meta property="og:description" content="盒模型DTD规范盒模型分为：标准w3c盒模型、IE盒模型、以及css中的伸缩盒模型 当我们使用编辑器创建一个html页面时，我们一定会发现最顶上的DOCTYPE标签">
 <meta property="og:locale" content="Chinese">
 <meta property="og:image" content="http:&#x2F;&#x2F;www.chenqaq.com&#x2F;assets&#x2F;icon&#x2F;header.jpg">
-<meta property="og:updated_time" content="2018-09-21T10:08:45.000Z">
+<meta property="og:updated_time" content="2019-11-11T16:14:47.415Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;www.chenqaq.com&#x2F;assets&#x2F;icon&#x2F;header.jpg">
 
-<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"url":"//litten.me","image":"http://www.chenqaq.com/assets/icon/header.jpg","description":"双子男，自高中毕业后接触前端开发，热衷于编程技术，向往敏捷开发，喜欢读书写点\"花花草草\"，目前大二，主修专业信息管理与信息系统","author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"}},{"@context":"http://schema.org","@type":"Article","articleSection":"HTML/CSS","url":"//litten.me/2017/12/09/css-box-model/","headline":"css标准盒模型、怪异模式&&box-sizing属性","image":"http://www.chenqaq.com/assets/icon/header.jpg","datePublished":"2017-12-09T15:33:26.000Z","dateModified":"2018-09-21T10:08:45.000Z","keywords":"CSS,layout","description":"盒模型DTD规范盒模型分为：标准w3c盒模型、IE盒模型、以及css中的伸缩盒模型\n当我们使用编辑器创建一个html页面时，我们一定会发现最顶上的DOCTYPE标签","publisher":{"@type":"Organization","name":"浅墨","logo":{"@type":"ImageObject","url":"http://www.chenqaq.com/assets/icon/header.jpg"}},"author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"},"mainEntityOfPage":{"@type":"WebPage","@id":"//litten.me/2017/12/09/css-box-model/"}}]</script>
+<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"url":"//litten.me","image":"http://www.chenqaq.com/assets/icon/header.jpg","description":"双子男，自高中毕业后接触前端开发，热衷于编程技术，向往敏捷开发，喜欢读书写点\"花花草草\"，目前大二，主修专业信息管理与信息系统","author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"}},{"@context":"http://schema.org","@type":"Article","articleSection":"HTML/CSS","url":"//litten.me/2017/12/09/css-box-model/","headline":"css标准盒模型、怪异模式","image":"http://www.chenqaq.com/assets/icon/header.jpg","datePublished":"2017-12-09T15:33:26.000Z","dateModified":"2019-11-11T16:14:47.415Z","keywords":"CSS,layout","description":"盒模型DTD规范盒模型分为：标准w3c盒模型、IE盒模型、以及css中的伸缩盒模型\n当我们使用编辑器创建一个html页面时，我们一定会发现最顶上的DOCTYPE标签","publisher":{"@type":"Organization","name":"浅墨","logo":{"@type":"ImageObject","url":"http://www.chenqaq.com/assets/icon/header.jpg"}},"author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"},"mainEntityOfPage":{"@type":"WebPage","@id":"//litten.me/2017/12/09/css-box-model/"}}]</script>
 
 
 <link href="//fonts.googleapis.com/css?family=Baloo+Bhaijaan|Inconsolata|Josefin+Sans|Montserrat" rel="stylesheet">
 <link href="/styles.6d727dade1159bc77736.css" rel="stylesheet">
 <link rel="stylesheet" href="/theme.f40d4ebe54f15a776aba.css">
-<script src="/config.b2435386ce2663928204.js"></script>
+<script src="/config.eb6b8e35a395a7e7d8a1.js"></script>
 
 </head>
 <body lang="en">

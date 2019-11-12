@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>dependencies和devDependencies的正确使用姿势 - 浅墨</title>
+<title>package.json的正确使用姿势 - 浅墨</title>
 <base href="/">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 <link rel="canonical" href="//litten.me/2017/12/29/dependencies-devDependencies/">
@@ -11,23 +11,23 @@
 <meta name="description" content="写在前面刀耕火种的时代已经过去，前端开发急需自动化，工程化。 有一天，你找到公司新人程序员小T和小F，给他们每个人分配了一个任务。小T和小F微笑的答应了，确定了项目的选型和结构，小T和小F准备安装依赖的模块。但是他们开始对于dependencies和devDependencies并没有那么在意：">
 <meta name="keywords" content="node,前端环境">
 <meta property="og:type" content="website">
-<meta property="og:title" content="dependencies和devDependencies的正确使用姿势">
+<meta property="og:title" content="package.json的正确使用姿势">
 <meta property="og:url" content="&#x2F;&#x2F;litten.me&#x2F;2017&#x2F;12&#x2F;29&#x2F;dependencies-devDependencies&#x2F;index.html">
 <meta property="og:site_name" content="浅墨">
 <meta property="og:description" content="写在前面刀耕火种的时代已经过去，前端开发急需自动化，工程化。 有一天，你找到公司新人程序员小T和小F，给他们每个人分配了一个任务。小T和小F微笑的答应了，确定了项目的选型和结构，小T和小F准备安装依赖的模块。但是他们开始对于dependencies和devDependencies并没有那么在意：">
 <meta property="og:locale" content="Chinese">
 <meta property="og:image" content="http:&#x2F;&#x2F;www.chenqaq.com&#x2F;assets&#x2F;icon&#x2F;header.jpg">
-<meta property="og:updated_time" content="2018-09-21T10:06:50.000Z">
+<meta property="og:updated_time" content="2019-11-12T01:34:21.803Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;www.chenqaq.com&#x2F;assets&#x2F;icon&#x2F;header.jpg">
 
-<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"url":"//litten.me","image":"http://www.chenqaq.com/assets/icon/header.jpg","description":"双子男，自高中毕业后接触前端开发，热衷于编程技术，向往敏捷开发，喜欢读书写点\"花花草草\"，目前大二，主修专业信息管理与信息系统","author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"}},{"@context":"http://schema.org","@type":"Article","articleSection":"Node","url":"//litten.me/2017/12/29/dependencies-devDependencies/","headline":"dependencies和devDependencies的正确使用姿势","image":"http://www.chenqaq.com/assets/icon/header.jpg","datePublished":"2017-12-29T07:27:45.000Z","dateModified":"2018-09-21T10:06:50.000Z","keywords":"node,前端环境","description":"写在前面刀耕火种的时代已经过去，前端开发急需自动化，工程化。\n有一天，你找到公司新人程序员小T和小F，给他们每个人分配了一个任务。小T和小F微笑的答应了，确定了项目的选型和结构，小T和小F准备安装依赖的模块。但是他们开始对于dependencies和devDependencies并没有那么在意：","publisher":{"@type":"Organization","name":"浅墨","logo":{"@type":"ImageObject","url":"http://www.chenqaq.com/assets/icon/header.jpg"}},"author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"},"mainEntityOfPage":{"@type":"WebPage","@id":"//litten.me/2017/12/29/dependencies-devDependencies/"}}]</script>
+<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"url":"//litten.me","image":"http://www.chenqaq.com/assets/icon/header.jpg","description":"双子男，自高中毕业后接触前端开发，热衷于编程技术，向往敏捷开发，喜欢读书写点\"花花草草\"，目前大二，主修专业信息管理与信息系统","author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"}},{"@context":"http://schema.org","@type":"Article","articleSection":"Node","url":"//litten.me/2017/12/29/dependencies-devDependencies/","headline":"package.json的正确使用姿势","image":"http://www.chenqaq.com/assets/icon/header.jpg","datePublished":"2017-12-29T07:27:45.000Z","dateModified":"2019-11-12T01:34:21.803Z","keywords":"node,前端环境","description":"写在前面刀耕火种的时代已经过去，前端开发急需自动化，工程化。\n有一天，你找到公司新人程序员小T和小F，给他们每个人分配了一个任务。小T和小F微笑的答应了，确定了项目的选型和结构，小T和小F准备安装依赖的模块。但是他们开始对于dependencies和devDependencies并没有那么在意：","publisher":{"@type":"Organization","name":"浅墨","logo":{"@type":"ImageObject","url":"http://www.chenqaq.com/assets/icon/header.jpg"}},"author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"},"mainEntityOfPage":{"@type":"WebPage","@id":"//litten.me/2017/12/29/dependencies-devDependencies/"}}]</script>
 
 
 <link href="//fonts.googleapis.com/css?family=Baloo+Bhaijaan|Inconsolata|Josefin+Sans|Montserrat" rel="stylesheet">
 <link href="/styles.6d727dade1159bc77736.css" rel="stylesheet">
 <link rel="stylesheet" href="/theme.f40d4ebe54f15a776aba.css">
-<script src="/config.b2435386ce2663928204.js"></script>
+<script src="/config.eb6b8e35a395a7e7d8a1.js"></script>
 
 </head>
 <body lang="en">
