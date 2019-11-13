@@ -1,43 +1,1246 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset="utf-8">
-<title>Express4.x API (四)：Router (译) - 浅墨</title>
-<base href="/">
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-<link rel="canonical" href="//litten.me/2017/12/23/express-api-cn-router/">
-<link rel="icon" type="image/x-icon" href="http://www.chenqaq.com/assets/icon/favicon.png">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Express4.x API (四)：Router (译) | 浅墨</title>
+  
+  <meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+  
+  
+  <meta name="description" content="双子男，自高中毕业后接触前端开发，热衷于编程技术，向往敏捷开发，喜欢读书写点"花花草草"，目前大二，主修专业信息管理与信息系统">
+  
 
-<meta name="description" content="Express4.x API 译文 系列文章 Express4.x API (一)：application (译) – 完成 Express4.x API (二)：request (译) – 完成 Express4.x API (三)：Response (译) – 完成 Express4.x API (四)：router (译) – 完成">
-<meta name="keywords" content="node,express">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Express4.x API (四)：Router (译)">
-<meta property="og:url" content="&#x2F;&#x2F;litten.me&#x2F;2017&#x2F;12&#x2F;23&#x2F;express-api-cn-router&#x2F;index.html">
-<meta property="og:site_name" content="浅墨">
-<meta property="og:description" content="Express4.x API 译文 系列文章 Express4.x API (一)：application (译) – 完成 Express4.x API (二)：request (译) – 完成 Express4.x API (三)：Response (译) – 完成 Express4.x API (四)：router (译) – 完成">
-<meta property="og:locale" content="Chinese">
-<meta property="og:image" content="http:&#x2F;&#x2F;www.chenqaq.com&#x2F;assets&#x2F;icon&#x2F;header.jpg">
-<meta property="og:updated_time" content="2018-09-21T10:30:56.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;www.chenqaq.com&#x2F;assets&#x2F;icon&#x2F;header.jpg">
+  
 
-<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"url":"//litten.me","image":"http://www.chenqaq.com/assets/icon/header.jpg","description":"双子男，自高中毕业后接触前端开发，热衷于编程技术，向往敏捷开发，喜欢读书写点\"花花草草\"，目前大二，主修专业信息管理与信息系统","author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"}},{"@context":"http://schema.org","@type":"Article","articleSection":"Node","url":"//litten.me/2017/12/23/express-api-cn-router/","headline":"Express4.x API (四)：Router (译)","image":"http://www.chenqaq.com/assets/icon/header.jpg","datePublished":"2017-12-23T04:17:42.000Z","dateModified":"2018-09-21T10:30:56.000Z","keywords":"node,express","description":"Express4.x API 译文 系列文章\nExpress4.x API (一)：application (译) – 完成\nExpress4.x API (二)：request (译) – 完成\nExpress4.x API (三)：Response (译) – 完成\nExpress4.x API (四)：router (译) – 完成","publisher":{"@type":"Organization","name":"浅墨","logo":{"@type":"ImageObject","url":"http://www.chenqaq.com/assets/icon/header.jpg"}},"author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"},"mainEntityOfPage":{"@type":"WebPage","@id":"//litten.me/2017/12/23/express-api-cn-router/"}}]</script>
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
 
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
 
-<link href="//fonts.googleapis.com/css?family=Baloo+Bhaijaan|Inconsolata|Josefin+Sans|Montserrat" rel="stylesheet">
-<link href="/styles.6d727dade1159bc77736.css" rel="stylesheet">
-<link rel="stylesheet" href="/theme.f40d4ebe54f15a776aba.css">
-<script src="/config.84ccffadde10ccc1d7ce.js"></script>
+  
 
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.10.22/css/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
 </head>
-<body lang="en">
-<is-a></is-a>
-<script src="/runtime.ee6f73bc31187f12810a.js"></script>
-<script src="/polyfills.14df1390f4da8e838f05.js"></script>
-<script src="/main.0c926d87f8cb6ab96db0.js"></script>
 
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <h1 class='title'>okaychen</h1>
 
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="/"
+            
+            
+            id="home">
+            <i class='fas fa-rss fa-fw'></i>&nbsp;主页
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/lab/"
+            
+            
+            id="lab">
+            <i class='fas fa-code-branch fa-fw'></i>&nbsp;实验室
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/friends/"
+            
+              rel="nofollow"
+            
+            
+            id="friends">
+            <i class='fas fa-link fa-fw'></i>&nbsp;友链
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/about/"
+            
+              rel="nofollow"
+            
+            
+            id="about">
+            <i class='fas fa-info-circle fa-fw'></i>&nbsp;关于
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          浅墨
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                  
+                  id="home">
+									<i class='fas fa-grin fa-fw'></i>&nbsp;主页
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/tags/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="tags">
+									<i class='fas fa-hashtag fa-fw'></i>&nbsp;标签
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/archives/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="archives">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;归档
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                
+                id="home">
+								<i class='fas fa-clock fa-fw'></i>&nbsp;近期文章
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;文章归档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/lab/"
+                
+                
+                id="lab">
+								<i class='fas fa-code-branch fa-fw'></i>&nbsp;实验室
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/friends/"
+                
+                  rel="nofollow"
+                
+                
+                id="friends">
+								<i class='fas fa-link fa-fw'></i>&nbsp;我的友链
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://www.cnblogs.com/okaychen"
+                
+                  rel="nofollow"
+                
+                
+                id="https:www.cnblogs.comokaychen">
+								<i class='fas fa-book fa-fw'></i>&nbsp;博客园
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/about/"
+                
+                  rel="nofollow"
+                
+                
+                id="about">
+								<i class='fas fa-info-circle fa-fw'></i>&nbsp;关于小站
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+    
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/2017/12/23/express-api-cn-router/">
+        Express4.x API (四)：Router (译)
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="//litten.me" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2017-12-23</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Node/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Node</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <h1 id="Express4-x-API-译文-系列文章"><a href="#Express4-x-API-译文-系列文章" class="headerlink" title="Express4.x API 译文 系列文章"></a>Express4.x API 译文 系列文章</h1><ul>
+<li><a href="http://www.cnblogs.com/okaychen/p/8108405.html" target="_blank" rel="noopener">Express4.x API (一)：application (译) – 完成</a></li>
+<li><a href="http://www.cnblogs.com/okaychen/p/8081275.html" target="_blank" rel="noopener">Express4.x API (二)：request (译) – 完成</a></li>
+<li><a href="http://www.cnblogs.com/okaychen/p/8087425.html" target="_blank" rel="noopener">Express4.x API (三)：Response (译) – 完成</a></li>
+<li><a href="http://www.cnblogs.com/okaychen/p/8093717.html" target="_blank" rel="noopener">Express4.x API (四)：router (译) – 完成</a><a id="more"></a>
+已经完成了Express4.x API中的Requst和Response对象的文档翻译。简单的总结，request对象即表示HTTP请求，包含了请求查询字符串，参数，内容，HTTP头等属性；response对象则表示HTTP响应，即在受到请求时向客户端发送的HTTP响应数据。Express则基于此提供给我们一些方法，完成指定的请求和响应。</li>
+</ul>
+<p>技术库更迭较快，很难使译文和官方的API保持同步，我们只有提升自己的英语能力才能更快的适应库的更新迭代,阅读到最新资料。<br>所以我此次翻译的目的，一是熟悉express文档，二是锻炼自己英语阅读能力；</p>
+<blockquote>
+<p>原文地址：<a href="http://www.expressjs.com.cn/4x/api.html#res" target="_blank" rel="noopener">express.com</a></p>
+</blockquote>
+<h1 id="Router"><a href="#Router" class="headerlink" title="Router"></a>Router</h1><p><code>router</code>对象是中间件和路由的隔离实例，你可以把它看做一个仅能执行中间件和路由功能的<code>mini-applaction</code>，每一个Express应用程序实例都有一个内置的路由器</p>
+<p>路由器的行为类似于中间件本身，所以你可以把他作为一个参数传递给<code>app.use()</code>或者作为参数传递给另一个路由器的<code>use()</code>方法</p>
+<p><code>top-level</code> express 对象有一个Router()创建一个新的路由器对象</p>
+<h2 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h2><h3 id="Router-options"><a href="#Router-options" class="headerlink" title="Router([options])"></a>Router([options])</h3><p>创建一个新的路由器对象</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">var router</span> = express.Router([options]);</span><br></pre></td></tr></table></figure>
+
+<p>可选择的options参数指定路由器的行为<br>|Property|Description|Default|Availability|<br>|—|—|—|—|<br>|caseSensitive|是否启用大小写敏感|默认情况下不敏感，以相同的方式对待”/Foo”,”/foo”| |<br>|mergeParams|从父路由器保存<code>req.params</code>值，如果子父有冲突的参数名称，以子路由参数优先|false|4.5.0+|<br>|strict|启用严格路由|默认情况下是禁用的，”/foo”和”/foo/“是相同的| |</p>
+<p>你可以像应用程序那样添加中间件和HTTP方法路由（例如get，put，post等等）</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 调用传递给次路由的任何请求</span></span><br><span class="line">router.use(<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 一些逻辑，和其他中间件一样</span></span><br><span class="line">    next();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将会处理任何以/events结束的请求</span></span><br><span class="line">router.get(<span class="string">'/events'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// ..</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>然后你可以为你特定的URL使用路由器，用这种方式把你的routes分为文件甚至是<code>mini-apps</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.use(<span class="string">'/calendar'</span>,router);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><h3 id="routers-all-path-callback-…-callback"><a href="#routers-all-path-callback-…-callback" class="headerlink" title="routers.all(path,[callback,…] callback)"></a>routers.all(path,[callback,…] callback)</h3><p>这个方法就像<code>router.METHHOD()</code>,除了他匹配所有的HTTP方法</p>
+<p>这个方法对于映射特定路径前缀或任意匹配的”全局”逻辑非常有用。举个栗子，如果你将以下路由置于所有路由的最前面，它要求从该点的所有路由都需要身份认证，并自动加载user。记住这些回调函数不必作为终点，<code>loadUser</code>可以执行任务，然后通过<code>next()</code>传递继续匹配给后续的路由</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">router.all(<span class="string">'*'</span>,requireAuthentication,loadUser);</span><br></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">router.all(<span class="string">'*'</span>,requireAuthentication)</span><br><span class="line">router.all(<span class="string">'*'</span>,loadUser)</span><br></pre></td></tr></table></figure>
+<p>另一个例子是<code>white-listed</code>“global”功能，这里的例子非常的相似，但是它只限制路径的前缀”/api”</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">router.all(<span class="string">'/api/*'</span>,requireAuthentication);</span><br></pre></td></tr></table></figure>
+
+<h3 id="router-METHOD-path-callback-…-callback"><a href="#router-METHOD-path-callback-…-callback" class="headerlink" title="router.METHOD(path,[callback,…] callback)"></a>router.METHOD(path,[callback,…] callback)</h3><p><code>router.METHOD()</code>方法在Express中提供路由功能，其中METHOD是HTTP方法之一，例如GET，POST，PUT等等，当然你可以小写。所以实际的方法是<code>router.get()</code>，<code>router.post()</code>，<code>router.put()</code>等等</p>
+<blockquote>
+<p><code>router.get()</code>函数将会自动的调用HTTP HEAD方法，除了<code>router.head()</code>在<code>router.get()</code>之前要求没有走这条路 </p>
+</blockquote>
+<p>你可以提供多个回调，每个回调都被平等对待，表现的就像中间件，除了这些回调函数可以调用<code>next(route)</code>绕过其余路由回调。您可以使用此机制在路由上执行预条件，然后在没有理由继续匹配路由的情况下将控制传递给后续路由。</p>
+<p>下面片段展示了最简单的路由定义，Express将字符串转化为正则表达式，在内部用于匹配传入请求。执行这些匹配时不考虑查询字符串，例如’GET’将匹配下面路由，像<code>GET/?name=&#39;tobi&#39;</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">router.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    res.send(<span class="string">'hello world'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>如果你有非常具体的约束条件，还可以使用正则表达式。举个栗子下面将会匹配”GET /commits/71dbb9c”以及 “GET /commits/71dbb9c..4c084f9”.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">router.get(<span class="regexp">/^\/commits\/(\w+)(?:\.\.(\w+))?$/</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="keyword">from</span> = req.params[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">var</span> to = req.params[<span class="number">1</span>] || <span class="string">'HEAD'</span>;</span><br><span class="line">    res.send(<span class="string">'commit range'</span> + form + <span class="string">'..'</span> + to);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="router-param-name-callback"><a href="#router-param-name-callback" class="headerlink" title="router.param(name, callback)"></a>router.param(name, callback)</h3><p>添加回调触发到路由参数中，name是参数的名称，callback是回调函数。虽然name在技术上是可选的，但是从Express v4.11.0没有它是不推荐使用这种方法的（如下）</p>
+<ul>
+<li>req，请求对象</li>
+<li>res，响应对象</li>
+<li>next，指示下一个中间件的功能</li>
+<li>name参数的值</li>
+<li>参数的名称</li>
+</ul>
+<blockquote>
+<p>不像<code>app.param()</code>,<code>router.param()</code>不接受数组参数</p>
+</blockquote>
+<p>举个栗子，当<code>:user</code>在路由路径中存在时，可以将用户加载映射为自动提供<code>req.user</code>给这个路由，或者执行验证的参数输入</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">router.param(<span class="string">'user'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next,id</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//尝试从用户模型获取用户详细信息并将其附加到请求对象</span></span><br><span class="line">    User.find(id,<span class="function"><span class="keyword">function</span>(<span class="params">err,user</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            next(err);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(user)&#123;</span><br><span class="line">            req.user = user;</span><br><span class="line">            next();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            next(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'fail to load user'</span>))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;) </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>该回调方法是在本地路由器上定义他们，它们不是由加载的应用程序或路由器继承的。因此，定义在路由上的参数回调只有通过<code>router</code>定义的路由参数才会触发</p>
+<p>一个回调参数将被称为一次请求响应周期，即使参数在多个路径中匹配，如下面的栗子所示：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">router.param(<span class="string">'id'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next,id</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'CALLED ONLY ONCE'</span>);</span><br><span class="line">    next();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/user/:id'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'although this matchs '</span>);</span><br><span class="line">    next();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/user/:id'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'and this matchs too '</span>);</span><br><span class="line">    res.end();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>将会依次打印：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">CAALED ONLY ONCE</span><br><span class="line">although <span class="keyword">this</span> matchs</span><br><span class="line">and <span class="keyword">this</span> matchs too</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>以下部分描述<code>router.param(callback)</code>在v4.11.0将是过时的</p>
+</blockquote>
+<p><code>router.param(name,callback)</code>方法的行为通过仅传递一个函数到<code>router.param()</code>将会完全改变。此功能是如何实现<code>router.param(name,callback)</code>的习惯-它接受两个参数，必须返回一个中间件</p>
+<p>函数返回的中间件决定了URL参数被捕获时发生的行为</p>
+<p>在下面这个例子中，<code>router.param(name,callback)</code>签名被修改为<code>router.param(name, accessId)</code>。<code>router.param()将会接受一个</code>name<code>和一个</code>number<code>而不是一个</code>name<code>和一个</code>回调函数`</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"><span class="keyword">var</span> router = express.Router();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定制 `router.param()`的功能</span></span><br><span class="line">router.param(<span class="function"><span class="keyword">function</span>(<span class="params">param,option</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">req,res,next,val</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(val == option)&#123;</span><br><span class="line">            next();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            res.sendStatus(<span class="number">403</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用定制的`router.param()`</span></span><br><span class="line">router.param(<span class="string">'id'</span>,<span class="number">1337</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 触发捕获的路由</span></span><br><span class="line">router.get(<span class="string">'/user/:id'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    res.send(<span class="string">'OK'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.use(router);</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Ready'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>在这个栗子中，<code>router.param(name,callback)</code>签名是相同的，但不是一个中间件回调，一个自定义检查函数定义了验证用户ID</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">router.param(<span class="function"><span class="keyword">function</span>(<span class="params">param,validator</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">req,res,next,val</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(validator(val))&#123;</span><br><span class="line">            next();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            res.sendStatus(<span class="number">403</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.param(<span class="string">'id'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">candidate</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !<span class="built_in">isNaN</span>(<span class="built_in">parseFloat</span>(candidate)) &amp;&amp; <span class="built_in">isFinite</span>(candidate)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="router-route-path"><a href="#router-route-path" class="headerlink" title="router.route(path)"></a>router.route(path)</h3><p>返回单个路由的实例，您可以使用可选中间件来处理HTTP verbs，使用<code>router.route()</code>为了避免重复路由命名，从而键入错误。</p>
+<p>在上面<code>router.param()</code>栗子的基础上，下面的栗子展示了如何使用<code>router.route()</code>指定HTTP处理方法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> router = express.Router();</span><br><span class="line"></span><br><span class="line">router.param(<span class="string">'user_id'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next,id</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 示例用户，可能实际将从db等获取</span></span><br><span class="line">    req.user = &#123;</span><br><span class="line">        id:id,</span><br><span class="line">        name:<span class="string">'TJ'</span></span><br><span class="line">    &#125;;</span><br><span class="line">    next();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.route(<span class="string">'/users/:user_id'</span>)</span><br><span class="line">.all(<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// ..</span></span><br><span class="line">    next()</span><br><span class="line">&#125;)</span><br><span class="line">.get(<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">    res.json(req.user)</span><br><span class="line">&#125;)</span><br><span class="line">.put(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    req.user.name = req.params.name;</span><br><span class="line">    <span class="comment">// 保存用户等</span></span><br><span class="line">    res.json(req.user) </span><br><span class="line">&#125;)</span><br><span class="line">.post(<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">    next(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'not implemented'</span>));</span><br><span class="line">&#125;)</span><br><span class="line">.delete(<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">    next(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'not implemented'</span>))</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这个方法再利用单一<code>/users/:user_id</code>路径并且为各种HTTP方法添加处理程序</p>
+<h3 id="router-use-path-function-…-function"><a href="#router-use-path-function-…-function" class="headerlink" title="router.use([path], [function, …] function)"></a>router.use([path], [function, …] function)</h3><p>使用指定中间件函数或者函数，可选的参数是挂载路径，默认是”/“</p>
+<p>这个方法类似于<code>app.use()</code>。下面展示了一个简单的示例和用例：</p>
+<p>中间件就像是管道，请求在第一个中间件函数定义时开始，并为它们”向下”匹配每一条路径处理中间件堆栈处理。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"><span class="keyword">var</span> router = express.Router();</span><br><span class="line"></span><br><span class="line">router.use(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'%s %s %s'</span>,req.method,req.url,req.path);</span><br><span class="line">    next();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面只有当路径从挂载点开始时，才会调用这个函数</span></span><br><span class="line">router.use(<span class="string">'/bar'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// ..</span></span><br><span class="line">    next();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 总是调用</span></span><br><span class="line">router.use(<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">    res.send(<span class="string">'Hello world'</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(<span class="string">'/foo'</span>,router);</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+<p>“挂载”路径被剥离并且对中间件功能不可见。这个功能的主要作用是：不管它的”prefix前缀”路径，安装中间件功能可能没有代码的变化</p>
+<p>为了保证您使用<code>router.use()</code>定义的中间件的重要性。他们按顺序调用，因此顺序定义中间件优先级。举个栗子：通常<code>logger</code>是您将使用的第一个中间件，因此每个请求都会被记录</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> logger = <span class="built_in">require</span>(<span class="string">'morgan'</span>);</span><br><span class="line"></span><br><span class="line">router.user(logger());</span><br><span class="line">router.use(express.static(__dirname+<span class="string">'/public'</span>));</span><br><span class="line">router.use(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    res.send(<span class="string">'hello'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>现在假设您忽略了对静态文件的日志请求,但是在<code>logger()</code>之后要继续记录路由和中间件定义。你只需简单的移动<code>express.static()</code>到顶部，在添加日志中间件之前即可。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">router.use(express.static(__dirname + <span class="string">'/public'</span>));</span><br><span class="line">router.use(logger());</span><br><span class="line">router.use(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    res.send(<span class="string">'Hello'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>另一个例子是从多个目录中服务文件，给予”/public”优先</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.use(express.static(__dirname + <span class="string">'/public'</span>));</span><br><span class="line">app.use(express.static(__dirname + <span class="string">'/files'</span>));</span><br><span class="line">app.use(express.static(__dirname + <span class="string">'/uploads'</span>));</span><br></pre></td></tr></table></figure>
+<p><code>router.use()</code>方法也支持命名参数，这样，其他路由器的挂载点可以通过使用命名参数预加载来获益。</p>
+<blockquote>
+<p>NOTE:虽然这些中间件功能是通过特定路由器添加的,当他们运行时由他们连接到的路径来定义(而不是路由)。因此，如果路由器的路由匹配，则通过一个路由器添加的中间件可以运行其他路由器。举个栗子，下面显示安装在同一路径上的两个不同的路由器：</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> autoRouter = express.Router();</span><br><span class="line"><span class="keyword">var</span> openRouter = express.Router();</span><br><span class="line"></span><br><span class="line">autoRouter.use(<span class="built_in">require</span>(<span class="string">'./authenticate'</span>).basic(usersdb));</span><br><span class="line"></span><br><span class="line">autoRouter.get(<span class="string">'/:user_id/edit'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// .. 编辑用户界面 .. </span></span><br><span class="line">&#125;)</span><br><span class="line">openRouter.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// .. 用户列表 ..</span></span><br><span class="line">&#125;)</span><br><span class="line">openRouter.get(<span class="string">'/:user_id'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// .. 查看用户 .. </span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.use(<span class="string">'/users'</span>,authRouter);</span><br><span class="line">app.use(<span class="string">'/users'</span>,openRouter);</span><br></pre></td></tr></table></figure>
+<p>尽管<code>authenticate</code>中间件是通过<code>autoRouter</code>路由加入的,但是它也将运行在openRouter定义的路由上，因为两个路由器都挂载在<code>/users</code>。为了避免这种行为发生，为每个路由器使用不同的路径。</p>
+<h1 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h1><p>Express文档中Router部分就完成了，本人学识有限，难免有所纰漏或者理解不当之处，翻译仅仅是方便个人学习交流使用，无其他用意，原文地址：<a href="http://www.expressjs.com.cn/4x/api.html#res" target="_blank" rel="noopener">expressjs.com</a></p>
+
+      </div>
+      
+        <br>
+        
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2018-09-21T18:30:56+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>updated at Sep 21, 2018</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/node/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>node</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/express/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>express</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=//litten.me/2017/12/23/express-api-cn-router/&title=Express4.x API (四)：Router (译) | 浅墨&summary=Express4.x API 译文 系列文章
+Express4.x API (一)：application (译) – 完成
+Express4.x API (二)：request (译) – 完成
+Express4.x API (三)：Response (译) – 完成
+Express4.x API (四)：router (译) – 完成"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=//litten.me/2017/12/23/express-api-cn-router/&title=Express4.x API (四)：Router (译) | 浅墨&summary=Express4.x API 译文 系列文章
+Express4.x API (一)：application (译) – 完成
+Express4.x API (二)：request (译) – 完成
+Express4.x API (三)：Response (译) – 完成
+Express4.x API (四)：router (译) – 完成"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=//litten.me/2017/12/23/express-api-cn-router/&title=Express4.x API (四)：Router (译) | 浅墨&summary=Express4.x API 译文 系列文章
+Express4.x API (一)：application (译) – 完成
+Express4.x API (二)：request (译) – 完成
+Express4.x API (三)：Response (译) – 完成
+Express4.x API (四)：router (译) – 完成"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+      
+      
+          <div class="prev-next">
+              
+                  <section class="prev">
+                      <span class="art-item-left">
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous</h6>
+                          <h4>
+                              <a href="/2017/12/24/express-api-cn-application/" rel="prev" title="Express4.x API (一)：application (译)">
+                                
+                                    Express4.x API (一)：application (译)
+                                
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/node/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> node</a> <a class="tag" href="/tags/express/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> express</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/2017/12/21/express-api-cn-response/" rel="prev" title="Express4.x API (三)：Response (译)">
+                                  
+                                      Express4.x API (三)：Response (译)
+                                  
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/node/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> node</a> <a class="tag" href="/tags/express/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> express</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+          </div>
+      
+    </section>
+  </article>
+
+
+
+  <!-- 显示推荐文章和评论 -->
+
+
+
+  
+
+
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'Express4.x API (四)：Router (译)',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+      
+        
+          
+          
+            
+              <section class='widget author'>
+  <div class='content pure'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://www.chenqaq.com/assets/icon/header.jpg'/>
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="/mailto:okaycheng@foxmail.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/okaychen"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://www.chenqaq.com"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;TOC</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer noopener" href="javascript:void(0)" target="_blank"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Express4-x-API-译文-系列文章"><span class="toc-text">Express4.x API 译文 系列文章</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Router"><span class="toc-text">Router</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Properties"><span class="toc-text">Properties</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Router-options"><span class="toc-text">Router([options])</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Methods"><span class="toc-text">Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#routers-all-path-callback-…-callback"><span class="toc-text">routers.all(path,[callback,…] callback)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#router-METHOD-path-callback-…-callback"><span class="toc-text">router.METHOD(path,[callback,…] callback)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#router-param-name-callback"><span class="toc-text">router.param(name, callback)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#router-route-path"><span class="toc-text">router.route(path)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#router-use-path-function-…-function"><span class="toc-text">router.use([path], [function, …] function)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#写在后面"><span class="toc-text">写在后面</span></a></li></ol>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget grid'>
+  
+<header class='pure'>
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站内导航</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          近期文章
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章归档
+        </a></li>
+      
+        <li><a class="flat-box" title="/lab/" href="/lab/"
+          
+          
+          id="lab">
+          
+            <i class="fas fa-code-branch fa-fw" aria-hidden="true"></i>
+          
+          实验室
+        </a></li>
+      
+        <li><a class="flat-box" title="/friends/" href="/friends/"
+          
+            rel="nofollow"
+          
+          
+          id="friends">
+          
+            <i class="fas fa-link fa-fw" aria-hidden="true"></i>
+          
+          我的友链
+        </a></li>
+      
+        <li><a class="flat-box" title="https://www.cnblogs.com/okaychen" href="https://www.cnblogs.com/okaychen"
+          
+            rel="nofollow"
+          
+          
+          id="https:www.cnblogs.comokaychen">
+          
+            <i class="fas fa-book fa-fw" aria-hidden="true"></i>
+          
+          博客园
+        </a></li>
+      
+        <li><a class="flat-box" title="/about/" href="/about/"
+          
+            rel="nofollow"
+          
+          
+          id="about">
+          
+            <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
+          
+          关于小站
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/categories/"
+    title="categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/HTML-CSS/" href="/categories/HTML-CSS/"><div class='name'>HTML/CSS</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/JavaScript/" href="/categories/JavaScript/"><div class='name'>JavaScript</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box child" title="/categories/JavaScript/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/JavaScript/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><div class='name'>设计模式</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Node/" href="/categories/Node/"><div class='name'>Node</div><div class='badge'>(9)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/linux/" href="/categories/linux/"><div class='name'>linux</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/web%E5%AE%89%E5%85%A8/" href="/categories/web%E5%AE%89%E5%85%A8/"><div class='name'>web安全</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" href="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/"><div class='name'>岁言心语</div><div class='badge'>(5)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/AOP/" style="font-size: 15.67px; color: #8e8e8e">AOP</a> <a href="/tags/CSS/" style="font-size: 20.67px; color: #6c6c6c">CSS</a> <a href="/tags/Canvas/" style="font-size: 14px; color: #999">Canvas</a> <a href="/tags/JS/" style="font-size: 20.67px; color: #6c6c6c">JS</a> <a href="/tags/animation/" style="font-size: 14px; color: #999">animation</a> <a href="/tags/event-queue/" style="font-size: 14px; color: #999">event queue</a> <a href="/tags/express/" style="font-size: 22.33px; color: #606060">express</a> <a href="/tags/github/" style="font-size: 14px; color: #999">github</a> <a href="/tags/koa/" style="font-size: 14px; color: #999">koa</a> <a href="/tags/layout/" style="font-size: 19px; color: #777">layout</a> <a href="/tags/linux/" style="font-size: 14px; color: #999">linux</a> <a href="/tags/mock/" style="font-size: 14px; color: #999">mock</a> <a href="/tags/node/" style="font-size: 24px; color: #555">node</a> <a href="/tags/ssh%E5%8D%8F%E8%AE%AE/" style="font-size: 14px; color: #999">ssh协议</a> <a href="/tags/stack/" style="font-size: 14px; color: #999">stack</a> <a href="/tags/underscore/" style="font-size: 14px; color: #999">underscore</a> <a href="/tags/vueCli/" style="font-size: 14px; color: #999">vueCli</a> <a href="/tags/webpcak/" style="font-size: 14px; color: #999">webpcak</a> <a href="/tags/web%E5%8A%A8%E7%94%BB/" style="font-size: 14px; color: #999">web动画</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 17.33px; color: #828282">web安全</a> <a href="/tags/xss/" style="font-size: 15.67px; color: #8e8e8e">xss</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E7%8E%AF%E5%A2%83/" style="font-size: 14px; color: #999">前端环境</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 14px; color: #999">小游戏</a> <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" style="font-size: 20.67px; color: #6c6c6c">岁言心语</a> <a href="/tags/%E5%B9%B6%E5%8F%91%EF%BC%8C%E5%B9%B6%E8%A1%8C/" style="font-size: 14px; color: #999">并发，并行</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">爬虫</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/" style="font-size: 15.67px; color: #8e8e8e">装饰者模式</a> <a href="/tags/%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/" style="font-size: 14px; color: #999">运行机制</a> <a href="/tags/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" style="font-size: 14px; color: #999">防抖与节流</a>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+    
+
+  
+</aside>
+
+<footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="/atom.xml"
+            class="social fas fa-rss flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="/mailto:okaycheng@foxmail.com"
+            class="social fas fa-envelope flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://github.com/okaychen"
+            class="social fab fa-github flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://www.chenqaq.com"
+            class="social fas fa-headphones-alt flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+  <div>
+    Use
+    <a href="do something" target="_blank" class="codename">okaychen</a>
+    as theme
+    
+      , 
+      total visits
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      times
+    
+    . 
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/app.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "Copied";
+  let COPY_FAILURE = "Copy failed";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
 </body>
 </html>

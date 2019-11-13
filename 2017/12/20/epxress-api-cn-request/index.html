@@ -1,43 +1,1275 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset="utf-8">
-<title>Express4.x API (二)：Request (译) - 浅墨</title>
-<base href="/">
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-<link rel="canonical" href="//litten.me/2017/12/20/epxress-api-cn-request/">
-<link rel="icon" type="image/x-icon" href="http://www.chenqaq.com/assets/icon/favicon.png">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Express4.x API (二)：Request (译) | 浅墨</title>
+  
+  <meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+  
+  
+  <meta name="description" content="双子男，自高中毕业后接触前端开发，热衷于编程技术，向往敏捷开发，喜欢读书写点"花花草草"，目前大二，主修专业信息管理与信息系统">
+  
 
-<meta name="description" content="Express4.x API 译文 系列文章 Express4.x API (一)：application (译) – 完成 Express4.x API (二)：request (译) – 完成 Express4.x API (三)：Response (译) – 完成 Express4.x API (四)：router (译) – 完成">
-<meta name="keywords" content="node,express">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Express4.x API (二)：Request (译)">
-<meta property="og:url" content="&#x2F;&#x2F;litten.me&#x2F;2017&#x2F;12&#x2F;20&#x2F;epxress-api-cn-request&#x2F;index.html">
-<meta property="og:site_name" content="浅墨">
-<meta property="og:description" content="Express4.x API 译文 系列文章 Express4.x API (一)：application (译) – 完成 Express4.x API (二)：request (译) – 完成 Express4.x API (三)：Response (译) – 完成 Express4.x API (四)：router (译) – 完成">
-<meta property="og:locale" content="Chinese">
-<meta property="og:image" content="http:&#x2F;&#x2F;www.chenqaq.com&#x2F;assets&#x2F;icon&#x2F;header.jpg">
-<meta property="og:updated_time" content="2018-09-21T10:07:09.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;www.chenqaq.com&#x2F;assets&#x2F;icon&#x2F;header.jpg">
+  
 
-<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"url":"//litten.me","image":"http://www.chenqaq.com/assets/icon/header.jpg","description":"双子男，自高中毕业后接触前端开发，热衷于编程技术，向往敏捷开发，喜欢读书写点\"花花草草\"，目前大二，主修专业信息管理与信息系统","author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"}},{"@context":"http://schema.org","@type":"Article","articleSection":"Node","url":"//litten.me/2017/12/20/epxress-api-cn-request/","headline":"Express4.x API (二)：Request (译)","image":"http://www.chenqaq.com/assets/icon/header.jpg","datePublished":"2017-12-20T14:07:04.000Z","dateModified":"2018-09-21T10:07:09.000Z","keywords":"node,express","description":"Express4.x API 译文 系列文章\nExpress4.x API (一)：application (译) – 完成\nExpress4.x API (二)：request (译) – 完成\nExpress4.x API (三)：Response (译) – 完成\nExpress4.x API (四)：router (译) – 完成","publisher":{"@type":"Organization","name":"浅墨","logo":{"@type":"ImageObject","url":"http://www.chenqaq.com/assets/icon/header.jpg"}},"author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"},"mainEntityOfPage":{"@type":"WebPage","@id":"//litten.me/2017/12/20/epxress-api-cn-request/"}}]</script>
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
 
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
 
-<link href="//fonts.googleapis.com/css?family=Baloo+Bhaijaan|Inconsolata|Josefin+Sans|Montserrat" rel="stylesheet">
-<link href="/styles.6d727dade1159bc77736.css" rel="stylesheet">
-<link rel="stylesheet" href="/theme.f40d4ebe54f15a776aba.css">
-<script src="/config.84ccffadde10ccc1d7ce.js"></script>
+  
 
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.10.22/css/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
 </head>
-<body lang="en">
-<is-a></is-a>
-<script src="/runtime.ee6f73bc31187f12810a.js"></script>
-<script src="/polyfills.14df1390f4da8e838f05.js"></script>
-<script src="/main.0c926d87f8cb6ab96db0.js"></script>
 
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <h1 class='title'>okaychen</h1>
 
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="/"
+            
+            
+            id="home">
+            <i class='fas fa-rss fa-fw'></i>&nbsp;主页
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/lab/"
+            
+            
+            id="lab">
+            <i class='fas fa-code-branch fa-fw'></i>&nbsp;实验室
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/friends/"
+            
+              rel="nofollow"
+            
+            
+            id="friends">
+            <i class='fas fa-link fa-fw'></i>&nbsp;友链
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/about/"
+            
+              rel="nofollow"
+            
+            
+            id="about">
+            <i class='fas fa-info-circle fa-fw'></i>&nbsp;关于
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          浅墨
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                  
+                  id="home">
+									<i class='fas fa-grin fa-fw'></i>&nbsp;主页
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/tags/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="tags">
+									<i class='fas fa-hashtag fa-fw'></i>&nbsp;标签
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/archives/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="archives">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;归档
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                
+                id="home">
+								<i class='fas fa-clock fa-fw'></i>&nbsp;近期文章
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;文章归档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/lab/"
+                
+                
+                id="lab">
+								<i class='fas fa-code-branch fa-fw'></i>&nbsp;实验室
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/friends/"
+                
+                  rel="nofollow"
+                
+                
+                id="friends">
+								<i class='fas fa-link fa-fw'></i>&nbsp;我的友链
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://www.cnblogs.com/okaychen"
+                
+                  rel="nofollow"
+                
+                
+                id="https:www.cnblogs.comokaychen">
+								<i class='fas fa-book fa-fw'></i>&nbsp;博客园
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/about/"
+                
+                  rel="nofollow"
+                
+                
+                id="about">
+								<i class='fas fa-info-circle fa-fw'></i>&nbsp;关于小站
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+    
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/2017/12/20/epxress-api-cn-request/">
+        Express4.x API (二)：Request (译)
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="//litten.me" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2017-12-20</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Node/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Node</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <h1 id="Express4-x-API-译文-系列文章"><a href="#Express4-x-API-译文-系列文章" class="headerlink" title="Express4.x API 译文 系列文章"></a>Express4.x API 译文 系列文章</h1><ul>
+<li><a href="http://www.cnblogs.com/okaychen/p/8108405.html" target="_blank" rel="noopener">Express4.x API (一)：application (译) – 完成</a></li>
+<li><a href="http://www.cnblogs.com/okaychen/p/8081275.html" target="_blank" rel="noopener">Express4.x API (二)：request (译) – 完成</a></li>
+<li><a href="http://www.cnblogs.com/okaychen/p/8087425.html" target="_blank" rel="noopener">Express4.x API (三)：Response (译) – 完成</a></li>
+<li><a href="http://www.cnblogs.com/okaychen/p/8093717.html" target="_blank" rel="noopener">Express4.x API (四)：router (译) – 完成</a><a id="more"></a>
+<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1>最近学习express想要系统的过一遍API，<a href="www.expressjs.com">www.expressjs.com</a>是express英文官网(进入<a href="www.epxressjs.com.cn">www.epxressjs.com.cn</a>发现也是只有前几句话是中文呀~~)，所以自己准备在express学习的过程也翻译一遍API，一是熟悉Express文档，二是锻炼自己英语阅读能力.</li>
+</ul>
+<blockquote>
+<p>原文地址：<a href="http://www.expressjs.com.cn/4x/api.html#req" target="_blank" rel="noopener">express.com</a></p>
+</blockquote>
+<h1 id="Request-请求"><a href="#Request-请求" class="headerlink" title="Request(请求)"></a>Request(请求)</h1><p><code>req</code>代表<code>http request</code>请求，具有请求查询字符串，参数，body，http头等等的性能。在本文件和惯例中，这个对象总是被简称为<code>req</code>(<code>http response</code>对象是<code>res</code>),但是它的实际名称取决于你正在工作的回调函数的参数</p>
+<p>举个栗子：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.get(<span class="string">'/user/:id/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    res.send(<span class="string">'user'</span> + req.params.id);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>当然你也可以这样：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.get(<span class="string">'user/"id/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">request,response</span>)</span>&#123;</span><br><span class="line">    response.send(<span class="string">'user '</span> + request.params.id);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h2><blockquote>
+<p>在express4.x中，<code>req.files</code>在默认情况下是不再可以被使用的，在<code>req.files</code>对象为了获得<code>upload files</code>，使用多个处理中间件,像 <code>busboy,formidable,multiparty,connect-multiparty</code>或者<code>pez</code></p>
+</blockquote>
+<h3 id="req-app"><a href="#req-app" class="headerlink" title="req.app"></a>req.app</h3><p>此属性持有对使用中间件的Express应用程序实例的引用</p>
+<p>如果你按照所创建的一个模块，刚暴露一个中间件为了在你的主文件中使用它，然后中间件可以通过<code>req.app</code>访问Express实例</p>
+<p>举个栗子：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// index</span></span><br><span class="line">app.get(<span class="string">"/viewdirectory/"</span>,<span class="built_in">require</span>(<span class="string">"./mymiddleware.js"</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// mymiddleware.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    res.send(<span class="string">'The views direction is " + req.app.get('</span>views<span class="string">'));</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="req-baseUrl"><a href="#req-baseUrl" class="headerlink" title="req.baseUrl"></a>req.baseUrl</h3><p>安装路由器的实例的URL路径</p>
+<p>举个栗子：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> greet = express.Router();</span><br><span class="line">greet.get(<span class="string">'/jp'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(req.baseUrl)  <span class="comment">// greet</span></span><br><span class="line">    res.send(<span class="string">'Konichiwa!'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.use(<span class="string">'/greet'</span>,greet)  <span class="comment">// load the router on '/greet'</span></span><br></pre></td></tr></table></figure>
+<p>即使使用路径模式或一组路径模式来加载路由器，<code>baseUrl</code>特性返回匹配字符串，而不是模式(s),</p>
+<p>在下面这个路径中，<code>greet</code>路径加载两个路由路径</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.use([<span class="string">'/gre+t'</span>,<span class="string">'hel&#123;2&#125;o'</span>],greet)   <span class="comment">// load the router on '/gre+t' and '/hel&#123;2&#125;o'</span></span><br></pre></td></tr></table></figure>
+<p>当一个请求指向<code>/greet/jp</code>,<code>req.baseUrl</code>是’/greet’.当一个请求指向<code>/hello/jp</code>,<code>req.baseUrl</code>是<code>/hello</code><br><code>req.baseUrl</code>类似于<code>app.mountpath</code>,除了<code>app.mountpath</code>返回路径匹配的模式</p>
+<h3 id="req-body"><a href="#req-body" class="headerlink" title="req.body"></a>req.body</h3><p>包含请求主体中提交数据的键值对.默认情况下，它是<code>undefined</code>,当时用<code>body-parsing</code>中间件例如<code>body-parser</code>和<code>multer</code>时被填充</p>
+<p>下面这个栗子展示如何使用中间件来填充<code>req.body</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> app = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="keyword">var</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>)</span><br><span class="line"><span class="keyword">var</span> multer = <span class="built_in">require</span>(<span class="string">'multer'</span>)</span><br><span class="line"></span><br><span class="line">app.use(bodyParser.json());   <span class="comment">// 解析 application/json</span></span><br><span class="line">app.use(bodyParser.urlencoded(&#123;<span class="attr">extended</span>:<span class="literal">true</span>&#125;));   <span class="comment">// 解析 application/x-www-form-urlencoded</span></span><br><span class="line">app.use(multer())  <span class="comment">// 解析multipart/form-data</span></span><br><span class="line"></span><br><span class="line">app.post(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(req.body)</span><br><span class="line">    res.json(req.body)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="req-cookies"><a href="#req-cookies" class="headerlink" title="req.cookies"></a>req.cookies</h3><p>当使用cookie-parser中间件，此属性是包含请求发送的cookie对象.如果请求不包含cookie，它默认为<code>{}</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Cookie:name = tj</span></span><br><span class="line">req.cookies.name  <span class="comment">// =&gt;"tj"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="req-fresh"><a href="#req-fresh" class="headerlink" title="req.fresh"></a>req.fresh</h3><p>指示是否这个请求是”fresh”，他是和<code>req.stale</code>相反的。这是真的如果<code>cache-control</code>请求头没有一个<code>no-cache</code>指令，下面一项都是正确的：</p>
+<ul>
+<li>这个<code>if-modified-since</code>请求头是明确指定的，<code>last-modified</code>请求头等于或者更早于<code>modified</code>响应头</li>
+<li><code>if-none-match</code>请求头是*</li>
+<li><code>if-none-match</code>请求头，在解析到他的指令之后，不匹配<code>etag</code>的响应头</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">req.fresh <span class="comment">// =&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="req-hostname"><a href="#req-hostname" class="headerlink" title="req.hostname"></a>req.hostname</h3><p>包含主机<code>host</code> http header的主机名</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// HOST:“expample.com:3000”</span></span><br><span class="line">req.hostname <span class="comment">// =&gt; elample.com</span></span><br></pre></td></tr></table></figure>
+<h3 id="req-ip"><a href="#req-ip" class="headerlink" title="req.ip"></a>req.ip</h3><p>请求的远程ip地址<br>如果信用代理<code>trust proxy</code>被设置为启用,它是<code>upstream</code>地址</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">req.ip  <span class="comment">// =&gt; 127.0.0.1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="req-ips"><a href="#req-ips" class="headerlink" title="req.ips"></a>req.ips</h3><p>如果信用代理<code>trust proxy</code>被设置为启用,此属性在<code>X-Forwards-For</code>请求头包含指定的ip地址数组，否者他包含一个空数组.</p>
+<h3 id="req-orignalUrl"><a href="#req-orignalUrl" class="headerlink" title="req.orignalUrl"></a>req.orignalUrl</h3><blockquote>
+<p>req.url不是express的本身的属性，它是从节点的http模块继承来的</p>
+</blockquote>
+<p>这个属性和req.url非常相似，然而它保留起初的url请求,允许你自由的重req.url用于内部路由的目的。举个栗子，<code>app.use()</code>的’mounting’特性将会重写req.url的挂载点</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//  GET /serch?q=somting</span></span><br><span class="line">req.orignalUrl <span class="comment">//  =&gt; "/serch?q=somthing"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="req-params"><a href="#req-params" class="headerlink" title="req.params"></a>req.params</h3><p>一个包含映射到命名路由”参数”的属性对象。举个栗子,如果你有这样的路由<code>/user:name</code>,然后这个”name”属性可以被作为<code>req.params.name</code>。这个对象默认为{}</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// GTE /user/tj</span></span><br><span class="line">req.parmas.name <span class="comment">// =&gt; "tj"</span></span><br></pre></td></tr></table></figure>
+<p>当你使用正则表达式作为路由定义时，捕获组（capture group）在数组中使用req.params[n],其中n是第n个捕获组，此规则应用于未命名通配符通配符匹配，比如<code>/file/*</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// GET /file/javascripts/jquery.js</span></span><br><span class="line">req.params[<span class="number">0</span>]  <span class="comment">// =&gt; "javascript/jquery.js"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="req-path"><a href="#req-path" class="headerlink" title="req.path"></a>req.path</h3><p>包含<code>request url</code>的部分路径</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// example.com/users?sort=decs</span></span><br><span class="line">req.path  <span class="comment">// =&gt; "/users"</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当从中间件调用时，挂载点不包含在<code>req.path</code></p>
+</blockquote>
+<h3 id="req-protocol"><a href="#req-protocol" class="headerlink" title="req.protocol"></a>req.protocol</h3><p>请求协议字符串,当使用TSL请求时：http或者https。当（trust proxy）信任代理设置信任（scokets address）套接字，这个’X-Forward-Proto’的header（http，https）领域值将会被信任</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">req.protocol()  <span class="comment">// =&gt; "http"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="req-query"><a href="#req-query" class="headerlink" title="req.query"></a>req.query</h3><p>包含路由中每个查询字符串参数的属性的对象，如果没有查询字符串，它是一个空对象{}</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// GET /serch?q=tobi+ferret</span></span><br><span class="line">req.query.q  <span class="comment">// "tobi ferret"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// GET /shoes?order=decs&amp;shoe[color]=blue&amp;shoe[type]=converse</span></span><br><span class="line">req.query.order  <span class="comment">// =&gt; "desc"</span></span><br><span class="line"></span><br><span class="line">req.query.shoe.color  <span class="comment">// =&gt; "blue"</span></span><br><span class="line"></span><br><span class="line">req.query.shoe.type  <span class="comment">// =&gt; "converse"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="req-route"><a href="#req-route" class="headerlink" title="req.route"></a>req.route</h3><p>当前匹配的路由，字符串</p>
+<p>举个栗子：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.get(<span class="string">'/user/:id?'</span>,functon userIdHandler(req,res)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(req.route);</span><br><span class="line">    res.send(<span class="string">'GET'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>示例上一段代码的输出：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    path:<span class="string">'user/:id?'</span>,</span><br><span class="line">    stack:</span><br><span class="line">    [</span><br><span class="line">        &#123;</span><br><span class="line">            handle:[<span class="built_in">Function</span>:userIdHandler],</span><br><span class="line">            name:<span class="string">'userIdHandler'</span>,</span><br><span class="line">            params:undefind,</span><br><span class="line">            path:undefind,</span><br><span class="line">            keys:[],</span><br><span class="line">            regexp:<span class="regexp">/^\/?$/i</span>,</span><br><span class="line">            method:<span class="string">'get'</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    methods:&#123;<span class="attr">get</span>:<span class="literal">true</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="req-secure"><a href="#req-secure" class="headerlink" title="req.secure"></a>req.secure</h3><p>如果建立的TSL连接，则为真的布尔值，相当于</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="string">'https'</span> == req.protocol;</span><br></pre></td></tr></table></figure>
+
+<h3 id="req-signedCookies"><a href="#req-signedCookies" class="headerlink" title="req.signedCookies"></a>req.signedCookies</h3><p>当使用<code>cookie-parser</code>中间件时，此属性包含请求发送签署的cookie，为签名并以准备好使用，签署的cookie驻留在不同的对象中以显示开发人员的意图.否者，恶意攻击可以放置req.cookie值(这是容易欺骗的).注意签署cookie并不能使其隐藏或加密，当时简单的防止篡改（因为用于签署的secret是私有的）.如果没有发送签署的cookie，则默认为{}</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Cookie: user=tobi.CP7AWaXDfAKIRfH49dQzKJx7sKzzSoPq7/AcBBRVwlI3</span></span><br><span class="line">req.signedCookies.user  <span class="comment">// =&gt; "tobi"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="req-stale"><a href="#req-stale" class="headerlink" title="req.stale"></a>req.stale</h3><p>指示是否请求是<code>stable</code>,和它对应的是<code>req.fresh</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">req.stable  <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="req-subdomains"><a href="#req-subdomains" class="headerlink" title="req.subdomains"></a>req.subdomains</h3><p>请求的域名中的一组子域</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// HOST： 'tobi.ferrets.example.com'</span></span><br><span class="line">req.subdomains  <span class="comment">// =&gt; ["tobi","ferrets"]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="req-xhr"><a href="#req-xhr" class="headerlink" title="req.xhr"></a>req.xhr</h3><p>如果请求的<code>X-Requsested-With</code>头域是<code>XMLHttpRequest</code>，布尔值为true.指示请求是由一个客户库（如jQuery）发出的</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">req.xhr <span class="comment">// =&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><h3 id="req-accepts-types"><a href="#req-accepts-types" class="headerlink" title="req.accepts(types)"></a>req.accepts(types)</h3><p>检查指定的内容类型是否可接受，基于请求的<code>Accept</code>http字段.该方法返回最佳匹配,或者如果没有指定内容类型是可以接受的，返回<code>undefined</code>(在这种情况下，应用程序回应以406<code>Not Acceptable</code>)</p>
+<p>类型值可以是单个MIME类型字符串（例如’application/json’）,一个扩展名例如’.json’,逗号分割的列表或者是一个数组.对于列表和数组，该方法返回最佳匹配（如果有的话）</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Accept : text/html</span></span><br><span class="line">req.accepts(<span class="string">'html'</span>)    <span class="comment">// =&gt; "html"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Accept : text/*,application/json</span></span><br><span class="line">req.accepts(<span class="string">'html'</span>)  <span class="comment">// =&gt; "html"</span></span><br><span class="line">req.accepts(<span class="string">'text/html'</span>) <span class="comment">// =&gt;  'text/html'</span></span><br><span class="line">req.accepts([<span class="string">'json'</span>,<span class="string">'text'</span>]) <span class="comment">// =&gt; 'json'</span></span><br><span class="line">req.accepts(<span class="string">'application/json'</span>) <span class="comment">// =&gt; 'application/json'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Accepts : text/*,application/json</span></span><br><span class="line">req.accepts(<span class="string">'image/png'</span>);</span><br><span class="line">req.accepts(<span class="string">'png'</span>)   <span class="comment">// =&gt; undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Accept: text/*;q=.5,application/json</span></span><br><span class="line">req.accepts([<span class="string">'html'</span>,<span class="string">'json'</span>]) <span class="comment">// =&gt; json</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="req-acceptsCharsets-charset-…"><a href="#req-acceptsCharsets-charset-…" class="headerlink" title="req.acceptsCharsets(charset[,…])"></a>req.acceptsCharsets(charset[,…])</h3><p>基于请求的<code>Accept-Charset</code>HTTP头字段，返回第一个接受指定字符集的字符集.如果指定的字符集都不接受，返回<code>false</code></p>
+<h3 id="req-acceptsEncodings-encoding-…"><a href="#req-acceptsEncodings-encoding-…" class="headerlink" title="req.acceptsEncodings(encoding[,…])"></a>req.acceptsEncodings(encoding[,…])</h3><p>基于请求的<code>Accept-Encoding</code>http字段，返回第一个接受的指定编码.如果指定的编码是没有接受的，返回<code>false</code></p>
+<h3 id="req-acceptsLanguages-lang-…"><a href="#req-acceptsLanguages-lang-…" class="headerlink" title="req.acceptsLanguages[lang[,…]]"></a>req.acceptsLanguages[lang[,…]]</h3><p>基于请求的<code>Accept-Language</code>http字段，返回指定语言的第一个已接受语言.如果没有指定的语言被接受，返回<code>fasle</code></p>
+<h3 id="req-get-field"><a href="#req-get-field" class="headerlink" title="req.get(field)"></a>req.get(field)</h3><p>返回指定http请求头字段（大小写不敏感匹配），这个<code>Referrer</code>和<code>Referer</code>字段可以互换</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">req.get(<span class="string">'Content-Type'</span>); <span class="comment">// =&gt; 'text/plain'</span></span><br><span class="line">req.get(<span class="string">'content-type'</span>); <span class="comment">// =&gt; 'text/plain'</span></span><br><span class="line">req.get(<span class="string">'Something'</span>) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>别名<code>req.header(field)</code></p>
+<h3 id="req-is-type"><a href="#req-is-type" class="headerlink" title="req.is(type)"></a>req.is(type)</h3><p>如果传入的请求的HTTP头字段与type类型的参数指定的MIME类型匹配，返回true。否者返回false</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// when content-type:text/html;charset=utf-8</span></span><br><span class="line">req.is(<span class="string">'html'</span>)</span><br><span class="line">req.is(<span class="string">'text/html'</span>)</span><br><span class="line">req.is(<span class="string">'text/*'</span>)</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// when content-type is application/json</span></span><br><span class="line">req.is(<span class="string">'json'</span>)</span><br><span class="line">req.is(<span class="string">'application/json'</span>)</span><br><span class="line">req.is(<span class="string">'application/*'</span>)</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line">req.is(<span class="string">'html'</span>)</span><br><span class="line"><span class="comment">// =&gt; false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="req-param-name-defaultValue"><a href="#req-param-name-defaultValue" class="headerlink" title="req.param(name,[,defaultValue])"></a>req.param(name,[,defaultValue])</h3><blockquote>
+<p>过时的，使用<code>req.body,req.params,req.query</code>,如适用</p>
+</blockquote>
+<p>返回参数名的值时</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ?name=tobi</span></span><br><span class="line">req.param(<span class="string">'name'</span>)   <span class="comment">// =&gt; 'tobi'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// POST name=tobi</span></span><br><span class="line">req.param(<span class="string">'name'</span>)  <span class="comment">// =&gt; 'tobi'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// /user/tobi for /user/:name</span></span><br><span class="line">req.param(<span class="string">'name'</span>) <span class="comment">// =&gt; 'tobi'</span></span><br></pre></td></tr></table></figure>
+<p>按以下顺序执行查找，</p>
+<ul>
+<li>req.params</li>
+<li>req.body</li>
+<li>req.query</li>
+</ul>
+<blockquote>
+<p>直接访问req.params,req.body,req.query应该是被视为清晰可赞扬的-除非你真正接受每个对象的输入。<code>Body-parsing</code>必须被加载为了<code>req.param</code>正常的使用</p>
+</blockquote>
+<h1 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h1><p>Express文档中Request部分就完成了，本人学识有限，难免有所纰漏，另外翻译仅仅是方便个人学习交流使用，无其他用意，原文地址：<a href="http://www.expressjs.com.cn/4x/api.html#req" target="_blank" rel="noopener">expressjs.com</a></p>
+
+      </div>
+      
+        <br>
+        
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2018-09-21T18:07:09+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>updated at Sep 21, 2018</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/node/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>node</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/express/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>express</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=//litten.me/2017/12/20/epxress-api-cn-request/&title=Express4.x API (二)：Request (译) | 浅墨&summary=Express4.x API 译文 系列文章
+Express4.x API (一)：application (译) – 完成
+Express4.x API (二)：request (译) – 完成
+Express4.x API (三)：Response (译) – 完成
+Express4.x API (四)：router (译) – 完成"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=//litten.me/2017/12/20/epxress-api-cn-request/&title=Express4.x API (二)：Request (译) | 浅墨&summary=Express4.x API 译文 系列文章
+Express4.x API (一)：application (译) – 完成
+Express4.x API (二)：request (译) – 完成
+Express4.x API (三)：Response (译) – 完成
+Express4.x API (四)：router (译) – 完成"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=//litten.me/2017/12/20/epxress-api-cn-request/&title=Express4.x API (二)：Request (译) | 浅墨&summary=Express4.x API 译文 系列文章
+Express4.x API (一)：application (译) – 完成
+Express4.x API (二)：request (译) – 完成
+Express4.x API (三)：Response (译) – 完成
+Express4.x API (四)：router (译) – 完成"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+      
+      
+          <div class="prev-next">
+              
+                  <section class="prev">
+                      <span class="art-item-left">
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous</h6>
+                          <h4>
+                              <a href="/2017/12/21/express-api-cn-response/" rel="prev" title="Express4.x API (三)：Response (译)">
+                                
+                                    Express4.x API (三)：Response (译)
+                                
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/node/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> node</a> <a class="tag" href="/tags/express/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> express</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/2017/12/18/express-middleware-use/" rel="prev" title="express中间件">
+                                  
+                                      express中间件
+                                  
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/node/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> node</a> <a class="tag" href="/tags/express/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> express</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+          </div>
+      
+    </section>
+  </article>
+
+
+
+  <!-- 显示推荐文章和评论 -->
+
+
+
+  
+
+
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'Express4.x API (二)：Request (译)',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+      
+        
+          
+          
+            
+              <section class='widget author'>
+  <div class='content pure'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://www.chenqaq.com/assets/icon/header.jpg'/>
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="/mailto:okaycheng@foxmail.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/okaychen"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://www.chenqaq.com"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;TOC</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer noopener" href="javascript:void(0)" target="_blank"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Express4-x-API-译文-系列文章"><span class="toc-text">Express4.x API 译文 系列文章</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#写在前面"><span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Request-请求"><span class="toc-text">Request(请求)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Properties"><span class="toc-text">Properties</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#req-app"><span class="toc-text">req.app</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-baseUrl"><span class="toc-text">req.baseUrl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-body"><span class="toc-text">req.body</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-cookies"><span class="toc-text">req.cookies</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-fresh"><span class="toc-text">req.fresh</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-hostname"><span class="toc-text">req.hostname</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-ip"><span class="toc-text">req.ip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-ips"><span class="toc-text">req.ips</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-orignalUrl"><span class="toc-text">req.orignalUrl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-params"><span class="toc-text">req.params</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-path"><span class="toc-text">req.path</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-protocol"><span class="toc-text">req.protocol</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-query"><span class="toc-text">req.query</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-route"><span class="toc-text">req.route</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-secure"><span class="toc-text">req.secure</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-signedCookies"><span class="toc-text">req.signedCookies</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-stale"><span class="toc-text">req.stale</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-subdomains"><span class="toc-text">req.subdomains</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-xhr"><span class="toc-text">req.xhr</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Methods"><span class="toc-text">Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#req-accepts-types"><span class="toc-text">req.accepts(types)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-acceptsCharsets-charset-…"><span class="toc-text">req.acceptsCharsets(charset[,…])</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-acceptsEncodings-encoding-…"><span class="toc-text">req.acceptsEncodings(encoding[,…])</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-acceptsLanguages-lang-…"><span class="toc-text">req.acceptsLanguages[lang[,…]]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-get-field"><span class="toc-text">req.get(field)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-is-type"><span class="toc-text">req.is(type)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#req-param-name-defaultValue"><span class="toc-text">req.param(name,[,defaultValue])</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#写在后面"><span class="toc-text">写在后面</span></a></li></ol>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget grid'>
+  
+<header class='pure'>
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站内导航</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          近期文章
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章归档
+        </a></li>
+      
+        <li><a class="flat-box" title="/lab/" href="/lab/"
+          
+          
+          id="lab">
+          
+            <i class="fas fa-code-branch fa-fw" aria-hidden="true"></i>
+          
+          实验室
+        </a></li>
+      
+        <li><a class="flat-box" title="/friends/" href="/friends/"
+          
+            rel="nofollow"
+          
+          
+          id="friends">
+          
+            <i class="fas fa-link fa-fw" aria-hidden="true"></i>
+          
+          我的友链
+        </a></li>
+      
+        <li><a class="flat-box" title="https://www.cnblogs.com/okaychen" href="https://www.cnblogs.com/okaychen"
+          
+            rel="nofollow"
+          
+          
+          id="https:www.cnblogs.comokaychen">
+          
+            <i class="fas fa-book fa-fw" aria-hidden="true"></i>
+          
+          博客园
+        </a></li>
+      
+        <li><a class="flat-box" title="/about/" href="/about/"
+          
+            rel="nofollow"
+          
+          
+          id="about">
+          
+            <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
+          
+          关于小站
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/categories/"
+    title="categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/HTML-CSS/" href="/categories/HTML-CSS/"><div class='name'>HTML/CSS</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/JavaScript/" href="/categories/JavaScript/"><div class='name'>JavaScript</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box child" title="/categories/JavaScript/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/JavaScript/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><div class='name'>设计模式</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Node/" href="/categories/Node/"><div class='name'>Node</div><div class='badge'>(9)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/linux/" href="/categories/linux/"><div class='name'>linux</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/web%E5%AE%89%E5%85%A8/" href="/categories/web%E5%AE%89%E5%85%A8/"><div class='name'>web安全</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" href="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/"><div class='name'>岁言心语</div><div class='badge'>(5)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/AOP/" style="font-size: 15.67px; color: #8e8e8e">AOP</a> <a href="/tags/CSS/" style="font-size: 20.67px; color: #6c6c6c">CSS</a> <a href="/tags/Canvas/" style="font-size: 14px; color: #999">Canvas</a> <a href="/tags/JS/" style="font-size: 20.67px; color: #6c6c6c">JS</a> <a href="/tags/animation/" style="font-size: 14px; color: #999">animation</a> <a href="/tags/event-queue/" style="font-size: 14px; color: #999">event queue</a> <a href="/tags/express/" style="font-size: 22.33px; color: #606060">express</a> <a href="/tags/github/" style="font-size: 14px; color: #999">github</a> <a href="/tags/koa/" style="font-size: 14px; color: #999">koa</a> <a href="/tags/layout/" style="font-size: 19px; color: #777">layout</a> <a href="/tags/linux/" style="font-size: 14px; color: #999">linux</a> <a href="/tags/mock/" style="font-size: 14px; color: #999">mock</a> <a href="/tags/node/" style="font-size: 24px; color: #555">node</a> <a href="/tags/ssh%E5%8D%8F%E8%AE%AE/" style="font-size: 14px; color: #999">ssh协议</a> <a href="/tags/stack/" style="font-size: 14px; color: #999">stack</a> <a href="/tags/underscore/" style="font-size: 14px; color: #999">underscore</a> <a href="/tags/vueCli/" style="font-size: 14px; color: #999">vueCli</a> <a href="/tags/webpcak/" style="font-size: 14px; color: #999">webpcak</a> <a href="/tags/web%E5%8A%A8%E7%94%BB/" style="font-size: 14px; color: #999">web动画</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 17.33px; color: #828282">web安全</a> <a href="/tags/xss/" style="font-size: 15.67px; color: #8e8e8e">xss</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E7%8E%AF%E5%A2%83/" style="font-size: 14px; color: #999">前端环境</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 14px; color: #999">小游戏</a> <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" style="font-size: 20.67px; color: #6c6c6c">岁言心语</a> <a href="/tags/%E5%B9%B6%E5%8F%91%EF%BC%8C%E5%B9%B6%E8%A1%8C/" style="font-size: 14px; color: #999">并发，并行</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">爬虫</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/" style="font-size: 15.67px; color: #8e8e8e">装饰者模式</a> <a href="/tags/%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/" style="font-size: 14px; color: #999">运行机制</a> <a href="/tags/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" style="font-size: 14px; color: #999">防抖与节流</a>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+    
+
+  
+</aside>
+
+<footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="/atom.xml"
+            class="social fas fa-rss flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="/mailto:okaycheng@foxmail.com"
+            class="social fas fa-envelope flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://github.com/okaychen"
+            class="social fab fa-github flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://www.chenqaq.com"
+            class="social fas fa-headphones-alt flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+  <div>
+    Use
+    <a href="do something" target="_blank" class="codename">okaychen</a>
+    as theme
+    
+      , 
+      total visits
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      times
+    
+    . 
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/app.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "Copied";
+  let COPY_FAILURE = "Copy failed";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
 </body>
 </html>

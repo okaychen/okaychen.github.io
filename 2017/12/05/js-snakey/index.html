@@ -1,43 +1,1199 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset="utf-8">
-<title>手起刀落-一起写经典的贪吃蛇游戏 - 浅墨</title>
-<base href="/">
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-<link rel="canonical" href="//litten.me/2017/12/05/js-snakey/">
-<link rel="icon" type="image/x-icon" href="http://www.chenqaq.com/assets/icon/favicon.png">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>手起刀落-一起写经典的贪吃蛇游戏 | 浅墨</title>
+  
+  <meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+  
+  
+  <meta name="description" content="双子男，自高中毕业后接触前端开发，热衷于编程技术，向往敏捷开发，喜欢读书写点"花花草草"，目前大二，主修专业信息管理与信息系统">
+  
 
-<meta name="description" content="回味小时候玩的经典贪吃蛇游戏我们印象仍然深刻，谋划了几天，小时候喜欢玩的游戏，长大了终于有能力把他做出来(从来都没有通关过，不知道自己写的程序，是不是能通关了…)，好了，闲话不多谈，先来看一下效果吧！！  功能和小时候玩的贪吃蛇一样，     1.选择速度 ：       slow       normal       fast      2.选择是否有墙作为障碍物：       on">
-<meta name="keywords" content="JS,小游戏,Canvas">
-<meta property="og:type" content="website">
-<meta property="og:title" content="手起刀落-一起写经典的贪吃蛇游戏">
-<meta property="og:url" content="&#x2F;&#x2F;litten.me&#x2F;2017&#x2F;12&#x2F;05&#x2F;js-snakey&#x2F;index.html">
-<meta property="og:site_name" content="浅墨">
-<meta property="og:description" content="回味小时候玩的经典贪吃蛇游戏我们印象仍然深刻，谋划了几天，小时候喜欢玩的游戏，长大了终于有能力把他做出来(从来都没有通关过，不知道自己写的程序，是不是能通关了…)，好了，闲话不多谈，先来看一下效果吧！！  功能和小时候玩的贪吃蛇一样，     1.选择速度 ：       slow       normal       fast      2.选择是否有墙作为障碍物：       on">
-<meta property="og:locale" content="Chinese">
-<meta property="og:image" content="http:&#x2F;&#x2F;www.chenqaq.com&#x2F;assets&#x2F;icon&#x2F;header.jpg">
-<meta property="og:updated_time" content="2018-09-21T10:08:19.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;www.chenqaq.com&#x2F;assets&#x2F;icon&#x2F;header.jpg">
+  
 
-<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"url":"//litten.me","image":"http://www.chenqaq.com/assets/icon/header.jpg","description":"双子男，自高中毕业后接触前端开发，热衷于编程技术，向往敏捷开发，喜欢读书写点\"花花草草\"，目前大二，主修专业信息管理与信息系统","author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"}},{"@context":"http://schema.org","@type":"Article","articleSection":"JavaScript","url":"//litten.me/2017/12/05/js-snakey/","headline":"手起刀落-一起写经典的贪吃蛇游戏","image":"http://www.chenqaq.com/assets/icon/header.jpg","datePublished":"2017-12-05T15:30:00.000Z","dateModified":"2018-09-21T10:08:19.000Z","keywords":"JS,小游戏,Canvas","description":"回味小时候玩的经典贪吃蛇游戏我们印象仍然深刻，谋划了几天，小时候喜欢玩的游戏，长大了终于有能力把他做出来(从来都没有通关过，不知道自己写的程序，是不是能通关了…)，好了，闲话不多谈，先来看一下效果吧！！\n\n功能和小时候玩的贪吃蛇一样，\n\n   1.选择速度 ：       slow       normal       fast\n\n\n   2.选择是否有墙作为障碍物：       on       off\n\n看完效果就先附上地址喽：大山深处修炼的小龙虾，欢迎fork.","publisher":{"@type":"Organization","name":"浅墨","logo":{"@type":"ImageObject","url":"http://www.chenqaq.com/assets/icon/header.jpg"}},"author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"},"mainEntityOfPage":{"@type":"WebPage","@id":"//litten.me/2017/12/05/js-snakey/"}}]</script>
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
 
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
 
-<link href="//fonts.googleapis.com/css?family=Baloo+Bhaijaan|Inconsolata|Josefin+Sans|Montserrat" rel="stylesheet">
-<link href="/styles.6d727dade1159bc77736.css" rel="stylesheet">
-<link rel="stylesheet" href="/theme.f40d4ebe54f15a776aba.css">
-<script src="/config.84ccffadde10ccc1d7ce.js"></script>
+  
 
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.10.22/css/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
 </head>
-<body lang="en">
-<is-a></is-a>
-<script src="/runtime.ee6f73bc31187f12810a.js"></script>
-<script src="/polyfills.14df1390f4da8e838f05.js"></script>
-<script src="/main.0c926d87f8cb6ab96db0.js"></script>
 
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <h1 class='title'>okaychen</h1>
 
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="/"
+            
+            
+            id="home">
+            <i class='fas fa-rss fa-fw'></i>&nbsp;主页
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/lab/"
+            
+            
+            id="lab">
+            <i class='fas fa-code-branch fa-fw'></i>&nbsp;实验室
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/friends/"
+            
+              rel="nofollow"
+            
+            
+            id="friends">
+            <i class='fas fa-link fa-fw'></i>&nbsp;友链
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/about/"
+            
+              rel="nofollow"
+            
+            
+            id="about">
+            <i class='fas fa-info-circle fa-fw'></i>&nbsp;关于
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          浅墨
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                  
+                  id="home">
+									<i class='fas fa-grin fa-fw'></i>&nbsp;主页
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/tags/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="tags">
+									<i class='fas fa-hashtag fa-fw'></i>&nbsp;标签
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/archives/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="archives">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;归档
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                
+                id="home">
+								<i class='fas fa-clock fa-fw'></i>&nbsp;近期文章
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;文章归档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/lab/"
+                
+                
+                id="lab">
+								<i class='fas fa-code-branch fa-fw'></i>&nbsp;实验室
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/friends/"
+                
+                  rel="nofollow"
+                
+                
+                id="friends">
+								<i class='fas fa-link fa-fw'></i>&nbsp;我的友链
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://www.cnblogs.com/okaychen"
+                
+                  rel="nofollow"
+                
+                
+                id="https:www.cnblogs.comokaychen">
+								<i class='fas fa-book fa-fw'></i>&nbsp;博客园
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/about/"
+                
+                  rel="nofollow"
+                
+                
+                id="about">
+								<i class='fas fa-info-circle fa-fw'></i>&nbsp;关于小站
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+    
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/2017/12/05/js-snakey/">
+        手起刀落-一起写经典的贪吃蛇游戏
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="//litten.me" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2017-12-05</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/JavaScript/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>JavaScript</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <h1 id="回味"><a href="#回味" class="headerlink" title="回味"></a>回味</h1><p>小时候玩的经典贪吃蛇游戏我们印象仍然深刻，谋划了几天，小时候喜欢玩的游戏，长大了终于有能力把他做出来(从来都没有通关过，不知道自己写的程序，是不是能通关了…)，好了，闲话不多谈，先来看一下效果吧！！</p>
+<p><img src="http://www.chenqaq.com/assets/images/4tjOY7QXHK.gif" alt="效果图"></p>
+<p>功能和小时候玩的贪吃蛇一样，</p>
+<blockquote>
+<p>   1.选择速度 ：<br>       slow<br>       normal<br>       fast</p>
+</blockquote>
+<blockquote>
+<p>   2.选择是否有墙作为障碍物：<br>       on<br>       off</p>
+</blockquote>
+<p>看完效果就先附上地址喽：<a href="https://github.com/okaychen/practice" target="_blank" rel="noopener">大山深处修炼的小龙虾</a>，欢迎fork.</p>
+<a id="more"></a>
+<h1 id="结构分解"><a href="#结构分解" class="headerlink" title="结构分解"></a>结构分解</h1><p>如果构建一个简单的经典贪吃蛇游戏呢？我们根据面板可以分解出如下结构：</p>
+<p><img src="http://www.chenqaq.com/assets/images/snake1.png" alt="面板结构分解"></p>
+<p>因为其他面板比较简单，我们重点来看一下游戏面板</p>
+<h2 id="游戏面板"><a href="#游戏面板" class="headerlink" title="游戏面板"></a>游戏面板</h2><p>游戏面板是核心，在游戏面板中，我们来分解一下游戏面板我们需要的因素：</p>
+<p><img src="http://www.chenqaq.com/assets/images/snake2.png" alt=""></p>
+<h3 id="场景、snake、食物"><a href="#场景、snake、食物" class="headerlink" title="场景、snake、食物"></a>场景、snake、食物</h3><p>首先我们需要一个游戏场景、snake、食物这些基础设施<br>   这里使用canvas作为我们的整个游戏的场景：</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">&lt;canvas <span class="keyword">class</span>="<span class="symbol">wrap</span>" <span class="symbol">id</span>="<span class="symbol">snake</span>" <span class="symbol">width</span>="<span class="symbol">400</span>" <span class="symbol">height</span>="<span class="symbol">400</span>" <span class="symbol">tabindex</span>="<span class="symbol">1</span>"&gt;&lt;/<span class="symbol">canvas</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>需要一只snake,后面初始化他的位置</p>
+<figure class="highlight gml"><table><tr><td class="code"><pre><span class="line"><span class="keywords">var</span> activeDot = function (<span class="symbol">x</span>, <span class="symbol">y</span>) &#123;</span><br><span class="line">    ctx.fillStyle = <span class="string">"#eee"</span>;</span><br><span class="line">    ctx.fillRect(<span class="symbol">x</span> * <span class="number">10</span>, <span class="symbol">y</span> * <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需要食物作为对象(关于食物我们需要定义一些规则，如食物的产生)</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">var</span> <span class="string">food</span> <span class="string">=</span> <span class="string">&#123;</span></span><br><span class="line">    <span class="attr">x:</span> <span class="number">0</span><span class="string">,</span></span><br><span class="line">    <span class="attr">y:</span> <span class="number">0</span></span><br><span class="line"><span class="string">&#125;;</span></span><br></pre></td></tr></table></figure>
+<h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><p>规则是游戏的核心</p>
+<p>关于游戏的规则</p>
+<p>snake的方向控制：(使用键盘的上下左右键控制蛇的方向)</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// changer dir</span></span><br><span class="line">   <span class="keyword">var</span> changeDir = <span class="function"><span class="keyword">function</span> (<span class="params">key</span>) </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (key == <span class="number">38</span> &amp;&amp; snake_dir != <span class="number">2</span>) &#123;</span><br><span class="line">           snake_next_dir = <span class="number">0</span>;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="keyword">if</span> (key == <span class="number">39</span> &amp;&amp; snake_dir != <span class="number">3</span>) &#123;</span><br><span class="line">               snake_next_dir = <span class="number">1</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="keyword">if</span> (key == <span class="number">40</span> &amp;&amp; snake_dir != <span class="number">0</span>) &#123;</span><br><span class="line">                   snake_next_dir = <span class="number">2</span>;</span><br><span class="line">               &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                   <span class="keyword">if</span> (key == <span class="number">37</span> &amp;&amp; snake_dir != <span class="number">1</span>) &#123;</span><br><span class="line">                       snake_next_dir = <span class="number">3</span>;</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>关于食物，如果食物被吃掉，我们就需要产生新的食物</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// add food</span></span><br><span class="line">  <span class="keyword">var</span> addFood = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      food.x = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * ((canvas.width / <span class="number">10</span>) - <span class="number">1</span>));</span><br><span class="line">      food.y = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * ((canvas.height / <span class="number">10</span>) - <span class="number">1</span>));</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; snake.length; i++) &#123;</span><br><span class="line">          <span class="comment">// 如果食物被吃就增加食物</span></span><br><span class="line">          <span class="keyword">if</span> (checkBlock(food.x, food.y, snake[i].x, snake[i].y)) &#123;</span><br><span class="line">              addFood();</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> checkBlock = <span class="function"><span class="keyword">function</span> (<span class="params">x, y, _x, _y</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> (x == _x &amp;&amp; y == _y) ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>接下来是核心的函数，根据选择的速度和是否有墙体作为障碍物的设置，让蛇运动起来，并且实现</p>
+<blockquote>
+<p>  1、根据选择slow、norma、fast决定蛇运动速度速度;</p>
+</blockquote>
+<blockquote>
+<p>  2、如果蛇碰到自己==自杀，游戏结束</p>
+</blockquote>
+<blockquote>
+<p>  3、有墙模式碰到墙体，游戏结束</p>
+</blockquote>
+<blockquote>
+<p>   4、无墙模式蛇穿过墙体，从另一侧出现</p>
+</blockquote>
+<blockquote>
+<p>   5、使蛇碰到食物就加入自身身体的一部分，执行增加食物函数</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> mainLoop = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">       <span class="keyword">var</span> _x = snake[<span class="number">0</span>].x;</span><br><span class="line">       <span class="keyword">var</span> _y = snake[<span class="number">0</span>].y;</span><br><span class="line">       snake_dir = snake_next_dir;</span><br><span class="line">       <span class="comment">//  0 — up  1 — right   2 — down  3 — left</span></span><br><span class="line">       <span class="keyword">switch</span> (snake_dir) &#123;</span><br><span class="line">           <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">               _y--;</span><br><span class="line">               <span class="keyword">break</span>;</span><br><span class="line">           <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">               _x++;</span><br><span class="line">               <span class="keyword">break</span>;</span><br><span class="line">           <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">               _y++;</span><br><span class="line">               <span class="keyword">break</span>;</span><br><span class="line">           <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">               _x--;</span><br><span class="line">               <span class="keyword">break</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       snake.pop();</span><br><span class="line">       snake.unshift(&#123;</span><br><span class="line">           x: _x,</span><br><span class="line">           y: _y</span><br><span class="line">       &#125;)</span><br><span class="line"></span><br><span class="line">       <span class="comment">// --wall</span></span><br><span class="line">       <span class="keyword">if</span> (wall == <span class="number">1</span>) &#123;</span><br><span class="line">           <span class="keyword">if</span> (snake[<span class="number">0</span>].x &lt; <span class="number">0</span> || snake[<span class="number">0</span>].x == canvas.width / <span class="number">10</span> || snake[<span class="number">0</span>].y &lt; <span class="number">0</span> || snake[<span class="number">0</span>].y == canvas.height / <span class="number">10</span>) &#123;</span><br><span class="line">               showScreen(<span class="number">3</span>);</span><br><span class="line">               <span class="keyword">return</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="comment">//  off 无墙</span></span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, x = snake.length; i &lt; x; i++) &#123;</span><br><span class="line">               <span class="keyword">if</span> (snake[i].x &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                   snake[i].x = snake[i].x + (canvas.width / <span class="number">10</span>);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (snake[i].x == canvas.width / <span class="number">10</span>) &#123;</span><br><span class="line">                   snake[i].x = snake[i].x - (canvas.width / <span class="number">10</span>);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (snake[i].y &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                   snake[i].y = snake[i].y + (canvas.height / <span class="number">10</span>);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (snake[i].y == canvas.height / <span class="number">10</span>) &#123;</span><br><span class="line">                   snake[i].y = snake[i].y - (canvas.height / <span class="number">10</span>);</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="comment">//  Autophagy death</span></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; snake.length; i++) &#123;</span><br><span class="line">           <span class="keyword">if</span> (snake[<span class="number">0</span>].x == snake[i].x &amp;&amp; snake[<span class="number">0</span>].y == snake[i].y) &#123;</span><br><span class="line">               showScreen(<span class="number">3</span>);</span><br><span class="line">               <span class="keyword">return</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="comment">// Eat food</span></span><br><span class="line">       <span class="keyword">if</span> (checkBlock(snake[<span class="number">0</span>].x, snake[<span class="number">0</span>].y, food.x, food.y)) &#123;</span><br><span class="line">           snake[snake.length] = &#123;</span><br><span class="line">               x: snake[<span class="number">0</span>].x,</span><br><span class="line">               y: snake[<span class="number">0</span>].y</span><br><span class="line">           &#125;;</span><br><span class="line">           score += <span class="number">1</span>;</span><br><span class="line">           altScore(score);</span><br><span class="line">           addFood();</span><br><span class="line">           activeDot(food.x, food.y);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="comment">// --------------------</span></span><br><span class="line"></span><br><span class="line">       ctx.beginPath();</span><br><span class="line">       ctx.fillStyle = <span class="string">"#111"</span>;</span><br><span class="line">       ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height);</span><br><span class="line"></span><br><span class="line">       <span class="comment">// --------------------</span></span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; snake.length; i++) &#123;</span><br><span class="line">           activeDot(snake[i].x, snake[i].y);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="comment">// --------------------</span></span><br><span class="line"></span><br><span class="line">       activeDot(food.x, food.y);</span><br><span class="line"></span><br><span class="line">       setTimeout(mainLoop, snake_speed);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>ok以上展示出一些核心部分，构建出一个舞台中一只小蛇的故事.</p>
+<p><video controls="" src="http://gslb.miaopai.com/stream/9Sve8-3osRBmmpEvONt~uKP-WbvOSRLH.mp4?ssig=3a4333a30009844032269e50b9be79b7&time_stamp=1512196508068&cookie_id=&vend=1&os=3&partner=1&platform=2&cookie_id=&refer=miaopai&scid=9Sve8-3osRBmmpEvONt%7EuKP-WbvOSRLH" loop="false" width="100%" height="420">embed: cat.mov</video></p>
+<p>小时候爸妈手机里有一款小游戏叫贪吃蛇。就是一条小蛇，不停地在屏幕上游走，吃各个方向出现的食物，越吃越长。只要蛇头碰到屏幕四周，或者碰到自己的身子，小蛇就立即毙命。方寸的舞台间，亦有无限精彩；</p>
+<p>PS:到现在也没有通关过..现在不知道能不能通关了…</p>
+<p>最后在附上次源码，欢迎fork交流：<a href="https://github.com/okaychen/practice" target="_blank" rel="noopener">https://github.com/okaychen/practice</a>…<br>因为自己测试用的服务器被占用，目前只有做的效果图供大家参考喽.</p>
+
+      </div>
+      
+        <br>
+        
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2018-09-21T18:08:19+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>updated at Sep 21, 2018</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/JS/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>JS</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>小游戏</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Canvas/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>Canvas</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=//litten.me/2017/12/05/js-snakey/&title=手起刀落-一起写经典的贪吃蛇游戏 | 浅墨&summary=回味小时候玩的经典贪吃蛇游戏我们印象仍然深刻，谋划了几天，小时候喜欢玩的游戏，长大了终于有能力把他做出来(从来都没有通关过，不知道自己写的程序，是不是能通关了…)，好了，闲话不多谈，先来看一下效果吧！！
+
+功能和小时候玩的贪吃蛇一样，
+
+   1.选择速度 ：       slow       normal       fast
+
+
+   2.选择是否有墙作为障碍物：       on       off
+
+看完效果就先附上地址喽：大山深处修炼的小龙虾，欢迎fork."
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=//litten.me/2017/12/05/js-snakey/&title=手起刀落-一起写经典的贪吃蛇游戏 | 浅墨&summary=回味小时候玩的经典贪吃蛇游戏我们印象仍然深刻，谋划了几天，小时候喜欢玩的游戏，长大了终于有能力把他做出来(从来都没有通关过，不知道自己写的程序，是不是能通关了…)，好了，闲话不多谈，先来看一下效果吧！！
+
+功能和小时候玩的贪吃蛇一样，
+
+   1.选择速度 ：       slow       normal       fast
+
+
+   2.选择是否有墙作为障碍物：       on       off
+
+看完效果就先附上地址喽：大山深处修炼的小龙虾，欢迎fork."
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=//litten.me/2017/12/05/js-snakey/&title=手起刀落-一起写经典的贪吃蛇游戏 | 浅墨&summary=回味小时候玩的经典贪吃蛇游戏我们印象仍然深刻，谋划了几天，小时候喜欢玩的游戏，长大了终于有能力把他做出来(从来都没有通关过，不知道自己写的程序，是不是能通关了…)，好了，闲话不多谈，先来看一下效果吧！！
+
+功能和小时候玩的贪吃蛇一样，
+
+   1.选择速度 ：       slow       normal       fast
+
+
+   2.选择是否有墙作为障碍物：       on       off
+
+看完效果就先附上地址喽：大山深处修炼的小龙虾，欢迎fork."
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+      
+      
+          <div class="prev-next">
+              
+                  <section class="prev">
+                      <span class="art-item-left">
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous</h6>
+                          <h4>
+                              <a href="/2017/12/06/js-setTimeout/" rel="prev" title="同步、异步、回调执行顺序经典闭包setTimeout分析">
+                                
+                                    同步、异步、回调执行顺序经典闭包setTimeout分析
+                                
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/JS/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> JS</a> <a class="tag" href="/tags/%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 运行机制</a> <a class="tag" href="/tags/event-queue/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> event queue</a> <a class="tag" href="/tags/stack/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> stack</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+              
+          </div>
+      
+    </section>
+  </article>
+
+
+
+  <!-- 显示推荐文章和评论 -->
+
+
+
+  
+
+
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: '手起刀落-一起写经典的贪吃蛇游戏',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+      
+        
+          
+          
+            
+              <section class='widget author'>
+  <div class='content pure'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://www.chenqaq.com/assets/icon/header.jpg'/>
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="/mailto:okaycheng@foxmail.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/okaychen"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://www.chenqaq.com"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;TOC</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer noopener" href="javascript:void(0)" target="_blank"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#回味"><span class="toc-text">回味</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结构分解"><span class="toc-text">结构分解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#游戏面板"><span class="toc-text">游戏面板</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#场景、snake、食物"><span class="toc-text">场景、snake、食物</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规则"><span class="toc-text">规则</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget grid'>
+  
+<header class='pure'>
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站内导航</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          近期文章
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章归档
+        </a></li>
+      
+        <li><a class="flat-box" title="/lab/" href="/lab/"
+          
+          
+          id="lab">
+          
+            <i class="fas fa-code-branch fa-fw" aria-hidden="true"></i>
+          
+          实验室
+        </a></li>
+      
+        <li><a class="flat-box" title="/friends/" href="/friends/"
+          
+            rel="nofollow"
+          
+          
+          id="friends">
+          
+            <i class="fas fa-link fa-fw" aria-hidden="true"></i>
+          
+          我的友链
+        </a></li>
+      
+        <li><a class="flat-box" title="https://www.cnblogs.com/okaychen" href="https://www.cnblogs.com/okaychen"
+          
+            rel="nofollow"
+          
+          
+          id="https:www.cnblogs.comokaychen">
+          
+            <i class="fas fa-book fa-fw" aria-hidden="true"></i>
+          
+          博客园
+        </a></li>
+      
+        <li><a class="flat-box" title="/about/" href="/about/"
+          
+            rel="nofollow"
+          
+          
+          id="about">
+          
+            <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
+          
+          关于小站
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/categories/"
+    title="categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/HTML-CSS/" href="/categories/HTML-CSS/"><div class='name'>HTML/CSS</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/JavaScript/" href="/categories/JavaScript/"><div class='name'>JavaScript</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box child" title="/categories/JavaScript/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/JavaScript/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><div class='name'>设计模式</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Node/" href="/categories/Node/"><div class='name'>Node</div><div class='badge'>(9)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/linux/" href="/categories/linux/"><div class='name'>linux</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/web%E5%AE%89%E5%85%A8/" href="/categories/web%E5%AE%89%E5%85%A8/"><div class='name'>web安全</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" href="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/"><div class='name'>岁言心语</div><div class='badge'>(5)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/AOP/" style="font-size: 15.67px; color: #8e8e8e">AOP</a> <a href="/tags/CSS/" style="font-size: 20.67px; color: #6c6c6c">CSS</a> <a href="/tags/Canvas/" style="font-size: 14px; color: #999">Canvas</a> <a href="/tags/JS/" style="font-size: 20.67px; color: #6c6c6c">JS</a> <a href="/tags/animation/" style="font-size: 14px; color: #999">animation</a> <a href="/tags/event-queue/" style="font-size: 14px; color: #999">event queue</a> <a href="/tags/express/" style="font-size: 22.33px; color: #606060">express</a> <a href="/tags/github/" style="font-size: 14px; color: #999">github</a> <a href="/tags/koa/" style="font-size: 14px; color: #999">koa</a> <a href="/tags/layout/" style="font-size: 19px; color: #777">layout</a> <a href="/tags/linux/" style="font-size: 14px; color: #999">linux</a> <a href="/tags/mock/" style="font-size: 14px; color: #999">mock</a> <a href="/tags/node/" style="font-size: 24px; color: #555">node</a> <a href="/tags/ssh%E5%8D%8F%E8%AE%AE/" style="font-size: 14px; color: #999">ssh协议</a> <a href="/tags/stack/" style="font-size: 14px; color: #999">stack</a> <a href="/tags/underscore/" style="font-size: 14px; color: #999">underscore</a> <a href="/tags/vueCli/" style="font-size: 14px; color: #999">vueCli</a> <a href="/tags/webpcak/" style="font-size: 14px; color: #999">webpcak</a> <a href="/tags/web%E5%8A%A8%E7%94%BB/" style="font-size: 14px; color: #999">web动画</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 17.33px; color: #828282">web安全</a> <a href="/tags/xss/" style="font-size: 15.67px; color: #8e8e8e">xss</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E7%8E%AF%E5%A2%83/" style="font-size: 14px; color: #999">前端环境</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 14px; color: #999">小游戏</a> <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" style="font-size: 20.67px; color: #6c6c6c">岁言心语</a> <a href="/tags/%E5%B9%B6%E5%8F%91%EF%BC%8C%E5%B9%B6%E8%A1%8C/" style="font-size: 14px; color: #999">并发，并行</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">爬虫</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/" style="font-size: 15.67px; color: #8e8e8e">装饰者模式</a> <a href="/tags/%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/" style="font-size: 14px; color: #999">运行机制</a> <a href="/tags/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" style="font-size: 14px; color: #999">防抖与节流</a>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+    
+
+  
+</aside>
+
+<footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="/atom.xml"
+            class="social fas fa-rss flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="/mailto:okaycheng@foxmail.com"
+            class="social fas fa-envelope flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://github.com/okaychen"
+            class="social fab fa-github flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://www.chenqaq.com"
+            class="social fas fa-headphones-alt flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+  <div>
+    Use
+    <a href="do something" target="_blank" class="codename">okaychen</a>
+    as theme
+    
+      , 
+      total visits
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      times
+    
+    . 
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/app.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "Copied";
+  let COPY_FAILURE = "Copy failed";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
 </body>
 </html>

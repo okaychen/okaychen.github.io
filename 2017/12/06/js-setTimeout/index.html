@@ -1,43 +1,1216 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset="utf-8">
-<title>同步、异步、回调执行顺序经典闭包setTimeout分析 - 浅墨</title>
-<base href="/">
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-<link rel="canonical" href="//litten.me/2017/12/06/js-setTimeout/">
-<link rel="icon" type="image/x-icon" href="http://www.chenqaq.com/assets/icon/favicon.png">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>同步、异步、回调执行顺序经典闭包setTimeout分析 | 浅墨</title>
+  
+  <meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+  
+  
+  <meta name="description" content="双子男，自高中毕业后接触前端开发，热衷于编程技术，向往敏捷开发，喜欢读书写点"花花草草"，目前大二，主修专业信息管理与信息系统">
+  
 
-<meta name="description" content="聊聊同步、异步和回调同步，异步，回调，我们傻傻分不清楚， 有一天，你找到公司刚来的程序员小T，跟他说：“我们要加个需求，你放下手里的事情优先支持，我会一直等你做完再离开”。小T微笑着答应了，眼角却滑过一丝不易觉察的杀意。 世界上的所有事情大致可以分为同步去做和异步去做两种。你打电话去订酒店，电话另一边的工作人员需要查下他们的管理系统才能告诉你有没有房间。 这时候你有两种选择：一种是不挂电话一直等待">
-<meta name="keywords" content="JS,运行机制,event queue,stack">
-<meta property="og:type" content="website">
-<meta property="og:title" content="同步、异步、回调执行顺序经典闭包setTimeout分析">
-<meta property="og:url" content="&#x2F;&#x2F;litten.me&#x2F;2017&#x2F;12&#x2F;06&#x2F;js-setTimeout&#x2F;index.html">
-<meta property="og:site_name" content="浅墨">
-<meta property="og:description" content="聊聊同步、异步和回调同步，异步，回调，我们傻傻分不清楚， 有一天，你找到公司刚来的程序员小T，跟他说：“我们要加个需求，你放下手里的事情优先支持，我会一直等你做完再离开”。小T微笑着答应了，眼角却滑过一丝不易觉察的杀意。 世界上的所有事情大致可以分为同步去做和异步去做两种。你打电话去订酒店，电话另一边的工作人员需要查下他们的管理系统才能告诉你有没有房间。 这时候你有两种选择：一种是不挂电话一直等待">
-<meta property="og:locale" content="Chinese">
-<meta property="og:image" content="http:&#x2F;&#x2F;www.chenqaq.com&#x2F;assets&#x2F;icon&#x2F;header.jpg">
-<meta property="og:updated_time" content="2018-09-21T10:08:08.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;www.chenqaq.com&#x2F;assets&#x2F;icon&#x2F;header.jpg">
+  
 
-<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"url":"//litten.me","image":"http://www.chenqaq.com/assets/icon/header.jpg","description":"双子男，自高中毕业后接触前端开发，热衷于编程技术，向往敏捷开发，喜欢读书写点\"花花草草\"，目前大二，主修专业信息管理与信息系统","author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"}},{"@context":"http://schema.org","@type":"Article","articleSection":"JavaScript","url":"//litten.me/2017/12/06/js-setTimeout/","headline":"同步、异步、回调执行顺序经典闭包setTimeout分析","image":"http://www.chenqaq.com/assets/icon/header.jpg","datePublished":"2017-12-06T09:47:14.000Z","dateModified":"2018-09-21T10:08:08.000Z","keywords":"JS,运行机制,event queue,stack","description":"聊聊同步、异步和回调同步，异步，回调，我们傻傻分不清楚，\n有一天，你找到公司刚来的程序员小T，跟他说：“我们要加个需求，你放下手里的事情优先支持，我会一直等你做完再离开”。小T微笑着答应了，眼角却滑过一丝不易觉察的杀意。\n世界上的所有事情大致可以分为同步去做和异步去做两种。你打电话去订酒店，电话另一边的工作人员需要查下他们的管理系统才能告诉你有没有房间。\n这时候你有两种选择：一种是不挂电话一直等待，直到工作人员查到为止（可能几分钟也可能几个小时，取决于他们的办事效率），这就是同步的。\n另一种是工作人员问了你的联系方式就挂断了电话，等他们查到之后再通知你，这就是异步的，这时候你就可以干点其他事情，比如把机票也定了之类的\n\n 计算机世界也是如此，我们写的代码需要交给cpu去处理，这时候就有同步和异步两种选择。js是单线程的，如果所有的操作（ajax,获取文件等I/O操作&lt;node&gt;）都是同步的，遇到哪些耗时的操作，后面的程序必然被阻塞而不能执行，页面也就失去了响应，\n\n\n因此js采用了事件驱动机制，在单线程模型下，使用异步回调函数的方式来实现非阻塞的IO操作，\n","publisher":{"@type":"Organization","name":"浅墨","logo":{"@type":"ImageObject","url":"http://www.chenqaq.com/assets/icon/header.jpg"}},"author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"},"mainEntityOfPage":{"@type":"WebPage","@id":"//litten.me/2017/12/06/js-setTimeout/"}}]</script>
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
 
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
 
-<link href="//fonts.googleapis.com/css?family=Baloo+Bhaijaan|Inconsolata|Josefin+Sans|Montserrat" rel="stylesheet">
-<link href="/styles.6d727dade1159bc77736.css" rel="stylesheet">
-<link rel="stylesheet" href="/theme.f40d4ebe54f15a776aba.css">
-<script src="/config.84ccffadde10ccc1d7ce.js"></script>
+  
 
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.10.22/css/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
 </head>
-<body lang="en">
-<is-a></is-a>
-<script src="/runtime.ee6f73bc31187f12810a.js"></script>
-<script src="/polyfills.14df1390f4da8e838f05.js"></script>
-<script src="/main.0c926d87f8cb6ab96db0.js"></script>
 
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <h1 class='title'>okaychen</h1>
 
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="/"
+            
+            
+            id="home">
+            <i class='fas fa-rss fa-fw'></i>&nbsp;主页
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/lab/"
+            
+            
+            id="lab">
+            <i class='fas fa-code-branch fa-fw'></i>&nbsp;实验室
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/friends/"
+            
+              rel="nofollow"
+            
+            
+            id="friends">
+            <i class='fas fa-link fa-fw'></i>&nbsp;友链
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/about/"
+            
+              rel="nofollow"
+            
+            
+            id="about">
+            <i class='fas fa-info-circle fa-fw'></i>&nbsp;关于
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          浅墨
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                  
+                  id="home">
+									<i class='fas fa-grin fa-fw'></i>&nbsp;主页
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/tags/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="tags">
+									<i class='fas fa-hashtag fa-fw'></i>&nbsp;标签
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/archives/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="archives">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;归档
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                
+                id="home">
+								<i class='fas fa-clock fa-fw'></i>&nbsp;近期文章
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;文章归档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/lab/"
+                
+                
+                id="lab">
+								<i class='fas fa-code-branch fa-fw'></i>&nbsp;实验室
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/friends/"
+                
+                  rel="nofollow"
+                
+                
+                id="friends">
+								<i class='fas fa-link fa-fw'></i>&nbsp;我的友链
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://www.cnblogs.com/okaychen"
+                
+                  rel="nofollow"
+                
+                
+                id="https:www.cnblogs.comokaychen">
+								<i class='fas fa-book fa-fw'></i>&nbsp;博客园
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/about/"
+                
+                  rel="nofollow"
+                
+                
+                id="about">
+								<i class='fas fa-info-circle fa-fw'></i>&nbsp;关于小站
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+    
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/2017/12/06/js-setTimeout/">
+        同步、异步、回调执行顺序经典闭包setTimeout分析
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="//litten.me" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2017-12-06</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/JavaScript/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>JavaScript</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <h1 id="聊聊同步、异步和回调"><a href="#聊聊同步、异步和回调" class="headerlink" title="聊聊同步、异步和回调"></a>聊聊同步、异步和回调</h1><p>同步，异步，回调，我们傻傻分不清楚，</p>
+<p>有一天，你找到公司刚来的程序员小T，跟他说：“我们要加个需求，你放下手里的事情优先支持，我会一直等你做完再离开”。小T微笑着答应了，眼角却滑过一丝不易觉察的杀意。</p>
+<p>世界上的所有事情大致可以分为同步去做和异步去做两种。你打电话去订酒店，电话另一边的工作人员需要查下他们的管理系统才能告诉你有没有房间。</p>
+<p>这时候你有两种选择：一种是不挂电话一直等待，直到工作人员查到为止（可能几分钟也可能几个小时，取决于他们的办事效率），这就是同步的。</p>
+<p>另一种是工作人员问了你的联系方式就挂断了电话，等他们查到之后再通知你，这就是异步的，这时候你就可以干点其他事情，比如把机票也定了之类的</p>
+<blockquote>
+<p> 计算机世界也是如此，我们写的代码需要交给cpu去处理，这时候就有同步和异步两种选择。js是单线程的，如果所有的操作（<code>ajax</code>,获取文件等I/O操作<code>&lt;node&gt;</code>）都是同步的，遇到哪些耗时的操作，后面的程序必然被阻塞而不能执行，页面也就失去了响应，</p>
+</blockquote>
+<blockquote>
+<p>因此js采用了事件驱动机制，在单线程模型下，使用异步回调函数的方式来实现非阻塞的IO操作，</p>
+</blockquote>
+<a id="more"></a>
+<p>那么什么是异步任务呢？（参考阮一峰老师《JavaScript运行机制》）</p>
+<p>异步任务也就是 指主线程（stack栈）运行的过程中，当stack空闲的时候，主线程对event queque（队列）轮询(事实上一直在轮询)后，将异步任务放到stack里面进行执行；</p>
+<p><img src="http://www.chenqaq.com/assets/images/event.png" alt="（上图转引自Philip Roberts的演讲《Help, I&#39;m stuck in an event-loop》））"></p>
+<p> 简单的说，如果我们指定过回调函数，那么当事件发生时就会进入事件队列，等待主线程的<code>stack</code>空闲的时候，就会对<code>event queue</code>里面的回调读取并放到<code>stack</code>里面执行</p>
+<p>我们经常说的可能是异步回调（当然也有同步回调），所以也就并不难理解，回调和异步之间其实并没有直接的联系，回调只是异步的一种实现方式， </p>
+<p>通过这样的<code>event loop</code>我们其实可以分析出三者的执行顺序，即 <code>同步 &gt; 异步 &gt; 回调</code></p>
+<h1 id="经典闭包setTimeout分析"><a href="#经典闭包setTimeout分析" class="headerlink" title="经典闭包setTimeout分析"></a>经典闭包setTimeout分析</h1><p>今天同学问了我一个问题，我一看是一道经典的面试题，问题如下：</p>
+<p><img src="http://www.chenqaq.com/assets/images/questions.png" alt="question"></p>
+<p>简单的这个问题改一下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;= <span class="number">5</span>; i++) &#123;</span><br><span class="line">     setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">         <span class="built_in">console</span>.log( i );</span><br><span class="line">     &#125;, i*<span class="number">1000</span>);</span><br><span class="line">      <span class="built_in">console</span>.log( <span class="string">' i : '</span> , i );</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">console</span>.log( i );</span><br></pre></td></tr></table></figure>
+
+<p>相信我们很多人都遇到过这个问题，心中或许都有答案：</p>
+<p><img src="http://www.chenqaq.com/assets/images/results.png" alt="result"></p>
+<p>那么为什么并不是入门者心中所想要的结果嘞(为什么<code>setTimeout</code>中打印出<code>i</code>全部是<code>6</code>，而且是最后才打印出来呢)？</p>
+<p>那么就让我们来梳理一下，第一部分<code>event loop</code>图片很直观的体现：”任务队列”可以放置异步任务的事件，也可以放置定时事件（<code>setTimeout</code>和<code>setinterval</code>），即指定某些代码在多少时间之后执行；</p>
+<p> 1、首先我们先来看一下他的主体结构：<code>for</code>循环的第一层是<code>setTimeout</code>函数，<code>setTimeout</code>函数中使用了一个匿名（回调）函数</p>
+<p> 2、还记的我们之前总结的执行顺序：同步 &gt; 异步 &gt; 回调 吧！</p>
+<p>　   for循环和外层的 <code>console.log()</code>是同步的，<code>setTimeout</code>是回调执行，</p>
+<blockquote>
+<p>所以按照执行顺序，先执行for循环，然后进入for循环中，他发现了一个<code>setTimeout()</code>回调(进入<code>event queque</code>事件队列，等待<code>stack</code>栈为空后读取并放入栈中后执行)，</p>
+</blockquote>
+<blockquote>
+<p>这时候他并不会等待，而是继续执行 –&gt; for循环内部的  <code>console.log( &#39; i : &#39; , i )</code>  –&gt;  for循环外部的<code>console.log( i )</code> ，然后”任务队列”中的回调函数才进入到空<code>Stack</code>中开始执行；</p>
+</blockquote>
+<p> 我们在来用这个例子尝试一下上面的event loop图，更加直观的感受一下：</p>
+<p> <img src="http://www.chenqaq.com/assets/images/eventMe.png" alt=""></p>
+<p> 那么接下来可能会问怎么解决这个问题呢？我想最简单的当然是<code>let</code>语法了，</p>
+ <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt;= <span class="number">5</span>; i++) &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="built_in">console</span>.log( i );</span><br><span class="line">      &#125;, i*<span class="number">1000</span>);</span><br><span class="line">      <span class="built_in">console</span>.log( <span class="string">' 1 : '</span> , i );</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line"> <span class="built_in">console</span>.log( i );</span><br></pre></td></tr></table></figure>
+
+<p> 我们都知道<code>es5</code>中变量作用域是函数，而<code>es6</code>却可以使用<code>let</code>声明一个具有块级作用域的i，在这里也就是<code>for</code>循环体；</p>
+<p>在这里<code>let</code>本质上就是形成了一个闭包，那么写成<code>es5</code>的形式其实等价于：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> loop = <span class="function"><span class="keyword">function</span> (<span class="params">_i</span>) </span>&#123;</span><br><span class="line">     setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">         <span class="built_in">console</span>.log( _i);</span><br><span class="line">     &#125;, _i*<span class="number">1000</span>);</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">'2：'</span>,_i)  </span><br><span class="line"> &#125;; </span><br><span class="line"> </span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> _i = <span class="number">0</span>; _i &lt;= <span class="number">5</span>; _i++) &#123;  </span><br><span class="line">      loop(_i); </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>到这里，我们就完成了从同步、异步、回调的机制分析 到 setTimeout的经典案例的分析，JavaScript博大精深，我们需要了解他的机制去深入去挖掘他。</p>
+
+      </div>
+      
+        <br>
+        
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2018-09-21T18:08:08+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>updated at Sep 21, 2018</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/JS/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>JS</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>运行机制</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/event-queue/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>event queue</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/stack/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>stack</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=//litten.me/2017/12/06/js-setTimeout/&title=同步、异步、回调执行顺序经典闭包setTimeout分析 | 浅墨&summary=聊聊同步、异步和回调同步，异步，回调，我们傻傻分不清楚，
+有一天，你找到公司刚来的程序员小T，跟他说：“我们要加个需求，你放下手里的事情优先支持，我会一直等你做完再离开”。小T微笑着答应了，眼角却滑过一丝不易觉察的杀意。
+世界上的所有事情大致可以分为同步去做和异步去做两种。你打电话去订酒店，电话另一边的工作人员需要查下他们的管理系统才能告诉你有没有房间。
+这时候你有两种选择：一种是不挂电话一直等待，直到工作人员查到为止（可能几分钟也可能几个小时，取决于他们的办事效率），这就是同步的。
+另一种是工作人员问了你的联系方式就挂断了电话，等他们查到之后再通知你，这就是异步的，这时候你就可以干点其他事情，比如把机票也定了之类的
+
+ 计算机世界也是如此，我们写的代码需要交给cpu去处理，这时候就有同步和异步两种选择。js是单线程的，如果所有的操作（ajax,获取文件等I/O操作&lt;node&gt;）都是同步的，遇到哪些耗时的操作，后面的程序必然被阻塞而不能执行，页面也就失去了响应，
+
+
+因此js采用了事件驱动机制，在单线程模型下，使用异步回调函数的方式来实现非阻塞的IO操作，
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=//litten.me/2017/12/06/js-setTimeout/&title=同步、异步、回调执行顺序经典闭包setTimeout分析 | 浅墨&summary=聊聊同步、异步和回调同步，异步，回调，我们傻傻分不清楚，
+有一天，你找到公司刚来的程序员小T，跟他说：“我们要加个需求，你放下手里的事情优先支持，我会一直等你做完再离开”。小T微笑着答应了，眼角却滑过一丝不易觉察的杀意。
+世界上的所有事情大致可以分为同步去做和异步去做两种。你打电话去订酒店，电话另一边的工作人员需要查下他们的管理系统才能告诉你有没有房间。
+这时候你有两种选择：一种是不挂电话一直等待，直到工作人员查到为止（可能几分钟也可能几个小时，取决于他们的办事效率），这就是同步的。
+另一种是工作人员问了你的联系方式就挂断了电话，等他们查到之后再通知你，这就是异步的，这时候你就可以干点其他事情，比如把机票也定了之类的
+
+ 计算机世界也是如此，我们写的代码需要交给cpu去处理，这时候就有同步和异步两种选择。js是单线程的，如果所有的操作（ajax,获取文件等I/O操作&lt;node&gt;）都是同步的，遇到哪些耗时的操作，后面的程序必然被阻塞而不能执行，页面也就失去了响应，
+
+
+因此js采用了事件驱动机制，在单线程模型下，使用异步回调函数的方式来实现非阻塞的IO操作，
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=//litten.me/2017/12/06/js-setTimeout/&title=同步、异步、回调执行顺序经典闭包setTimeout分析 | 浅墨&summary=聊聊同步、异步和回调同步，异步，回调，我们傻傻分不清楚，
+有一天，你找到公司刚来的程序员小T，跟他说：“我们要加个需求，你放下手里的事情优先支持，我会一直等你做完再离开”。小T微笑着答应了，眼角却滑过一丝不易觉察的杀意。
+世界上的所有事情大致可以分为同步去做和异步去做两种。你打电话去订酒店，电话另一边的工作人员需要查下他们的管理系统才能告诉你有没有房间。
+这时候你有两种选择：一种是不挂电话一直等待，直到工作人员查到为止（可能几分钟也可能几个小时，取决于他们的办事效率），这就是同步的。
+另一种是工作人员问了你的联系方式就挂断了电话，等他们查到之后再通知你，这就是异步的，这时候你就可以干点其他事情，比如把机票也定了之类的
+
+ 计算机世界也是如此，我们写的代码需要交给cpu去处理，这时候就有同步和异步两种选择。js是单线程的，如果所有的操作（ajax,获取文件等I/O操作&lt;node&gt;）都是同步的，遇到哪些耗时的操作，后面的程序必然被阻塞而不能执行，页面也就失去了响应，
+
+
+因此js采用了事件驱动机制，在单线程模型下，使用异步回调函数的方式来实现非阻塞的IO操作，
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+      
+      
+          <div class="prev-next">
+              
+                  <section class="prev">
+                      <span class="art-item-left">
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous</h6>
+                          <h4>
+                              <a href="/2017/12/07/css-verticalMiddle/" rel="prev" title="把所有的东西都对齐吧！">
+                                
+                                    把所有的东西都对齐吧！
+                                
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/CSS/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> CSS</a> <a class="tag" href="/tags/layout/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> layout</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/2017/12/05/js-snakey/" rel="prev" title="手起刀落-一起写经典的贪吃蛇游戏">
+                                  
+                                      手起刀落-一起写经典的贪吃蛇游戏
+                                  
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/JS/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> JS</a> <a class="tag" href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 小游戏</a> <a class="tag" href="/tags/Canvas/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Canvas</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+          </div>
+      
+    </section>
+  </article>
+
+
+
+  <!-- 显示推荐文章和评论 -->
+
+
+
+  
+
+
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: '同步、异步、回调执行顺序经典闭包setTimeout分析',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+      
+        
+          
+          
+            
+              <section class='widget author'>
+  <div class='content pure'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://www.chenqaq.com/assets/icon/header.jpg'/>
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="/mailto:okaycheng@foxmail.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/okaychen"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://www.chenqaq.com"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;TOC</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer noopener" href="javascript:void(0)" target="_blank"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#聊聊同步、异步和回调"><span class="toc-text">聊聊同步、异步和回调</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#经典闭包setTimeout分析"><span class="toc-text">经典闭包setTimeout分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget grid'>
+  
+<header class='pure'>
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站内导航</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          近期文章
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章归档
+        </a></li>
+      
+        <li><a class="flat-box" title="/lab/" href="/lab/"
+          
+          
+          id="lab">
+          
+            <i class="fas fa-code-branch fa-fw" aria-hidden="true"></i>
+          
+          实验室
+        </a></li>
+      
+        <li><a class="flat-box" title="/friends/" href="/friends/"
+          
+            rel="nofollow"
+          
+          
+          id="friends">
+          
+            <i class="fas fa-link fa-fw" aria-hidden="true"></i>
+          
+          我的友链
+        </a></li>
+      
+        <li><a class="flat-box" title="https://www.cnblogs.com/okaychen" href="https://www.cnblogs.com/okaychen"
+          
+            rel="nofollow"
+          
+          
+          id="https:www.cnblogs.comokaychen">
+          
+            <i class="fas fa-book fa-fw" aria-hidden="true"></i>
+          
+          博客园
+        </a></li>
+      
+        <li><a class="flat-box" title="/about/" href="/about/"
+          
+            rel="nofollow"
+          
+          
+          id="about">
+          
+            <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
+          
+          关于小站
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/categories/"
+    title="categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/HTML-CSS/" href="/categories/HTML-CSS/"><div class='name'>HTML/CSS</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/JavaScript/" href="/categories/JavaScript/"><div class='name'>JavaScript</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box child" title="/categories/JavaScript/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/JavaScript/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><div class='name'>设计模式</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Node/" href="/categories/Node/"><div class='name'>Node</div><div class='badge'>(9)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/linux/" href="/categories/linux/"><div class='name'>linux</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/web%E5%AE%89%E5%85%A8/" href="/categories/web%E5%AE%89%E5%85%A8/"><div class='name'>web安全</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" href="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/"><div class='name'>岁言心语</div><div class='badge'>(5)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/AOP/" style="font-size: 15.67px; color: #8e8e8e">AOP</a> <a href="/tags/CSS/" style="font-size: 20.67px; color: #6c6c6c">CSS</a> <a href="/tags/Canvas/" style="font-size: 14px; color: #999">Canvas</a> <a href="/tags/JS/" style="font-size: 20.67px; color: #6c6c6c">JS</a> <a href="/tags/animation/" style="font-size: 14px; color: #999">animation</a> <a href="/tags/event-queue/" style="font-size: 14px; color: #999">event queue</a> <a href="/tags/express/" style="font-size: 22.33px; color: #606060">express</a> <a href="/tags/github/" style="font-size: 14px; color: #999">github</a> <a href="/tags/koa/" style="font-size: 14px; color: #999">koa</a> <a href="/tags/layout/" style="font-size: 19px; color: #777">layout</a> <a href="/tags/linux/" style="font-size: 14px; color: #999">linux</a> <a href="/tags/mock/" style="font-size: 14px; color: #999">mock</a> <a href="/tags/node/" style="font-size: 24px; color: #555">node</a> <a href="/tags/ssh%E5%8D%8F%E8%AE%AE/" style="font-size: 14px; color: #999">ssh协议</a> <a href="/tags/stack/" style="font-size: 14px; color: #999">stack</a> <a href="/tags/underscore/" style="font-size: 14px; color: #999">underscore</a> <a href="/tags/vueCli/" style="font-size: 14px; color: #999">vueCli</a> <a href="/tags/webpcak/" style="font-size: 14px; color: #999">webpcak</a> <a href="/tags/web%E5%8A%A8%E7%94%BB/" style="font-size: 14px; color: #999">web动画</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 17.33px; color: #828282">web安全</a> <a href="/tags/xss/" style="font-size: 15.67px; color: #8e8e8e">xss</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E7%8E%AF%E5%A2%83/" style="font-size: 14px; color: #999">前端环境</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 14px; color: #999">小游戏</a> <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" style="font-size: 20.67px; color: #6c6c6c">岁言心语</a> <a href="/tags/%E5%B9%B6%E5%8F%91%EF%BC%8C%E5%B9%B6%E8%A1%8C/" style="font-size: 14px; color: #999">并发，并行</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">爬虫</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/" style="font-size: 15.67px; color: #8e8e8e">装饰者模式</a> <a href="/tags/%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/" style="font-size: 14px; color: #999">运行机制</a> <a href="/tags/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" style="font-size: 14px; color: #999">防抖与节流</a>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+    
+
+  
+</aside>
+
+<footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="/atom.xml"
+            class="social fas fa-rss flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="/mailto:okaycheng@foxmail.com"
+            class="social fas fa-envelope flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://github.com/okaychen"
+            class="social fab fa-github flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://www.chenqaq.com"
+            class="social fas fa-headphones-alt flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+  <div>
+    Use
+    <a href="do something" target="_blank" class="codename">okaychen</a>
+    as theme
+    
+      , 
+      total visits
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      times
+    
+    . 
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/app.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "Copied";
+  let COPY_FAILURE = "Copy failed";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
 </body>
 </html>

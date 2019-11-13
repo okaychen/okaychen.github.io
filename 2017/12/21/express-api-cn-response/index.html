@@ -1,43 +1,1380 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset="utf-8">
-<title>Express4.x API (三)：Response (译) - 浅墨</title>
-<base href="/">
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-<link rel="canonical" href="//litten.me/2017/12/21/express-api-cn-response/">
-<link rel="icon" type="image/x-icon" href="http://www.chenqaq.com/assets/icon/favicon.png">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Express4.x API (三)：Response (译) | 浅墨</title>
+  
+  <meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+  
+  
+  <meta name="description" content="双子男，自高中毕业后接触前端开发，热衷于编程技术，向往敏捷开发，喜欢读书写点"花花草草"，目前大二，主修专业信息管理与信息系统">
+  
 
-<meta name="description" content="Express4.x API 译文 系列文章 Express4.x API (一)：application (译) – 完成 Express4.x API (二)：request (译) – 完成 Express4.x API (三)：Response (译) – 完成 Express4.x API (四)：router (译) – 完成">
-<meta name="keywords" content="node,express">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Express4.x API (三)：Response (译)">
-<meta property="og:url" content="&#x2F;&#x2F;litten.me&#x2F;2017&#x2F;12&#x2F;21&#x2F;express-api-cn-response&#x2F;index.html">
-<meta property="og:site_name" content="浅墨">
-<meta property="og:description" content="Express4.x API 译文 系列文章 Express4.x API (一)：application (译) – 完成 Express4.x API (二)：request (译) – 完成 Express4.x API (三)：Response (译) – 完成 Express4.x API (四)：router (译) – 完成">
-<meta property="og:locale" content="Chinese">
-<meta property="og:image" content="http:&#x2F;&#x2F;www.chenqaq.com&#x2F;assets&#x2F;icon&#x2F;header.jpg">
-<meta property="og:updated_time" content="2018-09-21T10:36:49.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;www.chenqaq.com&#x2F;assets&#x2F;icon&#x2F;header.jpg">
+  
 
-<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"url":"//litten.me","image":"http://www.chenqaq.com/assets/icon/header.jpg","description":"双子男，自高中毕业后接触前端开发，热衷于编程技术，向往敏捷开发，喜欢读书写点\"花花草草\"，目前大二，主修专业信息管理与信息系统","author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"}},{"@context":"http://schema.org","@type":"Article","articleSection":"Node","url":"//litten.me/2017/12/21/express-api-cn-response/","headline":"Express4.x API (三)：Response (译)","image":"http://www.chenqaq.com/assets/icon/header.jpg","datePublished":"2017-12-21T12:32:44.000Z","dateModified":"2018-09-21T10:36:49.000Z","keywords":"node,express","description":"Express4.x API 译文 系列文章\nExpress4.x API (一)：application (译) – 完成\nExpress4.x API (二)：request (译) – 完成\nExpress4.x API (三)：Response (译) – 完成\nExpress4.x API (四)：router (译) – 完成\n","publisher":{"@type":"Organization","name":"浅墨","logo":{"@type":"ImageObject","url":"http://www.chenqaq.com/assets/icon/header.jpg"}},"author":{"@type":"Person","name":"okaychen","description":"Do Something","image":"http://www.chenqaq.com/assets/icon/header.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"},"mainEntityOfPage":{"@type":"WebPage","@id":"//litten.me/2017/12/21/express-api-cn-response/"}}]</script>
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
 
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
 
-<link href="//fonts.googleapis.com/css?family=Baloo+Bhaijaan|Inconsolata|Josefin+Sans|Montserrat" rel="stylesheet">
-<link href="/styles.6d727dade1159bc77736.css" rel="stylesheet">
-<link rel="stylesheet" href="/theme.f40d4ebe54f15a776aba.css">
-<script src="/config.84ccffadde10ccc1d7ce.js"></script>
+  
 
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.10.22/css/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
 </head>
-<body lang="en">
-<is-a></is-a>
-<script src="/runtime.ee6f73bc31187f12810a.js"></script>
-<script src="/polyfills.14df1390f4da8e838f05.js"></script>
-<script src="/main.0c926d87f8cb6ab96db0.js"></script>
 
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <h1 class='title'>okaychen</h1>
 
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="/"
+            
+            
+            id="home">
+            <i class='fas fa-rss fa-fw'></i>&nbsp;主页
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/lab/"
+            
+            
+            id="lab">
+            <i class='fas fa-code-branch fa-fw'></i>&nbsp;实验室
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/friends/"
+            
+              rel="nofollow"
+            
+            
+            id="friends">
+            <i class='fas fa-link fa-fw'></i>&nbsp;友链
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/about/"
+            
+              rel="nofollow"
+            
+            
+            id="about">
+            <i class='fas fa-info-circle fa-fw'></i>&nbsp;关于
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          浅墨
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                  
+                  id="home">
+									<i class='fas fa-grin fa-fw'></i>&nbsp;主页
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/tags/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="tags">
+									<i class='fas fa-hashtag fa-fw'></i>&nbsp;标签
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/archives/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="archives">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;归档
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                
+                id="home">
+								<i class='fas fa-clock fa-fw'></i>&nbsp;近期文章
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;文章归档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/lab/"
+                
+                
+                id="lab">
+								<i class='fas fa-code-branch fa-fw'></i>&nbsp;实验室
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/friends/"
+                
+                  rel="nofollow"
+                
+                
+                id="friends">
+								<i class='fas fa-link fa-fw'></i>&nbsp;我的友链
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://www.cnblogs.com/okaychen"
+                
+                  rel="nofollow"
+                
+                
+                id="https:www.cnblogs.comokaychen">
+								<i class='fas fa-book fa-fw'></i>&nbsp;博客园
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/about/"
+                
+                  rel="nofollow"
+                
+                
+                id="about">
+								<i class='fas fa-info-circle fa-fw'></i>&nbsp;关于小站
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+    
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/2017/12/21/express-api-cn-response/">
+        Express4.x API (三)：Response (译)
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="//litten.me" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2017-12-21</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Node/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Node</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <h1 id="Express4-x-API-译文-系列文章"><a href="#Express4-x-API-译文-系列文章" class="headerlink" title="Express4.x API 译文 系列文章"></a>Express4.x API 译文 系列文章</h1><ul>
+<li><a href="http://www.cnblogs.com/okaychen/p/8108405.html" target="_blank" rel="noopener">Express4.x API (一)：application (译) – 完成</a></li>
+<li><a href="http://www.cnblogs.com/okaychen/p/8081275.html" target="_blank" rel="noopener">Express4.x API (二)：request (译) – 完成</a></li>
+<li><a href="http://www.cnblogs.com/okaychen/p/8087425.html" target="_blank" rel="noopener">Express4.x API (三)：Response (译) – 完成</a></li>
+<li><a href="http://www.cnblogs.com/okaychen/p/8093717.html" target="_blank" rel="noopener">Express4.x API (四)：router (译) – 完成</a></li>
+</ul>
+<a id="more"></a>
+<h1 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h1><p><code>res</code>对象表示一个Express应用程序在收到HTTP请求时发送的HTTP响应(response)</p>
+<p>在这篇文档和惯例中，HTTP响应这个对象总是被称为<code>res</code>(HTTP请求则是req)，但是它的实际名称取决于您正在工作的回调函数的参数.</p>
+<p>举个栗子：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.get(<span class="string">'/user/:id'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    res.send(<span class="string">'user'</span> + req.params.id)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>当然你也可以这样：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.get(<span class="string">'/user/:id'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">request,response</span>)</span>&#123;</span><br><span class="line">    response.send(<span class="string">'user'</span> + request.params.id)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h2><h3 id="res-app"><a href="#res-app" class="headerlink" title="res.app"></a>res.app</h3><p>此属性持有对使用中间件Express应用实例的引用</p>
+<p><code>res.app</code>和在request对象中的<code>req.app</code>属性是完全相同的</p>
+<h3 id="res-headersSent"><a href="#res-headersSent" class="headerlink" title="res.headersSent"></a>res.headersSent</h3><p>布尔属性，表示这个app是否发送了HTTP头进行响应</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res.headersSend);  <span class="comment">// false</span></span><br><span class="line">    res.send(<span class="string">'ok'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(res.headersSend); <span class="comment">// true</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="res-locals"><a href="#res-locals" class="headerlink" title="res.locals"></a>res.locals</h3><p>一个对象包含局部变量作用域的请求的响应，因此只能用于在request/response周期中呈现的视图(如果有的话)。否者，此属性与app.locals是相同的</p>
+<p>此属性用于公开<code>request-level</code>信息，例如请求的路径名(path name)，经过身份认证的用户(authenticated user),用户设置(user setting)等等</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">    res.locals.user = req.user;</span><br><span class="line">    req.locals.authenticated = !req.user.anonymous;</span><br><span class="line">    next();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><h3 id="res-append-field-value"><a href="#res-append-field-value" class="headerlink" title="res.append(field[,value])"></a>res.append(field[,value])</h3><blockquote>
+<p>res.append在Expressv4.11.0+是支持的</p>
+</blockquote>
+<p>将指定的值到http响应头字段.如果header还没有被设置，它创建具有指定值的头文件，<code>value</code>参数可以是字符串或数组</p>
+<p>如果<code>res.set()</code>在<code>res.append()</code>之后的话将会重置以前设置的header头</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.append(<span class="string">'Link'</span>,[<span class="string">'&lt;http://localhost/&gt;'</span>,<span class="string">'&lt;http://localhost:3000/&gt;'</span>])</span><br><span class="line">res.append(<span class="string">'Set-Cookie'</span>,<span class="string">'foo=bar;path=/;HttpOnly'</span>)</span><br><span class="line">res.append(<span class="string">'Warning'</span>,<span class="string">'199 Miscellaneous warning'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="res-attachment-filename"><a href="#res-attachment-filename" class="headerlink" title="res.attachment([filename])"></a>res.attachment([filename])</h3><p>使用<code>attchment</code>设置HTTP响应<code>Content-Dispositon</code>头字段.如果给了一个文件名<code>filename</code>，然后基于扩展名通过<code>res.type()</code>设置<code>Content-Type</code>,并设置<code>Content-Disposition</code>“fliename=”参数</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.attachment();</span><br><span class="line"><span class="comment">// Content-Disposition:attachment</span></span><br><span class="line"></span><br><span class="line">res.attachment(<span class="string">'path/to/logo.png'</span>);</span><br><span class="line"><span class="comment">// Content-Disposition:attachment;filename='logo.png'</span></span><br><span class="line"><span class="comment">// Content-Type:image/png</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="res-cookie-name-value-options"><a href="#res-cookie-name-value-options" class="headerlink" title="res.cookie(name,value[,options])"></a>res.cookie(name,value[,options])</h3><p>给cookie名称设置值，<code>value</code>参数可以是一个字符串或者是对象转化为JSON，options参数可以是具有以下属性的对象</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>domain</td>
+<td>String</td>
+<td>cookie的域名，默认应用程序的域名</td>
+</tr>
+<tr>
+<td>expires</td>
+<td>Date</td>
+<td>格林尼治时间内cookie的到期日期，如果没有指明或设置为0，创建会话cookie</td>
+</tr>
+<tr>
+<td>httpOnly</td>
+<td>Boolean</td>
+<td>标志cookie只能由web服务器访问</td>
+</tr>
+<tr>
+<td>maxAge</td>
+<td>String</td>
+<td>在毫秒内设置相对于当前时间的方便选项</td>
+</tr>
+<tr>
+<td>path</td>
+<td>String</td>
+<td>cookie的路径，默认为’/‘</td>
+</tr>
+<tr>
+<td>secure</td>
+<td>Boolean</td>
+<td>标记只于https一起使用的cookie</td>
+</tr>
+<tr>
+<td>signed</td>
+<td>Boolean</td>
+<td>指示cookie是否被签署</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>提供带有选项设置的HTTP <code>Set-Cookie``res.cookie</code>起作用，未指定的任何选项默认值为<a href="http://tools.ietf.org/html/rfc6265" target="_blank" rel="noopener">RFC 6265</a></p>
+</blockquote>
+<p>举个栗子：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.cookie(<span class="string">'name'</span>,<span class="string">'tobi'</span>,&#123;<span class="attr">domain</span>:<span class="string">'example.com'</span>,<span class="attr">path</span>:<span class="string">'/admin'</span>,<span class="attr">secure</span>:<span class="literal">true</span>&#125;);</span><br><span class="line">res.cookie(<span class="string">'rememberme'</span>,<span class="string">'1'</span>,&#123;<span class="attr">expires</span>:<span class="string">'new Dtae(Date.now() + 900000),httpOnly：true'</span>&#125;)</span><br></pre></td></tr></table></figure>
+<p><code>maxAge</code>选项是以当前时间为起点以毫秒为单位设置<code>expires</code>的便捷选项，下面这个栗子相当于上面例子中的第二个</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.cookie(<span class="string">'rememberme'</span>,<span class="string">'1'</span>,&#123;<span class="attr">maxAge</span>:<span class="number">900000</span>,<span class="attr">httpOnly</span>:<span class="literal">true</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>你可以传递一个对象给<code>value</code>参数,然后通过<code>bodyparser</code>中间件将其序列化为JSON</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.cookie(<span class="string">'cart'</span>,&#123;<span class="attr">items</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]&#125;)</span><br><span class="line">res.cookie(<span class="string">'cart'</span>,&#123;<span class="attr">items</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]&#125;,&#123;<span class="attr">maxAge</span>:<span class="number">900000</span>&#125;)</span><br></pre></td></tr></table></figure>
+<p>当使用<code>cookie-parser</code>中间件时，此方法还支持签署cookie，只需要设置<code>signed</code>选项为true。然后<code>res.cookie()</code>将会秘密的传递给<code>cookieParser(secret)</code>去签署这个值</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.cookie(<span class="string">'name'</span>,<span class="string">'tobi'</span>,&#123;<span class="attr">signed</span>:<span class="literal">true</span>&#125;)</span><br></pre></td></tr></table></figure>
+<p>然后你可以通过<code>req.signedCookie()</code>访问此值</p>
+<h3 id="res-clearCookie-name-options"><a href="#res-clearCookie-name-options" class="headerlink" title="res.clearCookie(name,[,options])"></a>res.clearCookie(name,[,options])</h3><p>通过cookie名称清除指定的cookie</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.cookie(<span class="string">'rememberme'</span>,<span class="string">'tobi'</span>,&#123;<span class="attr">path</span>:<span class="string">'/admin'</span>&#125;);</span><br><span class="line">res.clearCookie(<span class="string">'rememberme'</span>,&#123;<span class="attr">path</span>:<span class="string">'/admin'</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="res-download-path-fliename-fn"><a href="#res-download-path-fliename-fn" class="headerlink" title="res.download(path,[,fliename][,fn])"></a>res.download(path,[,fliename][,fn])</h3><p>将路径中文件作为<code>附件(attachment)</code>传输.通常，浏览器将提示用户下载.默认情况下，<code>Content-Disposition</code>头中”filename=”参数是路径（这通常出现在浏览器对话框），用<code>filename</code>参数覆盖默认值</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.download(<span class="string">'/report-12345.pdf'</span>);</span><br><span class="line"></span><br><span class="line">res.download(<span class="string">'/report-12345.pdf'</span>,<span class="string">'report.pdf'</span>);</span><br><span class="line"></span><br><span class="line">res.download(<span class="string">'/report-12345.pdf'</span>,<span class="string">'report.pdf'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">        <span class="comment">// 处理错误，但是请记得响应可能是部分发送的</span></span><br><span class="line">        <span class="comment">// 所以检查`res.headerssent`</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">// 减量下载，等</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="res-end-data-encoding"><a href="#res-end-data-encoding" class="headerlink" title="res.end([data][,encoding])"></a>res.end([data][,encoding])</h3><p>结束响应进程，This method actually comes from Node core, specifically the <a href="https://nodejs.org/api/http.html#http_response_end_data_encoding_callback" target="_blank" rel="noopener">response.end() method of http.ServerResponse</a>.（这句话翻译过来我有些不理解，我就不再翻译，res.end用于结束响应）</p>
+<p>快速结束响应而无需任何数据，如果你需要对数据进行响应，取而代之的是使用诸如<code>res.send</code>和<code>res.json</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.send();</span><br><span class="line">res.status(<span class="number">404</span>).end();</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="res-format-object"><a href="#res-format-object" class="headerlink" title="res.format(object)"></a>res.format(object)</h3><p>在请求对象时，在<code>Accept</code>HTTP头对象上执行<code>content-negotiation</code>。他使用<code>req.accepts</code>基于可接受的质量值的有序类型为请求选择一个处理程序，如果header未指定，调用第一个回调函数.当没有找到匹配项，服务器响应406<code>Not Acceptable</code>或调用默认回调函数</p>
+<p>当选择回调时，将设置<code>Content-Type</code>响应头.然而你可以使用回调方法在回调中更改此值例如：<code>res.set</code>或者<code>res.type</code></p>
+<p>下面这个例子当<code>Accept</code>头域设置为<code>applocation/json</code>或者<code>*/json</code>时，将会响应{‘message’:’hey’}(然而如果是”<em>/</em>“,响应将会是’hey’)</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.format(&#123;</span><br><span class="line">    <span class="string">'text/plain'</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        res.send(<span class="string">'hey'</span>)</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="string">'text/html'</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        res.send(<span class="string">'&lt;p&gt;hey&lt;/p&gt;'</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="string">'applaction/json'</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        res.send(message:<span class="string">'hey'</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="string">'default'</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">// 记录请求并用406响应</span></span><br><span class="line">        res.status(<span class="number">406</span>).send(<span class="string">'Not Acceptable'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>除了规范化MOME类型，对于稍微不太详细的实现你还可以使用扩展名映射到这些类型</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.format(&#123;</span><br><span class="line">    text:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        res.send(<span class="string">'hey'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    html:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        res.send(<span class="string">'&lt;p&gt;hey&lt;/p&gt;'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    json:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        res.send(&#123;<span class="attr">message</span>:<span class="string">'hey'</span>&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="res-get-field"><a href="#res-get-field" class="headerlink" title="res.get(field)"></a>res.get(field)</h3><p>返回由路由字段指定的http响应头(对大小写是不敏感的)</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.get(<span class="string">'Content-Tpye'</span>);  <span class="comment">// =&gt; 'text/plain'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="res-json-body"><a href="#res-json-body" class="headerlink" title="res.json([body])"></a>res.json([body])</h3><p>发送一个JSON响应，这个方法和<code>res.send</code>是一样的传递一个对象或者数组作为参数.但是你可以使用它将其他值转化为JSON,例如null，undefined（虽然这些在技术上不是有效的JSON）</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.json(<span class="literal">null</span>)</span><br><span class="line">res.json(user:<span class="string">'tobi'</span>)</span><br><span class="line">res.status(<span class="number">500</span>).json(error:<span class="string">'message'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="res-jsonp-body"><a href="#res-jsonp-body" class="headerlink" title="res.jsonp([body])"></a>res.jsonp([body])</h3><p>发送一个JSONP支持的JSON响应，这个方法和<code>req.json()</code>是相同的,除了他选择在JSONP的回调支持</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.jsonp(<span class="literal">null</span>) <span class="comment">// =&gt; null</span></span><br><span class="line"></span><br><span class="line">res.jsonp(&#123;<span class="attr">user</span>:<span class="string">'tobi'</span>&#125;)  <span class="comment">// =&gt; &#123;"user":"tobi"&#125;</span></span><br><span class="line"></span><br><span class="line">res.status(<span class="number">500</span>).jsonp(&#123;<span class="attr">error</span>:<span class="string">'message'</span>&#125;)  <span class="comment">// =&gt; &#123;"error":"message"&#125;</span></span><br></pre></td></tr></table></figure>
+<p>以下是一些JSONP响应用相同的代码的栗子：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ?callback=foo</span></span><br><span class="line">res.jsonp(user:<span class="string">"tobi"</span>)  <span class="comment">// =&gt; foo(&#123;"user":"tobi"&#125;)</span></span><br><span class="line"></span><br><span class="line">app.set(<span class="string">'JSONP callback name '</span>,<span class="string">'cb'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ?cb=foo</span></span><br><span class="line">res.status(<span class="number">500</span>).jsonp(&#123;<span class="attr">error</span>:<span class="string">'message'</span>&#125;)  <span class="comment">// =&gt; foo(&#123;"error":"message"&#125;)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="res-links-links"><a href="#res-links-links" class="headerlink" title="res.links(links)"></a>res.links(links)</h3><p>将提供的链接作为参数的属性添加到响应的<code>Link</code> HTTP 头字段</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.links(&#123;</span><br><span class="line">    next:<span class="string">'http://api.example.com/user?page=2'</span>,</span><br><span class="line">    last:<span class="string">'http://api.example.com/user?page=5'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>产出</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="symbol">Link:</span>&lt;<span class="symbol">http:</span>/<span class="regexp">/api.example.com/user</span>?page=<span class="number">2</span>&gt;; rel=<span class="string">'next'</span></span><br><span class="line">    <span class="symbol">:&lt;http</span><span class="symbol">://api</span>.example.com/user?page=<span class="number">5</span>&gt;; rel=<span class="string">'last'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="res-location-path"><a href="#res-location-path" class="headerlink" title="res.location(path)"></a>res.location(path)</h3><p>设置响应<code>location</code>HTTP头为指定的path路径参数</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">res</span><span class="selector-class">.location</span>(<span class="string">'/foo/bar'</span>);</span><br><span class="line"><span class="selector-tag">res</span><span class="selector-class">.location</span>(<span class="string">'http://example.com'</span>);</span><br><span class="line"><span class="selector-tag">res</span><span class="selector-class">.location</span>(<span class="string">'back'</span>);</span><br></pre></td></tr></table></figure>
+<p>带有<code>back</code>参数的的路径带有特殊的意义，它指的是在请求的<code>Referer</code>报头指定的URL，如果没有被指定，它指向”/“</p>
+<h3 id="res-redirect-status-path"><a href="#res-redirect-status-path" class="headerlink" title="res.redirect([status,] path)"></a>res.redirect([status,] path)</h3><p>重定向URL来自指定的路径，使用指定的HTTP状态码.如果没有指定状态，状态代码默认为’302 Found’</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.redirect(<span class="string">'/foo/bar'</span>);</span><br><span class="line">res.redirect(<span class="string">'http://example.com'</span>);</span><br><span class="line">res.redirect(<span class="number">301</span>,<span class="string">'http://example.com'</span>);</span><br><span class="line">res.redirect(<span class="string">'../login'</span>);</span><br></pre></td></tr></table></figure>
+<p>重定向可以完全的将URL重定向到另一个不同的网站</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.redirect(<span class="string">'http://google.com'</span>);</span><br></pre></td></tr></table></figure>
+<p>重定向可以使用相对主机的路径，例如，如果你的应用程序是”<a href="http://example.com/admin/post/new&quot;，下面将会将它重定向到&quot;http://example.com/admin&quot;" target="_blank" rel="noopener">http://example.com/admin/post/new&quot;，下面将会将它重定向到&quot;http://example.com/admin&quot;</a></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.redirect(<span class="string">'/admin'</span>)</span><br></pre></td></tr></table></figure>
+<p>重定向可以相对于当前的URL，例如来自”<a href="http://example.com/blog/admin/&quot;(注意最后的尾斜杠)，下面将重定向到&quot;http://example.com/blog/admin/post/new&quot;" target="_blank" rel="noopener">http://example.com/blog/admin/&quot;(注意最后的尾斜杠)，下面将重定向到&quot;http://example.com/blog/admin/post/new&quot;</a></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.redirect(<span class="string">'post/new'</span>)</span><br></pre></td></tr></table></figure>
+<p>如果上面admin最后没有尾斜杠，将会重定向至”<a href="http://example.com/blog/post/new&quot;" target="_blank" rel="noopener">http://example.com/blog/post/new&quot;</a></p>
+<blockquote>
+<p>如果你发现上述行为令人困惑，把路径段看做目录（尾随斜杠）和文件，他将开始变得有意义</p>
+</blockquote>
+<p>相对路径的重定向也是有可能的，如果你是”<a href="http://example.com/admin/post/new&quot;,下面将会重定向到&quot;http://example.com/admin/post&quot;" target="_blank" rel="noopener">http://example.com/admin/post/new&quot;,下面将会重定向到&quot;http://example.com/admin/post&quot;</a></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.redirect(<span class="string">'..'</span>);</span><br></pre></td></tr></table></figure>
+<p>一个<code>back</code>重定向到请求返回<code>referer</code>，如果<code>referer</code>丢失默认为’/‘</p>
+<h3 id="res-render-view-locals-callback"><a href="#res-render-view-locals-callback" class="headerlink" title="res.render(view[,locals][,callback])"></a>res.render(view[,locals][,callback])</h3><p>呈现视图并将HTML发送给客户端，可选参数：</p>
+<ul>
+<li>locals,属性定义视图的局部变量的对象</li>
+<li>callback,回调函数，如果提供的话，返回可能的错误和呈现的字符串，但并不自动响应.当错误发生时,该方法在内部调用<code>next(err)</code><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.render(<span class="string">'index'</span>)</span><br><span class="line"></span><br><span class="line">res.render(<span class="string">'index'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,html</span>)</span>&#123;</span><br><span class="line">    res.send(html)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将局部变量传递给视图</span></span><br><span class="line">res.render(<span class="string">'user'</span>,&#123;<span class="attr">name</span>:<span class="string">'tobi'</span>&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">err,html</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// ..</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="res-send-body"><a href="#res-send-body" class="headerlink" title="res.send([body])"></a>res.send([body])</h3><p>发送http响应<br><code>body</code>参数可以是一个<code>buffer</code>对象，字符串，对象，数组.举个栗子：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.send(<span class="keyword">new</span> Buffer(<span class="string">'whoop'</span>))</span><br><span class="line">res.send(&#123;<span class="attr">some</span>:<span class="string">'json'</span>&#125;)</span><br><span class="line">res.send(<span class="string">'&lt;p&gt;some html&lt;/p&gt;'</span>)</span><br><span class="line">res.status(<span class="number">404</span>).send(<span class="string">'sorry,er can not find that!'</span>)</span><br><span class="line">res.status(<span class="number">500</span>).send(&#123;<span class="attr">error</span>:<span class="string">'something brew up'</span>&#125;)</span><br></pre></td></tr></table></figure>
+<p>当参数是一个buffer对象时，该方法设置<code>Content-Type</code>响应头字段为<code>application/octet-stream</code>，除非先定义如下所示：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.set(<span class="string">'Content-Type'</span>:<span class="string">'text/html'</span>)</span><br><span class="line">res.send(<span class="keyword">new</span> Buffer(<span class="string">'&lt;p&gt;some html&lt;/p&gt;'</span>))</span><br></pre></td></tr></table></figure>
+<p>当参数为字符串时，这个方法设置’Content-Type’为’text/html’</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.send(<span class="string">'&lt;p&gt;some html&lt;/p&gt;'</span>)</span><br></pre></td></tr></table></figure>
+<p>当参数为数组或者对象时，Express用JSON表示响应</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.send(&#123;<span class="attr">user</span>:<span class="string">'tobi'</span>&#125;)</span><br><span class="line">res.send([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+<h3 id="res-sendFile-path-options-fn"><a href="#res-sendFile-path-options-fn" class="headerlink" title="res.sendFile(path[,options][,fn])"></a>res.sendFile(path[,options][,fn])</h3><blockquote>
+<p>res.sendFile()在Express v4.8.0之前被支持</p>
+</blockquote>
+<p>在给定路径上传输文件，根据文件的扩展设置”Content-Tpye”响应HTTP头字段.除非在选项对象中设置根选项，路径必须是文件的绝对路径</p>
+<p>下表中列出了选项对象中的详细信息</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Default</th>
+<th>Availability</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>maxAge</td>
+<td>以毫秒为单位设置max-age缓存控制头或者MS格式的字符串</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>root</td>
+<td>相关文件的根目录</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>lastModified</td>
+<td>设置last-modified头设置为操作系统上文件的最后修改日期，设置false禁用它</td>
+<td>Enabled</td>
+<td>4.9.0+</td>
+</tr>
+<tr>
+<td>headers</td>
+<td>包含与文件服务对象的HTTP头</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dotfiles</td>
+<td>可能值为”allow”,”deny”,”ignore”</td>
+<td>“ignore”</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>该方法调用一个回调函数<code>fn(err)</code>当传输完成或发生错误时.如果指定了回调函数并发生错误时，回调函数必须通过终止请求响应周期来显式地处理响应过程，或者传递控制给下一个路由</p>
+<p>下面这个栗子使用了<code>res.sendFile()</code>的所有参数</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.send(<span class="string">'/file/:name'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> options=&#123;</span><br><span class="line">        root:__dirname+<span class="string">'/public'</span>,</span><br><span class="line">        dotfiles:<span class="string">'deny'</span>,</span><br><span class="line">        headers:&#123;</span><br><span class="line">            <span class="string">'x-timestamp'</span>:<span class="built_in">Date</span>.now(),</span><br><span class="line">            <span class="string">'x-sent'</span>:<span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> flieName = req.params.name;</span><br><span class="line">    res.sendFile(fileName,options,funcion(err)&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(err);</span><br><span class="line">            res.status(err.status).end();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'Sent:'</span>, fileName);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>res.sendFile()在下面的例子中，提供对文件服务的<code>fine-grained</code>支持，</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.get(<span class="string">'/user/:uid/photos/:file'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> uid = req.params.uid;</span><br><span class="line">    <span class="keyword">var</span> file = req.params.file;</span><br><span class="line"></span><br><span class="line">    req.user.mayViewFilesFrom(uid,<span class="function"><span class="keyword">function</span>(<span class="params">yes</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(yes)&#123;</span><br><span class="line">            res.sendFile(<span class="string">'/uploads/'</span> + uid + <span class="string">'/'</span> + file);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            res.status(<span class="number">403</span>).send(<span class="string">"sorry you cant\'s see that."</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="res-sendStatus-statusCode"><a href="#res-sendStatus-statusCode" class="headerlink" title="res.sendStatus(statusCode)"></a>res.sendStatus(statusCode)</h3><p>设置响应的HTTP状态码并将字符串形式作为响应体发送</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.sendStatus(<span class="number">200</span>);  <span class="comment">// 等于 res.status(200).send('ok')</span></span><br><span class="line">res.sendStatus(<span class="number">403</span>);  <span class="comment">// 等于 res.status(403).send('Forbidden')</span></span><br><span class="line">res.sendStatus(<span class="number">404</span>);  <span class="comment">// 等于 res.status(404).send('Not Found')</span></span><br><span class="line">res.sendStatus(<span class="number">500</span>);  <span class="comment">// 等于 res.status(500).send('Internal Server Error')</span></span><br></pre></td></tr></table></figure>
+<p>如果指定了不受支持的状态代码，HTTP状态仍然设置状态码和代码的字符串版本为响应正文中发送</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.sendStatus(<span class="number">2000</span>)  <span class="comment">// 等于 res.status(2000).send('2000')</span></span><br></pre></td></tr></table></figure>
+<p><a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes" target="_blank" rel="noopener">More about HTTP Status Codes</a></p>
+<h3 id="res-set-field-value"><a href="#res-set-field-value" class="headerlink" title="res.set(field [,value])"></a>res.set(field [,value])</h3><p>将HTTP响应头filed设置为value值.立即设置多个字段，传递一个对象作为参数</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.set(<span class="string">'Content-Type'</span>:<span class="string">'text/plain'</span>);</span><br><span class="line"></span><br><span class="line">res.set(&#123;</span><br><span class="line">    <span class="string">'Content-Type'</span>:<span class="string">'text.plain'</span>,</span><br><span class="line">    <span class="string">'Content-Length'</span>:<span class="string">'123'</span>,</span><br><span class="line">    <span class="string">'ETag'</span>:<span class="string">'12345'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>别名为<code>res.header(field[,value])</code></p>
+<h3 id="res-status-code"><a href="#res-status-code" class="headerlink" title="res.status(code)"></a>res.status(code)</h3><p>使用此方法为响应设置HTTP状态，这是一个连贯性的Node <code>response.statusCode</code>别名</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.status(<span class="number">403</span>).send();</span><br><span class="line">res.status(<span class="number">400</span>).send(<span class="string">'Bad Request'</span>);</span><br><span class="line">res.status(<span class="number">404</span>).sendFile(<span class="string">'/absolute/path/to/404.png'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="res-type-type"><a href="#res-type-type" class="headerlink" title="res.type(type)"></a>res.type(type)</h3><p>将<code>Content-Type</code>的HTTP头设置为<code>MIME</code>类型,通过<code>mime.lookup</code>指定类型.如果类型包含’/‘字符，设置”Content-Type”为’type’</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.type(<span class="string">'.html'</span>)  <span class="comment">// =&gt; 'text/html'</span></span><br><span class="line">res.type(<span class="string">'html'</span>)  <span class="comment">// =&gt;'text/html'</span></span><br><span class="line">res.type(<span class="string">'json'</span>) <span class="comment">// =&gt; 'application/json'</span></span><br><span class="line">res.type(<span class="string">'application/json'</span>)  <span class="comment">// =&gt; 'application/json'</span></span><br><span class="line">res.type(<span class="string">'png'</span>) <span class="comment">// =&gt; image/png:</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="res-vary-field"><a href="#res-vary-field" class="headerlink" title="res.vary(field)"></a>res.vary(field)</h3><p>如果它不在那里，添加字段到<code>vary</code>响应头</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">res.vary(<span class="string">'User-Agent'</span>).render(<span class="string">'docs'</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h1><p>Express文档中Response部分就完成了，本人学识有限，难免有所纰漏，另外翻译仅仅是方便个人学习交流使用，无其他用意，原文地址：<a href="http://www.expressjs.com.cn/4x/api.html#res" target="_blank" rel="noopener">expressjs.com</a></p>
+
+      </div>
+      
+        <br>
+        
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2018-09-21T18:36:49+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>updated at Sep 21, 2018</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/node/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>node</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/express/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>express</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=//litten.me/2017/12/21/express-api-cn-response/&title=Express4.x API (三)：Response (译) | 浅墨&summary=Express4.x API 译文 系列文章
+Express4.x API (一)：application (译) – 完成
+Express4.x API (二)：request (译) – 完成
+Express4.x API (三)：Response (译) – 完成
+Express4.x API (四)：router (译) – 完成
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=//litten.me/2017/12/21/express-api-cn-response/&title=Express4.x API (三)：Response (译) | 浅墨&summary=Express4.x API 译文 系列文章
+Express4.x API (一)：application (译) – 完成
+Express4.x API (二)：request (译) – 完成
+Express4.x API (三)：Response (译) – 完成
+Express4.x API (四)：router (译) – 完成
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=//litten.me/2017/12/21/express-api-cn-response/&title=Express4.x API (三)：Response (译) | 浅墨&summary=Express4.x API 译文 系列文章
+Express4.x API (一)：application (译) – 完成
+Express4.x API (二)：request (译) – 完成
+Express4.x API (三)：Response (译) – 完成
+Express4.x API (四)：router (译) – 完成
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+      
+      
+          <div class="prev-next">
+              
+                  <section class="prev">
+                      <span class="art-item-left">
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous</h6>
+                          <h4>
+                              <a href="/2017/12/23/express-api-cn-router/" rel="prev" title="Express4.x API (四)：Router (译)">
+                                
+                                    Express4.x API (四)：Router (译)
+                                
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/node/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> node</a> <a class="tag" href="/tags/express/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> express</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/2017/12/20/epxress-api-cn-request/" rel="prev" title="Express4.x API (二)：Request (译)">
+                                  
+                                      Express4.x API (二)：Request (译)
+                                  
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/node/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> node</a> <a class="tag" href="/tags/express/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> express</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+          </div>
+      
+    </section>
+  </article>
+
+
+
+  <!-- 显示推荐文章和评论 -->
+
+
+
+  
+
+
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'Express4.x API (三)：Response (译)',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+      
+        
+          
+          
+            
+              <section class='widget author'>
+  <div class='content pure'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://www.chenqaq.com/assets/icon/header.jpg'/>
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="/mailto:okaycheng@foxmail.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/okaychen"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://www.chenqaq.com"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;TOC</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer noopener" href="javascript:void(0)" target="_blank"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Express4-x-API-译文-系列文章"><span class="toc-text">Express4.x API 译文 系列文章</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Response"><span class="toc-text">Response</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Properties"><span class="toc-text">Properties</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#res-app"><span class="toc-text">res.app</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-headersSent"><span class="toc-text">res.headersSent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-locals"><span class="toc-text">res.locals</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Methods"><span class="toc-text">Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#res-append-field-value"><span class="toc-text">res.append(field[,value])</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-attachment-filename"><span class="toc-text">res.attachment([filename])</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-cookie-name-value-options"><span class="toc-text">res.cookie(name,value[,options])</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-clearCookie-name-options"><span class="toc-text">res.clearCookie(name,[,options])</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-download-path-fliename-fn"><span class="toc-text">res.download(path,[,fliename][,fn])</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-end-data-encoding"><span class="toc-text">res.end([data][,encoding])</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-format-object"><span class="toc-text">res.format(object)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-get-field"><span class="toc-text">res.get(field)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-json-body"><span class="toc-text">res.json([body])</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-jsonp-body"><span class="toc-text">res.jsonp([body])</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-links-links"><span class="toc-text">res.links(links)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-location-path"><span class="toc-text">res.location(path)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-redirect-status-path"><span class="toc-text">res.redirect([status,] path)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-render-view-locals-callback"><span class="toc-text">res.render(view[,locals][,callback])</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-send-body"><span class="toc-text">res.send([body])</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-sendFile-path-options-fn"><span class="toc-text">res.sendFile(path[,options][,fn])</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-sendStatus-statusCode"><span class="toc-text">res.sendStatus(statusCode)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-set-field-value"><span class="toc-text">res.set(field [,value])</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-status-code"><span class="toc-text">res.status(code)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-type-type"><span class="toc-text">res.type(type)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-vary-field"><span class="toc-text">res.vary(field)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#写在后面"><span class="toc-text">写在后面</span></a></li></ol>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget grid'>
+  
+<header class='pure'>
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站内导航</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          近期文章
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章归档
+        </a></li>
+      
+        <li><a class="flat-box" title="/lab/" href="/lab/"
+          
+          
+          id="lab">
+          
+            <i class="fas fa-code-branch fa-fw" aria-hidden="true"></i>
+          
+          实验室
+        </a></li>
+      
+        <li><a class="flat-box" title="/friends/" href="/friends/"
+          
+            rel="nofollow"
+          
+          
+          id="friends">
+          
+            <i class="fas fa-link fa-fw" aria-hidden="true"></i>
+          
+          我的友链
+        </a></li>
+      
+        <li><a class="flat-box" title="https://www.cnblogs.com/okaychen" href="https://www.cnblogs.com/okaychen"
+          
+            rel="nofollow"
+          
+          
+          id="https:www.cnblogs.comokaychen">
+          
+            <i class="fas fa-book fa-fw" aria-hidden="true"></i>
+          
+          博客园
+        </a></li>
+      
+        <li><a class="flat-box" title="/about/" href="/about/"
+          
+            rel="nofollow"
+          
+          
+          id="about">
+          
+            <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
+          
+          关于小站
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/categories/"
+    title="categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/HTML-CSS/" href="/categories/HTML-CSS/"><div class='name'>HTML/CSS</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/JavaScript/" href="/categories/JavaScript/"><div class='name'>JavaScript</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box child" title="/categories/JavaScript/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/JavaScript/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><div class='name'>设计模式</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Node/" href="/categories/Node/"><div class='name'>Node</div><div class='badge'>(9)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/linux/" href="/categories/linux/"><div class='name'>linux</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/web%E5%AE%89%E5%85%A8/" href="/categories/web%E5%AE%89%E5%85%A8/"><div class='name'>web安全</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" href="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/"><div class='name'>岁言心语</div><div class='badge'>(5)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/AOP/" style="font-size: 15.67px; color: #8e8e8e">AOP</a> <a href="/tags/CSS/" style="font-size: 20.67px; color: #6c6c6c">CSS</a> <a href="/tags/Canvas/" style="font-size: 14px; color: #999">Canvas</a> <a href="/tags/JS/" style="font-size: 20.67px; color: #6c6c6c">JS</a> <a href="/tags/animation/" style="font-size: 14px; color: #999">animation</a> <a href="/tags/event-queue/" style="font-size: 14px; color: #999">event queue</a> <a href="/tags/express/" style="font-size: 22.33px; color: #606060">express</a> <a href="/tags/github/" style="font-size: 14px; color: #999">github</a> <a href="/tags/koa/" style="font-size: 14px; color: #999">koa</a> <a href="/tags/layout/" style="font-size: 19px; color: #777">layout</a> <a href="/tags/linux/" style="font-size: 14px; color: #999">linux</a> <a href="/tags/mock/" style="font-size: 14px; color: #999">mock</a> <a href="/tags/node/" style="font-size: 24px; color: #555">node</a> <a href="/tags/ssh%E5%8D%8F%E8%AE%AE/" style="font-size: 14px; color: #999">ssh协议</a> <a href="/tags/stack/" style="font-size: 14px; color: #999">stack</a> <a href="/tags/underscore/" style="font-size: 14px; color: #999">underscore</a> <a href="/tags/vueCli/" style="font-size: 14px; color: #999">vueCli</a> <a href="/tags/webpcak/" style="font-size: 14px; color: #999">webpcak</a> <a href="/tags/web%E5%8A%A8%E7%94%BB/" style="font-size: 14px; color: #999">web动画</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 17.33px; color: #828282">web安全</a> <a href="/tags/xss/" style="font-size: 15.67px; color: #8e8e8e">xss</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E7%8E%AF%E5%A2%83/" style="font-size: 14px; color: #999">前端环境</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 14px; color: #999">小游戏</a> <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" style="font-size: 20.67px; color: #6c6c6c">岁言心语</a> <a href="/tags/%E5%B9%B6%E5%8F%91%EF%BC%8C%E5%B9%B6%E8%A1%8C/" style="font-size: 14px; color: #999">并发，并行</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">爬虫</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/" style="font-size: 15.67px; color: #8e8e8e">装饰者模式</a> <a href="/tags/%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/" style="font-size: 14px; color: #999">运行机制</a> <a href="/tags/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" style="font-size: 14px; color: #999">防抖与节流</a>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+    
+
+  
+</aside>
+
+<footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="/atom.xml"
+            class="social fas fa-rss flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="/mailto:okaycheng@foxmail.com"
+            class="social fas fa-envelope flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://github.com/okaychen"
+            class="social fab fa-github flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://www.chenqaq.com"
+            class="social fas fa-headphones-alt flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+  <div>
+    Use
+    <a href="do something" target="_blank" class="codename">okaychen</a>
+    as theme
+    
+      , 
+      total visits
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      times
+    
+    . 
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/app.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "Copied";
+  let COPY_FAILURE = "Copy failed";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
 </body>
 </html>
