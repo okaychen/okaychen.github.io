@@ -408,7 +408,7 @@
 <p><img src="http://www.chenqaq.com/assets/images/concurrency1.png" alt=""></p>
 <p>我们发现，并发数从1开始增长，但是增长到5时，就不在增加。然有任务时就继续抓取，并发连接数量始终控制在5个。</p>
 <h1 id="完成node简易爬虫系统"><a href="#完成node简易爬虫系统" class="headerlink" title="完成node简易爬虫系统"></a>完成node简易爬虫系统</h1><p>因为alsotang前辈的<a href="https://github.com/alsotang/node-lessons" target="_blank" rel="noopener">《node包教不包会》</a>教程例子中使用的eventproxy控制的并发数量，我们就来完成一个使用async控制并发数量的node简易爬虫。</p>
-<p>爬取的目标就是<a href="http://www.chenqaq.com" target="_blank" rel="noopener">本站首页</a>（手动护脸）</p>
+<p>爬取的目标就是<a href="http://www.chenqaq.com">本站首页</a>（手动护脸）</p>
 <p>第一步，首先我们需要用到以下的模块：</p>
 <ul>
 <li>url ： 用于url解析，这里用到<code>url.resolve()</code>生成一个合法的域名</li>
@@ -455,10 +455,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-13T23:02:18+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-14T13:16:50+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>updated at Nov 13, 2019</p>
+    <p>updated at Nov 14, 2019</p>
   </a>
 </div>
 
@@ -578,7 +578,21 @@
 
 
 
-  
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;Comments</h4>
+      
+      
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-spinner fa-spin fa-fw"></i>
+          </div>
+        </section>
+      
+    </section>
+  </article>
 
 
 
@@ -1091,6 +1105,36 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+    
+      <script src="https://www.chenqaq.com/js/volantis.js"></script>
+    
+  
+  <script>
+  var GUEST_INFO = ['nick','mail','link'];
+  var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var notify = 'true' == true;
+  var verify = 'true' == true;
+  var valine = new Valine();
+  valine.init({
+    el: '#valine_container',
+    notify: notify,
+    verify: verify,
+    guest_info: guest_info,
+    
+    appId: "rHHVLGdGTcJm8NvtrtnJInkX-gzGzoHsz",
+    appKey: "QXzgEzka47xO6X8fhHgc6ei4",
+    placeholder: "快来评论吧~",
+    pageSize:'10',
+    avatar:'mp',
+    lang:'zh-cn',
+    highlight:'true'
+  })
+  </script>
 
 
 
