@@ -177,7 +177,7 @@
 			
 				<div class="m_search">
 					<form name="searchform" class="form u-search-form">
-						<input type="text" class="input u-search-input" placeholder="搜尋" />
+						<input type="text" class="input u-search-input" placeholder="Search" />
 						<i class="icon fas fa-search fa-fw"></i>
 					</form>
 				</div>
@@ -414,12 +414,8 @@
 <h1 id="完成node简易爬虫系统"><a href="#完成node简易爬虫系统" class="headerlink" title="完成node简易爬虫系统"></a>完成node简易爬虫系统</h1><p>因为alsotang前辈的<a href="https://github.com/alsotang/node-lessons" target="_blank" rel="noopener">《node包教不包会》</a>教程例子中使用的eventproxy控制的并发数量，我们就来完成一个使用async控制并发数量的node简易爬虫。</p>
 <p>爬取的目标就是<a href="http://www.chenqaq.com">本站首页</a>（手动护脸）</p>
 <p>第一步，首先我们需要用到以下的模块：</p>
-<ul>
-<li>url ： 用于url解析，这里用到<code>url.resolve()</code>生成一个合法的域名</li>
-<li>async ： 一个实用的模块，提供了强大的功能和异步JavaScript工作</li>
-<li>cheerio ： 为服务器特别定制的，快速，灵活，实施的jQuery核心实现</li>
-<li>superagent ： nodejs里一个非常方便的客户端请求代理模块</li>
-</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">- url ： 用于url解析，这里用到<span class="string">`url.resolve()`</span>生成一个合法的域名</span><br><span class="line">- <span class="keyword">async</span> ： 一个实用的模块，提供了强大的功能和异步JavaScript工作</span><br><span class="line">- cheerio ： 为服务器特别定制的，快速，灵活，实施的jQuery核心实现</span><br><span class="line">- superagent ： nodejs里一个非常方便的客户端请求代理模块</span><br></pre></td></tr></table></figure>
+
 <p>通过<code>npm</code>安装依赖模块</p>
 <fancybox>
 ![](http://www.chenqaq.com/assets/images/concurrency2.png)
@@ -465,10 +461,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-14T23:52:35+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-14T23:55:45+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新於 Nov 14, 2019</p>
+    <p>updated at Nov 14, 2019</p>
   </a>
 </div>
 
@@ -540,7 +536,7 @@
               
                   <section class="prev">
                       <span class="art-item-left">
-                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一頁</h6>
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous</h6>
                           <h4>
                               <a href="/2018/01/10/life-aboutSchool-finalExam/" rel="prev" title="学校寒冬的清晨和深夜">
                                 
@@ -560,7 +556,7 @@
               
                   <section class="next">
                       <span class="art-item-right" aria-hidden="true">
-                          <h6>下一頁&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h6>Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
                               <a href="/2017/12/29/dependencies-devDependencies/" rel="prev" title="package.json的正确使用姿势">
                                   
@@ -590,7 +586,7 @@
 
   <article class="post white-box comments">
     <section class="article typo">
-      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;評論</h4>
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;Comments</h4>
       
       
       
@@ -713,7 +709,7 @@
   <section class='widget toc-wrapper'>
     
 <header class='pure'>
-  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目錄</div>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;TOC</div>
   
     <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer noopener" href="javascript:void(0)" target="_blank"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
   
@@ -869,7 +865,7 @@
   <section class='widget category'>
     
 <header class='pure'>
-  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分類</div>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
   
     <a class="rightBtn"
     
@@ -943,7 +939,7 @@
   <section class='widget tagcloud'>
     
 <header class='pure'>
-  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;熱門標籤</div>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
   
     <a class="rightBtn"
     
@@ -1106,20 +1102,20 @@
     </div>
   
   <br>
-  <!-- <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW" target="_blank" rel="noopener">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
+  <!-- <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
 </div> -->
   <div>
     <a href="https://www.github.com/okaychen" target="_blank" class="codename" style="text-decoration:none">Copyright © 2017-2019  OkayChen</a>
   </div>
   <div style="margin-top:5px;">
     
-      <!-- ， -->
+      <!-- ,  -->
       <!-- total visits -->
       本站总访问量为
       <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
       times
     
-    <!-- 。 -->
+    <!-- .  -->
   </div>
 </footer>
 <script>setLoadingBarProgress(80);</script>
@@ -1230,15 +1226,15 @@
 <!-- 复制 -->
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
-  let COPY_SUCCESS = "複製成功";
-  let COPY_FAILURE = "複製失敗";
+  let COPY_SUCCESS = "Copied";
+  let COPY_FAILURE = "Copy failed";
   /*页面载入完成后，创建复制按钮*/
   !function (e, t, a) {
     /* code */
     var initCopyCode = function(){
       var copyHtml = '';
       copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '  <i class="fa fa-copy"></i><span>複製</span>';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
       copyHtml += '</button>';
       $(".highlight .code pre").before(copyHtml);
       var clipboard = new ClipboardJS('.btn-copy', {
