@@ -368,7 +368,13 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      
+      <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>最近在读《JavaScript启示录》，这本书不是JavaScript的详尽的参考指南，但是把对象作为了解JavaScript的透镜，受益匪浅。</p>
+<p>那么我们先来聊一下JavaScript的原始值（值类型）以及复杂值（引用类型），以及他们在内存空间中的存储，关于他们你可能不清楚的一些事：</p>
+<p>我们先通过一个经典的面试题类型（并不是原题，我即兴发挥）引出我们今天的主题：</p>
+<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231017985-195870781.png" alt=""><br><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231023453-1314449337.png" alt=""></p>
+<p>我们已经看出他们的差别，在图一：我们让b = a，改变b的值，发现a并没有改变。在图二：我们让d = c,通过d.name改变对象的name属性，发现c.name也变化了。</p>
+<p>事实上，原始值存储在栈内存中，按值来访问。复杂值（引用类型）在堆内存里面，按引用地址访问；然后我们会想到局部变量和全局变量在内存中的存储：</p>
+<p>下面会具体介绍复杂值、原始值以及他们的一些特性与内存空间：</p>
       
         <div class="readmore">
           <a href="/2017/09/14/js-type20170914/" class="flat-box">
@@ -463,7 +469,9 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      
+      <p>从16年刚步入校园，转眼之间迎来了我的大二生活。</p>
+<p>在很多人眼中，刚步入大学的新生是懵懂无知、没有目标的一年，对未来的生活没有想象，对于自己的明天或许仍然没有选择；但是我俨然过成了激情中又充满安稳的一年（这或许在别人眼中是乏味的吧），因为我最庆幸的是，我一开始就坚定着我的目标，至少直到现在我没有动摇，而且在接下来的大二生活，我仍然不想动摇，我会继续着我的目标。</p>
+<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170909003809929-1215489348.png" alt=""></p>
       
         <div class="readmore">
           <a href="/2017/09/09/life-aboutLife20170909/" class="flat-box">
@@ -564,7 +572,10 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      
+      <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>最近读《node.js学习指南》，对于mongodb没有介绍太多的工作原理，但是对于一个前端开发者，即使你还没有用过这种数据库也可以让你很好的理解和使用</p>
+<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170902035102780-1333013103.png" alt="">   　　</p>
+<p>一本非常好的介绍node.js的书，我一直把他放在触手可及的地方。　　–Mike Amundsen</p>
+<p>MongoDB Native Node.js Driver模块是mongodb自带的node的驱动，这个驱动发出的mongodb指令和mongodb客户端发出的指令基本一致。</p>
       
         <div class="readmore">
           <a href="/2017/09/02/node-mongodb-connection20170902/" class="flat-box">

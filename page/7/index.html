@@ -300,7 +300,8 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      
+      <p>依据我现有的知识，在前端上”简易”的实现了腾讯信用的界面，同时自己自制了一个竖直的刻度尺插件，曲线的位置可以根据传入的数值动态的改变，这次主要也想总结一下关于jQuery中extend的方法，也是我们在写插件的时候常用的方法</p>
+<h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="https://images2017.cnblogs.com/blog/1140602/201708/1140602-20170812102040413-1604886858.gif" alt=""></p>
       
         <div class="readmore">
           <a href="/2017/08/12/js-rule20170812/" class="flat-box">
@@ -401,7 +402,28 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      
+      <p>我们在实际的开发中，经常要获取页面中某个html元素，动态更新元素的样式、内容属性等。</p>
+<img src="http://images2017.cnblogs.com/blog/1140602/201708/1140602-20170811173058398-1140296284.gif" alt="">
+
+<p>我们已经知道在JavaScript中提供下面的方法获取子、父、兄节点的方法：</p>
+<h1 id="常规"><a href="#常规" class="headerlink" title="常规"></a>常规</h1><p>1.通过父节点获取子节点：</p>
+<ul>
+<li>获取已知父节点的第一个子节点:<code>parentObj.firstChild</code></li>
+<li>获取已知父节点的最后一个子节点:<code>parentObj.lastChild</code></li>
+<li>获取已知父节点的子节点数组(这里我在IE 7中获取的是所有直接的子节点):<code>parentObj.childNodes</code>　　</li>
+<li>获取已知节点的直接子节点数组（在IE7中和childNodes效果一样）:<code>parentObj.children</code>  </li>
+<li>返回已知子节点中类型为指定值的子节点数组:<code>parentObj.getElementsByTagName(tagName)</code>  </li>
+</ul>
+<p>2.通过临近节点获取兄弟节点：</p>
+<ul>
+<li>获取已知节点的前一个兄弟节点:<code>neighbourNode.previousSibing</code></li>
+<li>获取已知节点的下一个兄弟节点:<code>neighbourNode.nextSibing</code></li>
+</ul>
+<p>3.通过子节点获取父节点：</p>
+<ul>
+<li>获取已知节点的父节点:<code>childNode.parentNode</code></li>
+</ul>
+<p>上面的方法基本都是可以递归是使用的，但并不是最优</p>
       
         <div class="readmore">
           <a href="/2017/08/11/js-findNode20170811/" class="flat-box">
@@ -502,7 +524,8 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      
+      <h1 id="写在前面："><a href="#写在前面：" class="headerlink" title="写在前面：　"></a>写在前面：　</h1><p>这次我主要想总结一下微信小程序实现上下滚动消息提醒，主要是利用swiper组件来实现，swiper组件在小程序中是滑块视图容器。</p>
+<h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><img src="https://images2017.cnblogs.com/blog/1140602/201708/1140602-20170802200717553-132653419.gif" alt="">
       
         <div class="readmore">
           <a href="/2017/08/02/wx-miniProgram20170802/" class="flat-box">
@@ -603,7 +626,11 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      
+      <p>看大家都自愿报了老师移动互联的暑期培训，但是却拿不出兴趣和势头，那大家和我都失去了参与这次培训的意义。</p>
+<p>我参与这次培训是想对自己这近一年前端知识做一个总结和梳理，你说你学会了很多东西，其实不然，我觉得目前为止对我们来说有三样东西你能告诉自己你学到了些东西：</p>
+<p>一是抓住参加比赛的机会，自己动手去做；</p>
+<p>二是要抓住做项目的机会；</p>
+<p>三是能把学到的东西讲给别人。</p>
       
         <div class="readmore">
           <a href="/2017/07/13/life-aboutlife20170713/" class="flat-box">

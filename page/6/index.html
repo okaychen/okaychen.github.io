@@ -398,7 +398,13 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      
+      <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>最近在读《JavaScript启示录》，这本书不是JavaScript的详尽的参考指南，但是把对象作为了解JavaScript的透镜，受益匪浅。</p>
+<p>那么我们先来聊一下JavaScript的原始值（值类型）以及复杂值（引用类型），以及他们在内存空间中的存储，关于他们你可能不清楚的一些事：</p>
+<p>我们先通过一个经典的面试题类型（并不是原题，我即兴发挥）引出我们今天的主题：</p>
+<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231017985-195870781.png" alt=""><br><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231023453-1314449337.png" alt=""></p>
+<p>我们已经看出他们的差别，在图一：我们让b = a，改变b的值，发现a并没有改变。在图二：我们让d = c,通过d.name改变对象的name属性，发现c.name也变化了。</p>
+<p>事实上，原始值存储在栈内存中，按值来访问。复杂值（引用类型）在堆内存里面，按引用地址访问；然后我们会想到局部变量和全局变量在内存中的存储：</p>
+<p>下面会具体介绍复杂值、原始值以及他们的一些特性与内存空间：</p>
       
         <div class="readmore">
           <a href="/2017/09/14/js-type20170914/" class="flat-box">
@@ -493,7 +499,9 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      
+      <p>从16年刚步入校园，转眼之间迎来了我的大二生活。</p>
+<p>在很多人眼中，刚步入大学的新生是懵懂无知、没有目标的一年，对未来的生活没有想象，对于自己的明天或许仍然没有选择；但是我俨然过成了激情中又充满安稳的一年（这或许在别人眼中是乏味的吧），因为我最庆幸的是，我一开始就坚定着我的目标，至少直到现在我没有动摇，而且在接下来的大二生活，我仍然不想动摇，我会继续着我的目标。</p>
+<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170909003809929-1215489348.png" alt=""></p>
       
         <div class="readmore">
           <a href="/2017/09/09/life-aboutLife20170909/" class="flat-box">
@@ -594,7 +602,10 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      
+      <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>最近读《node.js学习指南》，对于mongodb没有介绍太多的工作原理，但是对于一个前端开发者，即使你还没有用过这种数据库也可以让你很好的理解和使用</p>
+<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170902035102780-1333013103.png" alt="">   　　</p>
+<p>一本非常好的介绍node.js的书，我一直把他放在触手可及的地方。　　–Mike Amundsen</p>
+<p>MongoDB Native Node.js Driver模块是mongodb自带的node的驱动，这个驱动发出的mongodb指令和mongodb客户端发出的指令基本一致。</p>
       
         <div class="readmore">
           <a href="/2017/09/02/node-mongodb-connection20170902/" class="flat-box">
@@ -697,7 +708,12 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      
+      <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在读《JavaScript语言精粹》，对递归函数有了进一步的认识，希望总结下来：</p>
+<p>递归是一种强大的编程技术，他把一个问题分解为一组相似的子问题，每一问题都用一个寻常解去解决。递归函数就是会直接或者间接调用自身的一种函数，一般来说，一个递归函数调用自身去解决它的子问题。</p>
+<h1 id="“汉诺塔”经典递归问题"><a href="#“汉诺塔”经典递归问题" class="headerlink" title="“汉诺塔”经典递归问题"></a>“汉诺塔”经典递归问题</h1><p>“汉诺塔”是印度的一个古老传说，也是程序设计中的经典的递归问题，是一个著名的益智游戏：</p>
+<p>题目如下：</p>
+<p>塔上有三根柱子和一套直径各不相同的空心圆盘，开始时源柱子上的所有圆盘都按从大到小的顺序排列。目标是通过每一次移动一个圆盘到另一根柱子上，最终把一堆圆盘移动到目标柱子上，过程中不允许把较大的圆盘放置在较小的圆盘上；</p>
+<p><img src="https://images2017.cnblogs.com/blog/1140602/201708/1140602-20170826161041339-1044886841.png" alt="">　</p>
       
         <div class="readmore">
           <a href="/2017/08/31/js-algorithm20170831/" class="flat-box">
@@ -798,7 +814,7 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      
+      <p>正则表达式提供另一种强大的文本搜索和处理方式，对于正则表达式，不同语言有着不同的实现，JavaScript采用的Perl5的语法。对于极少数匹配模式是简单的全字符文本的情况，我们往往会采用indexOf这样的方法，但是多数情况下，匹配模式往往都更为复杂。</p>
       
         <div class="readmore">
           <a href="/2017/08/19/js-regular20170819/" class="flat-box">
