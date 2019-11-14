@@ -943,7 +943,8 @@ ul.h-list>li {
 }
 
 .l_header .logo img {
-    height: 100%
+    height: 80%;
+    vertical-align: middle;
 }
 
 .l_header img.logo {
