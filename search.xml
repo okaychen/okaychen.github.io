@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>置顶公告</title>
+      <link href="/2019/11/14/attention/"/>
+      <url>/2019/11/14/attention/</url>
+      
+        <content type="html"><![CDATA[<p>2019年11月14日,更换博客主题,新增Valine评论</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>node爬虫实践</title>
       <link href="/2019/11/05/node-cheerio-reptile-md/"/>
       <url>/2019/11/05/node-cheerio-reptile-md/</url>
