@@ -177,7 +177,7 @@
 			
 				<div class="m_search">
 					<form name="searchform" class="form u-search-form">
-						<input type="text" class="input u-search-input" placeholder="搜尋" />
+						<input type="text" class="input u-search-input" placeholder="Search" />
 						<i class="icon fas fa-search fa-fw"></i>
 					</form>
 				</div>
@@ -375,14 +375,14 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>最近读《node.js学习指南》，对于mongodb没有介绍太多的工作原理，但是对于一个前端开发者，即使你还没有用过这种数据库也可以让你很好的理解和使用</p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170902035102780-1333013103.png" alt="">   　　</p>
+<p><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170902035102780-1333013103.png" alt="">   　　</p>
 <p>一本非常好的介绍node.js的书，我一直把他放在触手可及的地方。　　–Mike Amundsen</p>
 <p>MongoDB Native Node.js Driver模块是mongodb自带的node的驱动，这个驱动发出的mongodb指令和mongodb客户端发出的指令基本一致。</p>
       
         <div class="readmore">
           <a href="/2017/09/02/node-mongodb-connection20170902/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -622,7 +622,7 @@
   <section class='widget category'>
     
 <header class='pure'>
-  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分類</div>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
   
     <a class="rightBtn"
     
@@ -700,7 +700,7 @@
   <section class='widget tagcloud'>
     
 <header class='pure'>
-  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;熱門標籤</div>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
   
     <a class="rightBtn"
     
@@ -866,20 +866,20 @@
     </div>
   
   <br>
-  <!-- <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW" target="_blank" rel="noopener">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
+  <!-- <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
 </div> -->
   <div>
     <a href="https://www.github.com/okaychen" target="_blank" class="codename" style="text-decoration:none">Copyright © 2017-2019  OkayChen</a>
   </div>
   <div style="margin-top:5px;">
     
-      <!-- ， -->
+      <!-- ,  -->
       <!-- total visits -->
       本站总访问量为
       <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
       times
     
-    <!-- 。 -->
+    <!-- .  -->
   </div>
 </footer>
 <script>setLoadingBarProgress(80);</script>
@@ -960,15 +960,15 @@
 <!-- 复制 -->
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
-  let COPY_SUCCESS = "複製成功";
-  let COPY_FAILURE = "複製失敗";
+  let COPY_SUCCESS = "Copied";
+  let COPY_FAILURE = "Copy failed";
   /*页面载入完成后，创建复制按钮*/
   !function (e, t, a) {
     /* code */
     var initCopyCode = function(){
       var copyHtml = '';
       copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '  <i class="fa fa-copy"></i><span>複製</span>';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
       copyHtml += '</button>';
       $(".highlight .code pre").before(copyHtml);
       var clipboard = new ClipboardJS('.btn-copy', {

@@ -177,7 +177,7 @@
 			
 				<div class="m_search">
 					<form name="searchform" class="form u-search-form">
-						<input type="text" class="input u-search-input" placeholder="搜尋" />
+						<input type="text" class="input u-search-input" placeholder="Search" />
 						<i class="icon fas fa-search fa-fw"></i>
 					</form>
 				</div>
@@ -380,12 +380,12 @@
 <p>前端路由是找到地址匹配的一个组件或者对象将其渲染出来。改变浏览器地址不向服务器发送请求有两种方法，</p>
 <p>一是在地址中加入#以欺骗浏览器，地址的改变是由于正在进行页内导航；二是使用HTML5的window.history功能，使用URL的hash来模拟一个完整的URL。</p>
 <p>vue-router是官方提供的一套专用的路由工具库，是vue的一个插件，我们需要在全局引用中通过vue.use()将它引入到vue实例中，</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201711/1140602-20171107001954622-121090007.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20171107001954622-121090007.png" alt=""></fancybox></p>
       
         <div class="readmore">
           <a href="/2017/11/07/vue-advance20171107/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -508,7 +508,7 @@
         <div class="readmore">
           <a href="/2017/11/06/js-designPattern20171106/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -606,7 +606,7 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201711/1140602-20171101130631545-1261006104.png" alt=""></fancybox></p>
+      <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20171101130631545-1261006104.png" alt=""></fancybox></p>
 <p>读了博友吕大豹前辈的博文《假如大学可以重来》，我决定走心写下这篇文章：</p>
 <p>不像考卷一样所有的问题都能得到一个答案，真正的人生有些事情永远没有答案，</p>
 <p>青春是如此美好，我们又怎忍心平凡度过.</p>
@@ -614,7 +614,7 @@
         <div class="readmore">
           <a href="/2017/11/01/life-aboutLife20171101/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -850,7 +850,7 @@
   <section class='widget category'>
     
 <header class='pure'>
-  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分類</div>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
   
     <a class="rightBtn"
     
@@ -928,7 +928,7 @@
   <section class='widget tagcloud'>
     
 <header class='pure'>
-  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;熱門標籤</div>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
   
     <a class="rightBtn"
     
@@ -1094,20 +1094,20 @@
     </div>
   
   <br>
-  <!-- <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW" target="_blank" rel="noopener">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
+  <!-- <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
 </div> -->
   <div>
     <a href="https://www.github.com/okaychen" target="_blank" class="codename" style="text-decoration:none">Copyright © 2017-2019  OkayChen</a>
   </div>
   <div style="margin-top:5px;">
     
-      <!-- ， -->
+      <!-- ,  -->
       <!-- total visits -->
       本站总访问量为
       <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
       times
     
-    <!-- 。 -->
+    <!-- .  -->
   </div>
 </footer>
 <script>setLoadingBarProgress(80);</script>
@@ -1196,15 +1196,15 @@
 <!-- 复制 -->
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
-  let COPY_SUCCESS = "複製成功";
-  let COPY_FAILURE = "複製失敗";
+  let COPY_SUCCESS = "Copied";
+  let COPY_FAILURE = "Copy failed";
   /*页面载入完成后，创建复制按钮*/
   !function (e, t, a) {
     /* code */
     var initCopyCode = function(){
       var copyHtml = '';
       copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '  <i class="fa fa-copy"></i><span>複製</span>';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
       copyHtml += '</button>';
       $(".highlight .code pre").before(copyHtml);
       var clipboard = new ClipboardJS('.btn-copy', {

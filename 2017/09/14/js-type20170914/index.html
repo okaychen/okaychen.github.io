@@ -177,7 +177,7 @@
 			
 				<div class="m_search">
 					<form name="searchform" class="form u-search-form">
-						<input type="text" class="input u-search-input" placeholder="搜尋" />
+						<input type="text" class="input u-search-input" placeholder="Search" />
 						<i class="icon fas fa-search fa-fw"></i>
 					</form>
 				</div>
@@ -383,8 +383,8 @@
         <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>最近在读《JavaScript启示录》，这本书不是JavaScript的详尽的参考指南，但是把对象作为了解JavaScript的透镜，受益匪浅。</p>
 <p>那么我们先来聊一下JavaScript的原始值（值类型）以及复杂值（引用类型），以及他们在内存空间中的存储，关于他们你可能不清楚的一些事：</p>
 <p>我们先通过一个经典的面试题类型（并不是原题，我即兴发挥）引出我们今天的主题：</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231017985-195870781.png" alt=""></fancybox></p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231023453-1314449337.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170913231017985-195870781.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170913231023453-1314449337.png" alt=""></fancybox></p>
 <p>我们已经看出他们的差别，在图一：我们让b = a，改变b的值，发现a并没有改变。在图二：我们让d = c,通过d.name改变对象的name属性，发现c.name也变化了。</p>
 <p>事实上，原始值存储在栈内存中，按值来访问。复杂值（引用类型）在堆内存里面，按引用地址访问；然后我们会想到局部变量和全局变量在内存中的存储：</p>
 <p>下面会具体介绍复杂值、原始值以及他们的一些特性与内存空间：</p>
@@ -395,46 +395,46 @@
 <p>这里需要注意的是：与使用字面量语法创建相反，在使用new关键字创建的String，Number,或Boolean值时，创建的实际上是一个复杂对象，此时已不在是原始值。</p>
 </blockquote>
 <p>a、下面对原始值和原生JavaScript对象之间的差异进行了比较：</p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231146563-337622010.png" alt="">
+<p><img src="https://www.chenqaq.com/assets/cnblogs_img/201709/1140602-20170913231146563-337622010.png" alt="">
 　　</p>
 <p>需要注意没有使用new关键词，从构造函数返回的字符、数字、布尔值 对比 使用字面量方法所创建的仍然不是对象。</p>
 <p>b、我们在来对比一下使用new关键字创建的构造函数：</p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231156532-810228402.png" alt=""></p>
+<p><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170913231156532-810228402.png" alt=""></p>
 <blockquote>
 <p>除了new出来的Function()对象返回的是function,其他都是object，其实在JavaScript中对函数定义非常高，因此在引用类型中，typeof能检测出函数的详细类型。</p>
 </blockquote>
 <p>上述代码可以告诉我们：原始值不是对象，原始值的特殊之处是用于表示简单值；</p>
 <h1 id="2、原始值的赋值，存储，比较方式"><a href="#2、原始值的赋值，存储，比较方式" class="headerlink" title="2、原始值的赋值，存储，比较方式"></a>2、原始值的赋值，存储，比较方式</h1><p>a、原始值在“ 面值（face value）”中的存储和操作，理解这一点非常重要，因为原始值是真实值的复制：</p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231311875-1631648021.png" alt=""></p>
+<p><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170913231311875-1631648021.png" alt=""></p>
 <p>这里的重点是，原始值是作为不可细化的值进行存储和操作的，引用他们会转移其值：这里的意思也就是原始值（值类型）在内存中每一个值都会存储在对应的变量的中去，也就是一个真实值的”复制”。</p>
 <p>b、原始值的比较采用值比较</p>
 <p>我们通过比较原始值来确定其值在字面上是否相同，</p>
 <p>通过下面的代码来理解“值比较“的概念，并将它与复杂数字进行比较：</p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231319063-1160059969.png" alt=""></p>
+<p><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170913231319063-1160059969.png" alt=""></p>
 <p>这里的重点是，在进行比较时，原始值会去检查表示的值是否相等，这里我们要特别和复杂值进行比较（因为复杂值不会去比较值是否相等，而是比较引用地址是否相同）</p>
 <h1 id="3、原始值（String-Number-Boolean）在被用做对象时就像对象"><a href="#3、原始值（String-Number-Boolean）在被用做对象时就像对象" class="headerlink" title="3、原始值（String,Number,Boolean）在被用做对象时就像对象"></a>3、原始值（String,Number,Boolean）在被用做对象时就像对象</h1><p>null和undefined都是非常简单的值，它们不需要构造函数，也没有new操作为自己创建JavaScript值（可以把他们当做操作符来使用即可）</p>
 <p>原始值被当做构造函数创建的一个对象来使用时（注意不使用new），JavaScript会把其转化为一个对象，以便可以使用对象的特性（如方法），而抛弃对象的性质，并将它返回到原始值。</p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231332547-1514482111.png" alt=""></p>
+<p><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170913231332547-1514482111.png" alt=""></p>
 <p>上述实例代码，所有的原始值（除null、undefined）都被转化为对象，以便充分利用toString()方法。一旦调用和返回改方法，对象就会被转换成对象值。这样我相信我们能很好的理解标题了</p>
 <h1 id="4、复杂值（复合对象、引用类型）"><a href="#4、复杂值（复合对象、引用类型）" class="headerlink" title="4、复杂值（复合对象、引用类型）"></a>4、复杂值（复合对象、引用类型）</h1><p>本质上，复杂对象其在内存中的大小是未知的，因为复杂对象可以包含任何值：</p>
 <p>下面通过字面量的方法创建一个对象和数组</p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231400032-907471302.png" alt=""></p>
+<p><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170913231400032-907471302.png" alt=""></p>
 <p>相比简单的原始值，原始值不能表示复杂值，而复杂值可以封装任意的JavaScript值</p>
 <h1 id="5、如何存储或复制复杂值"><a href="#5、如何存储或复制复杂值" class="headerlink" title="5、如何存储或复制复杂值"></a>5、如何存储或复制复杂值</h1><p>复杂值是通过引用来进行存储和操作的，这就回到了开始那个问题的图二，理解这一点非常重要。创建一个包含复杂对象的变量时，其值是内存中的一个引用地址。引用一个复杂对象时，使用它的名称（即变量或对象属性）通过内存中的引用地址获取对象值。当我们试图复制一个复杂值的时候，理解这就非常重要了。复杂值复制的过程、其实并不是复制对象，更多的是像复制对象的地址。</p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231431438-2039701940.png" alt=""></p>
+<p><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170913231431438-2039701940.png" alt=""></p>
 <p>所以就像上面说过的，复制的是内存堆栈中对象的地址或者引用。</p>
 <h1 id="6、复杂对象比较采用引用比较"><a href="#6、复杂对象比较采用引用比较" class="headerlink" title="6、复杂对象比较采用引用比较"></a>6、复杂对象比较采用引用比较</h1><p>也就是说：复杂对象只有在引用相同的对象（即有相同的引用地址）时才相等：</p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231437907-916859876.png" alt=""> 　　</p>
+<p><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170913231437907-916859876.png" alt=""> 　　</p>
 <p>我相信我们已经理解：指向内存中复杂对象的变量，只有在引用相同对的‘地址’的情况下才是相等的，相反，两个单独创建的对象、即使具有相同的类型并拥有完全相同的属性，他们也是不相等的。</p>
 <h1 id="7、复杂对象具有动态属性"><a href="#7、复杂对象具有动态属性" class="headerlink" title="7、复杂对象具有动态属性"></a>7、复杂对象具有动态属性</h1><p>通过这一点，我们可以根据需求为复杂对象有任意多个引用。</p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913233107141-918248776.png" alt=""></p>
+<p><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170913233107141-918248776.png" alt=""></p>
 <p>上述代码，objA、pointer1、pointer2都引用了内存中的同一对象，</p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913233609360-1143644352.png" alt=""></p>
-<p>这三个每次调用对象的方法都会叫他‘一个人’<br><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170914001921625-1701844322.png" alt=""></p>
+<p><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170913233609360-1143644352.png" alt=""></p>
+<p>这三个每次调用对象的方法都会叫他‘一个人’<br><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170914001921625-1701844322.png" alt=""></p>
 <p>复杂对象支持动态对象属性，因为我们可以定义对象，然后创建引用，在更新对象、并且所有指向该对象的变量都会’获得’更新.</p>
 <h1 id="8、动态属性支持异变对象"><a href="#8、动态属性支持异变对象" class="headerlink" title="8、动态属性支持异变对象"></a>8、动态属性支持异变对象</h1><p>复杂对象是由动态属性构成的，这一点非常重要，这使得用户自定义对象和大多数原生对象产生突变。通过增加原生对象、来改变JavaScript本身的原生预配置特性：</p>
 <p>下面我们在原生构造函数上存储属性，并在原型对象上，向原生对象添加新方法：</p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231534250-51088985.png" alt=""></p>
+<p><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170913231534250-51088985.png" alt=""></p>
 <p>所以我们明白，JavaScript的对象是动态的，这使得JavaScript对象是可变的。通过自定义我们改变了原生内部的运行机制，你会获得一个自定义版本的JavaScript来处理程序，但是使用一定要谨慎。</p>
 <h1 id="9、两个存储空间：栈-amp-amp-堆"><a href="#9、两个存储空间：栈-amp-amp-堆" class="headerlink" title="9、两个存储空间：栈&amp;&amp;堆"></a>9、两个存储空间：栈&amp;&amp;堆</h1><p> 我们前面也提到了存储空间，在程序运行时，有两个存储空间可用，一个是栈，归属进程本身的；另一个是堆，所有进程共用的：</p>
 <p>然后就很好理解了，因为局部变量声明在函数周期内部，在函数结束时其生命周期也就结束了，其存储空间位于栈中，当进入函数时，会根据函数内部需求，在栈申请一段内存空间，供局部变量使用。当局部变量生命周期结束后（该函数结束），在栈上释放。</p>
@@ -454,10 +454,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-15T23:02:45+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-15T23:47:06+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新於 Nov 15, 2019</p>
+    <p>updated at Nov 15, 2019</p>
   </a>
 </div>
 
@@ -550,7 +550,7 @@
               
                   <section class="prev">
                       <span class="art-item-left">
-                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一頁</h6>
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous</h6>
                           <h4>
                               <a href="/2017/09/14/js-this20170914/" rel="prev" title="this四种绑定方式之间的奇淫技巧">
                                 
@@ -570,7 +570,7 @@
               
                   <section class="next">
                       <span class="art-item-right" aria-hidden="true">
-                          <h6>下一頁&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h6>Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
                               <a href="/2017/09/09/life-aboutLife20170909/" rel="prev" title="这一年，是责任与奋勉齐驱并进">
                                   
@@ -600,7 +600,7 @@
 
   <article class="post white-box comments">
     <section class="article typo">
-      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;評論</h4>
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;Comments</h4>
       
       
       
@@ -723,7 +723,7 @@
   <section class='widget toc-wrapper'>
     
 <header class='pure'>
-  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目錄</div>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;TOC</div>
   
     <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer noopener" href="javascript:void(0)" target="_blank"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
   
@@ -879,7 +879,7 @@
   <section class='widget category'>
     
 <header class='pure'>
-  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分類</div>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
   
     <a class="rightBtn"
     
@@ -957,7 +957,7 @@
   <section class='widget tagcloud'>
     
 <header class='pure'>
-  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;熱門標籤</div>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
   
     <a class="rightBtn"
     
@@ -1146,20 +1146,20 @@
     </div>
   
   <br>
-  <!-- <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW" target="_blank" rel="noopener">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
+  <!-- <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
 </div> -->
   <div>
     <a href="https://www.github.com/okaychen" target="_blank" class="codename" style="text-decoration:none">Copyright © 2017-2019  OkayChen</a>
   </div>
   <div style="margin-top:5px;">
     
-      <!-- ， -->
+      <!-- ,  -->
       <!-- total visits -->
       本站总访问量为
       <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
       times
     
-    <!-- 。 -->
+    <!-- .  -->
   </div>
 </footer>
 <script>setLoadingBarProgress(80);</script>
@@ -1270,15 +1270,15 @@
 <!-- 复制 -->
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
-  let COPY_SUCCESS = "複製成功";
-  let COPY_FAILURE = "複製失敗";
+  let COPY_SUCCESS = "Copied";
+  let COPY_FAILURE = "Copy failed";
   /*页面载入完成后，创建复制按钮*/
   !function (e, t, a) {
     /* code */
     var initCopyCode = function(){
       var copyHtml = '';
       copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '  <i class="fa fa-copy"></i><span>複製</span>';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
       copyHtml += '</button>';
       $(".highlight .code pre").before(copyHtml);
       var clipboard = new ClipboardJS('.btn-copy', {

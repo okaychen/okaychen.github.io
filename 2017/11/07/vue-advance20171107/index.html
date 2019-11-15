@@ -177,7 +177,7 @@
 			
 				<div class="m_search">
 					<form name="searchform" class="form u-search-form">
-						<input type="text" class="input u-search-input" placeholder="搜尋" />
+						<input type="text" class="input u-search-input" placeholder="Search" />
 						<i class="icon fas fa-search fa-fw"></i>
 					</form>
 				</div>
@@ -384,7 +384,7 @@
 <p>前端路由是找到地址匹配的一个组件或者对象将其渲染出来。改变浏览器地址不向服务器发送请求有两种方法，</p>
 <p>一是在地址中加入#以欺骗浏览器，地址的改变是由于正在进行页内导航；二是使用HTML5的window.history功能，使用URL的hash来模拟一个完整的URL。</p>
 <p>vue-router是官方提供的一套专用的路由工具库，是vue的一个插件，我们需要在全局引用中通过vue.use()将它引入到vue实例中，</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201711/1140602-20171107001954622-121090007.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20171107001954622-121090007.png" alt=""></fancybox></p>
 <a id="more"></a>
 
 <p>使用vue-cli创建项目后（init初始化时vue-router确认y）</p>
@@ -412,7 +412,7 @@
 <li><code>&lt;router-view&gt;</code>——渲染路径匹配到的组件视图，</li>
 <li><code>&lt;router-link&gt;</code>——支持用户在具有路由功能的应用中导航<br>我们使用整两个标签组件来完成一个简单的页面布局：</li>
 </ul>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201711/1140602-20171107124955231-721484257.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20171107124955231-721484257.png" alt=""></fancybox></p>
 <p>在路由使用时要明确一个原则就是：不直接引用路由定义，（即不要在router-link直接通过 to=’conpontents/rank/rank’ 来导向路由），当显式引用路由定义的URL一旦发生变化，所有引用的地方都要修改。</p>
 <p>在router-link通过名称引用路由：向to属性传入一个对象显式的声明路由的名称：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;router-link :to=<span class="string">"&#123; name:'rank' &#125;"</span>&gt;</span><br></pre></td></tr></table></figure>
@@ -426,7 +426,7 @@
 <p>3、当我们导航进入图书详情页之后，我们可能需要获取属性指定的参数值（即重新将:id参数读取出来），我们可以通过$router.params来完成：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    created () &#123;</span><br><span class="line">       <span class="keyword">const</span> bookID = <span class="keyword">this</span>.$router.params.id</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="嵌套式路由"><a href="#嵌套式路由" class="headerlink" title="嵌套式路由"></a>嵌套式路由</h1><p>我们利用下面的场景，首页/home/读书详情 页面，读书详情也我们不需要底部的导航区域，但是我们使用之前的路由定义，所有的页面都应该具有想用的底部导航条，按前面的路由结构是不可以导航到图书详情页的，如下：</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201711/1140602-20171107172657200-669562006.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20171107172657200-669562006.png" alt=""></fancybox></p>
 <p>所以我们就需要另一种定义路由的方式，对前面的路由进行调整，</p>
 <p>嵌套式路由又叫做子路由，要将路由显示到子视图中就要相应的子路由与之对应，我们只需要在路由定义中使用children数组属性就可以定义子路由了： </p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">routers:[</span><br><span class="line">  &#123; </span><br><span class="line">     name:<span class="string">'Main'</span>,</span><br><span class="line">     path:<span class="string">'/'</span>,</span><br><span class="line">     component:Main,</span><br><span class="line">     children:[</span><br><span class="line">        &#123; <span class="attr">name</span>:<span class="string">'Home'</span>,<span class="attr">path</span>:<span class="string">'home'</span>,<span class="attr">component</span>:Home &#125;</span><br><span class="line">        &#123; <span class="attr">name</span>:<span class="string">'Me'</span>,<span class="attr">path</span>:<span class="string">'me'</span>,<span class="attr">component</span>:Me &#125;</span><br><span class="line">      ]   </span><br><span class="line">   &#125;,</span><br><span class="line">   &#123; <span class="attr">name</span>:<span class="string">'BookDetail'</span>,<span class="attr">path</span>:<span class="string">'/books/:id'</span>,<span class="attr">component</span>:BookDetail &#125;   </span><br><span class="line">]</span><br></pre></td></tr></table></figure>
@@ -449,10 +449,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-15T22:59:26+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-15T23:50:25+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新於 Nov 15, 2019</p>
+    <p>updated at Nov 15, 2019</p>
   </a>
 </div>
 
@@ -536,7 +536,7 @@ vue-router是官方提供的一套专用的路由工具库，是vue的一个插�
               
                   <section class="prev">
                       <span class="art-item-left">
-                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一頁</h6>
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous</h6>
                           <h4>
                               <a href="/2017/12/05/js-snakey/" rel="prev" title="手起刀落-一起写经典的贪吃蛇游戏">
                                 
@@ -556,7 +556,7 @@ vue-router是官方提供的一套专用的路由工具库，是vue的一个插�
               
                   <section class="next">
                       <span class="art-item-right" aria-hidden="true">
-                          <h6>下一頁&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h6>Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
                               <a href="/2017/11/06/js-designPattern20171106/" rel="prev" title="设计模式之单例模式与场景实践">
                                   
@@ -586,7 +586,7 @@ vue-router是官方提供的一套专用的路由工具库，是vue的一个插�
 
   <article class="post white-box comments">
     <section class="article typo">
-      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;評論</h4>
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;Comments</h4>
       
       
       
@@ -709,7 +709,7 @@ vue-router是官方提供的一套专用的路由工具库，是vue的一个插�
   <section class='widget toc-wrapper'>
     
 <header class='pure'>
-  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目錄</div>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;TOC</div>
   
     <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer noopener" href="javascript:void(0)" target="_blank"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
   
@@ -865,7 +865,7 @@ vue-router是官方提供的一套专用的路由工具库，是vue的一个插�
   <section class='widget category'>
     
 <header class='pure'>
-  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分類</div>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
   
     <a class="rightBtn"
     
@@ -943,7 +943,7 @@ vue-router是官方提供的一套专用的路由工具库，是vue的一个插�
   <section class='widget tagcloud'>
     
 <header class='pure'>
-  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;熱門標籤</div>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
   
     <a class="rightBtn"
     
@@ -1132,20 +1132,20 @@ vue-router是官方提供的一套专用的路由工具库，是vue的一个插�
     </div>
   
   <br>
-  <!-- <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW" target="_blank" rel="noopener">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
+  <!-- <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
 </div> -->
   <div>
     <a href="https://www.github.com/okaychen" target="_blank" class="codename" style="text-decoration:none">Copyright © 2017-2019  OkayChen</a>
   </div>
   <div style="margin-top:5px;">
     
-      <!-- ， -->
+      <!-- ,  -->
       <!-- total visits -->
       本站总访问量为
       <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
       times
     
-    <!-- 。 -->
+    <!-- .  -->
   </div>
 </footer>
 <script>setLoadingBarProgress(80);</script>
@@ -1256,15 +1256,15 @@ vue-router是官方提供的一套专用的路由工具库，是vue的一个插�
 <!-- 复制 -->
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
-  let COPY_SUCCESS = "複製成功";
-  let COPY_FAILURE = "複製失敗";
+  let COPY_SUCCESS = "Copied";
+  let COPY_FAILURE = "Copy failed";
   /*页面载入完成后，创建复制按钮*/
   !function (e, t, a) {
     /* code */
     var initCopyCode = function(){
       var copyHtml = '';
       copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '  <i class="fa fa-copy"></i><span>複製</span>';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
       copyHtml += '</button>';
       $(".highlight .code pre").before(copyHtml);
       var clipboard = new ClipboardJS('.btn-copy', {

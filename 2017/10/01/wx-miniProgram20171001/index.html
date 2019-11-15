@@ -177,7 +177,7 @@
 			
 				<div class="m_search">
 					<form name="searchform" class="form u-search-form">
-						<input type="text" class="input u-search-input" placeholder="搜尋" />
+						<input type="text" class="input u-search-input" placeholder="Search" />
 						<i class="icon fas fa-search fa-fw"></i>
 					</form>
 				</div>
@@ -382,7 +382,7 @@
       <div class="article-entry" itemprop="articleBody">
         <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>本人完成的微信小程序一些常用的特效，总结一下，希望对大家和我都能有所帮助</p>
 <h1 id="实例1：滚动tab选项卡"><a href="#实例1：滚动tab选项卡" class="headerlink" title="实例1：滚动tab选项卡"></a>实例1：滚动tab选项卡</h1><p>先看一下效果图吧，能够点击菜单或滑动页面切换，tab菜单部分可以实现左右滚动</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201710/1140602-20171001014258465-572247537.gif" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20171001014258465-572247537.gif" alt=""></fancybox></p>
 <p>好了，看一下我的源码吧！&lt;有用的话拿走不谢哟，随版本更新代码可能会有出入&gt;</p>
 <a id="more"></a>
 
@@ -394,7 +394,7 @@
 <p>3、js</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> app = getApp();</span><br><span class="line">Page(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    winHeight: <span class="string">""</span>,<span class="comment">//窗口高度</span></span><br><span class="line">    currentTab: <span class="number">0</span>, <span class="comment">//预设当前项的值</span></span><br><span class="line">    scrollLeft: <span class="number">0</span>, <span class="comment">//tab标题的滚动条位置</span></span><br><span class="line">    expertList: [&#123; <span class="comment">//假数据</span></span><br><span class="line">      img: <span class="string">""</span>,</span><br><span class="line">      name: <span class="string">""</span>,</span><br><span class="line">      tag: <span class="string">""</span>,</span><br><span class="line">      answer: <span class="number">134</span>,</span><br><span class="line">      listen: <span class="number">2234</span></span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 滚动切换标签样式</span></span><br><span class="line">  switchTab: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">      currentTab: e.detail.current</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">this</span>.checkCor();</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 点击标题切换当前页时改变样式</span></span><br><span class="line">  swichNav: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> cur = e.target.dataset.current;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.data.currentTaB == cur) &#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">        currentTab: cur</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//判断当前滚动超过一屏时，设置tab标题滚动条。</span></span><br><span class="line">  checkCor: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.data.currentTab &gt; <span class="number">4</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">        scrollLeft: <span class="number">300</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">        scrollLeft: <span class="number">0</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  onLoad: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> that = <span class="keyword">this</span>;</span><br><span class="line">    <span class="comment">//  高度自适应</span></span><br><span class="line">    wx.getSystemInfo(&#123;</span><br><span class="line">      success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> clientHeight = res.windowHeight,</span><br><span class="line">          clientWidth = res.windowWidth,</span><br><span class="line">          rpxR = <span class="number">750</span> / clientWidth;</span><br><span class="line">        <span class="keyword">var</span> calc = clientHeight * rpxR - <span class="number">180</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(calc)</span><br><span class="line">        that.setData(&#123;</span><br><span class="line">          winHeight: calc</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  footerTap: app.footerTap</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <h1 id="实例2：星级评分"><a href="#实例2：星级评分" class="headerlink" title="实例2：星级评分"></a>实例2：星级评分</h1><p>按照惯例先上效果图，默认一星，点击可以选择星级，可半星显示。</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201710/1140602-20171001014822231-1217322466.gif" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20171001014822231-1217322466.gif" alt=""></fancybox></p>
 <p>1、wxml</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">'accessWrapper'</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">'title'</span>&gt;</span></span><br><span class="line">     评价 </span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">'starsWrapper'</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">block</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;stars&#125;&#125;"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">image</span> <span class="attr">class</span>=<span class="string">"star-image"</span> <span class="attr">style</span>=<span class="string">"left: &#123;&#123;item*50&#125;&#125;rpx"</span> <span class="attr">src</span>=<span class="string">"&#123;&#123;key &gt; item ?(key-item == 0.5?halfSrc:selectedSrc) : normalSrc&#125;&#125;"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"item"</span> <span class="attr">style</span>=<span class="string">"left:0rpx"</span> <span class="attr">data-key</span>=<span class="string">"&#123;&#123;item+0.5&#125;&#125;"</span> <span class="attr">bindtap</span>=<span class="string">"selectLeft"</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"item"</span> <span class="attr">style</span>=<span class="string">"left:25rpx"</span> <span class="attr">data-key</span>=<span class="string">"&#123;&#123;item+1&#125;&#125;"</span> <span class="attr">bindtap</span>=<span class="string">"selectRight"</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">image</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">block</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">view</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">&lt;!-- 这里绑定是bindInput而不是bindtab --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">bindinput</span>=<span class="string">'textAreaCon'</span> <span class="attr">placeholder</span>=<span class="string">'写点什么吧...'</span> <span class="attr">auto-focus</span>=<span class="string">'true'</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">'uploadFile'</span> <span class="attr">bindtap</span>=<span class="string">'upload'</span>&gt;</span>+<span class="tag">&lt;/<span class="name">view</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">'submit'</span> <span class="attr">bindtap</span>=<span class="string">'saveAccess'</span> <span class="attr">class</span>=<span class="string">'save-edit'</span>&gt;</span>提交保存<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>2、wxss</p>
@@ -403,7 +403,7 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> app = getApp()</span><br><span class="line">Page(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    stars: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">    normalSrc: <span class="string">'../../../image/normal.png'</span>,</span><br><span class="line">    selectedSrc: <span class="string">'../../../image/selected.png'</span>,</span><br><span class="line">    halfSrc: <span class="string">'../../../image/half.png'</span>,</span><br><span class="line">    key: <span class="number">1</span>,<span class="comment">//评分</span></span><br><span class="line">    path: <span class="string">' '</span>,</span><br><span class="line">    userInput:<span class="string">' '</span></span><br><span class="line">  &#125;,</span><br><span class="line">  onLoad: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    </span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">//点击右边,半颗星</span></span><br><span class="line">  selectLeft: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> key = e.currentTarget.dataset.key</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.data.key == <span class="number">0.5</span> &amp;&amp; e.currentTarget.dataset.key == <span class="number">0.5</span>) &#123;</span><br><span class="line">      <span class="comment">//只有一颗星的时候,再次点击,变为0颗</span></span><br><span class="line">      key = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"得"</span> + key + <span class="string">"分"</span>)</span><br><span class="line">    <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">      key: key</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//点击左边,整颗星</span></span><br><span class="line">  selectRight: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> key = e.currentTarget.dataset.key</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"得"</span> + key + <span class="string">"分"</span>)</span><br><span class="line">    <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">      key: key</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">   upload: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> that = <span class="keyword">this</span></span><br><span class="line">    wx.chooseImage(&#123;</span><br><span class="line">      count: <span class="number">1</span>,</span><br><span class="line">      sizeType: [<span class="string">'original'</span>, <span class="string">'compressed'</span>],</span><br><span class="line">      sourceType: [<span class="string">'album'</span>, <span class="string">'camera'</span>],</span><br><span class="line">      success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> tempFilePaths = res.tempFilePaths</span><br><span class="line">        <span class="built_in">console</span>.log(tempFilePaths)</span><br><span class="line">        wx.uploadFile(&#123;</span><br><span class="line">          url: <span class="string">'http://example.weixin.qq.com/upload'</span>,</span><br><span class="line">          filePath: tempFilePaths[<span class="number">0</span>],</span><br><span class="line">          name: <span class="string">'file'</span>,</span><br><span class="line">          formData: &#123;</span><br><span class="line">            <span class="string">'user'</span>: <span class="string">'test'</span></span><br><span class="line">          &#125;,</span><br><span class="line">          success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> data = res.data</span><br><span class="line">            wx.showModal(&#123;</span><br><span class="line">              title: <span class="string">'上传文件返回状态'</span>,</span><br><span class="line">              content: <span class="string">'成功'</span>,</span><br><span class="line">              success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (res.confirm) &#123;</span><br><span class="line">                  <span class="built_in">console</span>.log(<span class="string">'用户点击确定'</span>)</span><br><span class="line">                &#125;</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;)                          <span class="comment">//do something</span></span><br><span class="line">          &#125;,</span><br><span class="line">          fail: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(res)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        that.setData(&#123;</span><br><span class="line">          path: tempFilePaths</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">   textAreaCon:<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">var</span> that = <span class="keyword">this</span>;</span><br><span class="line">     that.setData(&#123;</span><br><span class="line">       userInput: e.detail.value,</span><br><span class="line">     &#125;)</span><br><span class="line">   &#125;,</span><br><span class="line">   saveAccess:<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(<span class="keyword">this</span>.data.userInput == <span class="string">' '</span>)&#123;</span><br><span class="line">       wx.showModal(&#123;</span><br><span class="line">         title: <span class="string">'提示'</span>,</span><br><span class="line">         content: <span class="string">'对不起，请输入留言内容'</span>,</span><br><span class="line">       &#125;)</span><br><span class="line">     &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.data.userInput);</span><br><span class="line">      <span class="comment">//  成功监听用户输入内容</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>okaychen</p>
 <h1 id="实例3：自定义底部弹出层"><a href="#实例3：自定义底部弹出层" class="headerlink" title="实例3：自定义底部弹出层"></a>实例3：自定义底部弹出层</h1><p>自定义底部弹出层，在电商的小程序中经常会用到，根据需要自定义弹出内容，先看下我的效果</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201710/1140602-20171001015101122-327854098.gif" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20171001015101122-327854098.gif" alt=""></fancybox></p>
 <p>我已经把我自定义的部分抽离了出来</p>
 <p>1、wxml</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">'yourPurse'</span> <span class="attr">bindtap</span>=<span class="string">'showModal1'</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"commodity_screen"</span> <span class="attr">bindtap</span>=<span class="string">"hideModal"</span> <span class="attr">wx:if</span>=<span class="string">"&#123;&#123;showModalStatus&#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">animation</span>=<span class="string">"&#123;&#123;animationData&#125;&#125;"</span> <span class="attr">class</span>=<span class="string">"commodity_attr_box"</span> <span class="attr">wx:if</span>=<span class="string">"&#123;&#123;showModalStatus&#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -424,10 +424,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-15T21:51:00+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-15T23:51:21+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新於 Nov 15, 2019</p>
+    <p>updated at Nov 15, 2019</p>
   </a>
 </div>
 
@@ -508,7 +508,7 @@
               
                   <section class="prev">
                       <span class="art-item-left">
-                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一頁</h6>
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous</h6>
                           <h4>
                               <a href="/2017/10/12/wx-miniProgram20171012/" rel="prev" title="调用wx.request接口时需要注意的几个问题">
                                 
@@ -528,7 +528,7 @@
               
                   <section class="next">
                       <span class="art-item-right" aria-hidden="true">
-                          <h6>下一頁&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h6>Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
                               <a href="/2017/09/26/js-module20170926/" rel="prev" title="设计模式之module及其改进">
                                   
@@ -558,7 +558,7 @@
 
   <article class="post white-box comments">
     <section class="article typo">
-      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;評論</h4>
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;Comments</h4>
       
       
       
@@ -681,7 +681,7 @@
   <section class='widget toc-wrapper'>
     
 <header class='pure'>
-  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目錄</div>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;TOC</div>
   
     <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer noopener" href="javascript:void(0)" target="_blank"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
   
@@ -837,7 +837,7 @@
   <section class='widget category'>
     
 <header class='pure'>
-  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分類</div>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
   
     <a class="rightBtn"
     
@@ -915,7 +915,7 @@
   <section class='widget tagcloud'>
     
 <header class='pure'>
-  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;熱門標籤</div>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
   
     <a class="rightBtn"
     
@@ -1104,20 +1104,20 @@
     </div>
   
   <br>
-  <!-- <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW" target="_blank" rel="noopener">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
+  <!-- <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
 </div> -->
   <div>
     <a href="https://www.github.com/okaychen" target="_blank" class="codename" style="text-decoration:none">Copyright © 2017-2019  OkayChen</a>
   </div>
   <div style="margin-top:5px;">
     
-      <!-- ， -->
+      <!-- ,  -->
       <!-- total visits -->
       本站总访问量为
       <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
       times
     
-    <!-- 。 -->
+    <!-- .  -->
   </div>
 </footer>
 <script>setLoadingBarProgress(80);</script>
@@ -1228,15 +1228,15 @@
 <!-- 复制 -->
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
-  let COPY_SUCCESS = "複製成功";
-  let COPY_FAILURE = "複製失敗";
+  let COPY_SUCCESS = "Copied";
+  let COPY_FAILURE = "Copy failed";
   /*页面载入完成后，创建复制按钮*/
   !function (e, t, a) {
     /* code */
     var initCopyCode = function(){
       var copyHtml = '';
       copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '  <i class="fa fa-copy"></i><span>複製</span>';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
       copyHtml += '</button>';
       $(".highlight .code pre").before(copyHtml);
       var clipboard = new ClipboardJS('.btn-copy', {

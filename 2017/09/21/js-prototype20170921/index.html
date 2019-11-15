@@ -177,7 +177,7 @@
 			
 				<div class="m_search">
 					<form name="searchform" class="form u-search-form">
-						<input type="text" class="input u-search-input" placeholder="搜尋" />
+						<input type="text" class="input u-search-input" placeholder="Search" />
 						<i class="icon fas fa-search fa-fw"></i>
 					</form>
 				</div>
@@ -393,36 +393,36 @@
 <h1 id="原型链概要"><a href="#原型链概要" class="headerlink" title="原型链概要"></a>原型链概要</h1><p>prototype属性是JavaScript为每个Function实例创建的一个对象。</p>
 <p>具体的说：”它将通过new关键字创建的&lt;对象实例&gt;链接回创建它们的&lt;构造函数&gt;” 。就这样，我们可以共享或继承通用的方法和属性。当我们在属性查找时，就会不自觉的开启了我们的原型链之旅</p>
 <p>让我们通过一个简单的例子开启我们的原型链查询之旅：我们使用Array构造函数创建一个数组，然后调用join方法</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920174520228-1650950569.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170920174520228-1650950569.png" alt=""></fancybox></p>
 <p>我想上面的例子对于js入门者是非常简单的，那么但是我们再来仔细了解一下，你发现join方法并没有定义为myArray对象实例的属性，但是我们创建的数组却可以访问join()方法，就好像我们本来就可以访问似的。</p>
 <h2 id="join-是在哪个地方定义的呢？"><a href="#join-是在哪个地方定义的呢？" class="headerlink" title="join()是在哪个地方定义的呢？"></a>join()是在哪个地方定义的呢？</h2><p>事实上，我们经常使用的join()，slice()，push()…等这些内建的方法，都被定义为了Array()构造函数的prototype属性的属性。由于在我们创建的myArray数组中没有找到join(),因此JavaScript会在原型链中查找join()方法；</p>
 <p>其实这样做我们很容易就联想到了效率和重用，通过把该属性添加到原型中去，我们所有的数组都有充分利用了相同的join()函数，而不需要为每一个数组实例都创建函数的新实例。</p>
 <p>原型在所有的function()实例上都是标准的<br>我们知道创建函数两种方法</p>
 <p>1、调用Function构造函数法：</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920180222415-1922951156.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170920180222415-1922951156.png" alt=""></fancybox></p>
 <p>2、使用字面量法：</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920180309587-1797862199.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170920180309587-1797862199.png" alt=""></fancybox></p>
 <p>其实，即使不直接使用Function构造函数，而是使用字面量表示法，所有的函数也都是由Function()构造函数创建的</p>
 <p>我们用字面量方法创建了一个函数，发现它的prototype和Function()构造函数一样，都指向了object()，这也就证实了我们上所说的.</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920181154181-1036941154.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170920181154181-1036941154.png" alt=""></fancybox></p>
 <h1 id="默认的prototype属性是object-对象"><a href="#默认的prototype属性是object-对象" class="headerlink" title="默认的prototype属性是object()对象"></a>默认的prototype属性是object()对象</h1><p>上面我已经谈到，实际上，原型只是一个被称为’原型’的空对象属性，它在JavaScript的后台已经创建，并且通过Function()构造函数来使用。</p>
 <p>我们可以手动完成这项在后面完成的工作，以便了解它的机制。</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920182200743-1619464603.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170920182200743-1619464603.png" alt=""></fancybox></p>
 <p>上面的代码非常简单，实际上也非常好用，它实质上复制了JavaScript在后面已经完成的工作。</p>
 <h1 id="将构造函数创建的实例链接至构造函数的prototype属性"><a href="#将构造函数创建的实例链接至构造函数的prototype属性" class="headerlink" title="将构造函数创建的实例链接至构造函数的prototype属性"></a>将构造函数创建的实例链接至构造函数的prototype属性</h1><p>将构造函数所创建的实例链接至构造函数的prototype属性，让我们开始这条神秘的_proto_链接</p>
 <p>上面我们所原型只是一个对象，但是它是特殊的，因为原型链将每个实例都链接至其构造函数的prototype属性。</p>
 <p>创建的对象实例和创建对象的构造函数的prototype属性</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920183956321-1581665034.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170920183956321-1581665034.png" alt=""></fancybox></p>
 <p>当然，我们除了使用_proto_链接，还可以使用构造函数属性：</p>
 <p>事实上，<code>_proto_  ===  constructor.prototype</code></p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920183940150-1570195149.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170920183940150-1570195149.png" alt=""></fancybox></p>
 <p> 这样我们就不难理解，下面可以达到同样的效果：</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920184944103-989778859.png" alt=""></fancybox> </p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170920184944103-989778859.png" alt=""></fancybox> </p>
 <p>上面的例子中我写到直接使用链也是可以的，下面会介绍它的查询顺序。虽然我相信对于入门者都是使用的链查询，但是我们有必然要知道它背后的那些机制。</p>
 <p>其实有只看不见的手，在帮助着我们的代码完成任务</p>
 <h1 id="原型链的最后是Object-prototype"><a href="#原型链的最后是Object-prototype" class="headerlink" title="原型链的最后是Object.prototype"></a>原型链的最后是Object.prototype</h1><p>那么就让我们来看一下它的原型链查询吧。</p>
 <p>由于prototype属性是一个对象，因此原型链或查询的最后一站是Object.prototype。</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920190544243-1227861953.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170920190544243-1227861953.png" alt=""></fancybox></p>
 <p>我想上面的代码，对于我们来说是丝毫不费力气的，但就借这个简单的例子，最后一个简单的undefined结果，却经历了一段不为我们所见的原型链查询；</p>
 <p>我们创建了一个myArray空数组，然后我们试图访问未定义的myArray属性时，并不会直接返回undefined，而是要经历一段原型链查询。</p>
 <p>①在myArray对象中查找foo属性；</p>
@@ -432,24 +432,24 @@
 <p>③最后查找的地方就是Object.prototype</p>
 <p>三个对象中都没有定义，最后才给我们了一个undefined的回馈。</p>
 <h1 id="用新对象替换prototype属性会删除默认的构造函数属性"><a href="#用新对象替换prototype属性会删除默认的构造函数属性" class="headerlink" title="用新对象替换prototype属性会删除默认的构造函数属性"></a>用新对象替换prototype属性会删除默认的构造函数属性</h1><p>我们可以用一个新值来替换prototype属性的默认值，但是需要特别注意的是：这么做会删除在”预制”原型对象中找到的默认的constructor属性，除非我们手动指定一个 ；</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920192520821-1186090159.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170920192520821-1186090159.png" alt=""></fancybox></p>
 <p>所以当你想要替换JavaScript设置的默认的prototype属性(与一些js oop模式类似)，应该重新连接引用该构造函数的构造函数属性。</p>
 <p>下面我们简单的改一下上面的代码，以便构造函数属性能够再次为适当的构造函数提供引用</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920193046993-265590715.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170920193046993-265590715.png" alt=""></fancybox></p>
 <h1 id="继承原型属性的实例总是能够获得最新值"><a href="#继承原型属性的实例总是能够获得最新值" class="headerlink" title="继承原型属性的实例总是能够获得最新值"></a>继承原型属性的实例总是能够获得最新值</h1><p>其实prototype是动态的继承原型的属性的实例总是能够获得最新值，</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920193844259-1842047267.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170920193844259-1842047267.png" alt=""></fancybox></p>
 <p>这一点比较简单，不管是使用原型对象还是自己的对象覆盖它，继承原型属性的实例总是能够获得新值。</p>
 <p>但是我们需要注意下面的一点：</p>
 <h1 id="用新对象替换prototype属性不会更新以前的实例"><a href="#用新对象替换prototype属性不会更新以前的实例" class="headerlink" title="用新对象替换prototype属性不会更新以前的实例"></a>用新对象替换prototype属性不会更新以前的实例</h1><p>当你想用一个新对象完全替换prototype属性时，觉得所有的实例都会被更新，那么就即将要走向一条寻错的道路，可能会得到意想不到的结果。</p>
 <p>创建一个实例时，该实例将在实例化时绑定至”刚完成”的原型，提供一个新对象作为prototype属性不会更新已创建的实例和原型之间的连接</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920195027900-1505871808.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170920195027900-1505871808.png" alt=""></fancybox></p>
 <p>这里的重点是，一旦开始创建实例，就不应用一个新对象那个来替换对象的原型，这样将会导致实例有一个指向不同原型的链接</p>
 <h1 id="自定义构造函数实现原型继承"><a href="#自定义构造函数实现原型继承" class="headerlink" title="自定义构造函数实现原型继承"></a>自定义构造函数实现原型继承</h1><p>当我们在自定义构造函数时，同样可以实现原型继承:</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920201741993-2044813602.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170920201741993-2044813602.png" alt=""></fancybox></p>
 <p>上面我们写的例子，很好的利用原型链，来创建一个构造函数。如果我们不提供参数的话，构造函数则可以继承legs和arms属性。如果传入参数，就遮盖继承的属性</p>
 <h1 id="创建继承链"><a href="#创建继承链" class="headerlink" title="创建继承链"></a>创建继承链</h1><p>我们自定义的构造函数实现了原型继承，设计原型继承的目的是要在传统的面向对象编程语言中找到模仿继承模式的继承链。继承只是一个对象可以访问另一个对象的属性。</p>
 <p>接下来我们来创建一个简单的继承链：</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920201619353-1702121657.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170920201619353-1702121657.png" alt=""></fancybox></p>
 <p>事实上，上述代码我做的仅仅是利用一个已有的原生对象。</p>
 <p>Person()和prototype属性的默认的object()值没有什么不同，这也正是一个prototype属性包含默认空object()值所发生的事情，查找用于创建对象的构造函数的原型（即object.prototype），以便查找所继承的属性。</p>
 <h1 id="我们为什么要关注prototype属性呢？"><a href="#我们为什么要关注prototype属性呢？" class="headerlink" title="我们为什么要关注prototype属性呢？"></a>我们为什么要关注prototype属性呢？</h1><p>你可能不喜欢原型继承，而是更多的喜欢采用另一种模式的对象继承。但是：</p>
@@ -469,10 +469,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-15T21:18:34+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-15T23:44:48+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新於 Nov 15, 2019</p>
+    <p>updated at Nov 15, 2019</p>
   </a>
 </div>
 
@@ -556,7 +556,7 @@ JavaScript深入浅出系列1）复杂值vs原始值&amp;&amp;内存空间 - Jav
               
                   <section class="prev">
                       <span class="art-item-left">
-                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一頁</h6>
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous</h6>
                           <h4>
                               <a href="/2017/09/26/js-module20170926/" rel="prev" title="设计模式之module及其改进">
                                 
@@ -576,7 +576,7 @@ JavaScript深入浅出系列1）复杂值vs原始值&amp;&amp;内存空间 - Jav
               
                   <section class="next">
                       <span class="art-item-right" aria-hidden="true">
-                          <h6>下一頁&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h6>Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
                               <a href="/2017/09/14/js-this20170914/" rel="prev" title="this四种绑定方式之间的奇淫技巧">
                                   
@@ -606,7 +606,7 @@ JavaScript深入浅出系列1）复杂值vs原始值&amp;&amp;内存空间 - Jav
 
   <article class="post white-box comments">
     <section class="article typo">
-      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;評論</h4>
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;Comments</h4>
       
       
       
@@ -729,7 +729,7 @@ JavaScript深入浅出系列1）复杂值vs原始值&amp;&amp;内存空间 - Jav
   <section class='widget toc-wrapper'>
     
 <header class='pure'>
-  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目錄</div>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;TOC</div>
   
     <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer noopener" href="javascript:void(0)" target="_blank"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
   
@@ -885,7 +885,7 @@ JavaScript深入浅出系列1）复杂值vs原始值&amp;&amp;内存空间 - Jav
   <section class='widget category'>
     
 <header class='pure'>
-  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分類</div>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
   
     <a class="rightBtn"
     
@@ -963,7 +963,7 @@ JavaScript深入浅出系列1）复杂值vs原始值&amp;&amp;内存空间 - Jav
   <section class='widget tagcloud'>
     
 <header class='pure'>
-  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;熱門標籤</div>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
   
     <a class="rightBtn"
     
@@ -1152,20 +1152,20 @@ JavaScript深入浅出系列1）复杂值vs原始值&amp;&amp;内存空间 - Jav
     </div>
   
   <br>
-  <!-- <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW" target="_blank" rel="noopener">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
+  <!-- <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
 </div> -->
   <div>
     <a href="https://www.github.com/okaychen" target="_blank" class="codename" style="text-decoration:none">Copyright © 2017-2019  OkayChen</a>
   </div>
   <div style="margin-top:5px;">
     
-      <!-- ， -->
+      <!-- ,  -->
       <!-- total visits -->
       本站总访问量为
       <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
       times
     
-    <!-- 。 -->
+    <!-- .  -->
   </div>
 </footer>
 <script>setLoadingBarProgress(80);</script>
@@ -1276,15 +1276,15 @@ JavaScript深入浅出系列1）复杂值vs原始值&amp;&amp;内存空间 - Jav
 <!-- 复制 -->
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
-  let COPY_SUCCESS = "複製成功";
-  let COPY_FAILURE = "複製失敗";
+  let COPY_SUCCESS = "Copied";
+  let COPY_FAILURE = "Copy failed";
   /*页面载入完成后，创建复制按钮*/
   !function (e, t, a) {
     /* code */
     var initCopyCode = function(){
       var copyHtml = '';
       copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '  <i class="fa fa-copy"></i><span>複製</span>';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
       copyHtml += '</button>';
       $(".highlight .code pre").before(copyHtml);
       var clipboard = new ClipboardJS('.btn-copy', {

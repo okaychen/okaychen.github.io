@@ -177,7 +177,7 @@
 			
 				<div class="m_search">
 					<form name="searchform" class="form u-search-form">
-						<input type="text" class="input u-search-input" placeholder="搜尋" />
+						<input type="text" class="input u-search-input" placeholder="Search" />
 						<i class="icon fas fa-search fa-fw"></i>
 					</form>
 				</div>
@@ -404,7 +404,7 @@
 <p>梳理完了逻辑，该动手写js了</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    waterfall(<span class="string">'main'</span>, <span class="string">'box'</span>);</span><br><span class="line">    <span class="keyword">var</span> ImgJson = &#123;</span><br><span class="line">        <span class="string">'data'</span>: [</span><br><span class="line">            &#123;<span class="string">'src'</span>: <span class="string">'http://placehold.it/200x300'</span>&#125;</span><br><span class="line"></span><br><span class="line">        ]</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">//监听scroll事件</span></span><br><span class="line">    <span class="built_in">window</span>.onscroll = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> isPosting = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (checkScrollSlide(<span class="string">'main'</span>, <span class="string">'box'</span>) &amp;&amp; !isPosting) &#123;</span><br><span class="line">            <span class="keyword">var</span> oParent = <span class="built_in">document</span>.getElementById(<span class="string">'main'</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> ImgJson.data) &#123;</span><br><span class="line">                <span class="keyword">var</span> oBox = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">                oBox.className = <span class="string">'box'</span>;</span><br><span class="line">                oBox.innerHTML = <span class="string">'&lt;div class="pic"&gt;&lt;img src="'</span> + ImgJson.data[i].src + <span class="string">'"&gt;&lt;/div&gt;'</span>;</span><br><span class="line">                oParent.appendChild(oBox);</span><br><span class="line">            &#125;</span><br><span class="line">            isPosting = <span class="literal">false</span>;</span><br><span class="line">            waterfall(<span class="string">'main'</span>, <span class="string">'box'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">waterfall</span>(<span class="params">parent, clsName</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//获取元素</span></span><br><span class="line">    <span class="keyword">var</span> oParent = <span class="built_in">document</span>.getElementById(parent);</span><br><span class="line">    <span class="comment">//获取所有box</span></span><br><span class="line">    <span class="keyword">var</span> aBoxArr = oParent.getElementsByClassName(clsName);</span><br><span class="line">    <span class="comment">//单个box的宽度</span></span><br><span class="line">    <span class="keyword">var</span> iBoxw = aBoxArr[<span class="number">0</span>].offsetWidth;</span><br><span class="line">    <span class="comment">//列数</span></span><br><span class="line">    <span class="keyword">var</span> cols = <span class="built_in">Math</span>.floor(<span class="built_in">document</span>.documentElement.clientWidth / iBoxw);</span><br><span class="line">    oParent.style.cssText = <span class="string">'width:'</span> + iBoxw * (cols + <span class="number">1</span>) + <span class="string">'px;margin:0 auto;'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//储存所有高度</span></span><br><span class="line">    <span class="keyword">var</span> hArr = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; aBoxArr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; cols) &#123;</span><br><span class="line">            hArr[i] = aBoxArr[i].offsetHeight;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//获取hArr的最小值</span></span><br><span class="line">            <span class="keyword">var</span> minH = <span class="built_in">Math</span>.min.apply(<span class="literal">null</span>, hArr);</span><br><span class="line">            <span class="comment">//hArr最小值索引index</span></span><br><span class="line">            <span class="keyword">var</span> minHIndex = getMinHIndex(hArr, minH);</span><br><span class="line">            aBoxArr[i].style.cssText = <span class="string">'position:absolute;top:'</span> + minH + <span class="string">'px;left:'</span> + aBoxArr[minHIndex].offsetLeft + <span class="string">'px'</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//添加元素之后更新hArr</span></span><br><span class="line">            hArr[minHIndex] += aBoxArr[i].offsetHeight;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取最小索引值</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getMinHIndex</span>(<span class="params">arr, val</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> arr) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] == val) &#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//检查是否满足加载数据的条件</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkScrollSlide</span>(<span class="params">parent, clsName</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> oParent = <span class="built_in">document</span>.getElementById(parent);</span><br><span class="line">    <span class="keyword">var</span> aBoxArr = oParent.getElementsByClassName(clsName);</span><br><span class="line">    <span class="comment">//最后一个box元素的offsetTop+高度的一半</span></span><br><span class="line">    <span class="keyword">var</span> lastBoxH = aBoxArr[aBoxArr.length - <span class="number">1</span>].offsetTop + aBoxArr[aBoxArr.length - <span class="number">1</span>].offsetHeight / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> scrollTop = <span class="built_in">document</span>.documentElement.scrollTop || <span class="built_in">document</span>.body.scrollTop;</span><br><span class="line">    <span class="keyword">var</span> height = <span class="built_in">document</span>.documentElement.clientHeight || <span class="built_in">document</span>.body.clientHeight;</span><br><span class="line">    <span class="keyword">return</span> lastBoxH &lt; scrollTop + height;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>最后走一波效果图</p>
-<p><img src="http://images2015.cnblogs.com/blog/1140602/201706/1140602-20170614004905400-394825169.gif" /><p>
+<p><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170614004905400-394825169.gif" /><p>
 
 
 
@@ -421,10 +421,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-15T20:42:21+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-15T23:41:26+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新於 Nov 15, 2019</p>
+    <p>updated at Nov 15, 2019</p>
   </a>
 </div>
 
@@ -505,7 +505,7 @@ column-count　　  // &lt;规定元素被分隔的列数&gt;column-gap　　　
               
                   <section class="prev">
                       <span class="art-item-left">
-                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一頁</h6>
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous</h6>
                           <h4>
                               <a href="/2017/07/12/css-shape20170712/" rel="prev" title="css绘制常见的几何图形">
                                 
@@ -525,7 +525,7 @@ column-count　　  // &lt;规定元素被分隔的列数&gt;column-gap　　　
               
                   <section class="next">
                       <span class="art-item-right" aria-hidden="true">
-                          <h6>下一頁&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h6>Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
                               <a href="/2017/05/27/js-AngularCli20170527/" rel="prev" title="Angule Cli创建Angular项目">
                                   
@@ -555,7 +555,7 @@ column-count　　  // &lt;规定元素被分隔的列数&gt;column-gap　　　
 
   <article class="post white-box comments">
     <section class="article typo">
-      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;評論</h4>
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;Comments</h4>
       
       
       
@@ -678,7 +678,7 @@ column-count　　  // &lt;规定元素被分隔的列数&gt;column-gap　　　
   <section class='widget toc-wrapper'>
     
 <header class='pure'>
-  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目錄</div>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;TOC</div>
   
     <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer noopener" href="javascript:void(0)" target="_blank"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
   
@@ -834,7 +834,7 @@ column-count　　  // &lt;规定元素被分隔的列数&gt;column-gap　　　
   <section class='widget category'>
     
 <header class='pure'>
-  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分類</div>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
   
     <a class="rightBtn"
     
@@ -912,7 +912,7 @@ column-count　　  // &lt;规定元素被分隔的列数&gt;column-gap　　　
   <section class='widget tagcloud'>
     
 <header class='pure'>
-  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;熱門標籤</div>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
   
     <a class="rightBtn"
     
@@ -1101,20 +1101,20 @@ column-count　　  // &lt;规定元素被分隔的列数&gt;column-gap　　　
     </div>
   
   <br>
-  <!-- <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW" target="_blank" rel="noopener">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
+  <!-- <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
 </div> -->
   <div>
     <a href="https://www.github.com/okaychen" target="_blank" class="codename" style="text-decoration:none">Copyright © 2017-2019  OkayChen</a>
   </div>
   <div style="margin-top:5px;">
     
-      <!-- ， -->
+      <!-- ,  -->
       <!-- total visits -->
       本站总访问量为
       <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
       times
     
-    <!-- 。 -->
+    <!-- .  -->
   </div>
 </footer>
 <script>setLoadingBarProgress(80);</script>
@@ -1225,15 +1225,15 @@ column-count　　  // &lt;规定元素被分隔的列数&gt;column-gap　　　
 <!-- 复制 -->
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
-  let COPY_SUCCESS = "複製成功";
-  let COPY_FAILURE = "複製失敗";
+  let COPY_SUCCESS = "Copied";
+  let COPY_FAILURE = "Copy failed";
   /*页面载入完成后，创建复制按钮*/
   !function (e, t, a) {
     /* code */
     var initCopyCode = function(){
       var copyHtml = '';
       copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '  <i class="fa fa-copy"></i><span>複製</span>';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
       copyHtml += '</button>';
       $(".highlight .code pre").before(copyHtml);
       var clipboard = new ClipboardJS('.btn-copy', {

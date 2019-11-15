@@ -177,7 +177,7 @@
 			
 				<div class="m_search">
 					<form name="searchform" class="form u-search-form">
-						<input type="text" class="input u-search-input" placeholder="搜尋" />
+						<input type="text" class="input u-search-input" placeholder="Search" />
 						<i class="icon fas fa-search fa-fw"></i>
 					</form>
 				</div>
@@ -368,14 +368,14 @@
     <div class="article-entry" itemprop="articleBody">
       <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>nvm（nodejs version manager）是nodejs的管理工具，如果你需要快速更新node版本，并且不覆盖之前的版本；或者想要在不同的node版本之间进行切换；使用nvm来安装我们的node开发环境是绝佳的选择！</p>
 <p>之前使用vue-cli初始化项目，发现自己卡在了项目描述，重复了好几次，无论怎么回车或者尝试其他去解决也无济于事，终于找到了原因所在：</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201710/1140602-20171019214302302-521744711.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20171019214302302-521744711.png" alt=""></fancybox></p>
 <p>原因其实是我的node版本过高，需要降低node版本。</p>
 <p>我们可以通过nvm管理不同版本的node和npm</p>
       
         <div class="readmore">
           <a href="/2017/10/31/node-tool20171031/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -473,11 +473,11 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201710/1140602-20171025194848754-2026039505.png" alt=""></fancybox></p>
+      <p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20171025194848754-2026039505.png" alt=""></fancybox></p>
 <p>组件间通信是组件开发的，我们既希望组件的独立性，数据能互不干扰，又不可避免组件间会有联系和交互。</p>
 <p>在vue中，父子组件的关系可以总结为props down，events up；</p>
 <p>在vue2.0中废弃了$dispatch和$broadcast，子组件使用event发出自定义事件</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201710/1140602-20171029212721976-1727722995.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20171029212721976-1727722995.png" alt=""></fancybox></p>
 <p>思考场景如下：</p>
 <blockquote>
 <p>一个总群（父组件）中大家做自我介绍，陌陌、小小、可可、天天 收到 总群发来的消息之后（父传子），将自己的信息发送到总群（子传父）</p>
@@ -486,7 +486,7 @@
         <div class="readmore">
           <a href="/2017/10/30/vue-advance20171030/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -586,7 +586,7 @@
 <p>其实我觉得更多的是两者社区、用户、粉丝态度过激导致争端，所以我们要怀着一颗理性的心态去看待，切不要党同伐异。</p>
 <p>之前在图灵社区读过一篇文章<a href="http://www.ituring.com.cn/article/273032" target="_blank" rel="noopener">《Vue作者尤雨溪：以匠人的态度不断打磨完善vue》</a>，</p>
 <p>先来一发福利照 - - </p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201710/1140602-20171015003545777-1083013832.jpg" alt=""></p>
+<p><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20171015003545777-1083013832.jpg" alt=""></p>
 <p>里面也有尤雨溪一些对于开发vue的想法，总结下来就是：轻量化，快速上手，灵活运用；</p>
 <p>也有给我们的一些建议，简单总结就是：保持好奇心，在业余时间多做尝试，以兴趣为动力，把兴趣推进一步，保持一种持续学习，持续研究的状态，多探索，多尝试；</p>
 <p>前缀有点长，请放下手里的西瓜刀，接下来进入今天的正正题吧~~</p>
@@ -594,7 +594,7 @@
         <div class="readmore">
           <a href="/2017/10/15/vue-basis20171015/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -695,13 +695,13 @@
 <p>一个简单的栗子：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">wx.request(&#123;</span><br><span class="line">    url: API_URL + <span class="string">'/api/category/categoryList'</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        applet_id: app.globalData.applet_id</span><br><span class="line">    &#125;,</span><br><span class="line">    method: <span class="string">'POST'</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">    wx.hideLoading();</span><br><span class="line">    <span class="built_in">console</span>.log(res.data.data, <span class="string">'category data acquisition success'</span>);</span><br><span class="line">        that.setData(&#123;<span class="attr">category</span>: res.data.data&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>在控制台中也得到了我想要的接口中的数据：</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201710/1140602-20171011130151684-1534935555.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20171011130151684-1534935555.png" alt=""></fancybox></p>
 <p>但期间也遇到了几个问题，总结下来；</p>
       
         <div class="readmore">
           <a href="/2017/10/12/wx-miniProgram20171012/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -799,13 +799,13 @@
     <div class="article-entry" itemprop="articleBody">
       <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>本人完成的微信小程序一些常用的特效，总结一下，希望对大家和我都能有所帮助</p>
 <h1 id="实例1：滚动tab选项卡"><a href="#实例1：滚动tab选项卡" class="headerlink" title="实例1：滚动tab选项卡"></a>实例1：滚动tab选项卡</h1><p>先看一下效果图吧，能够点击菜单或滑动页面切换，tab菜单部分可以实现左右滚动</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201710/1140602-20171001014258465-572247537.gif" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20171001014258465-572247537.gif" alt=""></fancybox></p>
 <p>好了，看一下我的源码吧！&lt;有用的话拿走不谢哟，随版本更新代码可能会有出入&gt;</p>
       
         <div class="readmore">
           <a href="/2017/10/01/wx-miniProgram20171001/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -913,7 +913,7 @@
         <div class="readmore">
           <a href="/2017/09/26/js-module20170926/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -1020,7 +1020,7 @@
         <div class="readmore">
           <a href="/2017/09/21/js-prototype20170921/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -1127,7 +1127,7 @@
         <div class="readmore">
           <a href="/2017/09/14/js-this20170914/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -1226,8 +1226,8 @@
       <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>最近在读《JavaScript启示录》，这本书不是JavaScript的详尽的参考指南，但是把对象作为了解JavaScript的透镜，受益匪浅。</p>
 <p>那么我们先来聊一下JavaScript的原始值（值类型）以及复杂值（引用类型），以及他们在内存空间中的存储，关于他们你可能不清楚的一些事：</p>
 <p>我们先通过一个经典的面试题类型（并不是原题，我即兴发挥）引出我们今天的主题：</p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231017985-195870781.png" alt=""></fancybox></p>
-<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231023453-1314449337.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170913231017985-195870781.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170913231023453-1314449337.png" alt=""></fancybox></p>
 <p>我们已经看出他们的差别，在图一：我们让b = a，改变b的值，发现a并没有改变。在图二：我们让d = c,通过d.name改变对象的name属性，发现c.name也变化了。</p>
 <p>事实上，原始值存储在栈内存中，按值来访问。复杂值（引用类型）在堆内存里面，按引用地址访问；然后我们会想到局部变量和全局变量在内存中的存储：</p>
 <p>下面会具体介绍复杂值、原始值以及他们的一些特性与内存空间：</p>
@@ -1235,7 +1235,7 @@
         <div class="readmore">
           <a href="/2017/09/14/js-type20170914/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -1333,12 +1333,12 @@
     <div class="article-entry" itemprop="articleBody">
       <p>从16年刚步入校园，转眼之间迎来了我的大二生活。</p>
 <p>在很多人眼中，刚步入大学的新生是懵懂无知、没有目标的一年，对未来的生活没有想象，对于自己的明天或许仍然没有选择；但是我俨然过成了激情中又充满安稳的一年（这或许在别人眼中是乏味的吧），因为我最庆幸的是，我一开始就坚定着我的目标，至少直到现在我没有动摇，而且在接下来的大二生活，我仍然不想动摇，我会继续着我的目标。</p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170909003809929-1215489348.png" alt=""></p>
+<p><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170909003809929-1215489348.png" alt=""></p>
       
         <div class="readmore">
           <a href="/2017/09/09/life-aboutLife20170909/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -1435,14 +1435,14 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>最近读《node.js学习指南》，对于mongodb没有介绍太多的工作原理，但是对于一个前端开发者，即使你还没有用过这种数据库也可以让你很好的理解和使用</p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170902035102780-1333013103.png" alt="">   　　</p>
+<p><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170902035102780-1333013103.png" alt="">   　　</p>
 <p>一本非常好的介绍node.js的书，我一直把他放在触手可及的地方。　　–Mike Amundsen</p>
 <p>MongoDB Native Node.js Driver模块是mongodb自带的node的驱动，这个驱动发出的mongodb指令和mongodb客户端发出的指令基本一致。</p>
       
         <div class="readmore">
           <a href="/2017/09/02/node-mongodb-connection20170902/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -1550,7 +1550,7 @@
         <div class="readmore">
           <a href="/2017/08/31/js-algorithm20170831/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -1651,7 +1651,7 @@
         <div class="readmore">
           <a href="/2017/08/19/js-regular20170819/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -1750,12 +1750,12 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       <p>依据我现有的知识，在前端上”简易”的实现了腾讯信用的界面，同时自己自制了一个竖直的刻度尺插件，曲线的位置可以根据传入的数值动态的改变，这次主要也想总结一下关于jQuery中extend的方法，也是我们在写插件的时候常用的方法</p>
-<h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="https://images2017.cnblogs.com/blog/1140602/201708/1140602-20170812102040413-1604886858.gif" alt=""></p>
+<h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170812102040413-1604886858.gif" alt=""></p>
       
         <div class="readmore">
           <a href="/2017/08/12/js-rule20170812/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -1852,7 +1852,7 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       <p>我们在实际的开发中，经常要获取页面中某个html元素，动态更新元素的样式、内容属性等。</p>
-<img src="http://images2017.cnblogs.com/blog/1140602/201708/1140602-20170811173058398-1140296284.gif" alt="">
+<img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170811173058398-1140296284.gif" alt="">
 
 <p>我们已经知道在JavaScript中提供下面的方法获取子、父、兄节点的方法：</p>
 <h1 id="常规"><a href="#常规" class="headerlink" title="常规"></a>常规</h1><p>1.通过父节点获取子节点：</p>
@@ -1877,7 +1877,7 @@
         <div class="readmore">
           <a href="/2017/08/11/js-findNode20170811/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            閱讀全文
+            Read More
           </a>
         </div>
       
@@ -1905,7 +1905,7 @@
           
             <a class="prev" rel="prev" href="/archives/2017/">
               <section class="post prev" >
-                <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一頁&nbsp;
+                <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous&nbsp;
               </section>
             </a>
           
@@ -1915,7 +1915,7 @@
           
             <a class="next" rel="next" href="/archives/2017/page/3/">
               <section class="post next">
-                &nbsp;下一頁&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+                &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
               </section>
             </a>
           
@@ -2137,7 +2137,7 @@
   <section class='widget category'>
     
 <header class='pure'>
-  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分類</div>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
   
     <a class="rightBtn"
     
@@ -2215,7 +2215,7 @@
   <section class='widget tagcloud'>
     
 <header class='pure'>
-  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;熱門標籤</div>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
   
     <a class="rightBtn"
     
@@ -2381,20 +2381,20 @@
     </div>
   
   <br>
-  <!-- <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW" target="_blank" rel="noopener">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
+  <!-- <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
 </div> -->
   <div>
     <a href="https://www.github.com/okaychen" target="_blank" class="codename" style="text-decoration:none">Copyright © 2017-2019  OkayChen</a>
   </div>
   <div style="margin-top:5px;">
     
-      <!-- ， -->
+      <!-- ,  -->
       <!-- total visits -->
       本站总访问量为
       <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
       times
     
-    <!-- 。 -->
+    <!-- .  -->
   </div>
 </footer>
 <script>setLoadingBarProgress(80);</script>
@@ -2483,15 +2483,15 @@
 <!-- 复制 -->
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
-  let COPY_SUCCESS = "複製成功";
-  let COPY_FAILURE = "複製失敗";
+  let COPY_SUCCESS = "Copied";
+  let COPY_FAILURE = "Copy failed";
   /*页面载入完成后，创建复制按钮*/
   !function (e, t, a) {
     /* code */
     var initCopyCode = function(){
       var copyHtml = '';
       copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '  <i class="fa fa-copy"></i><span>複製</span>';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
       copyHtml += '</button>';
       $(".highlight .code pre").before(copyHtml);
       var clipboard = new ClipboardJS('.btn-copy', {
