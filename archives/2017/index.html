@@ -1616,8 +1616,8 @@
       
         
   <h2 class="title">
-    <a href="/2017/09/14/js-this20170914/">
-      this四种绑定方式之间的奇淫技巧
+    <a href="/2017/11/07/vue-advance20171107/">
+      Vue起步 - 路由与页面间导航
     </a>
   </h2>
 
@@ -1647,7 +1647,98 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2017-09-14</p>
+    <p>2017-11-07</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h1 id="vue-router"><a href="#vue-router" class="headerlink" title="vue-router"></a>vue-router</h1><p>我们知道路由定义了一系列访问的地址规则，路由引擎根据这些规则匹配找到对应的处理页面，然后将请求转发给页进行处理。可以说所有的后端开发都是这样做的，而前端路由是不存在”请求”一说的。</p>
+<p>前端路由是找到地址匹配的一个组件或者对象将其渲染出来。改变浏览器地址不向服务器发送请求有两种方法，</p>
+<p>一是在地址中加入#以欺骗浏览器，地址的改变是由于正在进行页内导航；二是使用HTML5的window.history功能，使用URL的hash来模拟一个完整的URL。</p>
+<p>vue-router是官方提供的一套专用的路由工具库，是vue的一个插件，我们需要在全局引用中通过vue.use()将它引入到vue实例中，</p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201711/1140602-20171107001954622-121090007.png" alt=""></fancybox></p>
+      
+        <div class="readmore">
+          <a href="/2017/11/07/vue-advance20171107/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2017/11/06/js-designPattern20171106/">
+      设计模式之单例模式与场景实践
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2017-11-06</p>
   </a>
 </div>
 
@@ -1657,9 +1748,9 @@
             
   
   <div class='new-meta-item category'>
-    <a href='/categories/JavaScript/' rel="nofollow">
+    <a href='/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/' rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>JavaScript</p>
+      <p>JavaScript&nbsp;/&nbsp;设计模式</p>
     </a>
   </div>
 
@@ -1681,10 +1772,32 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      
+      <h1 id="单例介绍"><a href="#单例介绍" class="headerlink" title="单例介绍"></a>单例介绍</h1><p>上次总结了设计模式中的module模式，可能没有真真正正的使用在场景中，发现效果并不好，想要使用起来却不那么得心应手，</p>
+<p>所以这次我打算换一种方式~~从简单的场景中来看单例模式，</p>
+<p>因为JavaScript非常灵活，所以在使用设计模式的时候也带来了很强的灵活性，实现单例的方法也有很多，那就需要我们把握住单例模式的核心。</p>
+<blockquote>
+<p>单例模式是保证一个类只有一个实例，实现的方法一般是先判断实例存在与否，如果存在直接返回，如果不存在就创建了再返回，这就确保了一个类只有一个实例对象。</p>
+</blockquote>
+<p>在JavaScript里，单例作为一个命名空间提供者，从全局命名空间里提供一个唯一的访问点来访问该对象</p>
+<p>作用：</p>
+<ul>
+<li><p>1、模块间通信</p>
+</li>
+<li><p>2、系统中某各类的对象只能存在一个</p>
+</li>
+<li><p>3、保护自己的属性和方法，保证了所有的对象访问的都是同一个实例</p>
+</li>
+</ul>
+<p>注意事项：</p>
+<ul>
+<li><p>1、注意this的使用</p>
+</li>
+<li><p>2、闭包容易造成内存泄露，不需要的尽快处理等待回收</p>
+</li>
+</ul>
       
         <div class="readmore">
-          <a href="/2017/09/14/js-this20170914/" class="flat-box">
+          <a href="/2017/11/06/js-designPattern20171106/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
             Read More
           </a>
@@ -1695,6 +1808,8 @@
       <div class="full-width auto-padding tags">
         
           <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
+        
+          <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 设计模式</a>
         
       </div>
     
@@ -1717,8 +1832,8 @@
       
         
   <h2 class="title">
-    <a href="/2017/09/14/js-type20170914/">
-      复杂值vs原始值&&内存空间
+    <a href="/2017/11/01/life-aboutLife20171101/">
+      青春是如此美好，又怎忍平凡度过
     </a>
   </h2>
 
@@ -1748,114 +1863,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2017-09-14</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/JavaScript/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>JavaScript</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>最近在读《JavaScript启示录》，这本书不是JavaScript的详尽的参考指南，但是把对象作为了解JavaScript的透镜，受益匪浅。</p>
-<p>那么我们先来聊一下JavaScript的原始值（值类型）以及复杂值（引用类型），以及他们在内存空间中的存储，关于他们你可能不清楚的一些事：</p>
-<p>我们先通过一个经典的面试题类型（并不是原题，我即兴发挥）引出我们今天的主题：</p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231017985-195870781.png" alt=""><br><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231023453-1314449337.png" alt=""></p>
-<p>我们已经看出他们的差别，在图一：我们让b = a，改变b的值，发现a并没有改变。在图二：我们让d = c,通过d.name改变对象的name属性，发现c.name也变化了。</p>
-<p>事实上，原始值存储在栈内存中，按值来访问。复杂值（引用类型）在堆内存里面，按引用地址访问；然后我们会想到局部变量和全局变量在内存中的存储：</p>
-<p>下面会具体介绍复杂值、原始值以及他们的一些特性与内存空间：</p>
-      
-        <div class="readmore">
-          <a href="/2017/09/14/js-type20170914/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2017/09/09/life-aboutLife20170909/">
-      这一年，是责任与奋勉齐驱并进
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    
-      <a href="https://www.chenqaq.com" rel="nofollow">
-        
-          <i class="fas fa-user" aria-hidden="true"></i>
-        
-        <p>okaychen</p>
-      </a>
-    
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2017-09-09</p>
+    <p>2017-11-01</p>
   </a>
 </div>
 
@@ -1889,12 +1897,10 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <p>从16年刚步入校园，转眼之间迎来了我的大二生活。</p>
-<p>在很多人眼中，刚步入大学的新生是懵懂无知、没有目标的一年，对未来的生活没有想象，对于自己的明天或许仍然没有选择；但是我俨然过成了激情中又充满安稳的一年（这或许在别人眼中是乏味的吧），因为我最庆幸的是，我一开始就坚定着我的目标，至少直到现在我没有动摇，而且在接下来的大二生活，我仍然不想动摇，我会继续着我的目标。</p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170909003809929-1215489348.png" alt=""></p>
+      
       
         <div class="readmore">
-          <a href="/2017/09/09/life-aboutLife20170909/" class="flat-box">
+          <a href="/2017/11/01/life-aboutLife20171101/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
             Read More
           </a>
@@ -1923,7 +1929,7 @@
         <div class="prev-next">
           
           <p class="current">
-            1 / 2
+            1 / 3
           </p>
           
             <a class="next" rel="next" href="/archives/2017/page/2/">
@@ -2170,21 +2176,25 @@
         
           <li><a class="flat-box" title="/categories/HTML-CSS/" href="/categories/HTML-CSS/"><div class='name'>HTML/CSS</div><div class='badge'>(7)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/JavaScript/" href="/categories/JavaScript/"><div class='name'>JavaScript</div><div class='badge'>(15)</div></a></li>
+          <li><a class="flat-box" title="/categories/JavaScript/" href="/categories/JavaScript/"><div class='name'>JavaScript</div><div class='badge'>(18)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Linux/" href="/categories/Linux/"><div class='name'>Linux</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Node/" href="/categories/Node/"><div class='name'>Node</div><div class='badge'>(10)</div></a></li>
         
+          <li><a class="flat-box" title="/categories/Vue/" href="/categories/Vue/"><div class='name'>Vue</div><div class='badge'>(2)</div></a></li>
+        
           <li><a class="flat-box" title="/categories/WEB%E5%AE%89%E5%85%A8/" href="/categories/WEB%E5%AE%89%E5%85%A8/"><div class='name'>WEB安全</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box" title="/categories/mongodb/" href="/categories/mongodb/"><div class='name'>mongodb</div><div class='badge'>(1)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><div class='name'>小程序</div><div class='badge'>(1)</div></a></li>
+          <li><a class="flat-box" title="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><div class='name'>小程序</div><div class='badge'>(3)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" href="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/"><div class='name'>岁言心语</div><div class='badge'>(7)</div></a></li>
+          <li><a class="flat-box" title="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" href="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/"><div class='name'>岁言心语</div><div class='badge'>(8)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><div class='name'>设计模式</div><div class='badge'>(2)</div></a></li>
+          <li><a class="flat-box" title="/categories/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" href="/categories/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/"><div class='name'>构建工具</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><div class='name'>设计模式</div><div class='badge'>(4)</div></a></li>
         
       </ul>
     </div>
@@ -2238,7 +2248,7 @@
 </header>
 
     <div class='content pure'>
-      <a href="/tags/AOP/" style="font-size: 15.67px; color: #8e8e8e">AOP</a> <a href="/tags/CSS/" style="font-size: 20.67px; color: #6c6c6c">CSS</a> <a href="/tags/Canvas/" style="font-size: 14px; color: #999">Canvas</a> <a href="/tags/Docker/" style="font-size: 14px; color: #999">Docker</a> <a href="/tags/Express/" style="font-size: 19px; color: #777">Express</a> <a href="/tags/JavaScript/" style="font-size: 24px; color: #555">JavaScript</a> <a href="/tags/KOA/" style="font-size: 14px; color: #999">KOA</a> <a href="/tags/Layout/" style="font-size: 17.33px; color: #828282">Layout</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Node/" style="font-size: 22.33px; color: #606060">Node</a> <a href="/tags/SSH/" style="font-size: 14px; color: #999">SSH</a> <a href="/tags/WEB%E5%AE%89%E5%85%A8/" style="font-size: 17.33px; color: #828282">WEB安全</a> <a href="/tags/Webpack/" style="font-size: 14px; color: #999">Webpack</a> <a href="/tags/layout/" style="font-size: 15.67px; color: #8e8e8e">layout</a> <a href="/tags/mongodb/" style="font-size: 14px; color: #999">mongodb</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" style="font-size: 14px; color: #999">事件循环</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 14px; color: #999">小游戏</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 14px; color: #999">小程序</a> <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" style="font-size: 20.67px; color: #6c6c6c">岁言心语</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 14px; color: #999">正则</a> <a href="/tags/%E7%80%91%E5%B8%83%E6%B5%81/" style="font-size: 14px; color: #999">瀑布流</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">爬虫</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15.67px; color: #8e8e8e">设计模式</a>
+      <a href="/tags/AOP/" style="font-size: 15.25px; color: #919191">AOP</a> <a href="/tags/CSS/" style="font-size: 20.25px; color: #6f6f6f">CSS</a> <a href="/tags/Canvas/" style="font-size: 14px; color: #999">Canvas</a> <a href="/tags/Docker/" style="font-size: 14px; color: #999">Docker</a> <a href="/tags/Express/" style="font-size: 19px; color: #777">Express</a> <a href="/tags/JavaScript/" style="font-size: 24px; color: #555">JavaScript</a> <a href="/tags/KOA/" style="font-size: 14px; color: #999">KOA</a> <a href="/tags/Layout/" style="font-size: 16.5px; color: #888">Layout</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Node/" style="font-size: 22.75px; color: #5e5e5e">Node</a> <a href="/tags/SSH/" style="font-size: 14px; color: #999">SSH</a> <a href="/tags/Vue/" style="font-size: 15.25px; color: #919191">Vue</a> <a href="/tags/WEB%E5%AE%89%E5%85%A8/" style="font-size: 16.5px; color: #888">WEB安全</a> <a href="/tags/Webpack/" style="font-size: 14px; color: #999">Webpack</a> <a href="/tags/layout/" style="font-size: 15.25px; color: #919191">layout</a> <a href="/tags/mongodb/" style="font-size: 14px; color: #999">mongodb</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" style="font-size: 14px; color: #999">事件循环</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 14px; color: #999">小游戏</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 16.5px; color: #888">小程序</a> <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" style="font-size: 21.5px; color: #666">岁言心语</a> <a href="/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" style="font-size: 15.25px; color: #919191">构建工具</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 14px; color: #999">正则</a> <a href="/tags/%E7%80%91%E5%B8%83%E6%B5%81/" style="font-size: 14px; color: #999">瀑布流</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">爬虫</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 17.75px; color: #808080">设计模式</a>
     </div>
   </section>
 

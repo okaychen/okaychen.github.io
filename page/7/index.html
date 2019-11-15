@@ -235,8 +235,8 @@
       
         
   <h2 class="title">
-    <a href="/2017/08/19/js-regular20170819/">
-      RegExp正则匹配模式汇总
+    <a href="/2017/10/15/vue-basis20171015/">
+      Vue基础 - 从模板语法数据绑定、指令到计算属性总结
     </a>
   </h2>
 
@@ -266,7 +266,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2017-08-19</p>
+    <p>2017-10-15</p>
   </a>
 </div>
 
@@ -276,9 +276,9 @@
             
   
   <div class='new-meta-item category'>
-    <a href='/categories/JavaScript/' rel="nofollow">
+    <a href='/categories/Vue/' rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>JavaScript</p>
+      <p>Vue</p>
     </a>
   </div>
 
@@ -300,10 +300,17 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <p>正则表达式提供另一种强大的文本搜索和处理方式，对于正则表达式，不同语言有着不同的实现，JavaScript采用的Perl5的语法。对于极少数匹配模式是简单的全字符文本的情况，我们往往会采用indexOf这样的方法，但是多数情况下，匹配模式往往都更为复杂。</p>
+      <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>今年前端届比较有意思，从大漠穷秋发表文章比较angular和vue，继而致歉vue作者、社区，从谷歌辞去Angular Developer PM in China一职并且呼吁大家停止各种无谓的争论；到尤雨溪知乎回应大漠穷秋，表态遗憾大漠穷秋离职，希望世界和平。</p>
+<p>其实我觉得更多的是两者社区、用户、粉丝态度过激导致争端，所以我们要怀着一颗理性的心态去看待，切不要党同伐异。</p>
+<p>之前在图灵社区读过一篇文章<a href="http://www.ituring.com.cn/article/273032" target="_blank" rel="noopener">《Vue作者尤雨溪：以匠人的态度不断打磨完善vue》</a>，</p>
+<p>先来一发福利照 - - </p>
+<p><img src="https://images2017.cnblogs.com/blog/1140602/201710/1140602-20171015003545777-1083013832.jpg" alt=""></p>
+<p>里面也有尤雨溪一些对于开发vue的想法，总结下来就是：轻量化，快速上手，灵活运用；</p>
+<p>也有给我们的一些建议，简单总结就是：保持好奇心，在业余时间多做尝试，以兴趣为动力，把兴趣推进一步，保持一种持续学习，持续研究的状态，多探索，多尝试；</p>
+<p>前缀有点长，请放下手里的西瓜刀，接下来进入今天的正正题吧~~</p>
       
         <div class="readmore">
-          <a href="/2017/08/19/js-regular20170819/" class="flat-box">
+          <a href="/2017/10/15/vue-basis20171015/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
             Read More
           </a>
@@ -313,9 +320,7 @@
     
       <div class="full-width auto-padding tags">
         
-          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
-        
-          <a href="/tags/%E6%AD%A3%E5%88%99/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 正则</a>
+          <a href="/tags/Vue/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> Vue</a>
         
       </div>
     
@@ -338,8 +343,8 @@
       
         
   <h2 class="title">
-    <a href="/2017/08/12/js-rule20170812/">
-      自制刻度尺插件-前端简易实现"腾讯信用"界面
+    <a href="/2017/10/12/wx-miniProgram20171012/">
+      调用wx.request接口时需要注意的几个问题
     </a>
   </h2>
 
@@ -369,231 +374,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2017-08-12</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/JavaScript/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>JavaScript</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p>依据我现有的知识，在前端上”简易”的实现了腾讯信用的界面，同时自己自制了一个竖直的刻度尺插件，曲线的位置可以根据传入的数值动态的改变，这次主要也想总结一下关于jQuery中extend的方法，也是我们在写插件的时候常用的方法</p>
-<h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="https://images2017.cnblogs.com/blog/1140602/201708/1140602-20170812102040413-1604886858.gif" alt=""></p>
-      
-        <div class="readmore">
-          <a href="/2017/08/12/js-rule20170812/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2017/08/11/js-findNode20170811/">
-      JavaScript快速查找节点
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    
-      <a href="https://www.chenqaq.com" rel="nofollow">
-        
-          <i class="fas fa-user" aria-hidden="true"></i>
-        
-        <p>okaychen</p>
-      </a>
-    
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2017-08-11</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/JavaScript/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>JavaScript</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p>我们在实际的开发中，经常要获取页面中某个html元素，动态更新元素的样式、内容属性等。</p>
-<img src="http://images2017.cnblogs.com/blog/1140602/201708/1140602-20170811173058398-1140296284.gif" alt="">
-
-<p>我们已经知道在JavaScript中提供下面的方法获取子、父、兄节点的方法：</p>
-<h1 id="常规"><a href="#常规" class="headerlink" title="常规"></a>常规</h1><p>1.通过父节点获取子节点：</p>
-<ul>
-<li>获取已知父节点的第一个子节点:<code>parentObj.firstChild</code></li>
-<li>获取已知父节点的最后一个子节点:<code>parentObj.lastChild</code></li>
-<li>获取已知父节点的子节点数组(这里我在IE 7中获取的是所有直接的子节点):<code>parentObj.childNodes</code>　　</li>
-<li>获取已知节点的直接子节点数组（在IE7中和childNodes效果一样）:<code>parentObj.children</code>  </li>
-<li>返回已知子节点中类型为指定值的子节点数组:<code>parentObj.getElementsByTagName(tagName)</code>  </li>
-</ul>
-<p>2.通过临近节点获取兄弟节点：</p>
-<ul>
-<li>获取已知节点的前一个兄弟节点:<code>neighbourNode.previousSibing</code></li>
-<li>获取已知节点的下一个兄弟节点:<code>neighbourNode.nextSibing</code></li>
-</ul>
-<p>3.通过子节点获取父节点：</p>
-<ul>
-<li>获取已知节点的父节点:<code>childNode.parentNode</code></li>
-</ul>
-<p>上面的方法基本都是可以递归是使用的，但并不是最优</p>
-      
-        <div class="readmore">
-          <a href="/2017/08/11/js-findNode20170811/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2017/08/02/wx-miniProgram20170802/">
-      微信小程序-滚动消息通知
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    
-      <a href="https://www.chenqaq.com" rel="nofollow">
-        
-          <i class="fas fa-user" aria-hidden="true"></i>
-        
-        <p>okaychen</p>
-      </a>
-    
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2017-08-02</p>
+    <p>2017-10-12</p>
   </a>
 </div>
 
@@ -627,11 +408,16 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <h1 id="写在前面："><a href="#写在前面：" class="headerlink" title="写在前面：　"></a>写在前面：　</h1><p>这次我主要想总结一下微信小程序实现上下滚动消息提醒，主要是利用swiper组件来实现，swiper组件在小程序中是滑块视图容器。</p>
-<h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><img src="https://images2017.cnblogs.com/blog/1140602/201708/1140602-20170802200717553-132653419.gif" alt="">
+      <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>之前写了一篇《微信小程序实现各种特效实例》，这次主要聊一下小程序前后端接口对接的一些事，</p>
+<p>对于客户端与服务端接口的对接，微信小程序提供了wx.request()的API接口，完美的实现前端后台的对接：</p>
+<p>一个简单的栗子：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">wx.request(&#123;</span><br><span class="line">    url: API_URL + <span class="string">'/api/category/categoryList'</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        applet_id: app.globalData.applet_id</span><br><span class="line">    &#125;,</span><br><span class="line">    method: <span class="string">'POST'</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">    wx.hideLoading();</span><br><span class="line">    <span class="built_in">console</span>.log(res.data.data, <span class="string">'category data acquisition success'</span>);</span><br><span class="line">        that.setData(&#123;<span class="attr">category</span>: res.data.data&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在控制台中也得到了我想要的接口中的数据：</p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201710/1140602-20171011130151684-1534935555.png" alt=""></fancybox></p>
+<p>但期间也遇到了几个问题，总结下来；</p>
       
         <div class="readmore">
-          <a href="/2017/08/02/wx-miniProgram20170802/" class="flat-box">
+          <a href="/2017/10/12/wx-miniProgram20171012/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
             Read More
           </a>
@@ -664,8 +450,8 @@
       
         
   <h2 class="title">
-    <a href="/2017/07/13/life-aboutlife20170713/">
-      你愿不愿意做一个一异类，异于常人，出类拔萃
+    <a href="/2017/10/01/wx-miniProgram20171001/">
+      微信小程序实现各种特效实例
     </a>
   </h2>
 
@@ -695,7 +481,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2017-07-13</p>
+    <p>2017-10-01</p>
   </a>
 </div>
 
@@ -705,9 +491,9 @@
             
   
   <div class='new-meta-item category'>
-    <a href='/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/' rel="nofollow">
+    <a href='/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/' rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>岁言心语</p>
+      <p>小程序</p>
     </a>
   </div>
 
@@ -729,14 +515,13 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <p>看大家都自愿报了老师移动互联的暑期培训，但是却拿不出兴趣和势头，那大家和我都失去了参与这次培训的意义。</p>
-<p>我参与这次培训是想对自己这近一年前端知识做一个总结和梳理，你说你学会了很多东西，其实不然，我觉得目前为止对我们来说有三样东西你能告诉自己你学到了些东西：</p>
-<p>一是抓住参加比赛的机会，自己动手去做；</p>
-<p>二是要抓住做项目的机会；</p>
-<p>三是能把学到的东西讲给别人。</p>
+      <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>本人完成的微信小程序一些常用的特效，总结一下，希望对大家和我都能有所帮助</p>
+<h1 id="实例1：滚动tab选项卡"><a href="#实例1：滚动tab选项卡" class="headerlink" title="实例1：滚动tab选项卡"></a>实例1：滚动tab选项卡</h1><p>先看一下效果图吧，能够点击菜单或滑动页面切换，tab菜单部分可以实现左右滚动</p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201710/1140602-20171001014258465-572247537.gif" alt=""></fancybox></p>
+<p>好了，看一下我的源码吧！&lt;有用的话拿走不谢哟，随版本更新代码可能会有出入&gt;</p>
       
         <div class="readmore">
-          <a href="/2017/07/13/life-aboutlife20170713/" class="flat-box">
+          <a href="/2017/10/01/wx-miniProgram20171001/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
             Read More
           </a>
@@ -746,7 +531,7 @@
     
       <div class="full-width auto-padding tags">
         
-          <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 岁言心语</a>
+          <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 小程序</a>
         
       </div>
     
@@ -769,8 +554,8 @@
       
         
   <h2 class="title">
-    <a href="/2017/07/12/css-shape20170712/">
-      css绘制常见的几何图形
+    <a href="/2017/09/26/js-module20170926/">
+      设计模式之module及其改进
     </a>
   </h2>
 
@@ -800,7 +585,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2017-07-12</p>
+    <p>2017-09-26</p>
   </a>
 </div>
 
@@ -810,9 +595,9 @@
             
   
   <div class='new-meta-item category'>
-    <a href='/categories/HTML-CSS/' rel="nofollow">
+    <a href='/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/' rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>HTML/CSS</p>
+      <p>JavaScript&nbsp;/&nbsp;设计模式</p>
     </a>
   </div>
 
@@ -834,11 +619,17 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <p>　　<br>前言：终于我的大一生活结束了，迎来了愉快的暑假，大家都开始了各自的忙碌。一直忙着一些项目的事情，终于决定今天要更新一篇博客了，对上一阶段的学习做简单的总结。</p>
-<p>这次我主要总结一下用css绘制各种形状的技巧，同时要结合before、after伪元素和定位做出一些效果。</p>
+      <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>编写易于维护的代码，其中最重要的方面就是能够找到代码中重复出现的主题并优化他们，这也是设计模式最有价值的地方</p>
+<p>《head first设计模式》里有一篇文章，是说使用模式的心智，</p>
+<p>　　1、初学者”心智” ：”我要为HELLO WORLD找个模式”</p>
+<p>　　2、中级人员模式： “或许这里我需要一个单件模式”</p>
+<p>　　3、悟道者心智：”在这里使用一个装饰者模式相当自然”</p>
+<blockquote>
+<p>先了解一下设计模式的开始吧：设计模式最初起源于奥地利维也纳的一个土木工程师克里斯托弗·亚历山大，模式语言最早是为了解决复杂工程项目而创立的，30年前，软件开发工程师们的开始把亚历山大编写的设计原则纳入首个设计模式的文档中。1995年，出版了《设计模式：可复用面向对象软件的基础》，就这样经过开发工程师们的经验的总结与使用，成长成为今天的设计模式，已经得到了广泛的使用，是初级开发人员改进编程技巧的指南。</p>
+</blockquote>
       
         <div class="readmore">
-          <a href="/2017/07/12/css-shape20170712/" class="flat-box">
+          <a href="/2017/09/26/js-module20170926/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
             Read More
           </a>
@@ -848,7 +639,221 @@
     
       <div class="full-width auto-padding tags">
         
-          <a href="/tags/CSS/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> CSS</a>
+          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
+        
+          <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 设计模式</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2017/09/21/js-prototype20170921/">
+      强大的原型和原型链
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2017-09-21</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/JavaScript/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>JavaScript</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>前两次总结了JavaScript中的基本数据类型（值类型&lt;引用类型&gt;，引用类型&lt;复杂值&gt;）以及他们在内存中的存储，对内存空间有了一个简单的了解，以及第二次总结了this深入浅出的用法，我们知道了this的用法取决于函数四种调用的方式。</p>
+<p>这一次我们来对JavaScript中原型以及原型链做一个深入浅出的理解。</p>
+<h1 id="JavaScript深入浅出系列"><a href="#JavaScript深入浅出系列" class="headerlink" title="JavaScript深入浅出系列"></a>JavaScript深入浅出系列</h1><p>1）复杂值vs原始值&amp;&amp;内存空间 - JavaScript深入浅出（一）</p>
+<p>2）this的用法 – JavaScript深入浅出（二）</p>
+<p>3）原型那些事 - JavaScript深入浅出（三）</p>
+      
+        <div class="readmore">
+          <a href="/2017/09/21/js-prototype20170921/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2017/09/14/js-this20170914/">
+      this四种绑定方式之间的奇淫技巧
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2017-09-14</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/JavaScript/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>JavaScript</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>上一篇中，我们对于JavaScript中原始值、复杂值以及内存空间进行了一个深入浅出的总结，这次我们来聊一聊JavaScript中this关键字的深入浅出的用法.</p>
+<p>在 JavaScript 中，this 是动态绑定，或称为运行期绑定的，这就导致 JavaScript 中的 this 关键字有能力具备多重含义，带来灵活性的同时，也为初学者带来不少困惑。希望这篇文章可以解决初学者心中<code>what’s this?</code>的困惑。</p>
+<p>创建函数时，系统会在默认创建一个名为this的关键字，这也就是说this，只能在函数内部使用；从根本上说，由于运期绑定的特性，JavaScript中this的关键字要丰富的多，这完全取决于函数调用的方式：</p>
+<p>　　1）作为函数调用</p>
+<p>　　2）作为对象方法调用</p>
+<p>　　3）使用call，apply调用</p>
+<p>　　4）作为构造函数调用</p>
+      
+        <div class="readmore">
+          <a href="/2017/09/14/js-this20170914/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
         
       </div>
     
@@ -873,7 +878,7 @@
             </a>
           
           <p class="current">
-            7 / 8
+            7 / 10
           </p>
           
             <a class="next" rel="next" href="/page/8/">
@@ -1119,21 +1124,25 @@
         
           <li><a class="flat-box" title="/categories/HTML-CSS/" href="/categories/HTML-CSS/"><div class='name'>HTML/CSS</div><div class='badge'>(7)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/JavaScript/" href="/categories/JavaScript/"><div class='name'>JavaScript</div><div class='badge'>(15)</div></a></li>
+          <li><a class="flat-box" title="/categories/JavaScript/" href="/categories/JavaScript/"><div class='name'>JavaScript</div><div class='badge'>(18)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Linux/" href="/categories/Linux/"><div class='name'>Linux</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Node/" href="/categories/Node/"><div class='name'>Node</div><div class='badge'>(10)</div></a></li>
         
+          <li><a class="flat-box" title="/categories/Vue/" href="/categories/Vue/"><div class='name'>Vue</div><div class='badge'>(2)</div></a></li>
+        
           <li><a class="flat-box" title="/categories/WEB%E5%AE%89%E5%85%A8/" href="/categories/WEB%E5%AE%89%E5%85%A8/"><div class='name'>WEB安全</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box" title="/categories/mongodb/" href="/categories/mongodb/"><div class='name'>mongodb</div><div class='badge'>(1)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><div class='name'>小程序</div><div class='badge'>(1)</div></a></li>
+          <li><a class="flat-box" title="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><div class='name'>小程序</div><div class='badge'>(3)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" href="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/"><div class='name'>岁言心语</div><div class='badge'>(7)</div></a></li>
+          <li><a class="flat-box" title="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" href="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/"><div class='name'>岁言心语</div><div class='badge'>(8)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><div class='name'>设计模式</div><div class='badge'>(2)</div></a></li>
+          <li><a class="flat-box" title="/categories/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" href="/categories/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/"><div class='name'>构建工具</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><div class='name'>设计模式</div><div class='badge'>(4)</div></a></li>
         
       </ul>
     </div>
@@ -1187,7 +1196,7 @@
 </header>
 
     <div class='content pure'>
-      <a href="/tags/AOP/" style="font-size: 15.67px; color: #8e8e8e">AOP</a> <a href="/tags/CSS/" style="font-size: 20.67px; color: #6c6c6c">CSS</a> <a href="/tags/Canvas/" style="font-size: 14px; color: #999">Canvas</a> <a href="/tags/Docker/" style="font-size: 14px; color: #999">Docker</a> <a href="/tags/Express/" style="font-size: 19px; color: #777">Express</a> <a href="/tags/JavaScript/" style="font-size: 24px; color: #555">JavaScript</a> <a href="/tags/KOA/" style="font-size: 14px; color: #999">KOA</a> <a href="/tags/Layout/" style="font-size: 17.33px; color: #828282">Layout</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Node/" style="font-size: 22.33px; color: #606060">Node</a> <a href="/tags/SSH/" style="font-size: 14px; color: #999">SSH</a> <a href="/tags/WEB%E5%AE%89%E5%85%A8/" style="font-size: 17.33px; color: #828282">WEB安全</a> <a href="/tags/Webpack/" style="font-size: 14px; color: #999">Webpack</a> <a href="/tags/layout/" style="font-size: 15.67px; color: #8e8e8e">layout</a> <a href="/tags/mongodb/" style="font-size: 14px; color: #999">mongodb</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" style="font-size: 14px; color: #999">事件循环</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 14px; color: #999">小游戏</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 14px; color: #999">小程序</a> <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" style="font-size: 20.67px; color: #6c6c6c">岁言心语</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 14px; color: #999">正则</a> <a href="/tags/%E7%80%91%E5%B8%83%E6%B5%81/" style="font-size: 14px; color: #999">瀑布流</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">爬虫</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15.67px; color: #8e8e8e">设计模式</a>
+      <a href="/tags/AOP/" style="font-size: 15.25px; color: #919191">AOP</a> <a href="/tags/CSS/" style="font-size: 20.25px; color: #6f6f6f">CSS</a> <a href="/tags/Canvas/" style="font-size: 14px; color: #999">Canvas</a> <a href="/tags/Docker/" style="font-size: 14px; color: #999">Docker</a> <a href="/tags/Express/" style="font-size: 19px; color: #777">Express</a> <a href="/tags/JavaScript/" style="font-size: 24px; color: #555">JavaScript</a> <a href="/tags/KOA/" style="font-size: 14px; color: #999">KOA</a> <a href="/tags/Layout/" style="font-size: 16.5px; color: #888">Layout</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Node/" style="font-size: 22.75px; color: #5e5e5e">Node</a> <a href="/tags/SSH/" style="font-size: 14px; color: #999">SSH</a> <a href="/tags/Vue/" style="font-size: 15.25px; color: #919191">Vue</a> <a href="/tags/WEB%E5%AE%89%E5%85%A8/" style="font-size: 16.5px; color: #888">WEB安全</a> <a href="/tags/Webpack/" style="font-size: 14px; color: #999">Webpack</a> <a href="/tags/layout/" style="font-size: 15.25px; color: #919191">layout</a> <a href="/tags/mongodb/" style="font-size: 14px; color: #999">mongodb</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" style="font-size: 14px; color: #999">事件循环</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 14px; color: #999">小游戏</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 16.5px; color: #888">小程序</a> <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" style="font-size: 21.5px; color: #666">岁言心语</a> <a href="/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" style="font-size: 15.25px; color: #919191">构建工具</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 14px; color: #999">正则</a> <a href="/tags/%E7%80%91%E5%B8%83%E6%B5%81/" style="font-size: 14px; color: #999">瀑布流</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">爬虫</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 17.75px; color: #808080">设计模式</a>
     </div>
   </section>
 

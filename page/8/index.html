@@ -235,8 +235,8 @@
       
         
   <h2 class="title">
-    <a href="/2017/06/14/js-css-waterfall20170614/">
-      css3多栏属性&&JS实现瀑布流
+    <a href="/2017/09/14/js-type20170914/">
+      复杂值vs原始值&&内存空间
     </a>
   </h2>
 
@@ -266,117 +266,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2017-06-14</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/JavaScript/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>HTML/CSS&nbsp;/&nbsp;JavaScript</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h1 id="css3多列"><a href="#css3多列" class="headerlink" title="css3多列"></a>css3多列</h1><p>1）首提的兼容性问题：IE10以及opera支持多列（column），chrome需要-webkit-前缀，Firefox需要-moz-的前缀，Ie9以及更早版本就不支持多列了。你可以使用这个工具，很方便的查看你的浏览器内核以及版本信息<a href="http://ie.icoa.cn/" target="_blank" rel="noopener">http://ie.icoa.cn/</a></p>
-<p>2）Css3多列属性:css3多列主要是五个属性</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">column-count　　  // &lt;规定元素被分隔的列数&gt;</span><br><span class="line">column-gap　　　  // &lt;规定列与列之间的间隔&gt;</span><br><span class="line">column-rule　　   // &lt;列之间的宽度、样式、颜色&gt;</span><br><span class="line">column-width     // &lt;列的宽度&gt;</span><br><span class="line">column-span      // &lt;元素应该横跨的列数&gt;</span><br></pre></td></tr></table></figure>
-<p>注意：在设置column-width宽度时，同时设置盒子的width，否则宽度默认为100%，每栏宽度按栏数平均分；盒子每栏宽度必须大于等于column-width设定的值，否则就会减少栏数来增加每栏宽度</p>
-      
-        <div class="readmore">
-          <a href="/2017/06/14/js-css-waterfall20170614/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/CSS/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> CSS</a>
-        
-          <a href="/tags/Layout/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> Layout</a>
-        
-          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
-        
-          <a href="/tags/%E7%80%91%E5%B8%83%E6%B5%81/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 瀑布流</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2017/05/27/js-AngularCli20170527/">
-      Angule Cli创建Angular项目
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    
-      <a href="https://www.chenqaq.com" rel="nofollow">
-        
-          <i class="fas fa-user" aria-hidden="true"></i>
-        
-        <p>okaychen</p>
-      </a>
-    
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2017-05-27</p>
+    <p>2017-09-14</p>
   </a>
 </div>
 
@@ -410,12 +300,16 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <p><img src="https://images2015.cnblogs.com/blog/1140602/201705/1140602-20170521131215853-1429491603.png" alt=""></p>
-<p>Angular4.0来了，更小，更快，改动少</p>
-<p>接下来为Angular4.0准备环境和学会使用Angular cli项目</p>
+      <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>最近在读《JavaScript启示录》，这本书不是JavaScript的详尽的参考指南，但是把对象作为了解JavaScript的透镜，受益匪浅。</p>
+<p>那么我们先来聊一下JavaScript的原始值（值类型）以及复杂值（引用类型），以及他们在内存空间中的存储，关于他们你可能不清楚的一些事：</p>
+<p>我们先通过一个经典的面试题类型（并不是原题，我即兴发挥）引出我们今天的主题：</p>
+<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231017985-195870781.png" alt=""><br><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231023453-1314449337.png" alt=""></p>
+<p>我们已经看出他们的差别，在图一：我们让b = a，改变b的值，发现a并没有改变。在图二：我们让d = c,通过d.name改变对象的name属性，发现c.name也变化了。</p>
+<p>事实上，原始值存储在栈内存中，按值来访问。复杂值（引用类型）在堆内存里面，按引用地址访问；然后我们会想到局部变量和全局变量在内存中的存储：</p>
+<p>下面会具体介绍复杂值、原始值以及他们的一些特性与内存空间：</p>
       
         <div class="readmore">
-          <a href="/2017/05/27/js-AngularCli20170527/" class="flat-box">
+          <a href="/2017/09/14/js-type20170914/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
             Read More
           </a>
@@ -448,8 +342,8 @@
       
         
   <h2 class="title">
-    <a href="/2017/05/03/js-closure20170503/">
-      闭包初体验
+    <a href="/2017/09/09/life-aboutLife20170909/">
+      这一年，是责任与奋勉齐驱并进
     </a>
   </h2>
 
@@ -479,7 +373,216 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2017-05-03</p>
+    <p>2017-09-09</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>岁言心语</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>从16年刚步入校园，转眼之间迎来了我的大二生活。</p>
+<p>在很多人眼中，刚步入大学的新生是懵懂无知、没有目标的一年，对未来的生活没有想象，对于自己的明天或许仍然没有选择；但是我俨然过成了激情中又充满安稳的一年（这或许在别人眼中是乏味的吧），因为我最庆幸的是，我一开始就坚定着我的目标，至少直到现在我没有动摇，而且在接下来的大二生活，我仍然不想动摇，我会继续着我的目标。</p>
+<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170909003809929-1215489348.png" alt=""></p>
+      
+        <div class="readmore">
+          <a href="/2017/09/09/life-aboutLife20170909/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 岁言心语</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2017/09/02/node-mongodb-connection20170902/">
+      mongodb原生node驱动
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2017-09-02</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/mongodb/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Node&nbsp;/&nbsp;mongodb</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>最近读《node.js学习指南》，对于mongodb没有介绍太多的工作原理，但是对于一个前端开发者，即使你还没有用过这种数据库也可以让你很好的理解和使用</p>
+<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170902035102780-1333013103.png" alt="">   　　</p>
+<p>一本非常好的介绍node.js的书，我一直把他放在触手可及的地方。　　–Mike Amundsen</p>
+<p>MongoDB Native Node.js Driver模块是mongodb自带的node的驱动，这个驱动发出的mongodb指令和mongodb客户端发出的指令基本一致。</p>
+      
+        <div class="readmore">
+          <a href="/2017/09/02/node-mongodb-connection20170902/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Node/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> Node</a>
+        
+          <a href="/tags/mongodb/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> mongodb</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2017/08/31/js-algorithm20170831/">
+      递归函数-汉诺塔经典递归
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2017-08-31</p>
   </a>
 </div>
 
@@ -513,13 +616,220 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <p>首先，在理解闭包之前：</p>
-<p>我们首先应该清楚下作用域和作用域链</p>
-<p>作用域：每个函数定义时创建时自己的环境即作用域</p>
-<p>作用域链：函数内可访问自身和父级作用域中的变量，函数外不可访问函数内的私有变量</p>
+      <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在读《JavaScript语言精粹》，对递归函数有了进一步的认识，希望总结下来：</p>
+<p>递归是一种强大的编程技术，他把一个问题分解为一组相似的子问题，每一问题都用一个寻常解去解决。递归函数就是会直接或者间接调用自身的一种函数，一般来说，一个递归函数调用自身去解决它的子问题。</p>
+<h1 id="“汉诺塔”经典递归问题"><a href="#“汉诺塔”经典递归问题" class="headerlink" title="“汉诺塔”经典递归问题"></a>“汉诺塔”经典递归问题</h1><p>“汉诺塔”是印度的一个古老传说，也是程序设计中的经典的递归问题，是一个著名的益智游戏：</p>
+<p>题目如下：</p>
+<p>塔上有三根柱子和一套直径各不相同的空心圆盘，开始时源柱子上的所有圆盘都按从大到小的顺序排列。目标是通过每一次移动一个圆盘到另一根柱子上，最终把一堆圆盘移动到目标柱子上，过程中不允许把较大的圆盘放置在较小的圆盘上；</p>
+<p><img src="https://images2017.cnblogs.com/blog/1140602/201708/1140602-20170826161041339-1044886841.png" alt="">　</p>
       
         <div class="readmore">
-          <a href="/2017/05/03/js-closure20170503/" class="flat-box">
+          <a href="/2017/08/31/js-algorithm20170831/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2017/08/19/js-regular20170819/">
+      RegExp正则匹配模式汇总
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2017-08-19</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/JavaScript/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>JavaScript</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>正则表达式提供另一种强大的文本搜索和处理方式，对于正则表达式，不同语言有着不同的实现，JavaScript采用的Perl5的语法。对于极少数匹配模式是简单的全字符文本的情况，我们往往会采用indexOf这样的方法，但是多数情况下，匹配模式往往都更为复杂。</p>
+      
+        <div class="readmore">
+          <a href="/2017/08/19/js-regular20170819/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
+        
+          <a href="/tags/%E6%AD%A3%E5%88%99/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 正则</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2017/08/12/js-rule20170812/">
+      自制刻度尺插件-前端简易实现"腾讯信用"界面
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2017-08-12</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/JavaScript/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>JavaScript</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>依据我现有的知识，在前端上”简易”的实现了腾讯信用的界面，同时自己自制了一个竖直的刻度尺插件，曲线的位置可以根据传入的数值动态的改变，这次主要也想总结一下关于jQuery中extend的方法，也是我们在写插件的时候常用的方法</p>
+<h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="https://images2017.cnblogs.com/blog/1140602/201708/1140602-20170812102040413-1604886858.gif" alt=""></p>
+      
+        <div class="readmore">
+          <a href="/2017/08/12/js-rule20170812/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
             Read More
           </a>
@@ -554,8 +864,14 @@
             </a>
           
           <p class="current">
-            8 / 8
+            8 / 10
           </p>
+          
+            <a class="next" rel="next" href="/page/9/">
+              <section class="post next">
+                &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+              </section>
+            </a>
           
         </div>
       </div>
@@ -794,21 +1110,25 @@
         
           <li><a class="flat-box" title="/categories/HTML-CSS/" href="/categories/HTML-CSS/"><div class='name'>HTML/CSS</div><div class='badge'>(7)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/JavaScript/" href="/categories/JavaScript/"><div class='name'>JavaScript</div><div class='badge'>(15)</div></a></li>
+          <li><a class="flat-box" title="/categories/JavaScript/" href="/categories/JavaScript/"><div class='name'>JavaScript</div><div class='badge'>(18)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Linux/" href="/categories/Linux/"><div class='name'>Linux</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Node/" href="/categories/Node/"><div class='name'>Node</div><div class='badge'>(10)</div></a></li>
         
+          <li><a class="flat-box" title="/categories/Vue/" href="/categories/Vue/"><div class='name'>Vue</div><div class='badge'>(2)</div></a></li>
+        
           <li><a class="flat-box" title="/categories/WEB%E5%AE%89%E5%85%A8/" href="/categories/WEB%E5%AE%89%E5%85%A8/"><div class='name'>WEB安全</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box" title="/categories/mongodb/" href="/categories/mongodb/"><div class='name'>mongodb</div><div class='badge'>(1)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><div class='name'>小程序</div><div class='badge'>(1)</div></a></li>
+          <li><a class="flat-box" title="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><div class='name'>小程序</div><div class='badge'>(3)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" href="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/"><div class='name'>岁言心语</div><div class='badge'>(7)</div></a></li>
+          <li><a class="flat-box" title="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" href="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/"><div class='name'>岁言心语</div><div class='badge'>(8)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><div class='name'>设计模式</div><div class='badge'>(2)</div></a></li>
+          <li><a class="flat-box" title="/categories/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" href="/categories/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/"><div class='name'>构建工具</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><div class='name'>设计模式</div><div class='badge'>(4)</div></a></li>
         
       </ul>
     </div>
@@ -862,7 +1182,7 @@
 </header>
 
     <div class='content pure'>
-      <a href="/tags/AOP/" style="font-size: 15.67px; color: #8e8e8e">AOP</a> <a href="/tags/CSS/" style="font-size: 20.67px; color: #6c6c6c">CSS</a> <a href="/tags/Canvas/" style="font-size: 14px; color: #999">Canvas</a> <a href="/tags/Docker/" style="font-size: 14px; color: #999">Docker</a> <a href="/tags/Express/" style="font-size: 19px; color: #777">Express</a> <a href="/tags/JavaScript/" style="font-size: 24px; color: #555">JavaScript</a> <a href="/tags/KOA/" style="font-size: 14px; color: #999">KOA</a> <a href="/tags/Layout/" style="font-size: 17.33px; color: #828282">Layout</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Node/" style="font-size: 22.33px; color: #606060">Node</a> <a href="/tags/SSH/" style="font-size: 14px; color: #999">SSH</a> <a href="/tags/WEB%E5%AE%89%E5%85%A8/" style="font-size: 17.33px; color: #828282">WEB安全</a> <a href="/tags/Webpack/" style="font-size: 14px; color: #999">Webpack</a> <a href="/tags/layout/" style="font-size: 15.67px; color: #8e8e8e">layout</a> <a href="/tags/mongodb/" style="font-size: 14px; color: #999">mongodb</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" style="font-size: 14px; color: #999">事件循环</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 14px; color: #999">小游戏</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 14px; color: #999">小程序</a> <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" style="font-size: 20.67px; color: #6c6c6c">岁言心语</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 14px; color: #999">正则</a> <a href="/tags/%E7%80%91%E5%B8%83%E6%B5%81/" style="font-size: 14px; color: #999">瀑布流</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">爬虫</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15.67px; color: #8e8e8e">设计模式</a>
+      <a href="/tags/AOP/" style="font-size: 15.25px; color: #919191">AOP</a> <a href="/tags/CSS/" style="font-size: 20.25px; color: #6f6f6f">CSS</a> <a href="/tags/Canvas/" style="font-size: 14px; color: #999">Canvas</a> <a href="/tags/Docker/" style="font-size: 14px; color: #999">Docker</a> <a href="/tags/Express/" style="font-size: 19px; color: #777">Express</a> <a href="/tags/JavaScript/" style="font-size: 24px; color: #555">JavaScript</a> <a href="/tags/KOA/" style="font-size: 14px; color: #999">KOA</a> <a href="/tags/Layout/" style="font-size: 16.5px; color: #888">Layout</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Node/" style="font-size: 22.75px; color: #5e5e5e">Node</a> <a href="/tags/SSH/" style="font-size: 14px; color: #999">SSH</a> <a href="/tags/Vue/" style="font-size: 15.25px; color: #919191">Vue</a> <a href="/tags/WEB%E5%AE%89%E5%85%A8/" style="font-size: 16.5px; color: #888">WEB安全</a> <a href="/tags/Webpack/" style="font-size: 14px; color: #999">Webpack</a> <a href="/tags/layout/" style="font-size: 15.25px; color: #919191">layout</a> <a href="/tags/mongodb/" style="font-size: 14px; color: #999">mongodb</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" style="font-size: 14px; color: #999">事件循环</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 14px; color: #999">小游戏</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 16.5px; color: #888">小程序</a> <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" style="font-size: 21.5px; color: #666">岁言心语</a> <a href="/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" style="font-size: 15.25px; color: #919191">构建工具</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 14px; color: #999">正则</a> <a href="/tags/%E7%80%91%E5%B8%83%E6%B5%81/" style="font-size: 14px; color: #999">瀑布流</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">爬虫</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 17.75px; color: #808080">设计模式</a>
     </div>
   </section>
 

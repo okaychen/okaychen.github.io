@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>强大的原型和原型链 | 浅笔墨画❀琐碎小记</title>
+  
+  <meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+  
+  
+  <meta name="description" content="浅笔墨画❀琐碎小记">
+  
+
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://www.chenqaq.com/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+</head>
+
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <h1 class='title'>一只猫のblog</h1>
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="/"
+            
+            
+            id="home">
+            <i class='fas fa-rss fa-fw'></i>&nbsp;主页
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/lab/"
+            
+            
+            id="lab">
+            <i class='fas fa-code-branch fa-fw'></i>&nbsp;实验室
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/links/"
+            
+              rel="nofollow"
+            
+            
+            id="links">
+            <i class='fas fa-link fa-fw'></i>&nbsp;友链
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/about/"
+            
+              rel="nofollow"
+            
+            
+            id="about">
+            <i class='fas fa-info-circle fa-fw'></i>&nbsp;关于
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+					<!-- <img class='logo' src='https://www.chenqaq.com/assets/icon/favicon.png'/> -->
+					<img class='logo' src='https://www.chenqaq.com/assets/icon/favicon.png'/>					
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                  
+                  id="home">
+									<i class='fas fa-grin fa-fw'></i>&nbsp;主页
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/categories/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="categories">
+									<i class='fas fa-folder-open fa-fw'></i>&nbsp;分类
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/tags/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="tags">
+									<i class='fas fa-hashtag fa-fw'></i>&nbsp;标签
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/archives/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="archives">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;归档
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                
+                id="home">
+								<i class='fas fa-clock fa-fw'></i>&nbsp;近期文章
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;文章归档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/friends/"
+                
+                  rel="nofollow"
+                
+                
+                id="friends">
+								<i class='fas fa-link fa-fw'></i>&nbsp;我的友链
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/about/"
+                
+                  rel="nofollow"
+                
+                
+                id="about">
+								<i class='fas fa-info-circle fa-fw'></i>&nbsp;关于小站
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/lab/"
+                
+                
+                id="lab">
+								<i class='fas fa-code-branch fa-fw'></i>&nbsp;实验室
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://www.cnblogs.com/okaychen"
+                
+                  rel="nofollow"
+                
+                
+                id="https:www.cnblogs.comokaychen">
+								<i class='fas fa-book fa-fw'></i>&nbsp;博客园
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+    
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/2017/09/21/js-prototype20170921/">
+        强大的原型和原型链
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2017-09-21</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/JavaScript/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>JavaScript</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <p>前两次总结了JavaScript中的基本数据类型（值类型&lt;引用类型&gt;，引用类型&lt;复杂值&gt;）以及他们在内存中的存储，对内存空间有了一个简单的了解，以及第二次总结了this深入浅出的用法，我们知道了this的用法取决于函数四种调用的方式。</p>
+<p>这一次我们来对JavaScript中原型以及原型链做一个深入浅出的理解。</p>
+<h1 id="JavaScript深入浅出系列"><a href="#JavaScript深入浅出系列" class="headerlink" title="JavaScript深入浅出系列"></a>JavaScript深入浅出系列</h1><p>1）复杂值vs原始值&amp;&amp;内存空间 - JavaScript深入浅出（一）</p>
+<p>2）this的用法 – JavaScript深入浅出（二）</p>
+<p>3）原型那些事 - JavaScript深入浅出（三）</p>
+<a id="more"></a>
+
+<p>实际上，原型只是一个被称为”原型”的空对象属性，它是由JavaScript在后台创建（当然我们知道了它的原理，可以手动完成这项工作）；</p>
+<p>当你创建一个函数时，这个函数都会有一个prototype属性（不管你是不把它当做一个构造函数使用）。</p>
+<p>那么我们具体来看一下吧！！！</p>
+<h1 id="原型链概要"><a href="#原型链概要" class="headerlink" title="原型链概要"></a>原型链概要</h1><p>prototype属性是JavaScript为每个Function实例创建的一个对象。</p>
+<p>具体的说：”它将通过new关键字创建的&lt;对象实例&gt;链接回创建它们的&lt;构造函数&gt;” 。就这样，我们可以共享或继承通用的方法和属性。当我们在属性查找时，就会不自觉的开启了我们的原型链之旅</p>
+<p>让我们通过一个简单的例子开启我们的原型链查询之旅：我们使用Array构造函数创建一个数组，然后调用join方法</p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920174520228-1650950569.png" alt=""></fancybox></p>
+<p>我想上面的例子对于js入门者是非常简单的，那么但是我们再来仔细了解一下，你发现join方法并没有定义为myArray对象实例的属性，但是我们创建的数组却可以访问join()方法，就好像我们本来就可以访问似的。</p>
+<h2 id="join-是在哪个地方定义的呢？"><a href="#join-是在哪个地方定义的呢？" class="headerlink" title="join()是在哪个地方定义的呢？"></a>join()是在哪个地方定义的呢？</h2><p>事实上，我们经常使用的join()，slice()，push()…等这些内建的方法，都被定义为了Array()构造函数的prototype属性的属性。由于在我们创建的myArray数组中没有找到join(),因此JavaScript会在原型链中查找join()方法；</p>
+<p>其实这样做我们很容易就联想到了效率和重用，通过把该属性添加到原型中去，我们所有的数组都有充分利用了相同的join()函数，而不需要为每一个数组实例都创建函数的新实例。</p>
+<p>原型在所有的function()实例上都是标准的<br>我们知道创建函数两种方法</p>
+<p>1、调用Function构造函数法：</p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920180222415-1922951156.png" alt=""></fancybox></p>
+<p>2、使用字面量法：</p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920180309587-1797862199.png" alt=""></fancybox></p>
+<p>其实，即使不直接使用Function构造函数，而是使用字面量表示法，所有的函数也都是由Function()构造函数创建的</p>
+<p>我们用字面量方法创建了一个函数，发现它的prototype和Function()构造函数一样，都指向了object()，这也就证实了我们上所说的.</p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920181154181-1036941154.png" alt=""></fancybox></p>
+<h1 id="默认的prototype属性是object-对象"><a href="#默认的prototype属性是object-对象" class="headerlink" title="默认的prototype属性是object()对象"></a>默认的prototype属性是object()对象</h1><p>上面我已经谈到，实际上，原型只是一个被称为’原型’的空对象属性，它在JavaScript的后台已经创建，并且通过Function()构造函数来使用。</p>
+<p>我们可以手动完成这项在后面完成的工作，以便了解它的机制。</p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920182200743-1619464603.png" alt=""></fancybox></p>
+<p>上面的代码非常简单，实际上也非常好用，它实质上复制了JavaScript在后面已经完成的工作。</p>
+<h1 id="将构造函数创建的实例链接至构造函数的prototype属性"><a href="#将构造函数创建的实例链接至构造函数的prototype属性" class="headerlink" title="将构造函数创建的实例链接至构造函数的prototype属性"></a>将构造函数创建的实例链接至构造函数的prototype属性</h1><p>将构造函数所创建的实例链接至构造函数的prototype属性，让我们开始这条神秘的_proto_链接</p>
+<p>上面我们所原型只是一个对象，但是它是特殊的，因为原型链将每个实例都链接至其构造函数的prototype属性。</p>
+<p>创建的对象实例和创建对象的构造函数的prototype属性</p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920183956321-1581665034.png" alt=""></fancybox></p>
+<p>当然，我们除了使用_proto_链接，还可以使用构造函数属性：</p>
+<p>事实上，<code>_proto_  ===  constructor.prototype</code></p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920183940150-1570195149.png" alt=""></fancybox></p>
+<p> 这样我们就不难理解，下面可以达到同样的效果：</p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920184944103-989778859.png" alt=""></fancybox> </p>
+<p>上面的例子中我写到直接使用链也是可以的，下面会介绍它的查询顺序。虽然我相信对于入门者都是使用的链查询，但是我们有必然要知道它背后的那些机制。</p>
+<p>其实有只看不见的手，在帮助着我们的代码完成任务</p>
+<h1 id="原型链的最后是Object-prototype"><a href="#原型链的最后是Object-prototype" class="headerlink" title="原型链的最后是Object.prototype"></a>原型链的最后是Object.prototype</h1><p>那么就让我们来看一下它的原型链查询吧。</p>
+<p>由于prototype属性是一个对象，因此原型链或查询的最后一站是Object.prototype。</p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920190544243-1227861953.png" alt=""></fancybox></p>
+<p>我想上面的代码，对于我们来说是丝毫不费力气的，但就借这个简单的例子，最后一个简单的undefined结果，却经历了一段不为我们所见的原型链查询；</p>
+<p>我们创建了一个myArray空数组，然后我们试图访问未定义的myArray属性时，并不会直接返回undefined，而是要经历一段原型链查询。</p>
+<p>①在myArray对象中查找foo属性；</p>
+<p>如果没有找到</p>
+<p>②则在Array.prototype中查找该属性；</p>
+<p>但它在哪里也没有定义，</p>
+<p>③最后查找的地方就是Object.prototype</p>
+<p>三个对象中都没有定义，最后才给我们了一个undefined的回馈。</p>
+<h1 id="用新对象替换prototype属性会删除默认的构造函数属性"><a href="#用新对象替换prototype属性会删除默认的构造函数属性" class="headerlink" title="用新对象替换prototype属性会删除默认的构造函数属性"></a>用新对象替换prototype属性会删除默认的构造函数属性</h1><p>我们可以用一个新值来替换prototype属性的默认值，但是需要特别注意的是：这么做会删除在”预制”原型对象中找到的默认的constructor属性，除非我们手动指定一个 ；</p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920192520821-1186090159.png" alt=""></fancybox></p>
+<p>所以当你想要替换JavaScript设置的默认的prototype属性(与一些js oop模式类似)，应该重新连接引用该构造函数的构造函数属性。</p>
+<p>下面我们简单的改一下上面的代码，以便构造函数属性能够再次为适当的构造函数提供引用</p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920193046993-265590715.png" alt=""></fancybox></p>
+<h1 id="继承原型属性的实例总是能够获得最新值"><a href="#继承原型属性的实例总是能够获得最新值" class="headerlink" title="继承原型属性的实例总是能够获得最新值"></a>继承原型属性的实例总是能够获得最新值</h1><p>其实prototype是动态的继承原型的属性的实例总是能够获得最新值，</p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920193844259-1842047267.png" alt=""></fancybox></p>
+<p>这一点比较简单，不管是使用原型对象还是自己的对象覆盖它，继承原型属性的实例总是能够获得新值。</p>
+<p>但是我们需要注意下面的一点：</p>
+<h1 id="用新对象替换prototype属性不会更新以前的实例"><a href="#用新对象替换prototype属性不会更新以前的实例" class="headerlink" title="用新对象替换prototype属性不会更新以前的实例"></a>用新对象替换prototype属性不会更新以前的实例</h1><p>当你想用一个新对象完全替换prototype属性时，觉得所有的实例都会被更新，那么就即将要走向一条寻错的道路，可能会得到意想不到的结果。</p>
+<p>创建一个实例时，该实例将在实例化时绑定至”刚完成”的原型，提供一个新对象作为prototype属性不会更新已创建的实例和原型之间的连接</p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920195027900-1505871808.png" alt=""></fancybox></p>
+<p>这里的重点是，一旦开始创建实例，就不应用一个新对象那个来替换对象的原型，这样将会导致实例有一个指向不同原型的链接</p>
+<h1 id="自定义构造函数实现原型继承"><a href="#自定义构造函数实现原型继承" class="headerlink" title="自定义构造函数实现原型继承"></a>自定义构造函数实现原型继承</h1><p>当我们在自定义构造函数时，同样可以实现原型继承:</p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920201741993-2044813602.png" alt=""></fancybox></p>
+<p>上面我们写的例子，很好的利用原型链，来创建一个构造函数。如果我们不提供参数的话，构造函数则可以继承legs和arms属性。如果传入参数，就遮盖继承的属性</p>
+<h1 id="创建继承链"><a href="#创建继承链" class="headerlink" title="创建继承链"></a>创建继承链</h1><p>我们自定义的构造函数实现了原型继承，设计原型继承的目的是要在传统的面向对象编程语言中找到模仿继承模式的继承链。继承只是一个对象可以访问另一个对象的属性。</p>
+<p>接下来我们来创建一个简单的继承链：</p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170920201619353-1702121657.png" alt=""></fancybox></p>
+<p>事实上，上述代码我做的仅仅是利用一个已有的原生对象。</p>
+<p>Person()和prototype属性的默认的object()值没有什么不同，这也正是一个prototype属性包含默认空object()值所发生的事情，查找用于创建对象的构造函数的原型（即object.prototype），以便查找所继承的属性。</p>
+<h1 id="我们为什么要关注prototype属性呢？"><a href="#我们为什么要关注prototype属性呢？" class="headerlink" title="我们为什么要关注prototype属性呢？"></a>我们为什么要关注prototype属性呢？</h1><p>你可能不喜欢原型继承，而是更多的喜欢采用另一种模式的对象继承。但是：</p>
+<p>①原生构造函数（如Ocject(),Array(),Function()…）都使用了prototype属性，以便让你的实例可以继承属性和方法。</p>
+<p>②如果想要更好的理解JavaScript，我们需要了解JavaScript本身是如何使用prototype对象的</p>
+<p>③当你自定义一个构造函数时，可以像JavaScript原生对象那样使用继承，就必须要知道他是如何工作的</p>
+<p>④通过使用原型继承，我们可以创建有效的对象实例。因为并非所有的数组对象都需要他们自己的join()方法&lt;我想这就需要我们做些工作了&gt;，但所有的实例都可以利用相同的join()方法，这就提高了效率和重用性。</p>
+<h1 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h1><p>到这里我们的函数原型属性的深入浅出系列已经介绍完毕了，希望可以帮助你记住原型链层次结构的工作原理、对于易混淆的原型继承属性有一个分类</p>
+
+      </div>
+      
+        <br>
+        
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-15T21:18:34+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>updated at Nov 15, 2019</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>JavaScript</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.chenqaq.com/2017/09/21/js-prototype20170921/&title=强大的原型和原型链 | 浅笔墨画❀琐碎小记&summary=前两次总结了JavaScript中的基本数据类型（值类型&lt;引用类型&gt;，引用类型&lt;复杂值&gt;）以及他们在内存中的存储，对内存空间有了一个简单的了解，以及第二次总结了this深入浅出的用法，我们知道了this的用法取决于函数四种调用的方式。
+这一次我们来对JavaScript中原型以及原型链做一个深入浅出的理解。
+JavaScript深入浅出系列1）复杂值vs原始值&amp;&amp;内存空间 - JavaScript深入浅出（一）
+2）this的用法 – JavaScript深入浅出（二）
+3）原型那些事 - JavaScript深入浅出（三）"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://www.chenqaq.com/2017/09/21/js-prototype20170921/&title=强大的原型和原型链 | 浅笔墨画❀琐碎小记&summary=前两次总结了JavaScript中的基本数据类型（值类型&lt;引用类型&gt;，引用类型&lt;复杂值&gt;）以及他们在内存中的存储，对内存空间有了一个简单的了解，以及第二次总结了this深入浅出的用法，我们知道了this的用法取决于函数四种调用的方式。
+这一次我们来对JavaScript中原型以及原型链做一个深入浅出的理解。
+JavaScript深入浅出系列1）复杂值vs原始值&amp;&amp;内存空间 - JavaScript深入浅出（一）
+2）this的用法 – JavaScript深入浅出（二）
+3）原型那些事 - JavaScript深入浅出（三）"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://www.chenqaq.com/2017/09/21/js-prototype20170921/&title=强大的原型和原型链 | 浅笔墨画❀琐碎小记&summary=前两次总结了JavaScript中的基本数据类型（值类型&lt;引用类型&gt;，引用类型&lt;复杂值&gt;）以及他们在内存中的存储，对内存空间有了一个简单的了解，以及第二次总结了this深入浅出的用法，我们知道了this的用法取决于函数四种调用的方式。
+这一次我们来对JavaScript中原型以及原型链做一个深入浅出的理解。
+JavaScript深入浅出系列1）复杂值vs原始值&amp;&amp;内存空间 - JavaScript深入浅出（一）
+2）this的用法 – JavaScript深入浅出（二）
+3）原型那些事 - JavaScript深入浅出（三）"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+      
+      
+          <div class="prev-next">
+              
+                  <section class="prev">
+                      <span class="art-item-left">
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous</h6>
+                          <h4>
+                              <a href="/2017/09/26/js-module20170926/" rel="prev" title="设计模式之module及其改进">
+                                
+                                    设计模式之module及其改进
+                                
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/JavaScript/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> JavaScript</a> <a class="tag" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 设计模式</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/2017/09/14/js-this20170914/" rel="prev" title="this四种绑定方式之间的奇淫技巧">
+                                  
+                                      this四种绑定方式之间的奇淫技巧
+                                  
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/JavaScript/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> JavaScript</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+          </div>
+      
+    </section>
+  </article>
+
+
+
+  <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;Comments</h4>
+      
+      
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-spinner fa-spin fa-fw"></i>
+          </div>
+        </section>
+      
+    </section>
+  </article>
+
+
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: '强大的原型和原型链',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+      
+        
+          
+          
+            
+              <section class='widget author'>
+  <div class='content pure'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://www.chenqaq.com/assets/icon/header.jpg'/>
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="/mailto:okaycheng@foxmail.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/okaychen"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=1654728717"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;TOC</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer noopener" href="javascript:void(0)" target="_blank"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript深入浅出系列"><span class="toc-text">JavaScript深入浅出系列</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#原型链概要"><span class="toc-text">原型链概要</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#join-是在哪个地方定义的呢？"><span class="toc-text">join()是在哪个地方定义的呢？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#默认的prototype属性是object-对象"><span class="toc-text">默认的prototype属性是object()对象</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#将构造函数创建的实例链接至构造函数的prototype属性"><span class="toc-text">将构造函数创建的实例链接至构造函数的prototype属性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#原型链的最后是Object-prototype"><span class="toc-text">原型链的最后是Object.prototype</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用新对象替换prototype属性会删除默认的构造函数属性"><span class="toc-text">用新对象替换prototype属性会删除默认的构造函数属性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#继承原型属性的实例总是能够获得最新值"><span class="toc-text">继承原型属性的实例总是能够获得最新值</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用新对象替换prototype属性不会更新以前的实例"><span class="toc-text">用新对象替换prototype属性不会更新以前的实例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#自定义构造函数实现原型继承"><span class="toc-text">自定义构造函数实现原型继承</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#创建继承链"><span class="toc-text">创建继承链</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#我们为什么要关注prototype属性呢？"><span class="toc-text">我们为什么要关注prototype属性呢？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#写在后面"><span class="toc-text">写在后面</span></a></li></ol>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget grid'>
+  
+<header class='pure'>
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站内导航</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          近期文章
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章归档
+        </a></li>
+      
+        <li><a class="flat-box" title="/friends/" href="/friends/"
+          
+            rel="nofollow"
+          
+          
+          id="friends">
+          
+            <i class="fas fa-link fa-fw" aria-hidden="true"></i>
+          
+          我的友链
+        </a></li>
+      
+        <li><a class="flat-box" title="/about/" href="/about/"
+          
+            rel="nofollow"
+          
+          
+          id="about">
+          
+            <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
+          
+          关于小站
+        </a></li>
+      
+        <li><a class="flat-box" title="/lab/" href="/lab/"
+          
+          
+          id="lab">
+          
+            <i class="fas fa-code-branch fa-fw" aria-hidden="true"></i>
+          
+          实验室
+        </a></li>
+      
+        <li><a class="flat-box" title="https://www.cnblogs.com/okaychen" href="https://www.cnblogs.com/okaychen"
+          
+            rel="nofollow"
+          
+          
+          id="https:www.cnblogs.comokaychen">
+          
+            <i class="fas fa-book fa-fw" aria-hidden="true"></i>
+          
+          博客园
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/categories/"
+    title="categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Docker/" href="/categories/Docker/"><div class='name'>Docker</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/HTML-CSS/" href="/categories/HTML-CSS/"><div class='name'>HTML/CSS</div><div class='badge'>(7)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/JavaScript/" href="/categories/JavaScript/"><div class='name'>JavaScript</div><div class='badge'>(18)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Linux/" href="/categories/Linux/"><div class='name'>Linux</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Node/" href="/categories/Node/"><div class='name'>Node</div><div class='badge'>(10)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Vue/" href="/categories/Vue/"><div class='name'>Vue</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/WEB%E5%AE%89%E5%85%A8/" href="/categories/WEB%E5%AE%89%E5%85%A8/"><div class='name'>WEB安全</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/mongodb/" href="/categories/mongodb/"><div class='name'>mongodb</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><div class='name'>小程序</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" href="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/"><div class='name'>岁言心语</div><div class='badge'>(8)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" href="/categories/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/"><div class='name'>构建工具</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><div class='name'>设计模式</div><div class='badge'>(4)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/AOP/" style="font-size: 15.25px; color: #919191">AOP</a> <a href="/tags/CSS/" style="font-size: 20.25px; color: #6f6f6f">CSS</a> <a href="/tags/Canvas/" style="font-size: 14px; color: #999">Canvas</a> <a href="/tags/Docker/" style="font-size: 14px; color: #999">Docker</a> <a href="/tags/Express/" style="font-size: 19px; color: #777">Express</a> <a href="/tags/JavaScript/" style="font-size: 24px; color: #555">JavaScript</a> <a href="/tags/KOA/" style="font-size: 14px; color: #999">KOA</a> <a href="/tags/Layout/" style="font-size: 16.5px; color: #888">Layout</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Node/" style="font-size: 22.75px; color: #5e5e5e">Node</a> <a href="/tags/SSH/" style="font-size: 14px; color: #999">SSH</a> <a href="/tags/Vue/" style="font-size: 15.25px; color: #919191">Vue</a> <a href="/tags/WEB%E5%AE%89%E5%85%A8/" style="font-size: 16.5px; color: #888">WEB安全</a> <a href="/tags/Webpack/" style="font-size: 14px; color: #999">Webpack</a> <a href="/tags/layout/" style="font-size: 15.25px; color: #919191">layout</a> <a href="/tags/mongodb/" style="font-size: 14px; color: #999">mongodb</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" style="font-size: 14px; color: #999">事件循环</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 14px; color: #999">小游戏</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 16.5px; color: #888">小程序</a> <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" style="font-size: 21.5px; color: #666">岁言心语</a> <a href="/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" style="font-size: 15.25px; color: #919191">构建工具</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 14px; color: #999">正则</a> <a href="/tags/%E7%80%91%E5%B8%83%E6%B5%81/" style="font-size: 14px; color: #999">瀑布流</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">爬虫</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 17.75px; color: #808080">设计模式</a>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-thumbs-up fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;强烈推荐</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://yasuotu.com" href="https://yasuotu.com"
+          
+          
+          >
+          <div class='name'>
+            
+              <i class=" fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;图片在线压缩
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="https://realfavicongenerator.net" href="https://realfavicongenerator.net"
+          
+          
+          >
+          <div class='name'>
+            
+              <i class=" fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;生成Favicon
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+    
+
+  
+</aside>
+
+<footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="/atom.xml"
+            class="social fas fa-rss flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="/mailto:okaycheng@foxmail.com"
+            class="social fas fa-envelope flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://github.com/okaychen"
+            class="social fab fa-github flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=1654728717"
+            class="social fas fa-headphones-alt flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <!-- <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div> -->
+  <div>
+    <a href="https://www.github.com/okaychen" target="_blank" class="codename" style="text-decoration:none">Copyright © 2017-2019  OkayChen</a>
+  </div>
+  <div style="margin-top:5px;">
+    
+      <!-- ,  -->
+      <!-- total visits -->
+      本站总访问量为
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      times
+    
+    <!-- .  -->
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)' target="_blank" rel="noopener"></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+    
+      <script src="https://www.chenqaq.com/js/volantis.js"></script>
+    
+  
+  <script>
+  var GUEST_INFO = ['nick','mail','link'];
+  var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var notify = 'true' == true;
+  var verify = 'true' == true;
+  var valine = new Valine();
+  valine.init({
+    el: '#valine_container',
+    notify: notify,
+    verify: verify,
+    guest_info: guest_info,
+    
+    appId: "rHHVLGdGTcJm8NvtrtnJInkX-gzGzoHsz",
+    appKey: "QXzgEzka47xO6X8fhHgc6ei4",
+    placeholder: "快来评论吧~",
+    pageSize:'10',
+    avatar:'mp',
+    lang:'zh-cn',
+    highlight:'true'
+  })
+  </script>
+
+
+
+  <script src="https://www.chenqaq.com/js/app.js"></script>
+
+
+  <script src="https://www.chenqaq.com/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "Copied";
+  let COPY_FAILURE = "Copy failed";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
