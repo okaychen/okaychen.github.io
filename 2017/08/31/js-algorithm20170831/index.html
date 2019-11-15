@@ -177,7 +177,7 @@
 			
 				<div class="m_search">
 					<form name="searchform" class="form u-search-form">
-						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<input type="text" class="input u-search-input" placeholder="Search" />
 						<i class="icon fas fa-search fa-fw"></i>
 					</form>
 				</div>
@@ -385,7 +385,7 @@
 <h1 id="“汉诺塔”经典递归问题"><a href="#“汉诺塔”经典递归问题" class="headerlink" title="“汉诺塔”经典递归问题"></a>“汉诺塔”经典递归问题</h1><p>“汉诺塔”是印度的一个古老传说，也是程序设计中的经典的递归问题，是一个著名的益智游戏：</p>
 <p>题目如下：</p>
 <p>塔上有三根柱子和一套直径各不相同的空心圆盘，开始时源柱子上的所有圆盘都按从大到小的顺序排列。目标是通过每一次移动一个圆盘到另一根柱子上，最终把一堆圆盘移动到目标柱子上，过程中不允许把较大的圆盘放置在较小的圆盘上；</p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201708/1140602-20170826161041339-1044886841.png" alt="">　</p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201708/1140602-20170826161041339-1044886841.png" alt=""></fancybox></p>
 <a id="more"></a>
 
 <h1 id="寻找规律（把所有的圆盘移动到C）："><a href="#寻找规律（把所有的圆盘移动到C）：" class="headerlink" title="寻找规律（把所有的圆盘移动到C）："></a>寻找规律（把所有的圆盘移动到C）：</h1><p>　　1）n(圆盘个数) == 1</p>
@@ -409,12 +409,12 @@
 <p>　　　　其次，移动下面的圆盘到目标柱子上</p>
 <p>　　　　最后，将刚才较小的圆盘从辅助柱子上在移动到目标柱子上</p>
 <p>把三个步骤转化为简单数学问题：</p>
-<p>　　　　（1）     把 n-1个盘子由A 移到 B；</p>
-<p>　　　　（2）     把 第 n个盘子由 A移到 C；</p>
-<p>　　　　（3）     把n-1个盘子由B 移到 C；</p>
+<p>　　　　（1）把 n-1个盘子由A 移到 B；</p>
+<p>　　　　（2）把 第 n个盘子由 A移到 C；</p>
+<p>　　　　（3）把n-1个盘子由B 移到 C；</p>
 <p>我们创建一个JS函数，当它调用自身的时候，它去处理当前正在处理圆盘之上的圆盘。最后它回一个不存在圆盘去调用，在这种情况下，它不在执行任何操作。</p>
 <h1 id="JavaScript源代码实现"><a href="#JavaScript源代码实现" class="headerlink" title="JavaScript源代码实现"></a>JavaScript源代码实现</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> hanoi = <span class="function"><span class="keyword">function</span>(<span class="params">disc,src,aux,dst</span>)</span>&#123; </span><br><span class="line">    <span class="keyword">if</span>(disc&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        hanoi(disc<span class="number">-1</span>,src,dst,aux);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">' 移动 '</span>+ disc +  <span class="string">' 号圆盘 '</span> + <span class="string">' 从 '</span> + src +  <span class="string">' 移动到 '</span> +  dst);</span><br><span class="line">        hanoi(disc<span class="number">-1</span>,aux,src,dst)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">hanoi(<span class="number">3</span>,<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201708/1140602-20170826185640527-159094023.png" alt=""></p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201708/1140602-20170826185640527-159094023.png" alt=""></fancybox></p>
 <p>整个算法的思路是：</p>
 <ul>
 <li><p>将A柱子上的n-1个盘子暂时移到B柱子上</p>
@@ -424,18 +424,18 @@
 <li><p>最后再将B柱子上的n-1个盘子移到目标柱子C上</p>
 </li>
 </ul>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201708/1140602-20170826174129183-1188124420.gif" alt=""></p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201708/1140602-20170826174129183-1188124420.gif" alt=""></fancybox></p>
 <h1 id="JS递归函数遍历Dom"><a href="#JS递归函数遍历Dom" class="headerlink" title="JS递归函数遍历Dom"></a>JS递归函数遍历Dom</h1><p>递归函数可以非常高效的操作树形结构，在JavaScript有一种”天然的树形结构”浏览器端的文档对象模型（Dom）。每次递归调用时处理指定树的一小段。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*      我们定义一个walk_the_DOM函数， </span></span><br><span class="line"><span class="comment">1） 它从某个指定的节点开始，按指定HTML源码的顺序，访问树的每个节点 </span></span><br><span class="line"><span class="comment"> 2）它会调用一个函数，并依次传递每个节点给它，walk_the_DOM调用自身去处理每一个节点</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">var</span> walk_the_DOM = <span class="function"><span class="keyword">function</span> <span class="title">walk</span>(<span class="params"> node , func </span>) </span>&#123;  </span><br><span class="line">    func(node);    </span><br><span class="line">    node = node.firstChild;    </span><br><span class="line">    <span class="keyword">while</span> (node) &#123;   </span><br><span class="line">        walk( node , func );   </span><br><span class="line">        node = node.nextSibling;   </span><br><span class="line">     &#125;    </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*    在定义一个getElementByAttribute函数</span></span><br><span class="line"><span class="comment">1） 它以一个属性名称字符串和一个可选的匹配值作为参数</span></span><br><span class="line"><span class="comment">2） 它调用walk_the_DOM，传递一个用来查找节点属性名的函数作为参数，匹配得节点都会累加到一个数组中</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">var</span> getElementsByAttribute=<span class="function"><span class="keyword">function</span>(<span class="params">att,value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> results=[];</span><br><span class="line">    walk_the_DOM(<span class="built_in">document</span>.body,<span class="function"><span class="keyword">function</span>(<span class="params">node</span>)</span>&#123;                    </span><br><span class="line">            <span class="keyword">var</span> actual=node.nodeType===<span class="number">1</span>&amp;&amp;node.getAttribute(att);                    </span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">typeof</span> actual===<span class="string">'string'</span> &amp;&amp;( actual===value|| <span class="keyword">typeof</span> value!==<span class="string">'string'</span>))&#123;                   </span><br><span class="line">                    results.push(node);                    </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="keyword">return</span> results;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="命名函数表达式和递归"><a href="#命名函数表达式和递归" class="headerlink" title="命名函数表达式和递归"></a>命名函数表达式和递归</h1><h2 id="递归问题"><a href="#递归问题" class="headerlink" title="递归问题"></a>递归问题</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 求阶乘的函数：</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(num&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> num*factorial(num<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>通过将函数factorial设置为null，使原始函数的引用只剩一个, 此时factorial已不再是函数</p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201708/1140602-20170826193620027-806984604.png" alt=""></p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201708/1140602-20170826193620027-806984604.png" alt=""></fancybox></p>
 <h2 id="arguments-callee实现递归"><a href="#arguments-callee实现递归" class="headerlink" title="arguments.callee实现递归"></a>arguments.callee实现递归</h2><p>arguments.callee是一个指向正在执行的函数的指针，因此可以用它来实现对函数的递归调用</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(num&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> num*<span class="built_in">arguments</span>.callee(num<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> anotherFactorial=factorial;</span><br><span class="line">factorial=<span class="literal">null</span>;</span><br><span class="line">anotherFactorial(<span class="number">3</span>) <span class="comment">//6</span></span><br></pre></td></tr></table></figure>
 <p>用arguments.callee代替函数名，可以确保无论怎样调用函数都不会出问题。因此，在编写递归函数时，使用arguments.callee总比使用函数名更保险。</p>
 <p>但是在严格模式下，不能通过脚本访问arguments.callee，访问这个属性会报错</p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201708/1140602-20170826194200855-11517974.png" alt=""></p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201708/1140602-20170826194200855-11517974.png" alt=""></fancybox></p>
 <p>命名函数表达式实现递归<br>创建一个名为f()的命名函数表达式，然后赋值给factorial，即使把函数赋值给了另一个变量，函数的名字f仍然有效，所以递归调用照样能正常完成。</p>
 <p>这种方式在严格模式和非严格模式都可行。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> factorial =<span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line"><span class="meta">    'use strict'</span></span><br><span class="line">    <span class="keyword">if</span>(num&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> num* f (num<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">factorial(<span class="number">3</span>)    <span class="comment">//6</span></span><br><span class="line"><span class="keyword">var</span> anotherFactorial=factorial;</span><br><span class="line">factorial=<span class="literal">null</span>;</span><br><span class="line">anotherFactorial(<span class="number">3</span>)      <span class="comment">//6</span></span><br></pre></td></tr></table></figure>
@@ -449,10 +449,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-14T23:34:39+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-15T23:07:48+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 Nov 14, 2019</p>
+    <p>updated at Nov 15, 2019</p>
   </a>
 </div>
 
@@ -479,7 +479,7 @@
 “汉诺塔”经典递归问题“汉诺塔”是印度的一个古老传说，也是程序设计中的经典的递归问题，是一个著名的益智游戏：
 题目如下：
 塔上有三根柱子和一套直径各不相同的空心圆盘，开始时源柱子上的所有圆盘都按从大到小的顺序排列。目标是通过每一次移动一个圆盘到另一根柱子上，最终把一堆圆盘移动到目标柱子上，过程中不允许把较大的圆盘放置在较小的圆盘上；
-　"
+"
           
           >
           
@@ -496,7 +496,7 @@
 “汉诺塔”经典递归问题“汉诺塔”是印度的一个古老传说，也是程序设计中的经典的递归问题，是一个著名的益智游戏：
 题目如下：
 塔上有三根柱子和一套直径各不相同的空心圆盘，开始时源柱子上的所有圆盘都按从大到小的顺序排列。目标是通过每一次移动一个圆盘到另一根柱子上，最终把一堆圆盘移动到目标柱子上，过程中不允许把较大的圆盘放置在较小的圆盘上；
-　"
+"
           
           >
           
@@ -513,7 +513,7 @@
 “汉诺塔”经典递归问题“汉诺塔”是印度的一个古老传说，也是程序设计中的经典的递归问题，是一个著名的益智游戏：
 题目如下：
 塔上有三根柱子和一套直径各不相同的空心圆盘，开始时源柱子上的所有圆盘都按从大到小的顺序排列。目标是通过每一次移动一个圆盘到另一根柱子上，最终把一堆圆盘移动到目标柱子上，过程中不允许把较大的圆盘放置在较小的圆盘上；
-　"
+"
           
           >
           
@@ -539,7 +539,7 @@
               
                   <section class="prev">
                       <span class="art-item-left">
-                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous</h6>
                           <h4>
                               <a href="/2017/09/02/node-mongodb-connection20170902/" rel="prev" title="mongodb原生node驱动">
                                 
@@ -559,7 +559,7 @@
               
                   <section class="next">
                       <span class="art-item-right" aria-hidden="true">
-                          <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h6>Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
                               <a href="/2017/08/19/js-regular20170819/" rel="prev" title="RegExp正则匹配模式汇总">
                                   
@@ -589,7 +589,7 @@
 
   <article class="post white-box comments">
     <section class="article typo">
-      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;Comments</h4>
       
       
       
@@ -712,7 +712,7 @@
   <section class='widget toc-wrapper'>
     
 <header class='pure'>
-  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;TOC</div>
   
     <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer noopener" href="javascript:void(0)" target="_blank"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
   
@@ -868,7 +868,7 @@
   <section class='widget category'>
     
 <header class='pure'>
-  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分类</div>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
   
     <a class="rightBtn"
     
@@ -894,7 +894,7 @@
         
           <li><a class="flat-box" title="/categories/Node/" href="/categories/Node/"><div class='name'>Node</div><div class='badge'>(10)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Vue/" href="/categories/Vue/"><div class='name'>Vue</div><div class='badge'>(2)</div></a></li>
+          <li><a class="flat-box" title="/categories/Vue/" href="/categories/Vue/"><div class='name'>Vue</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box" title="/categories/WEB%E5%AE%89%E5%85%A8/" href="/categories/WEB%E5%AE%89%E5%85%A8/"><div class='name'>WEB安全</div><div class='badge'>(3)</div></a></li>
         
@@ -946,7 +946,7 @@
   <section class='widget tagcloud'>
     
 <header class='pure'>
-  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
   
     <a class="rightBtn"
     
@@ -960,7 +960,7 @@
 </header>
 
     <div class='content pure'>
-      <a href="/tags/AOP/" style="font-size: 15.25px; color: #919191">AOP</a> <a href="/tags/CSS/" style="font-size: 20.25px; color: #6f6f6f">CSS</a> <a href="/tags/Canvas/" style="font-size: 14px; color: #999">Canvas</a> <a href="/tags/Docker/" style="font-size: 14px; color: #999">Docker</a> <a href="/tags/Express/" style="font-size: 19px; color: #777">Express</a> <a href="/tags/JavaScript/" style="font-size: 24px; color: #555">JavaScript</a> <a href="/tags/KOA/" style="font-size: 14px; color: #999">KOA</a> <a href="/tags/Layout/" style="font-size: 16.5px; color: #888">Layout</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Node/" style="font-size: 22.75px; color: #5e5e5e">Node</a> <a href="/tags/SSH/" style="font-size: 14px; color: #999">SSH</a> <a href="/tags/Vue/" style="font-size: 15.25px; color: #919191">Vue</a> <a href="/tags/WEB%E5%AE%89%E5%85%A8/" style="font-size: 16.5px; color: #888">WEB安全</a> <a href="/tags/Webpack/" style="font-size: 14px; color: #999">Webpack</a> <a href="/tags/layout/" style="font-size: 15.25px; color: #919191">layout</a> <a href="/tags/mongodb/" style="font-size: 14px; color: #999">mongodb</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" style="font-size: 14px; color: #999">事件循环</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 14px; color: #999">小游戏</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 16.5px; color: #888">小程序</a> <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" style="font-size: 21.5px; color: #666">岁言心语</a> <a href="/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" style="font-size: 15.25px; color: #919191">构建工具</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 14px; color: #999">正则</a> <a href="/tags/%E7%80%91%E5%B8%83%E6%B5%81/" style="font-size: 14px; color: #999">瀑布流</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">爬虫</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 17.75px; color: #808080">设计模式</a>
+      <a href="/tags/AOP/" style="font-size: 15.25px; color: #919191">AOP</a> <a href="/tags/CSS/" style="font-size: 20.25px; color: #6f6f6f">CSS</a> <a href="/tags/Canvas/" style="font-size: 14px; color: #999">Canvas</a> <a href="/tags/Docker/" style="font-size: 14px; color: #999">Docker</a> <a href="/tags/Express/" style="font-size: 19px; color: #777">Express</a> <a href="/tags/JavaScript/" style="font-size: 24px; color: #555">JavaScript</a> <a href="/tags/KOA/" style="font-size: 14px; color: #999">KOA</a> <a href="/tags/Layout/" style="font-size: 16.5px; color: #888">Layout</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Node/" style="font-size: 22.75px; color: #5e5e5e">Node</a> <a href="/tags/SSH/" style="font-size: 14px; color: #999">SSH</a> <a href="/tags/Vue/" style="font-size: 16.5px; color: #888">Vue</a> <a href="/tags/WEB%E5%AE%89%E5%85%A8/" style="font-size: 16.5px; color: #888">WEB安全</a> <a href="/tags/Webpack/" style="font-size: 14px; color: #999">Webpack</a> <a href="/tags/layout/" style="font-size: 15.25px; color: #919191">layout</a> <a href="/tags/mongodb/" style="font-size: 14px; color: #999">mongodb</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" style="font-size: 14px; color: #999">事件循环</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 14px; color: #999">小游戏</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 16.5px; color: #888">小程序</a> <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" style="font-size: 21.5px; color: #666">岁言心语</a> <a href="/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" style="font-size: 15.25px; color: #919191">构建工具</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 14px; color: #999">正则</a> <a href="/tags/%E7%80%91%E5%B8%83%E6%B5%81/" style="font-size: 14px; color: #999">瀑布流</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">爬虫</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 17.75px; color: #808080">设计模式</a>
     </div>
   </section>
 
@@ -1006,6 +1006,32 @@
 
   <div class='content pure'>
     <ul class="entry">
+      
+        <li><a class="flat-box" title="https://cubic-bezier.com/" href="https://cubic-bezier.com/"
+          
+          
+          >
+          <div class='name'>
+            
+              <i class=" fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;贝塞尔曲线
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="https://www.processon.com/" href="https://www.processon.com/"
+          
+          
+          >
+          <div class='name'>
+            
+              <i class=" fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;processon
+          </div>
+          
+        </a></li>
       
         <li><a class="flat-box" title="https://yasuotu.com" href="https://yasuotu.com"
           
@@ -1109,20 +1135,20 @@
     </div>
   
   <br>
-  <!-- <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+  <!-- <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
 </div> -->
   <div>
     <a href="https://www.github.com/okaychen" target="_blank" class="codename" style="text-decoration:none">Copyright © 2017-2019  OkayChen</a>
   </div>
   <div style="margin-top:5px;">
     
-      <!-- ， -->
-      <!-- 总访问量为 -->
+      <!-- ,  -->
+      <!-- total visits -->
       本站总访问量为
       <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
-      次
+      times
     
-    <!-- 。 -->
+    <!-- .  -->
   </div>
 </footer>
 <script>setLoadingBarProgress(80);</script>
@@ -1233,15 +1259,15 @@
 <!-- 复制 -->
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
-  let COPY_SUCCESS = "复制成功";
-  let COPY_FAILURE = "复制失败";
+  let COPY_SUCCESS = "Copied";
+  let COPY_FAILURE = "Copy failed";
   /*页面载入完成后，创建复制按钮*/
   !function (e, t, a) {
     /* code */
     var initCopyCode = function(){
       var copyHtml = '';
       copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '  <i class="fa fa-copy"></i><span>复制</span>';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
       copyHtml += '</button>';
       $(".highlight .code pre").before(copyHtml);
       var clipboard = new ClipboardJS('.btn-copy', {

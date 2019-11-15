@@ -177,7 +177,7 @@
 			
 				<div class="m_search">
 					<form name="searchform" class="form u-search-form">
-						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<input type="text" class="input u-search-input" placeholder="Search" />
 						<i class="icon fas fa-search fa-fw"></i>
 					</form>
 				</div>
@@ -407,7 +407,7 @@
         <div class="readmore">
           <a href="/2018/10/23/js-higherOrderFn-DecoratorPatternToAOP2-md/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
+            Read More
           </a>
         </div>
       
@@ -512,7 +512,7 @@
         <div class="readmore">
           <a href="/2018/10/18/js-higherOrderFn-DecoratorPatternToAOP1/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
+            Read More
           </a>
         </div>
       
@@ -617,7 +617,7 @@
         <div class="readmore">
           <a href="/2018/05/15/js-requestAnimationFrame-md/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
+            Read More
           </a>
         </div>
       
@@ -725,7 +725,7 @@
         <div class="readmore">
           <a href="/2018/03/20/js-debounce-throttle/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
+            Read More
           </a>
         </div>
       
@@ -836,7 +836,7 @@
         <div class="readmore">
           <a href="/2017/12/06/js-setTimeout/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
+            Read More
           </a>
         </div>
       
@@ -948,7 +948,7 @@
         <div class="readmore">
           <a href="/2017/12/05/js-snakey/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
+            Read More
           </a>
         </div>
       
@@ -1075,7 +1075,7 @@
         <div class="readmore">
           <a href="/2017/11/06/js-designPattern20171106/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
+            Read More
           </a>
         </div>
       
@@ -1185,7 +1185,7 @@
         <div class="readmore">
           <a href="/2017/09/26/js-module20170926/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
+            Read More
           </a>
         </div>
       
@@ -1292,7 +1292,7 @@
         <div class="readmore">
           <a href="/2017/09/21/js-prototype20170921/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
+            Read More
           </a>
         </div>
       
@@ -1399,7 +1399,7 @@
         <div class="readmore">
           <a href="/2017/09/14/js-this20170914/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
+            Read More
           </a>
         </div>
       
@@ -1498,7 +1498,8 @@
       <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>最近在读《JavaScript启示录》，这本书不是JavaScript的详尽的参考指南，但是把对象作为了解JavaScript的透镜，受益匪浅。</p>
 <p>那么我们先来聊一下JavaScript的原始值（值类型）以及复杂值（引用类型），以及他们在内存空间中的存储，关于他们你可能不清楚的一些事：</p>
 <p>我们先通过一个经典的面试题类型（并不是原题，我即兴发挥）引出我们今天的主题：</p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231017985-195870781.png" alt=""><br><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231023453-1314449337.png" alt=""></p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231017985-195870781.png" alt=""></fancybox></p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201709/1140602-20170913231023453-1314449337.png" alt=""></fancybox></p>
 <p>我们已经看出他们的差别，在图一：我们让b = a，改变b的值，发现a并没有改变。在图二：我们让d = c,通过d.name改变对象的name属性，发现c.name也变化了。</p>
 <p>事实上，原始值存储在栈内存中，按值来访问。复杂值（引用类型）在堆内存里面，按引用地址访问；然后我们会想到局部变量和全局变量在内存中的存储：</p>
 <p>下面会具体介绍复杂值、原始值以及他们的一些特性与内存空间：</p>
@@ -1506,7 +1507,7 @@
         <div class="readmore">
           <a href="/2017/09/14/js-type20170914/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
+            Read More
           </a>
         </div>
       
@@ -1607,12 +1608,12 @@
 <h1 id="“汉诺塔”经典递归问题"><a href="#“汉诺塔”经典递归问题" class="headerlink" title="“汉诺塔”经典递归问题"></a>“汉诺塔”经典递归问题</h1><p>“汉诺塔”是印度的一个古老传说，也是程序设计中的经典的递归问题，是一个著名的益智游戏：</p>
 <p>题目如下：</p>
 <p>塔上有三根柱子和一套直径各不相同的空心圆盘，开始时源柱子上的所有圆盘都按从大到小的顺序排列。目标是通过每一次移动一个圆盘到另一根柱子上，最终把一堆圆盘移动到目标柱子上，过程中不允许把较大的圆盘放置在较小的圆盘上；</p>
-<p><img src="https://images2017.cnblogs.com/blog/1140602/201708/1140602-20170826161041339-1044886841.png" alt="">　</p>
+<p><fancybox><img src="https://images2017.cnblogs.com/blog/1140602/201708/1140602-20170826161041339-1044886841.png" alt=""></fancybox></p>
       
         <div class="readmore">
           <a href="/2017/08/31/js-algorithm20170831/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
+            Read More
           </a>
         </div>
       
@@ -1713,7 +1714,7 @@
         <div class="readmore">
           <a href="/2017/08/19/js-regular20170819/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
+            Read More
           </a>
         </div>
       
@@ -1817,7 +1818,7 @@
         <div class="readmore">
           <a href="/2017/08/12/js-rule20170812/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
+            Read More
           </a>
         </div>
       
@@ -1939,7 +1940,7 @@
         <div class="readmore">
           <a href="/2017/08/11/js-findNode20170811/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
+            Read More
           </a>
         </div>
       
@@ -1971,7 +1972,7 @@
           
             <a class="next" rel="next" href="/tags/JavaScript/page/2/">
               <section class="post next">
-                &nbsp;下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+                &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
               </section>
             </a>
           
@@ -2194,7 +2195,7 @@
   <section class='widget category'>
     
 <header class='pure'>
-  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分类</div>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
   
     <a class="rightBtn"
     
@@ -2220,7 +2221,7 @@
         
           <li><a class="flat-box" title="/categories/Node/" href="/categories/Node/"><div class='name'>Node</div><div class='badge'>(10)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Vue/" href="/categories/Vue/"><div class='name'>Vue</div><div class='badge'>(2)</div></a></li>
+          <li><a class="flat-box" title="/categories/Vue/" href="/categories/Vue/"><div class='name'>Vue</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box" title="/categories/WEB%E5%AE%89%E5%85%A8/" href="/categories/WEB%E5%AE%89%E5%85%A8/"><div class='name'>WEB安全</div><div class='badge'>(3)</div></a></li>
         
@@ -2272,7 +2273,7 @@
   <section class='widget tagcloud'>
     
 <header class='pure'>
-  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
   
     <a class="rightBtn"
     
@@ -2286,7 +2287,7 @@
 </header>
 
     <div class='content pure'>
-      <a href="/tags/AOP/" style="font-size: 15.25px; color: #919191">AOP</a> <a href="/tags/CSS/" style="font-size: 20.25px; color: #6f6f6f">CSS</a> <a href="/tags/Canvas/" style="font-size: 14px; color: #999">Canvas</a> <a href="/tags/Docker/" style="font-size: 14px; color: #999">Docker</a> <a href="/tags/Express/" style="font-size: 19px; color: #777">Express</a> <a href="/tags/JavaScript/" style="font-size: 24px; color: #555">JavaScript</a> <a href="/tags/KOA/" style="font-size: 14px; color: #999">KOA</a> <a href="/tags/Layout/" style="font-size: 16.5px; color: #888">Layout</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Node/" style="font-size: 22.75px; color: #5e5e5e">Node</a> <a href="/tags/SSH/" style="font-size: 14px; color: #999">SSH</a> <a href="/tags/Vue/" style="font-size: 15.25px; color: #919191">Vue</a> <a href="/tags/WEB%E5%AE%89%E5%85%A8/" style="font-size: 16.5px; color: #888">WEB安全</a> <a href="/tags/Webpack/" style="font-size: 14px; color: #999">Webpack</a> <a href="/tags/layout/" style="font-size: 15.25px; color: #919191">layout</a> <a href="/tags/mongodb/" style="font-size: 14px; color: #999">mongodb</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" style="font-size: 14px; color: #999">事件循环</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 14px; color: #999">小游戏</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 16.5px; color: #888">小程序</a> <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" style="font-size: 21.5px; color: #666">岁言心语</a> <a href="/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" style="font-size: 15.25px; color: #919191">构建工具</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 14px; color: #999">正则</a> <a href="/tags/%E7%80%91%E5%B8%83%E6%B5%81/" style="font-size: 14px; color: #999">瀑布流</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">爬虫</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 17.75px; color: #808080">设计模式</a>
+      <a href="/tags/AOP/" style="font-size: 15.25px; color: #919191">AOP</a> <a href="/tags/CSS/" style="font-size: 20.25px; color: #6f6f6f">CSS</a> <a href="/tags/Canvas/" style="font-size: 14px; color: #999">Canvas</a> <a href="/tags/Docker/" style="font-size: 14px; color: #999">Docker</a> <a href="/tags/Express/" style="font-size: 19px; color: #777">Express</a> <a href="/tags/JavaScript/" style="font-size: 24px; color: #555">JavaScript</a> <a href="/tags/KOA/" style="font-size: 14px; color: #999">KOA</a> <a href="/tags/Layout/" style="font-size: 16.5px; color: #888">Layout</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Node/" style="font-size: 22.75px; color: #5e5e5e">Node</a> <a href="/tags/SSH/" style="font-size: 14px; color: #999">SSH</a> <a href="/tags/Vue/" style="font-size: 16.5px; color: #888">Vue</a> <a href="/tags/WEB%E5%AE%89%E5%85%A8/" style="font-size: 16.5px; color: #888">WEB安全</a> <a href="/tags/Webpack/" style="font-size: 14px; color: #999">Webpack</a> <a href="/tags/layout/" style="font-size: 15.25px; color: #919191">layout</a> <a href="/tags/mongodb/" style="font-size: 14px; color: #999">mongodb</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" style="font-size: 14px; color: #999">事件循环</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 14px; color: #999">小游戏</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 16.5px; color: #888">小程序</a> <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" style="font-size: 21.5px; color: #666">岁言心语</a> <a href="/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" style="font-size: 15.25px; color: #919191">构建工具</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 14px; color: #999">正则</a> <a href="/tags/%E7%80%91%E5%B8%83%E6%B5%81/" style="font-size: 14px; color: #999">瀑布流</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">爬虫</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 17.75px; color: #808080">设计模式</a>
     </div>
   </section>
 
@@ -2332,6 +2333,32 @@
 
   <div class='content pure'>
     <ul class="entry">
+      
+        <li><a class="flat-box" title="https://cubic-bezier.com/" href="https://cubic-bezier.com/"
+          
+          
+          >
+          <div class='name'>
+            
+              <i class=" fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;贝塞尔曲线
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="https://www.processon.com/" href="https://www.processon.com/"
+          
+          
+          >
+          <div class='name'>
+            
+              <i class=" fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;processon
+          </div>
+          
+        </a></li>
       
         <li><a class="flat-box" title="https://yasuotu.com" href="https://yasuotu.com"
           
@@ -2412,20 +2439,20 @@
     </div>
   
   <br>
-  <!-- <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+  <!-- <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
 </div> -->
   <div>
     <a href="https://www.github.com/okaychen" target="_blank" class="codename" style="text-decoration:none">Copyright © 2017-2019  OkayChen</a>
   </div>
   <div style="margin-top:5px;">
     
-      <!-- ， -->
-      <!-- 总访问量为 -->
+      <!-- ,  -->
+      <!-- total visits -->
       本站总访问量为
       <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
-      次
+      times
     
-    <!-- 。 -->
+    <!-- .  -->
   </div>
 </footer>
 <script>setLoadingBarProgress(80);</script>
@@ -2506,15 +2533,15 @@
 <!-- 复制 -->
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
-  let COPY_SUCCESS = "复制成功";
-  let COPY_FAILURE = "复制失败";
+  let COPY_SUCCESS = "Copied";
+  let COPY_FAILURE = "Copy failed";
   /*页面载入完成后，创建复制按钮*/
   !function (e, t, a) {
     /* code */
     var initCopyCode = function(){
       var copyHtml = '';
       copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '  <i class="fa fa-copy"></i><span>复制</span>';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
       copyHtml += '</button>';
       $(".highlight .code pre").before(copyHtml);
       var clipboard = new ClipboardJS('.btn-copy', {
