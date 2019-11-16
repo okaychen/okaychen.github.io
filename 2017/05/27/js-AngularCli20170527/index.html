@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="refresh" content="5">
+  <meta http-equiv="refresh" content="1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
   <title>Angule Cli创建Angular项目 | 浅笔墨画❀琐碎小记</title>
@@ -394,7 +394,7 @@
 <figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">node -v</span><br><span class="line">cnpm -v</span><br></pre></td></tr></table></figure>
 <p>2）安装全局Angular cli</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">cnpm install -g @angular/cli</span><br></pre></td></tr></table></figure>
-<h1 id="创建新的项目"><a href="#创建新的项目" class="headerlink" title="创建新的项目"></a>创建新的项目</h1><p>　　打开终端窗口（这里我使用的是webstorm的Terminal，也可以使用计算机自带的powershell）</p>
+<h1 id="创建新的项目"><a href="#创建新的项目" class="headerlink" title="创建新的项目"></a>创建新的项目</h1><p>打开终端窗口（这里我使用的是webstorm的Terminal，也可以使用计算机自带的powershell）</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">ng <span class="keyword">new</span> my-app</span><br></pre></td></tr></table></figure>
 <p>项目会很快创建完成，接下来你会看到</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Installing packages <span class="keyword">for</span> tooling via npm</span><br></pre></td></tr></table></figure>
@@ -403,8 +403,9 @@
 <p>然后我们的项目就创建完成了</p>
 <p><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170521134325432-1354080667.png" alt=""></p>
 <p>我们会发现在文档中有很多文件，这里参考<a href="https://angular.cn/" target="_blank" rel="noopener">Angular</a>官方文档 ，以便认识这些文件的作用。</p>
-<h1 id="在项目中引入bootstrap和jQuery"><a href="#在项目中引入bootstrap和jQuery" class="headerlink" title="在项目中引入bootstrap和jQuery"></a>在项目中引入bootstrap和jQuery</h1><p>　　　　这里我使用webstorm的Terminal，直接在终端操作</p>
-<p>cnpm install bootstrap –save<br>cnpm install jquery –save<br>我们在项目中就添加了bootstrap和jQuery，我们可以在node_modules文件夹中找到他们（这个文件夹放的是第三方库）；</p>
+<h1 id="在项目中引入bootstrap和jQuery"><a href="#在项目中引入bootstrap和jQuery" class="headerlink" title="在项目中引入bootstrap和jQuery"></a>在项目中引入bootstrap和jQuery</h1><p>这里我使用webstorm的Terminal，直接在终端操作</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">cnpm install bootstrap --save   </span><br><span class="line">cnpm install jquery --save</span><br></pre></td></tr></table></figure>
+<p>我们在项目中就添加了bootstrap和jQuery，我们可以在node_modules文件夹中找到他们（这个文件夹放的是第三方库）；</p>
 <p>然后我们需要操作.angular-cli.json文件，把bootstrap和jQuery添加进去:<br><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170521135435088-196815303.png" alt=""><br>这里需要注意的是：因为angular用的是微软开发的typescript语言，我们需要在终端做下面的操作，以便让typescript认识bootstrap和jQuery一些字符（比如jQuery的$）：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">cnpm install @types/bootstrap --save-dev</span><br><span class="line">cnpm install @types/jquery --save-dev</span><br></pre></td></tr></table></figure>
 <p>这样我们就在项目中正常使用bootstrap和jQuery了</p>
@@ -424,10 +425,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-15T23:26:52+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-16T19:56:25+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>updated at Nov 15, 2019</p>
+    <p>updated at Nov 16, 2019</p>
   </a>
 </div>
 
