@@ -237,6 +237,115 @@
       
         
   <h2 class="title">
+    <a href="/2017/10/30/vue-advance20171030/">
+      Vue起步 - 从场景中看父子组件间通信
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2017-10-30</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Vue/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Vue</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20171025194848754-2026039505.png" alt=""></fancybox></p>
+<p>组件间通信是组件开发的，我们既希望组件的独立性，数据能互不干扰，又不可避免组件间会有联系和交互。</p>
+<p>在vue中，父子组件的关系可以总结为props down，events up；</p>
+<p>在vue2.0中废弃了$dispatch和$broadcast，子组件使用event发出自定义事件</p>
+<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20171029212721976-1727722995.png" alt=""></fancybox></p>
+<p>思考场景如下：</p>
+<blockquote>
+<p>一个总群（父组件）中大家做自我介绍，陌陌、小小、可可、天天 收到 总群发来的消息之后（父传子），将自己的信息发送到总群（子传父）</p>
+</blockquote>
+      
+        <div class="readmore">
+          <a href="/2017/10/30/vue-advance20171030/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Vue/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> Vue</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
     <a href="/2017/10/15/vue-basis20171015/">
       Vue基础 - 从模板语法数据绑定、指令到计算属性总结
     </a>
@@ -758,113 +867,6 @@
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2017/09/14/js-this20170914/">
-      this四种绑定方式之间的奇淫技巧
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    
-      <a href="https://www.chenqaq.com" rel="nofollow">
-        
-          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
-        
-        <p>okaychen</p>
-      </a>
-    
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2017-09-14</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/JavaScript/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>JavaScript</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>上一篇中，我们对于JavaScript中原始值、复杂值以及内存空间进行了一个深入浅出的总结，这次我们来聊一聊JavaScript中this关键字的深入浅出的用法.</p>
-<p>在 JavaScript 中，this 是动态绑定，或称为运行期绑定的，这就导致 JavaScript 中的 this 关键字有能力具备多重含义，带来灵活性的同时，也为初学者带来不少困惑。希望这篇文章可以解决初学者心中<code>what’s this?</code>的困惑。</p>
-<p>创建函数时，系统会在默认创建一个名为this的关键字，这也就是说this，只能在函数内部使用；从根本上说，由于运期绑定的特性，JavaScript中this的关键字要丰富的多，这完全取决于函数调用的方式：</p>
-<p>　　1）作为函数调用</p>
-<p>　　2）作为对象方法调用</p>
-<p>　　3）使用call，apply调用</p>
-<p>　　4）作为构造函数调用</p>
-      
-        <div class="readmore">
-          <a href="/2017/09/14/js-this20170914/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1140,7 +1142,7 @@
         
           <li><a class="flat-box" title="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><div class='name'>小程序</div><div class='badge'>(3)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" href="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/"><div class='name'>岁言心语</div><div class='badge'>(8)</div></a></li>
+          <li><a class="flat-box" title="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" href="/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/"><div class='name'>岁言心语</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box" title="/categories/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" href="/categories/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/"><div class='name'>构建工具</div><div class='badge'>(2)</div></a></li>
         
