@@ -237,8 +237,8 @@
       
         
   <h2 class="title">
-    <a href="/2017/12/06/js-setTimeout/">
-      同步、异步、回调执行顺序经典闭包setTimeout分析
+    <a href="/2017/08/02/wx-miniProgram20170802/">
+      微信小程序-滚动消息通知
     </a>
   </h2>
 
@@ -268,7 +268,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2017-12-06</p>
+    <p>2017-08-02</p>
   </a>
 </div>
 
@@ -278,9 +278,9 @@
             
   
   <div class='new-meta-item category'>
-    <a href='/categories/JavaScript/' rel="nofollow">
+    <a href='/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/' rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>JavaScript</p>
+      <p>小程序</p>
     </a>
   </div>
 
@@ -302,20 +302,11 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <h1 id="聊聊同步、异步和回调"><a href="#聊聊同步、异步和回调" class="headerlink" title="聊聊同步、异步和回调"></a>聊聊同步、异步和回调</h1><p>同步，异步，回调，我们傻傻分不清楚，</p>
-<p>有一天，你找到公司刚来的程序员小T，跟他说：“我们要加个需求，你放下手里的事情优先支持，我会一直等你做完再离开”。小T微笑着答应了，眼角却滑过一丝不易觉察的杀意。</p>
-<p>世界上的所有事情大致可以分为同步去做和异步去做两种。你打电话去订酒店，电话另一边的工作人员需要查下他们的管理系统才能告诉你有没有房间。</p>
-<p>这时候你有两种选择：一种是不挂电话一直等待，直到工作人员查到为止（可能几分钟也可能几个小时，取决于他们的办事效率），这就是同步的。</p>
-<p>另一种是工作人员问了你的联系方式就挂断了电话，等他们查到之后再通知你，这就是异步的，这时候你就可以干点其他事情，比如把机票也定了之类的</p>
-<blockquote>
-<p> 计算机世界也是如此，我们写的代码需要交给cpu去处理，这时候就有同步和异步两种选择。js是单线程的，如果所有的操作（<code>ajax</code>,获取文件等I/O操作<code>&lt;node&gt;</code>）都是同步的，遇到哪些耗时的操作，后面的程序必然被阻塞而不能执行，页面也就失去了响应，</p>
-</blockquote>
-<blockquote>
-<p>因此js采用了事件驱动机制，在单线程模型下，使用异步回调函数的方式来实现非阻塞的IO操作，</p>
-</blockquote>
+      <h1 id="写在前面："><a href="#写在前面：" class="headerlink" title="写在前面：　"></a>写在前面：　</h1><p>这次我主要想总结一下微信小程序实现上下滚动消息提醒，主要是利用swiper组件来实现，swiper组件在小程序中是滑块视图容器。</p>
+<h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170802200717553-132653419.gif" alt="">
       
         <div class="readmore">
-          <a href="/2017/12/06/js-setTimeout/" class="flat-box">
+          <a href="/2017/08/02/wx-miniProgram20170802/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
             Read More
           </a>
@@ -325,9 +316,7 @@
     
       <div class="full-width auto-padding tags">
         
-          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
-        
-          <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 事件循环</a>
+          <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 小程序</a>
         
       </div>
     
@@ -350,8 +339,8 @@
       
         
   <h2 class="title">
-    <a href="/2017/12/05/js-snakey/">
-      手起刀落-一起写经典的贪吃蛇游戏
+    <a href="/2017/07/13/life-aboutlife20170713/">
+      你愿不愿意做一个一异类，异于常人，出类拔萃
     </a>
   </h2>
 
@@ -381,351 +370,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2017-12-05</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/JavaScript/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>JavaScript</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h1 id="回味"><a href="#回味" class="headerlink" title="回味"></a>回味</h1><p>小时候玩的经典贪吃蛇游戏我们印象仍然深刻，谋划了几天，小时候喜欢玩的游戏，长大了终于有能力把他做出来(从来都没有通关过，不知道自己写的程序，是不是能通关了…)，好了，闲话不多谈，先来看一下效果吧！！</p>
-<p><img src="http://www.chenqaq.com/assets/images/4tjOY7QXHK.gif" alt="效果图"></p>
-<p>功能和小时候玩的贪吃蛇一样，</p>
-<blockquote>
-<p>   1.选择速度 ：<br>       slow<br>       normal<br>       fast</p>
-</blockquote>
-<blockquote>
-<p>   2.选择是否有墙作为障碍物：<br>       on<br>       off</p>
-</blockquote>
-<p>看完效果就先附上地址喽：<a href="https://github.com/okaychen/practice" target="_blank" rel="noopener">大山深处修炼的小龙虾</a>，欢迎fork.</p>
-      
-        <div class="readmore">
-          <a href="/2017/12/05/js-snakey/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
-        
-          <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 小游戏</a>
-        
-          <a href="/tags/Canvas/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> Canvas</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2017/11/07/vue-advance20171107/">
-      Vue起步 - 路由与页面间导航
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    
-      <a href="https://www.chenqaq.com" rel="nofollow">
-        
-          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
-        
-        <p>okaychen</p>
-      </a>
-    
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2017-11-07</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/Vue/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Vue</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h1 id="vue-router"><a href="#vue-router" class="headerlink" title="vue-router"></a>vue-router</h1><p>我们知道路由定义了一系列访问的地址规则，路由引擎根据这些规则匹配找到对应的处理页面，然后将请求转发给页进行处理。可以说所有的后端开发都是这样做的，而前端路由是不存在”请求”一说的。</p>
-<p>前端路由是找到地址匹配的一个组件或者对象将其渲染出来。改变浏览器地址不向服务器发送请求有两种方法，</p>
-<p>一是在地址中加入#以欺骗浏览器，地址的改变是由于正在进行页内导航；二是使用HTML5的window.history功能，使用URL的hash来模拟一个完整的URL。</p>
-<p>vue-router是官方提供的一套专用的路由工具库，是vue的一个插件，我们需要在全局引用中通过vue.use()将它引入到vue实例中，</p>
-<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20171107001954622-121090007.png" alt=""></fancybox></p>
-      
-        <div class="readmore">
-          <a href="/2017/11/07/vue-advance20171107/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/Vue/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> Vue</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2017/11/06/js-designPattern20171106/">
-      设计模式之单例模式与场景实践
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    
-      <a href="https://www.chenqaq.com" rel="nofollow">
-        
-          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
-        
-        <p>okaychen</p>
-      </a>
-    
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2017-11-06</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>JavaScript&nbsp;/&nbsp;设计模式</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h1 id="单例介绍"><a href="#单例介绍" class="headerlink" title="单例介绍"></a>单例介绍</h1><p>上次总结了设计模式中的module模式，可能没有真真正正的使用在场景中，发现效果并不好，想要使用起来却不那么得心应手，</p>
-<p>所以这次我打算换一种方式~~从简单的场景中来看单例模式，</p>
-<p>因为JavaScript非常灵活，所以在使用设计模式的时候也带来了很强的灵活性，实现单例的方法也有很多，那就需要我们把握住单例模式的核心。</p>
-<blockquote>
-<p>单例模式是保证一个类只有一个实例，实现的方法一般是先判断实例存在与否，如果存在直接返回，如果不存在就创建了再返回，这就确保了一个类只有一个实例对象。</p>
-</blockquote>
-<p>在JavaScript里，单例作为一个命名空间提供者，从全局命名空间里提供一个唯一的访问点来访问该对象</p>
-<p>作用：</p>
-<ul>
-<li><p>1、模块间通信</p>
-</li>
-<li><p>2、系统中某各类的对象只能存在一个</p>
-</li>
-<li><p>3、保护自己的属性和方法，保证了所有的对象访问的都是同一个实例</p>
-</li>
-</ul>
-<p>注意事项：</p>
-<ul>
-<li><p>1、注意this的使用</p>
-</li>
-<li><p>2、闭包容易造成内存泄露，不需要的尽快处理等待回收</p>
-</li>
-</ul>
-      
-        <div class="readmore">
-          <a href="/2017/11/06/js-designPattern20171106/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
-        
-          <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 设计模式</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2017/11/01/life-aboutLife20171101/">
-      青春是如此美好，又怎忍平凡度过
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    
-      <a href="https://www.chenqaq.com" rel="nofollow">
-        
-          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
-        
-        <p>okaychen</p>
-      </a>
-    
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2017-11-01</p>
+    <p>2017-07-13</p>
   </a>
 </div>
 
@@ -759,13 +404,14 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20171101130631545-1261006104.png" alt=""></fancybox></p>
-<p>读了博友吕大豹前辈的博文《假如大学可以重来》，我决定走心写下这篇文章：</p>
-<p>不像考卷一样所有的问题都能得到一个答案，真正的人生有些事情永远没有答案，</p>
-<p>青春是如此美好，我们又怎忍心平凡度过.</p>
+      <p>看大家都自愿报了老师移动互联的暑期培训，但是却拿不出兴趣和势头，那大家和我都失去了参与这次培训的意义。</p>
+<p>我参与这次培训是想对自己这近一年前端知识做一个总结和梳理，你说你学会了很多东西，其实不然，我觉得目前为止对我们来说有三样东西你能告诉自己你学到了些东西：</p>
+<p>一是抓住参加比赛的机会，自己动手去做；</p>
+<p>二是要抓住做项目的机会；</p>
+<p>三是能把学到的东西讲给别人。</p>
       
         <div class="readmore">
-          <a href="/2017/11/01/life-aboutLife20171101/" class="flat-box">
+          <a href="/2017/07/13/life-aboutlife20170713/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
             Read More
           </a>
@@ -798,8 +444,8 @@
       
         
   <h2 class="title">
-    <a href="/2017/10/31/node-tool20171031/">
-      nvm管理不同版本的node和npm
+    <a href="/2017/07/12/css-shape20170712/">
+      css绘制常见的几何图形
     </a>
   </h2>
 
@@ -829,7 +475,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2017-10-31</p>
+    <p>2017-07-12</p>
   </a>
 </div>
 
@@ -839,9 +485,9 @@
             
   
   <div class='new-meta-item category'>
-    <a href='/categories/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/' rel="nofollow">
+    <a href='/categories/HTML-CSS/' rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Node&nbsp;/&nbsp;构建工具</p>
+      <p>HTML/CSS</p>
     </a>
   </div>
 
@@ -863,14 +509,11 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>nvm（nodejs version manager）是nodejs的管理工具，如果你需要快速更新node版本，并且不覆盖之前的版本；或者想要在不同的node版本之间进行切换；使用nvm来安装我们的node开发环境是绝佳的选择！</p>
-<p>之前使用vue-cli初始化项目，发现自己卡在了项目描述，重复了好几次，无论怎么回车或者尝试其他去解决也无济于事，终于找到了原因所在：</p>
-<p><fancybox><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20171019214302302-521744711.png" alt=""></fancybox></p>
-<p>原因其实是我的node版本过高，需要降低node版本。</p>
-<p>我们可以通过nvm管理不同版本的node和npm</p>
+      <p>　　<br>前言：终于我的大一生活结束了，迎来了愉快的暑假，大家都开始了各自的忙碌。一直忙着一些项目的事情，终于决定今天要更新一篇博客了，对上一阶段的学习做简单的总结。</p>
+<p>这次我主要总结一下用css绘制各种形状的技巧，同时要结合before、after伪元素和定位做出一些效果。</p>
       
         <div class="readmore">
-          <a href="/2017/10/31/node-tool20171031/" class="flat-box">
+          <a href="/2017/07/12/css-shape20170712/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
             Read More
           </a>
@@ -880,9 +523,324 @@
     
       <div class="full-width auto-padding tags">
         
-          <a href="/tags/Node/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> Node</a>
+          <a href="/tags/CSS/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> CSS</a>
         
-          <a href="/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 构建工具</a>
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2017/06/14/js-css-waterfall20170614/">
+      css3多栏属性&&JS实现瀑布流
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2017-06-14</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/JavaScript/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>HTML/CSS&nbsp;/&nbsp;JavaScript</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h1 id="css3多列"><a href="#css3多列" class="headerlink" title="css3多列"></a>css3多列</h1><p>首提的兼容性问题：IE10以及opera支持多列（column），chrome需要-webkit-前缀，Firefox需要-moz-的前缀，Ie9以及更早版本就不支持多列了。你可以使用这个工具，很方便的查看你的浏览器内核以及版本信息<a href="http://ie.icoa.cn/" target="_blank" rel="noopener">http://ie.icoa.cn/</a></p>
+<p>css3多列属性:css3多列主要是五个属性</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">column-count　　  // &lt;规定元素被分隔的列数&gt;</span><br><span class="line">column-gap　　　  // &lt;规定列与列之间的间隔&gt;</span><br><span class="line">column-rule　　   // &lt;列之间的宽度、样式、颜色&gt;</span><br><span class="line">column-width     // &lt;列的宽度&gt;</span><br><span class="line">column-span      // &lt;元素应该横跨的列数&gt;</span><br></pre></td></tr></table></figure>
+<p>注意：在设置column-width宽度时，同时设置盒子的width，否则宽度默认为100%，每栏宽度按栏数平均分；盒子每栏宽度必须大于等于column-width设定的值，否则就会减少栏数来增加每栏宽度</p>
+      
+        <div class="readmore">
+          <a href="/2017/06/14/js-css-waterfall20170614/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/CSS/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> CSS</a>
+        
+          <a href="/tags/Layout/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> Layout</a>
+        
+          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
+        
+          <a href="/tags/%E7%80%91%E5%B8%83%E6%B5%81/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 瀑布流</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2017/05/27/js-AngularCli20170527/">
+      Angule Cli创建Angular项目
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2017-05-27</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/JavaScript/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>JavaScript</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p><img src="https://www.chenqaq.com/assets/cnblogs_img/1140602-20170521131215853-1429491603.png" alt=""></p>
+<p>Angular4.0来了，更小，更快，改动少</p>
+<p>接下来为Angular4.0准备环境和学会使用Angular cli项目</p>
+      
+        <div class="readmore">
+          <a href="/2017/05/27/js-AngularCli20170527/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2017/05/03/js-closure20170503/">
+      闭包初体验
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2017-05-03</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/JavaScript/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>JavaScript</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>首先，在理解闭包之前：</p>
+<p>我们首先应该清楚下作用域和作用域链</p>
+<p>作用域：每个函数定义时创建时自己的环境即作用域</p>
+<p>作用域链：函数内可访问自身和父级作用域中的变量，函数外不可访问函数内的私有变量</p>
+      
+        <div class="readmore">
+          <a href="/2017/05/03/js-closure20170503/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
         
       </div>
     
@@ -907,14 +865,8 @@
             </a>
           
           <p class="current">
-            6 / 10
+            6 / 6
           </p>
-          
-            <a class="next" rel="next" href="/page/7/">
-              <section class="post next">
-                &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
-              </section>
-            </a>
           
         </div>
       </div>
@@ -1182,6 +1134,55 @@
           
         
           
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/AOP/" style="font-size: 15.25px; color: #919191">AOP</a> <a href="/tags/CSS/" style="font-size: 20.25px; color: #6f6f6f">CSS</a> <a href="/tags/Canvas/" style="font-size: 14px; color: #999">Canvas</a> <a href="/tags/Docker/" style="font-size: 14px; color: #999">Docker</a> <a href="/tags/Express/" style="font-size: 19px; color: #777">Express</a> <a href="/tags/JavaScript/" style="font-size: 24px; color: #555">JavaScript</a> <a href="/tags/KOA/" style="font-size: 14px; color: #999">KOA</a> <a href="/tags/Layout/" style="font-size: 16.5px; color: #888">Layout</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Node/" style="font-size: 22.75px; color: #5e5e5e">Node</a> <a href="/tags/SSH/" style="font-size: 14px; color: #999">SSH</a> <a href="/tags/Vue/" style="font-size: 16.5px; color: #888">Vue</a> <a href="/tags/WEB%E5%AE%89%E5%85%A8/" style="font-size: 16.5px; color: #888">WEB安全</a> <a href="/tags/Webpack/" style="font-size: 14px; color: #999">Webpack</a> <a href="/tags/layout/" style="font-size: 15.25px; color: #919191">layout</a> <a href="/tags/mongodb/" style="font-size: 14px; color: #999">mongodb</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" style="font-size: 14px; color: #999">事件循环</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 14px; color: #999">小游戏</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 16.5px; color: #888">小程序</a> <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" style="font-size: 21.5px; color: #666">岁言心语</a> <a href="/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" style="font-size: 15.25px; color: #919191">构建工具</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 14px; color: #999">正则</a> <a href="/tags/%E7%80%91%E5%B8%83%E6%B5%81/" style="font-size: 14px; color: #999">瀑布流</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">爬虫</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 17.75px; color: #808080">设计模式</a>
+    </div>
+  </section>
+
+
+            
           
         
           

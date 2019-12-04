@@ -237,420 +237,6 @@
       
         
   <h2 class="title">
-    <a href="/2018/10/23/js-higherOrderFn-DecoratorPatternToAOP2-md/">
-      用AOP装饰函数-实践篇
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    
-      <a href="https://www.chenqaq.com" rel="nofollow">
-        
-          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
-        
-        <p>okaychen</p>
-      </a>
-    
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2018-10-23</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>JavaScript&nbsp;/&nbsp;设计模式</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h1 id="后续：纸上得来终觉浅"><a href="#后续：纸上得来终觉浅" class="headerlink" title="后续：纸上得来终觉浅"></a>后续：纸上得来终觉浅</h1><p>老大见小T终于摸清了用AOP装饰函数的一些套路，很是欣慰，决定用实际情景让他试一试，老大拿出了一个最常见的AOP的经典应用之一—数据统计上报的情景，分离业务代码和数据统计上报的代码，在实际开发中项目结尾阶段难免要加上很多统计数据的代码，这个过程可能被迫改动早已封装好的函数.</p>
-      
-        <div class="readmore">
-          <a href="/2018/10/23/js-higherOrderFn-DecoratorPatternToAOP2-md/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
-        
-          <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 设计模式</a>
-        
-          <a href="/tags/AOP/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> AOP</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2018/10/18/js-higherOrderFn-DecoratorPatternToAOP1/">
-      用AOP装饰函数-摸索篇
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    
-      <a href="https://www.chenqaq.com" rel="nofollow">
-        
-          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
-        
-        <p>okaychen</p>
-      </a>
-    
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2018-10-18</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>JavaScript&nbsp;/&nbsp;设计模式</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h1 id="开始：小荷才露尖尖角"><a href="#开始：小荷才露尖尖角" class="headerlink" title="开始：小荷才露尖尖角"></a>开始：小荷才露尖尖角</h1><p>有一天，老大见程序员小T的核心逻辑代码相当冗杂，核心逻辑模块和一些无关的功能融成一团，就告诉小T，让他尝试把日志统计，异常处理模块从和核心逻辑模块中抽离出来，对于刚入职经验不足的小T来说，犹如晴天霹雳。小T前思后想，还好大学期间读了不少编程相关的书籍有些功底，既然目的是想把一些日志统计、异常处理这些和核心逻辑代码无关的抽离出来，他灵机一闪，心想这不是面向切面编程(AOP)嘛，老大果然是老司机，把和核心逻辑模块无关的功能抽离出来，业务逻辑模块就清晰了很多，还能够复用日志统计、日常处理等这些功能模块，真是两全其美啊！</p>
-      
-        <div class="readmore">
-          <a href="/2018/10/18/js-higherOrderFn-DecoratorPatternToAOP1/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
-        
-          <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 设计模式</a>
-        
-          <a href="/tags/AOP/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> AOP</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2018/10/10/xss-attack-defense02-md/">
-      web安全-浅谈xss攻防（二）
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    
-      <a href="https://www.chenqaq.com" rel="nofollow">
-        
-          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
-        
-        <p>okaychen</p>
-      </a>
-    
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2018-10-10</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/WEB%E5%AE%89%E5%85%A8/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>WEB安全</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上次介绍了什么是XSS以及XSS的三种类型，作为上次小尾巴的总结来说：XSS跨站脚本是一种经常出现在web应用程序中的计算机安全漏洞，是由于web应用程序对于用户的输入过滤不足引起的。攻击者利用网站漏洞把恶意脚本代码注入到网页之中，当其他用户浏览这些网页时，就会执行其中的恶意代码，轻者能达到恶作剧的目的，重者可以对受害者采取cookie资料窃取，会话劫持，钓鱼欺骗等各种攻击；分为三种类型，服务端的存储型和反射性，客户端自身漏洞引起的DOM型。这次我简单总结一些常见的攻击对应的防御措施，方便以后学习回顾;</p>
-      
-        <div class="readmore">
-          <a href="/2018/10/10/xss-attack-defense02-md/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/WEB%E5%AE%89%E5%85%A8/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> WEB安全</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2018/10/09/xss-attack-defense-md/">
-      web安全-浅谈xss攻防（一）
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    
-      <a href="https://www.chenqaq.com" rel="nofollow">
-        
-          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
-        
-        <p>okaychen</p>
-      </a>
-    
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2018-10-09</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/WEB%E5%AE%89%E5%85%A8/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>WEB安全</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近来反反复复读了一些xss和csrf攻防的一些文章，大体上读完了《XSS跨站脚本剖析与防御》这本书，之前浅浮的以为xss仅仅需要对用户输入内容进行过滤，然而现在重新审视xss的攻击技巧着实令人眼花缭乱。</p>
-<p>那到底什么是xss跨站脚本呢？它会造成什么危害？为何它如此流行？它的攻击方式有哪些？作为web开发人员我们应该做的有哪些？</p>
-<p>带着这几个问题，反复测试总结了这篇文章，一方面方便自己以后学习回顾，另一方面希望可以帮助到一些想对xss攻防有些了解的人，我相信这篇文章能够帮你理解上面几个问题。想要深入学习，建议还是去学习<a href="https://read.douban.com/ebook/12812565/" target="_blank" rel="noopener">《xss跨站脚本剖析与防御》</a>，这本书是邱永华先生所著，阿里首席安全研究员吴翰清作的序，细细读来定能有所收获；</p>
-      
-        <div class="readmore">
-          <a href="/2018/10/09/xss-attack-defense-md/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/WEB%E5%AE%89%E5%85%A8/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> WEB安全</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
     <a href="/2018/10/05/linux-ssh-addToGithub-md/">
       linux下误将ssh密钥写入/root
     </a>
@@ -842,6 +428,840 @@
           </div>
         
       
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2018/04/09/life-aboutIT/">
+      碎言心语-短笔记
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2018-04-09</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>岁言心语</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>可以跟着<a href="https://zhuanlan.zhihu.com/p/35412015" target="_blank" rel="noopener">阿里的狼叔（花名）</a>了解一下前端近些几年的发展。从高中毕业接触前端开发近两年，但从大二才开始了解前端发展的历史和现状，也多少有些认识。</p>
+<p>很多情况下，我们都是被动的接受者，这就好像我们拿的手机在更新换代，也就好像我们现在看到的网页和01年相比天壤之别，就像移动互联网时代兴起，我们从pc web慢慢转向移动端。这是一种我们后知后觉的变化趋势</p>
+<p>因为我接触移动端稍稍要多于pc web端，<br>上次张小龙在微信公开课上声称微信用户已达10亿，微信小程序用户达1.7亿，微信悄然俨然成为一个操作系统，因为微信本身封闭，对外界来说，它是一个流量黑洞。眼看入口被微信把持，于是九大浏览器厂商联合发布”快应用”，一方面是为了夺回应用分支的主导权，说直接点就是在反攻”微信小程序”，防止被边缘化。另一方面官方也声称 “移动应用前端化”是大势所趋。</p>
+<p>前端快速发展之下，必然改变我们未来的某些习惯。所以善待前端，感兴趣的就多深入些。</p>
+      
+        <div class="readmore">
+          <a href="/2018/04/09/life-aboutIT/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 岁言心语</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2018/03/20/js-debounce-throttle/">
+      跟着underscore学习防抖和节流
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2018-03-20</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/JavaScript/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>JavaScript</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h1 id="有个开始吧！"><a href="#有个开始吧！" class="headerlink" title="有个开始吧！"></a>有个开始吧！</h1><p>网上有很多的防抖与节流的文章，自己也早有耳闻，之前看underscore的代码，也发现了两个与众不同的函数debounce和throttle，仿佛是有特定的用途。学习实践之后便总结下这篇文章。</p>
+<p>在前端开发中经常遇到一些频繁触发的事件，比如</p>
+<ul>
+<li>键盘事件：keyup、keydown…</li>
+<li>window：resize、scroll…</li>
+<li>鼠标事件：mousedown、mousemove…</li>
+</ul>
+<p>那么什么是事件的频发触发呢？让我们写一个例子来了解事件的频繁触发；</p>
+      
+        <div class="readmore">
+          <a href="/2018/03/20/js-debounce-throttle/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2018/03/15/cross-domain-cors/">
+      浏览器同源政策
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2018-03-15</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/WEB%E5%AE%89%E5%85%A8/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>WEB安全</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>我们都知道浏览器的“同源政策”是浏览器安全的基石，根本目的是为了保护用户信息安全，防止恶意的网站窃取数据。<br>1995年，同源政策由Netscape 公司引入。目前，所有浏览器都执行这个政策。</p>
+      
+        <div class="readmore">
+          <a href="/2018/03/15/cross-domain-cors/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/WEB%E5%AE%89%E5%85%A8/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> WEB安全</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2018/03/07/css-layout-flex-grid/">
+      拥抱未来的布局方式
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2018-03-07</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/HTML-CSS/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>HTML/CSS</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>相比传统的布局方式，flex 和 grid 使布局系统简化，轻松的解决了复杂的 web 布局。<br>早在以前，所有的 HTML 布局还是通过 table，float 以及其他 css 属性来完成。面对复杂的布局，就没有很好的办法了。<br>随着 flexbox 的出现，它专注于创建稳健的响应式页面布局模式，并轻松的正确对齐元素及其内容。如今已是我们的首选。</p>
+      
+        <div class="readmore">
+          <a href="/2018/03/07/css-layout-flex-grid/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/CSS/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> CSS</a>
+        
+          <a href="/tags/Layout/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> Layout</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2018/02/01/css-layout-strickyFooter/">
+      stricky footer的三种解决方案
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2018-02-01</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/HTML-CSS/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>HTML/CSS</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>stricky footer设计是最古老和最常见的效果之一，我们都曾经历过类似的情景：</p>
+<blockquote>
+<p>如果页面内容不够长的时候，页脚块粘贴在底部；如果内容足够长时，页脚块会被内容向下推送。</p>
+</blockquote>
+      
+        <div class="readmore">
+          <a href="/2018/02/01/css-layout-strickyFooter/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/CSS/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> CSS</a>
+        
+          <a href="/tags/layout/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> layout</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2018/01/25/life-aboutLife-job/">
+      2018年已经开始！
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2018-01-25</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>岁言心语</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h1 id="我的2017"><a href="#我的2017" class="headerlink" title="我的2017"></a>我的2017</h1><p>最近偶然想起来拿出大一下（2017年2月-3月）给「郑州百格教育」写过的手机端的官网，看了又看，想着如果用这一年的学习，来重做一次这个官网，我会怎么做？觉得自己这一年来应该是有了不小的进步吧！</p>
+<p>关于2017年，太多我已经记不清，我觉得上天还是很眷顾我的，或者说我是幸运的，收到了一些邀请，但是始终都没有达到心中的目标。</p>
+      
+        <div class="readmore">
+          <a href="/2018/01/25/life-aboutLife-job/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 岁言心语</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2018/01/19/vueCl-exExpressDataMock-I-do-t-have-devServer/">
+      webpack-dev-server
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2018-01-19</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>构建工具</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>我们想要给我们的mock data 找一个接口请求，原版配置在 dev-server.js ，新版的 vue-webpack-template 删除了dev-server.js，改用webpcak.dev.conf.js代替（具体更新见<a href="https://github.com/vuejs-templates/webpack/pull/975" target="_blank" rel="noopener">github：switch to webpack-dev-server</a>）</p>
+<p><img src="http://www.chenqaq.com/assets/images/vuecli1.png" alt="switch to webpack-dev-server"></p>
+      
+        <div class="readmore">
+          <a href="/2018/01/19/vueCl-exExpressDataMock-I-do-t-have-devServer/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Express/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> Express</a>
+        
+          <a href="/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 构建工具</a>
+        
+          <a href="/tags/Webpack/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> Webpack</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2018/01/10/life-aboutSchool-finalExam/">
+      学校寒冬的清晨和深夜
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2018-01-10</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>岁言心语</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>最近忙着期末考试前的复习，倒也不紧不慢，反而看到了学校不一样的风景。</p>
+<p>行走匆忙的人，不一定是无心观赏两岸的风景，只是为了心中的彼岸</p>
+<p><img src="http://www.chenqaq.com/assets/images/morning.jpg" alt="morning"></p>
+<p><img src="http://www.chenqaq.com/assets/images/night.jpg" alt="night"></p>
+      
+        <div class="readmore">
+          <a href="/2018/01/10/life-aboutSchool-finalExam/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 岁言心语</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
     
   </section>
   
@@ -857,7 +1277,7 @@
             </a>
           
           <p class="current">
-            2 / 10
+            2 / 6
           </p>
           
             <a class="next" rel="next" href="/page/3/">
@@ -1132,6 +1552,55 @@
           
         
           
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/AOP/" style="font-size: 15.25px; color: #919191">AOP</a> <a href="/tags/CSS/" style="font-size: 20.25px; color: #6f6f6f">CSS</a> <a href="/tags/Canvas/" style="font-size: 14px; color: #999">Canvas</a> <a href="/tags/Docker/" style="font-size: 14px; color: #999">Docker</a> <a href="/tags/Express/" style="font-size: 19px; color: #777">Express</a> <a href="/tags/JavaScript/" style="font-size: 24px; color: #555">JavaScript</a> <a href="/tags/KOA/" style="font-size: 14px; color: #999">KOA</a> <a href="/tags/Layout/" style="font-size: 16.5px; color: #888">Layout</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Node/" style="font-size: 22.75px; color: #5e5e5e">Node</a> <a href="/tags/SSH/" style="font-size: 14px; color: #999">SSH</a> <a href="/tags/Vue/" style="font-size: 16.5px; color: #888">Vue</a> <a href="/tags/WEB%E5%AE%89%E5%85%A8/" style="font-size: 16.5px; color: #888">WEB安全</a> <a href="/tags/Webpack/" style="font-size: 14px; color: #999">Webpack</a> <a href="/tags/layout/" style="font-size: 15.25px; color: #919191">layout</a> <a href="/tags/mongodb/" style="font-size: 14px; color: #999">mongodb</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" style="font-size: 14px; color: #999">事件循环</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 14px; color: #999">小游戏</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 16.5px; color: #888">小程序</a> <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" style="font-size: 21.5px; color: #666">岁言心语</a> <a href="/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" style="font-size: 15.25px; color: #919191">构建工具</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 14px; color: #999">正则</a> <a href="/tags/%E7%80%91%E5%B8%83%E6%B5%81/" style="font-size: 14px; color: #999">瀑布流</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">爬虫</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 17.75px; color: #808080">设计模式</a>
+    </div>
+  </section>
+
+
+            
           
         
           

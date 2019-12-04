@@ -1028,6 +1028,420 @@
           </div>
         
       
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2018/10/23/js-higherOrderFn-DecoratorPatternToAOP2-md/">
+      用AOP装饰函数-实践篇
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2018-10-23</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>JavaScript&nbsp;/&nbsp;设计模式</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h1 id="后续：纸上得来终觉浅"><a href="#后续：纸上得来终觉浅" class="headerlink" title="后续：纸上得来终觉浅"></a>后续：纸上得来终觉浅</h1><p>老大见小T终于摸清了用AOP装饰函数的一些套路，很是欣慰，决定用实际情景让他试一试，老大拿出了一个最常见的AOP的经典应用之一—数据统计上报的情景，分离业务代码和数据统计上报的代码，在实际开发中项目结尾阶段难免要加上很多统计数据的代码，这个过程可能被迫改动早已封装好的函数.</p>
+      
+        <div class="readmore">
+          <a href="/2018/10/23/js-higherOrderFn-DecoratorPatternToAOP2-md/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
+        
+          <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 设计模式</a>
+        
+          <a href="/tags/AOP/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> AOP</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2018/10/18/js-higherOrderFn-DecoratorPatternToAOP1/">
+      用AOP装饰函数-摸索篇
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2018-10-18</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>JavaScript&nbsp;/&nbsp;设计模式</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h1 id="开始：小荷才露尖尖角"><a href="#开始：小荷才露尖尖角" class="headerlink" title="开始：小荷才露尖尖角"></a>开始：小荷才露尖尖角</h1><p>有一天，老大见程序员小T的核心逻辑代码相当冗杂，核心逻辑模块和一些无关的功能融成一团，就告诉小T，让他尝试把日志统计，异常处理模块从和核心逻辑模块中抽离出来，对于刚入职经验不足的小T来说，犹如晴天霹雳。小T前思后想，还好大学期间读了不少编程相关的书籍有些功底，既然目的是想把一些日志统计、异常处理这些和核心逻辑代码无关的抽离出来，他灵机一闪，心想这不是面向切面编程(AOP)嘛，老大果然是老司机，把和核心逻辑模块无关的功能抽离出来，业务逻辑模块就清晰了很多，还能够复用日志统计、日常处理等这些功能模块，真是两全其美啊！</p>
+      
+        <div class="readmore">
+          <a href="/2018/10/18/js-higherOrderFn-DecoratorPatternToAOP1/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> JavaScript</a>
+        
+          <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 设计模式</a>
+        
+          <a href="/tags/AOP/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> AOP</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2018/10/10/xss-attack-defense02-md/">
+      web安全-浅谈xss攻防（二）
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2018-10-10</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/WEB%E5%AE%89%E5%85%A8/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>WEB安全</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上次介绍了什么是XSS以及XSS的三种类型，作为上次小尾巴的总结来说：XSS跨站脚本是一种经常出现在web应用程序中的计算机安全漏洞，是由于web应用程序对于用户的输入过滤不足引起的。攻击者利用网站漏洞把恶意脚本代码注入到网页之中，当其他用户浏览这些网页时，就会执行其中的恶意代码，轻者能达到恶作剧的目的，重者可以对受害者采取cookie资料窃取，会话劫持，钓鱼欺骗等各种攻击；分为三种类型，服务端的存储型和反射性，客户端自身漏洞引起的DOM型。这次我简单总结一些常见的攻击对应的防御措施，方便以后学习回顾;</p>
+      
+        <div class="readmore">
+          <a href="/2018/10/10/xss-attack-defense02-md/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/WEB%E5%AE%89%E5%85%A8/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> WEB安全</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2018/10/09/xss-attack-defense-md/">
+      web安全-浅谈xss攻防（一）
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://www.chenqaq.com" rel="nofollow">
+        
+          <img src="https://www.chenqaq.com/assets/icon/header.jpg">
+        
+        <p>okaychen</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2018-10-09</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/WEB%E5%AE%89%E5%85%A8/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>WEB安全</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近来反反复复读了一些xss和csrf攻防的一些文章，大体上读完了《XSS跨站脚本剖析与防御》这本书，之前浅浮的以为xss仅仅需要对用户输入内容进行过滤，然而现在重新审视xss的攻击技巧着实令人眼花缭乱。</p>
+<p>那到底什么是xss跨站脚本呢？它会造成什么危害？为何它如此流行？它的攻击方式有哪些？作为web开发人员我们应该做的有哪些？</p>
+<p>带着这几个问题，反复测试总结了这篇文章，一方面方便自己以后学习回顾，另一方面希望可以帮助到一些想对xss攻防有些了解的人，我相信这篇文章能够帮你理解上面几个问题。想要深入学习，建议还是去学习<a href="https://read.douban.com/ebook/12812565/" target="_blank" rel="noopener">《xss跨站脚本剖析与防御》</a>，这本书是邱永华先生所著，阿里首席安全研究员吴翰清作的序，细细读来定能有所收获；</p>
+      
+        <div class="readmore">
+          <a href="/2018/10/09/xss-attack-defense-md/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/WEB%E5%AE%89%E5%85%A8/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> WEB安全</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
     
   </section>
   
@@ -1037,7 +1451,7 @@
         <div class="prev-next">
           
           <p class="current">
-            1 / 10
+            1 / 6
           </p>
           
             <a class="next" rel="next" href="/page/2/">
@@ -1312,6 +1726,55 @@
           
         
           
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/AOP/" style="font-size: 15.25px; color: #919191">AOP</a> <a href="/tags/CSS/" style="font-size: 20.25px; color: #6f6f6f">CSS</a> <a href="/tags/Canvas/" style="font-size: 14px; color: #999">Canvas</a> <a href="/tags/Docker/" style="font-size: 14px; color: #999">Docker</a> <a href="/tags/Express/" style="font-size: 19px; color: #777">Express</a> <a href="/tags/JavaScript/" style="font-size: 24px; color: #555">JavaScript</a> <a href="/tags/KOA/" style="font-size: 14px; color: #999">KOA</a> <a href="/tags/Layout/" style="font-size: 16.5px; color: #888">Layout</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Node/" style="font-size: 22.75px; color: #5e5e5e">Node</a> <a href="/tags/SSH/" style="font-size: 14px; color: #999">SSH</a> <a href="/tags/Vue/" style="font-size: 16.5px; color: #888">Vue</a> <a href="/tags/WEB%E5%AE%89%E5%85%A8/" style="font-size: 16.5px; color: #888">WEB安全</a> <a href="/tags/Webpack/" style="font-size: 14px; color: #999">Webpack</a> <a href="/tags/layout/" style="font-size: 15.25px; color: #919191">layout</a> <a href="/tags/mongodb/" style="font-size: 14px; color: #999">mongodb</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" style="font-size: 14px; color: #999">事件循环</a> <a href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" style="font-size: 14px; color: #999">小游戏</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 16.5px; color: #888">小程序</a> <a href="/tags/%E5%B2%81%E8%A8%80%E5%BF%83%E8%AF%AD/" style="font-size: 21.5px; color: #666">岁言心语</a> <a href="/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" style="font-size: 15.25px; color: #919191">构建工具</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 14px; color: #999">正则</a> <a href="/tags/%E7%80%91%E5%B8%83%E6%B5%81/" style="font-size: 14px; color: #999">瀑布流</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">爬虫</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 17.75px; color: #808080">设计模式</a>
+    </div>
+  </section>
+
+
+            
           
         
           
