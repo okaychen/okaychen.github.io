@@ -53,9 +53,9 @@
           
           <category> Node </category>
           
-          <category> mongodb </category>
-          
           <category> Vue </category>
+          
+          <category> mongodb </category>
           
       </categories>
       
@@ -64,9 +64,9 @@
             
             <tag> Node </tag>
             
-            <tag> mongodb </tag>
-            
             <tag> Vue </tag>
+            
+            <tag> mongodb </tag>
             
             <tag> express </tag>
             
