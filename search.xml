@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title>置顶公告</title>
+      <title>我的动态</title>
       <link href="/2020/07/30/attention/"/>
       <url>/2020/07/30/attention/</url>
       
-        <content type="html"><![CDATA[<div class="note success">            <p>2017年12月5日：为了方便管理和发文基于hexo搭建本站托管在github，初衷只是个人写作和技术生活的学习记录</p>          </div><div class="note success">            <p>2019年11月14~15日：<a href="https://www.cnblogs.com/okaychen/" target="_blank" rel="noopener">博客园</a>博文迁移完成，博客整改，新增友链和Valine评论</p>          </div> <a id="more"></a>]]></content>
+        <content type="html"><![CDATA[<div class="note success">            <p>2021年02月：静态资源日益增多，升级抽离静态资源JSDelivr cdn + gitHub管理 — ❤️ — <a href="https://github.com/okaychen/CDN" target="_blank" rel="noopener">cdn管理地址</a></p>          </div> <div class="note success">            <p>2020年02月～03月：应牛客网运营邀请，完成的一份90页pdf校招前端面试小册子<br><a href="https://github.com/okaychen/FE-Interview-Brochure" target="_blank" rel="noopener">面试总结小册</a> — 76🌟 — <a href="https://docs.chenqaq.com/" target="_blank" rel="noopener">相应托管页</a></p>          </div> <div class="note success">            <p>2019年11月14~15日：<a href="https://www.cnblogs.com/okaychen/" target="_blank" rel="noopener">博客园</a>博文迁移完成，博客整改，新增友链和Valine评论</p>          </div><div class="note success">            <p>2017年12月5日：为了方便管理和发文基于hexo搭建本站托管在github，初衷只是个人写作和技术生活的学习记录</p>          </div><a id="more"></a>]]></content>
       
       
       
