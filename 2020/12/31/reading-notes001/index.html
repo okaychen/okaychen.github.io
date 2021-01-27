@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>Big Hairy Audacious Goals | 浅笔墨画</title><meta name="description" content="Big Hairy Audacious Goals"><meta name="keywords" content="读书笔记"><meta name="author" content="okaychen"><meta name="copyright" content="okaychen"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/okaychen/CDN@1.0/BlogSource/icon/favicon.png"><link rel="preconnect" href="//cdn.jsdelivr.net"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Big Hairy Audacious Goals"><meta name="twitter:description" content="Big Hairy Audacious Goals"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/okaychen/CDN@1.2/BlogSource/gallery/thumb_048.jpg"><meta property="og:type" content="article"><meta property="og:title" content="Big Hairy Audacious Goals"><meta property="og:url" content="https://www.chenqaq.com/2020/12/31/reading-notes001/"><meta property="og:site_name" content="浅笔墨画"><meta property="og:description" content="Big Hairy Audacious Goals"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/okaychen/CDN@1.2/BlogSource/gallery/thumb_048.jpg"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.15/dist/snackbar.min.css"><link rel="canonical" href="https://www.chenqaq.com/2020/12/31/reading-notes001/"><link rel="next" title="我的动态" href="https://www.chenqaq.com/2020/07/30/attention/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://www.chenqaq.com","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight_copy: 'false',
+  highlight_lang: 'true',
+  highlight_shrink: 'false',
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  copyright: undefined,
+  copy_copyright_js: false,
+  ClickShowText: undefined,
+  medium_zoom: 'false',
+  Snackbar: {"bookmark":{"title":"Snackbar.bookmark.title","message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"top-center"}
+  
+}</script><link rel="alternate" href="/atom.xml" title="浅笔墨画" type="application/atom+xml">
+</head><body><div id="header"> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">浅笔墨画</a></span><i class="fa fa-bars fa-fw toggle-menu pull_right close" aria-hidden="true"></i><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/lab/"><i class="fa-fw fa fa-flask"></i><span> 实验室</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw" style="margin-top:13px;margin-right:10px;"></i><span> 搜索</span></a></span></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="lazyload avatar_img" src="https://cdn.jsdelivr.net/gh/okaychen/CDN@1.0/BlogSource/icon/header.jpg" onerror="onerror=null;src='/img/friend_404.gif'"></div><div class="mobile_post_data"><div class="mobile_data_item is_center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">59</div></a></div></div><div class="mobile_data_item is_center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">29</div></a></div></div><div class="mobile_data_item is_center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">14</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/lab/"><i class="fa-fw fa fa-flask"></i><span> 实验室</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#高效能人士的七个习惯"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">高效能人士的七个习惯</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#疯癫与文明"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">疯癫与文明</span></a></li></ol></div></div><div id="body-wrap"><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#高效能人士的七个习惯"><span class="toc-number">1.</span> <span class="toc-text">高效能人士的七个习惯</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#疯癫与文明"><span class="toc-number">2.</span> <span class="toc-text">疯癫与文明</span></a></li></ol></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/okaychen/CDN@1.2/BlogSource/gallery/thumb_048.jpg)"><div id="post-info"><div id="post-title"><div class="posttitle">Big Hairy Audacious Goals</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2020-12-31<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> 更新于 2021-01-27</time><span class="post-meta__separator mobile_hidden">|</span><span class="mobile_hidden"><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><div class="post-meta-wordcount"></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><p>BHAG理念的追求：Big Hairy Audacious Goals，宏伟的、冒险的、大胆的目标</p>
+<p>在巨变之中，保持独立思考，对人性的释放，自由的文明本质追求，弥足珍贵</p>
+<a id="more"></a>
+
+<h1 id="高效能人士的七个习惯"><a href="#高效能人士的七个习惯" class="headerlink" title="高效能人士的七个习惯"></a>高效能人士的七个习惯</h1><p>1、2018年5月-30周年纪念版<br>2、史蒂芬·柯维先生于12年7月去世，他的一句经典的口头禅是”品味生活的精华”<br>3、逝者安息!史蒂芬·柯维的事业仍将继续，史蒂芬·柯维的精神将永存，像这本书刚出版时一样的鲜活<br>4、坚持核心，刺进进步，是成就伟大公司和个人的其中一个关键<br>5、BHAG理念的追求：Big Hairy Audacious Goals，宏伟的、冒险的、大胆的目标<br>6、柯维体系的中心原则：首先塑造性格，先战胜自己才能赢得工作上的胜利<br>–––7～11 2004版前言 柯维 作–––<br>7、变化的世界，不变的原则<br>8、努力工作是远远不够的，因为在市场和技术全球化的驱动下，竞争日趋白热化，技术领域发展之快，令人目眩，所以我们不能满足于校园教育，要不断接受继续教育和重塑自我，我们必须训练头脑，大量投入，不断磨练，提升自己的竞争力，以免被社会淘汰。<br>9、我们无法忽视平衡的原则，一方面，我们要满足今天的需要，另一方面，我们要进行投资提升竞争力，以取得将来的持久成功。<br>10、如果一个人足够谦逊以至于能够接受并负起对周遭环境的责任，足够有勇气去付出创造性的努力来战胜或避开困难，你将从他身上看到不同应对方式的巨大能量。<br>11、大多数人的情绪易受他人左右，无法专注的聆听––他们无法在说出自己的想法前，先把自己的事情搁置一旁，倾尽全力来理解对方的想法<br>习惯一：积极主动<br>习惯二：以始为终<br>习惯三：要事第一<br>习惯四：双赢思维<br>习惯五：知彼解己<br>习惯六：综合综效<br>习惯七：不断更新<br>12、条件作用对人类认知和思维方式的巨大影响<br>13、人们越是依赖立竿见影的解决办法，越是加剧了问题潜在的隐患。<br>14、这本书强调新的思想水平，它强调以原则为中心，以品德为基础，要求”由内而外”的实现个人效能和人际效能。<br>15、习惯对我们的生活有着极大的影响，因为它是一贯的，在不知不觉中，经年累月影响着我们的品德，暴露出我们的本性，左右着我们的成败。<br>16、成熟模式图：即人类的三个阶段，分别为依赖期，独立期，互赖期<br>17、人类所拥有的资本，基本上可以分为物资资产，金融资本以及人力资本三大类<br>18、符合自然法则的思维方式为基础，柯维称这个自然法则是 产出/产能平衡(P/B balance)，效能在于产出与产能的平衡，P代表希望获得的产出，即金蛋；PC代表产能，即生产金蛋的资产或能力。<br>19、最令人鼓舞的事实，莫过于人类确实能主动努力以提升生命价值 –&gt; 梭罗<br>20、人类特有的精神活动，即思考自己的思维过程的能力。<br>21、用来解释人性的三种决定论：基因决定论，心理决定论，环境决定论，这三种都以刺激-&gt;回应理论为基础。<br>22、我们都受条件左右，以某一特定方式回应某一特定刺激-&gt;巴甫洛夫<br>23、在最恶劣的环境中，弗兰克尔运用人类独有的自我意识，发掘了人性最根本的原则，即在刺激与回应之间，人有选择的自由<br>24、弗兰克尔曾指出人生有三种主要的价值观，一是经验价值观，来自自身经历；二是创造价值观，源于个人独创；三是态度价值观，即面临困境时的回应。<br>25、积极主动的语言，消极被动的语言。<br>26、关注圈，影响圈。积极主动的人专注于“影响圈”，他们专心做自己力所能及的事，他们的能量是积极的，能够使影响圈不断扩大。<br>27、阅读下面的内容时，请找个僻静的角落，抛开一切杂念，敞开心扉，跟着我走过这段心灵之旅<br>28、帕累托原则，以20%的活动取得80%的成功</p>
+<h1 id="疯癫与文明"><a href="#疯癫与文明" class="headerlink" title="疯癫与文明"></a>疯癫与文明</h1><p>“我们却不得不撰写一部有关另一种形式的疯癫的历史，因为人们出于这种疯癫，用一种至高无上的理性所支配的行动把自己的邻人禁闭起来，用一种非疯癫的冷酷语言相互交流和相互承认”。这本书是米歇尔福柯的代表作，通过研究西方世界的疯癫史，探寻人类文明社会的发展脉络。</p>
+<p>人类的起点初期，疯癫和理性并没有断裂和对立，但人类文明的发展，逐渐成为理性对非理性（疯癫，犯罪和痴呆）的征服和控制，文明即是一种统治非理性的权力，理性和非理性之间不再平等，也不会再有交流和对话。福柯正是用知识考古学的方法，从一堆文学，剧本和艺术资料中，去挖掘疯癫以及对付疯癫的历史，从而揭示人类文明的真正秘密。</p>
+<p>福柯将人类的疯癫史分为三个阶段:</p>
+<p>第一个阶段为中世纪末（麻风病结束）到文艺复兴时期，此时的人类对疯癫认识是模糊的，疯癫的体验被多重意义所笼罩：人类原始堕落和上帝意志的堕落，兽性及其各种变形，以及知识中的一切神奇秘密。人类只是发明了愚人船，将这些人放逐，让他们从一个城镇到另一个城镇。此时疯癫还未被完全分隔，人类对待疯癫还是非常友善的。</p>
+<p>第二阶段是古典阶段，此时开始建立总医院，用于禁闭“精神错乱者”，此时的疯癫被认为是贫困，没有工作能力和没有和社会融合的能力，疯癫者被当作社会垃圾一样被清扫和集中在感化院。从此疯癫便听命于理性，受制于道德戒律，在慢慢黑夜中度日。在古典时期，疯癫被认为是人类长期受到压制的兽性的暴露，它甚至用来和动物一样被展览。而对于疯癫的解释，疯癫者被认为生活在幻想之中，疯癫是一种虚无状态。</p>
+<p>第三阶段，随着医学和精神分析学的发展，人类开始真正认识到疯癫的真正原因，疯癫从此和宗教，道德和伦理联系在一起，穷人和罪犯不再被视为疯癫，疯癫者从此被视为了一种未成年的状态，需要在”家长”的帮助下，回归到理性的状态。疯癫者的精神需要被改造到符合社会的要求，疯癫者从此彻底失去自己的话语，服从理性和秩序，从而形成了整齐划一的社会规范。</p>
+<p>通过对疯癫历史的研究，寻出人类文明的发展逻辑，理性与非理性从统一逐渐走向断裂，最后走向了彻底对立，最终理性实现了对非理性的统治。</p>
+<p>但疯癫作为人类发展中不断出现的现象，却不可能因此彻底的消失。它在艺术的领域找到了繁殖和复制的土壤，他打断了世界的时间，而艺术便显示了一个虚空，一个沉默的片刻以及没有答案的问题，它造成了一个不可弥合的缺口，迫使世界对自己提出质疑。人类文明正是在吞没艺术作品的疯癫中不断获得新的空间。</p>
+<p>福柯最后写到”世界本身任何的东西，尤其是它对疯癫的认识，不能使世界确信它可以用这类疯癫的作品来证明自身的合理性”。对于非理性的认识，理性永远无法完成和抵达。在巨变之中，保持独立思考，对人性的释放，自由的文明本质追求，弥足珍贵。</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined" target="_blank" rel="noopener">okaychen</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.chenqaq.com">浅笔墨画</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/okaychen/CDN@1.2/BlogSource/gallery/thumb_048.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/2020/07/30/attention/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/okaychen/CDN@1.2/BlogSource/gallery/thumb_002.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>我的动态</span></div></a></div></nav><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = false == true ? true : false;
+var verify = false == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'rHHVLGdGTcJm8NvtrtnJInkX-gzGzoHsz',
+  appKey:'QXzgEzka47xO6X8fhHgc6ei4',
+  placeholder:'这里可以给我留言哟',
+  avatar:'monsterid',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'zh-cn',
+  recordIP: true
+});</script></div></div></div><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/okaychen/CDN@1.2/BlogSource/gallery/thumb_048.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2017 - 2021 By okaychen</div><div class="footer_custom_text">Hi，welcome to my site</div><div class="icp"><a><span></span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">2</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script async src="/js/search/local-search.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.15/dist/snackbar.min.js"></script><script id="ribbon_piao" mobile="false" src="/js/third-party/piao.js"></script><script src="/js/tw_cn.js"></script><script>translateInitilization()
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script><script src="/js/third-party/click_heart.js"></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
