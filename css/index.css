@@ -3565,6 +3565,7 @@ blockquote footer cite:before {
   text-align: center;
   line-height: 1.2rem;
   cursor: pointer;
+  background: #eee;
 }
 #pagination .page-number.current {
   background: #00c4b6;
