@@ -2282,11 +2282,19 @@ blockquote footer cite:before {
   width: 70px;
   height: 70px;
   border: 0px solid #eaeefb;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  -ms-transition: all 0.3s;
-  transition: all 0.3s;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -o-transition: all 1s;
+  -ms-transition: all 1s;
+  transition: all 1s;
+}
+.flink .md-links-item:hover img {
+  filter: unqoute("progid:DXImageTransform.Microsoft.BasicImage(rotation=3)");
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  transform: rotate(360deg);
 }
 .flink .md-links-item:before {
   content: "";
