@@ -2180,7 +2180,8 @@ blockquote footer cite:before {
   background-color: #06446c;
 }
 #vcomment textarea {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
+  color: #333;
   background: url("/img/comment_bg.png") 100% 100% no-repeat;
 }
 #vcomment .info {
