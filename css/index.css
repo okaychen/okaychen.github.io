@@ -53,7 +53,7 @@ body {
 }
 *::-webkit-scrollbar {
   width: 8px;
-  height: 8px;
+  height: 4px;
 }
 *::-webkit-scrollbar-thumb {
   background: #49b1f5;
@@ -1399,7 +1399,7 @@ canvas,
   padding: 0;
   padding-top: 1.4rem;
   background: #f6f8fa;
-  color: #555555;
+  color: #90a4ae;
   font-size: 14px;
   line-height: 20px;
 }
