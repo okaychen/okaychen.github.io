@@ -2212,6 +2212,9 @@ blockquote footer cite:before {
 #vcomment .vcontent {
   font-size: 100%;
 }
+#vcomment .vcontent p {
+  color: #555;
+}
 #vcomment .vat {
   font-size: 0.7125rem;
   color: #00c4b6;
