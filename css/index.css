@@ -2288,14 +2288,6 @@ blockquote footer cite:before {
   -ms-transition: all 0.3s;
   transition: all 0.3s;
 }
-.flink .md-links-item:hover img {
-  filter: unqoute("progid:DXImageTransform.Microsoft.BasicImage(rotation=3)");
-  -webkit-transform: rotate(540deg);
-  -moz-transform: rotate(540deg);
-  -o-transform: rotate(540deg);
-  -ms-transform: rotate(540deg);
-  transform: rotate(540deg);
-}
 .flink .md-links-item:before {
   content: "";
   position: absolute;
