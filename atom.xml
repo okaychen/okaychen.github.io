@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.chenqaq.com/"/>
-  <updated>2021-02-08T08:11:31.413Z</updated>
+  <updated>2021-03-31T07:56:46.199Z</updated>
   <id>https://www.chenqaq.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>小站动态</title>
+    <link href="https://www.chenqaq.com/2021/03/30/00attention/"/>
+    <id>https://www.chenqaq.com/2021/03/30/00attention/</id>
+    <published>2021-03-29T16:00:00.000Z</published>
+    <updated>2021-03-31T07:56:46.199Z</updated>
+    
+    <content type="html"><![CDATA[<div class="note info">            <ul><li><h3 id="2021-02"><a href="#2021-02" class="headerlink" title="2021.02"></a>2021.02</h3><p>静态资源日益增多，升级抽离静态资源JSDelivr cdn + gitHub管理 <a href="https://github.com/okaychen/CDN" target="_blank" rel="noopener">cdn管理地址</a></p></li><li><h3 id="2020-02-03"><a href="#2020-02-03" class="headerlink" title="2020.02-03"></a>2020.02-03</h3><p>总结的一份90页pdf校招前端面试小册子 <a href="https://github.com/okaychen/FE-Interview-Brochure" target="_blank" rel="noopener">面试总结小册</a> ｜ <a href="https://docs.chenqaq.com/" target="_blank" rel="noopener">相应托管页</a></p></li><li><h3 id="2019-11-14-15"><a href="#2019-11-14-15" class="headerlink" title="2019.11.14-15"></a>2019.11.14-15</h3><p><a href="https://www.cnblogs.com/okaychen/" target="_blank" rel="noopener">博客园</a>博文迁移完成，博客整改，新增友链和Valine评论</p></li><li><h3 id="2017-12-5"><a href="#2017-12-5" class="headerlink" title="2017.12.5"></a>2017.12.5</h3><p>为了方便管理和发文基于hexo搭建本站托管在github，初衷是个人写作和技术生活的学习记录</p></li></ul>          </div> <a id="more"></a>]]></content>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;note info&quot;&gt;
+            &lt;ul&gt;&lt;li&gt;&lt;h3 id=&quot;2021-02&quot;&gt;&lt;a href=&quot;#2021-02&quot; class=&quot;headerlink&quot; title=&quot;2021.02&quot;&gt;&lt;/a&gt;2021.02&lt;/h3&gt;&lt;p&gt;静态资源日益增多，升级抽离静态资源JSDelivr cdn + gitHub管理 &lt;a href=&quot;https://github.com/okaychen/CDN&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;cdn管理地址&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;h3 id=&quot;2020-02-03&quot;&gt;&lt;a href=&quot;#2020-02-03&quot; class=&quot;headerlink&quot; title=&quot;2020.02-03&quot;&gt;&lt;/a&gt;2020.02-03&lt;/h3&gt;&lt;p&gt;总结的一份90页pdf校招前端面试小册子 &lt;a href=&quot;https://github.com/okaychen/FE-Interview-Brochure&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;面试总结小册&lt;/a&gt; ｜ &lt;a href=&quot;https://docs.chenqaq.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;相应托管页&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;h3 id=&quot;2019-11-14-15&quot;&gt;&lt;a href=&quot;#2019-11-14-15&quot; class=&quot;headerlink&quot; title=&quot;2019.11.14-15&quot;&gt;&lt;/a&gt;2019.11.14-15&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://www.cnblogs.com/okaychen/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;博客园&lt;/a&gt;博文迁移完成，博客整改，新增友链和Valine评论&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;h3 id=&quot;2017-12-5&quot;&gt;&lt;a href=&quot;#2017-12-5&quot; class=&quot;headerlink&quot; title=&quot;2017.12.5&quot;&gt;&lt;/a&gt;2017.12.5&lt;/h3&gt;&lt;p&gt;为了方便管理和发文基于hexo搭建本站托管在github，初衷是个人写作和技术生活的学习记录&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+          &lt;/div&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>愿ni熬得过万丈孤独，藏的下星辰大海</title>
@@ -64,35 +85,6 @@
     
     
       <category term="读书笔记" scheme="https://www.chenqaq.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>这个小站有哪些动态呢</title>
-    <link href="https://www.chenqaq.com/2020/07/30/00attention/"/>
-    <id>https://www.chenqaq.com/2020/07/30/00attention/</id>
-    <published>2020-07-29T16:00:00.000Z</published>
-    <updated>2021-02-09T03:51:59.247Z</updated>
-    
-    <content type="html"><![CDATA[<div class="note success flat"><p>2021年02月：静态资源日益增多，升级抽离静态资源JSDelivr cdn + gitHub管理<br>— ❤️ — <a href="https://github.com/okaychen/CDN">cdn管理地址</a></p></div> <div class="note success flat"><p>2020年02月～03月：应牛客网运营牛妹推荐，写的一份90页pdf校招前端面试小册子<br>— 🌟 —  <a href="https://github.com/okaychen/FE-Interview-Brochure">面试总结小册</a> ｜ <a href="https://docs.chenqaq.com/">相应托管页</a></p></div> <div class="note success flat"><p>2019年11月14~15日：<a href="https://www.cnblogs.com/okaychen/">博客园</a>博文迁移完成，博客整改，新增友链和Valine评论</p></div> <div class="note success flat"><p>2017年12月5日：为了方便管理和发文基于hexo搭建本站托管在github，初衷是个人写作和技术生活的学习记录</p></div> <a id="more"></a>]]></content>
-    
-    <summary type="html">
-    
-      &lt;div class=&quot;note success flat&quot;&gt;&lt;p&gt;2021年02月：静态资源日益增多，升级抽离静态资源JSDelivr cdn + gitHub管理&lt;br&gt;— ❤️ — &lt;a href=&quot;https://github.com/okaychen/CDN&quot;&gt;cdn管理地址&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt; 
-
-&lt;div class=&quot;note success flat&quot;&gt;&lt;p&gt;2020年02月～03月：应牛客网运营牛妹推荐，写的一份90页pdf校招前端面试小册子&lt;br&gt;— 🌟 —  &lt;a href=&quot;https://github.com/okaychen/FE-Interview-Brochure&quot;&gt;面试总结小册&lt;/a&gt; ｜ &lt;a href=&quot;https://docs.chenqaq.com/&quot;&gt;相应托管页&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt; 
-
-&lt;div class=&quot;note success flat&quot;&gt;&lt;p&gt;2019年11月14~15日：&lt;a href=&quot;https://www.cnblogs.com/okaychen/&quot;&gt;博客园&lt;/a&gt;博文迁移完成，博客整改，新增友链和Valine评论&lt;/p&gt;
-&lt;/div&gt; 
-
-&lt;div class=&quot;note success flat&quot;&gt;&lt;p&gt;2017年12月5日：为了方便管理和发文基于hexo搭建本站托管在github，初衷是个人写作和技术生活的学习记录&lt;/p&gt;
-&lt;/div&gt;
-    
-    </summary>
-    
-    
     
   </entry>
   
